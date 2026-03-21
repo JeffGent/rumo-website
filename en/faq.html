@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Rumo Hotel Software</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Frequently asked questions about Rumo hotel software. Everything about setup, migration, Peppol, integrations and support.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a; --warm: #2c2418; --cream: #faf7f2; --sand: #f0ebe1;
+            --terracotta: #c4653a; --terracotta-light: #d4794f; --sage: #7a8c6e;
+            --sage-light: #e8ede5; --gold: #b8963e; --mist: #e8e4dc; --white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--cream); color: var(--warm); line-height: 1.7; overflow-x: hidden; }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(250,247,242,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.04); }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--warm); text-decoration: none; letter-spacing: -0.5px; }
+        .nav-logo span { color: var(--terracotta); }
+        .nav-links { display: flex; gap: 2.2rem; align-items: center; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--warm); font-size: 0.92rem; font-weight: 500; opacity: 0.75; transition: opacity 0.2s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; }
+        .nav-links a.active { color: var(--terracotta); }
+        .nav-cta { background: var(--terracotta) !important; color: var(--white) !important; padding: 0.6rem 1.5rem; border-radius: 8px; opacity: 1 !important; font-weight: 600 !important; }
+        .nav-cta:hover { background: var(--terracotta-light) !important; }
+        .nav-lang { display: flex; gap: 0.4rem; align-items: center; margin-left: 0.5rem; }
+        .nav-lang a { text-decoration: none; color: var(--warm); font-size: 0.78rem; font-weight: 600; opacity: 0.35; transition: opacity 0.2s; padding: 0.2rem 0.4rem; border-radius: 4px; }
+        .nav-lang a:hover { opacity: 0.7; }
+        .nav-lang a.active { opacity: 1; background: var(--sand); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-direction: column; gap: 5px; }
+        .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--warm); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+
+        .btn-primary { background: var(--terracotta); color: var(--white); padding: 0.9rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-primary:hover { background: var(--terracotta-light); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(196,101,58,0.25); }
+
+        section { padding: 6rem 3rem; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 2px; color: var(--terracotta); font-weight: 600; display: block; margin-bottom: 1rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .section-subtitle { font-size: 1.05rem; opacity: 0.65; max-width: 600px; line-height: 1.7; }
+
+        /* PAGE HEADER */
+        .page-header { padding: 10rem 3rem 5rem; background: var(--white); }
+        .page-header-inner { max-width: 700px; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.5rem); line-height: 1.15; letter-spacing: -1px; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.1rem; opacity: 0.65; line-height: 1.8; }
+
+        /* FAQ LAYOUT */
+        .faq-section { background: var(--cream); }
+        .faq-layout { display: flex; flex-direction: column; margin-top: 3rem; }
+
+        /* CATEGORY NAV */
+        .faq-categories { display: none; }
+
+        /* FAQ GROUPS */
+        .faq-group { margin-bottom: 3rem; }
+        .faq-group { scroll-margin-top: 8rem; }
+        .faq-group-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 1rem; padding: 0.5rem 1rem; background: var(--sand); border-radius: 8px; display: inline-block; color: var(--warm); }
+
+        .faq-item { border-bottom: 1px solid var(--mist); }
+        .faq-question { width: 100%; background: none; border: none; padding: 1.2rem 0; font-size: 1rem; font-weight: 600; font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--warm); cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+        .faq-question::after { content: '+'; font-size: 1.4rem; font-weight: 300; color: var(--terracotta); transition: transform 0.3s ease; flex-shrink: 0; }
+        .faq-item.open .faq-question::after { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+        .faq-item.open .faq-answer { max-height: 400px; padding-bottom: 1.2rem; }
+        .faq-answer p { font-size: 0.95rem; opacity: 0.65; line-height: 1.8; }
+        .faq-answer p + p { margin-top: 0.8rem; }
+
+        /* CONTACT CTA */
+        .contact-cta { background: var(--white); }
+        .contact-card { background: var(--cream); border-radius: 20px; padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-top: 3rem; }
+        .contact-card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .contact-card p { opacity: 0.6; max-width: 480px; font-size: 0.95rem; }
+
+        /* FINAL CTA */
+        .final-cta { background: var(--warm); color: var(--cream); text-align: center; padding: 5rem 3rem; }
+        .final-cta .section-title { color: var(--cream); font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 1rem; }
+        .final-cta .section-subtitle { color: var(--cream); opacity: 0.5; margin: 0 auto 2rem; max-width: 500px; font-size: 1.05rem; line-height: 1.7; }
+        .final-cta .btn-primary { font-size: 1.1rem; padding: 1rem 2.5rem; }
+
+        footer { background: var(--ink); color: var(--cream); padding: 3rem; }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .footer-brand span { color: var(--terracotta); }
+        .footer-tagline { font-size: 0.85rem; opacity: 0.4; max-width: 280px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.4rem; }
+        .footer-links a { color: var(--cream); text-decoration: none; font-size: 0.88rem; opacity: 0.5; transition: opacity 0.2s; }
+        .footer-links a:hover { opacity: 1; }
+        .footer-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.3; margin-bottom: 0.8rem; }
+        .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.8rem; opacity: 0.3; text-align: center; }
+
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-toggle { display: flex; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,247,242,0.98); backdrop-filter: blur(20px); flex-direction: column; padding: 1.5rem; gap: 0; border-bottom: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+            .nav-links.open { display: flex; }
+            .nav-links li { list-style: none; }
+            .nav-links a { display: block; padding: 0.8rem 0; font-size: 1rem; opacity: 0.8; border-bottom: 1px solid rgba(0,0,0,0.04); }
+            .nav-links li:last-child a { border-bottom: none; }
+            .nav-cta { margin-top: 0.5rem; text-align: center; display: block !important; }
+            section { padding: 4rem 1.5rem; }
+            .page-header { padding: 8rem 1.5rem 3rem; }
+            .faq-layout { grid-template-columns: 1fr; gap: 2rem; }
+            .faq-cat-list { gap: 0.3rem; }
+            .contact-card { padding: 2rem; flex-direction: column; text-align: center; }
+            .contact-card .btn-primary { width: 100%; justify-content: center; }
+            footer { padding: 2.5rem 1.5rem; }
+            .footer-inner { flex-direction: column; gap: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            section { padding: 3rem 1rem; }
+            .page-header { padding: 7rem 1rem 2.5rem; }
+            .faq-question { font-size: 0.92rem; padding: 1rem 0; }
+            .contact-card { padding: 1.5rem; }
+            .final-cta { padding: 3rem 1rem; }
+        }
+    </style>
+    <link rel="stylesheet" href="../rudy-widget.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">rumo<span>.</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="index.html#features-preview">What's included?</a></li>
+        <li><a href="index.html#voor-wie">Who is it for?</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="integrations.html">Integrations</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="faq.html" class="active">FAQ</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="index.html#demo" class="nav-cta">Try for free</a></li>
+        <li class="nav-lang"><a href="../faq.html" onclick="sessionStorage.setItem('rumo-lang-chosen','nl')">NL</a><a href="faq.html" class="active" onclick="sessionStorage.setItem('rumo-lang-chosen','en')">EN</a><a href="../fr/faq.html" onclick="sessionStorage.setItem('rumo-lang-chosen','fr')">FR</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <div class="page-header-inner fade-up">
+        <span class="section-label">Frequently asked questions</span>
+        <h1>Questions?<br>Find your answers here.</h1>
+        <p>Hopefully the ones you actually had. If not, just send us a message.</p>
+    </div>
+</div>
+
+<section class="faq-section">
+    <div class="section-inner">
+        <div class="faq-layout">
+
+            <div class="fade-up">
+
+                <!-- GENERAL -->
+                <div class="faq-group" id="algemeen">
+                    <div class="faq-group-title">General</div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Do I need to install anything?</button>
+                        <div class="faq-answer">
+                            <p>No. Just open your browser and go. No installation, no IT department needed. Works on your computer, tablet and phone. As long as your browser isn't from 2003, you're good.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">I only have 6 rooms. Isn't Rumo overkill?</button>
+                        <div class="faq-answer">
+                            <p>Quite the opposite. Rumo is built specifically for hotels with 5 to 50 rooms. The big systems can be overkill for you. Rumo gives you what you need, without all the stuff you don't.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Does Rumo only work for hotels, or also for B&Bs?</button>
+                        <div class="faq-answer">
+                            <p>Both. Whether you run a 6-room B&B or a 35-room boutique hotel, Rumo scales with you. The interface is designed so that even an owner who does everything themselves can work with it smoothly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GETTING STARTED -->
+                <div class="faq-group" id="instappen">
+                    <div class="faq-group-title">Getting started</div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Can I import my existing reservations?</button>
+                        <div class="faq-answer">
+                            <p>Yes. We help you with the switch, whether you're coming from another PMS or from a dog-eared notebook. We make sure your data ends up neatly in Rumo.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">How long does it take to get started?</button>
+                        <div class="faq-answer">
+                            <p>Depends on how complex your setup is, but most hotels are up and running within a few days. Creating rooms, connecting channels, going through settings. We do it together with you.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Is there an annual contract?</button>
+                        <div class="faq-answer">
+                            <p>No. You do start with an initial 6-month period, paid upfront. That's fair for both of us: you give Rumo a real chance, and we make sure everything runs smoothly. After that, it's month to month, cancellable whenever you want. No fine print, no notice period.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INVOICING & PEPPOL -->
+                <div class="faq-group" id="facturatie">
+                    <div class="faq-group-title">Invoicing & Peppol</div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">How does Peppol work in Rumo?</button>
+                        <div class="faq-answer">
+                            <p>Fully automatic. You create an invoice for a company, and Rumo sends it via Peppol in UBL 2.1 format. You don't do anything extra. Your accountant receives everything neatly, including credit notes and proformas.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What if my guest is a private individual?</button>
+                        <div class="faq-answer">
+                            <p>Then a PDF invoice goes out by email. Peppol is only mandatory for B2B. Rumo automatically detects which type of invoice is needed. You don't have to think about it.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Can my accountant follow along?</button>
+                        <div class="faq-answer">
+                            <p>Absolutely. Invoices are automatically sent to Exact Online, Yuki or Octopus. Your accountant gets everything neatly, without you having to lift a finger.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Can I export invoices for my accounting?</button>
+                        <div class="faq-answer">
+                            <p>Absolutely. Individually or in bulk: CSV, Excel, PDF or UBL 2.1 XML. There's also an accounting export with VAT breakdown per month or quarter. Your accountant will love you for it.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REPORTS & PROFILES -->
+                <div class="faq-group" id="rapporten">
+                    <div class="faq-group-title">Reports & profiles</div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What reports are included in Rumo?</button>
+                        <div class="faq-answer">
+                            <p>Occupancy rate, revenue per channel, ADR, RevPAR and a central invoice overview. Plus an aging report showing who still needs to pay. Everything exportable to CSV, Excel or PDF. No more spreadsheet acrobatics.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Are guest profiles created automatically?</button>
+                        <div class="faq-answer">
+                            <p>Yes. Every guest, booker and company automatically gets a profile based on reservation data. Stay history, contact details, VAT numbers and Peppol IDs. Everything is tracked without you having to do anything extra.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Does Rumo automatically send emails to guests?</button>
+                        <div class="faq-answer">
+                            <p>If you want it to, yes. Confirmation email at booking, pre-check-in instructions a few days before arrival, invoice at check-out. Everything configurable per template, in your guest's language. You can also turn it off if you prefer to email them yourself.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOOKING ENGINE & CHANNELS -->
+                <div class="faq-group" id="integraties">
+                    <div class="faq-group-title">Booking engine & channels</div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What is the booking engine?</button>
+                        <div class="faq-answer">
+                            <p>A booking widget you place on your own website. Guests choose their room and dates, pay online, and the reservation appears directly in Rumo. No commission, no middleman. You save the 15 to 25% you'd otherwise pay to an OTA.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Does Rumo work with Booking.com and Airbnb?</button>
+                        <div class="faq-answer">
+                            <p>Yes. Through the built-in channel manager, prices and availability are synchronised in real time. New booking on Booking.com? It's in Rumo instantly. No more copy-pasting.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What are allotments?</button>
+                        <div class="faq-answer">
+                            <p>Rooms you pre-reserve for a partner, like a travel agency or conference organiser. You give them a certain number of rooms per night at an agreed price, with a cut-off date. After that date, unused rooms are released again. Handy for groups and contracts.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What payment methods does Rumo Pay support?</button>
+                        <div class="faq-answer">
+                            <p>Bancontact, iDEAL, Visa and Mastercard. Pre-authorisations, automatic VCC charging from Booking.com. Local payment methods are included.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Does Rumo work with my current accounting software?</button>
+                        <div class="faq-answer">
+                            <p>Direct integration with Exact Online, Yuki and Octopus. Different package? Possible via export. Don't see yours listed? Send us a message and we'll see what's possible.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Can I manage multiple hotels in Rumo?</button>
+                        <div class="faq-answer">
+                            <p>Yes. Each hotel has its own configuration, rooms, rates and reservations. You switch between hotels with one click. Ideal if you manage multiple locations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DAILY OPERATIONS -->
+                <div class="faq-group" id="operatie">
+                    <div class="faq-group-title">Daily operations</div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Can I book multiple rooms in one reservation?</button>
+                        <div class="faq-answer">
+                            <p>Yes. A reservation can contain multiple rooms, each with their own check-in/check-out date, room status and guests. Handy for families or groups booking together but not leaving on the same day.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">How does the guest portal work?</button>
+                        <div class="faq-answer">
+                            <p>Every guest receives a personal link (via email). There they can fill in pre-check-in with ID details, confirm a quote, pay online or provide their credit card as a guarantee. You don't have to do anything. The link is valid until 2 weeks after check-out.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Is there a breakfast list?</button>
+                        <div class="faq-answer">
+                            <p>Yes. The F&B module shows per day which guests have breakfast (included in the rate plan or separate). Plus minibar and restaurant charges that automatically go on the room bill.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Can I send quotes?</button>
+                        <div class="faq-answer">
+                            <p>Yes. Create a reservation with status "option" and send the guest a link via the guest portal. The guest can confirm the quote online. You get a notification as soon as that happens.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUPPORT & PRICING -->
+                <div class="faq-group" id="support">
+                    <div class="faq-group-title">Support & pricing</div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What if I get stuck?</button>
+                        <div class="faq-answer">
+                            <p>Then we help you. No ticket system where you wait 3 days for a reply. Just a real person who helps. Because that's how it should be.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Are there setup fees?</button>
+                        <div class="faq-answer">
+                            <p>No. No setup fees, no installation costs, nothing. You start with a 14-day free demo, and then you simply pay your subscription. The first 6 months are paid upfront, then monthly. That's it. No surprises afterwards.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What exactly does Rumo Pay cost?</button>
+                        <div class="faq-answer">
+                            <p>You pay per transaction, no fixed monthly cost. The exact rates can be found on the <a href="pricing.html" style="color:var(--terracotta);">pricing page</a>. No payment? No cost.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="contact-cta">
+    <div class="section-inner fade-up">
+        <div class="contact-card">
+            <div>
+                <h3>Can't find your question?</h3>
+                <p>Just send us a message. No chatbot, no queue. Just an answer from a real person.</p>
+            </div>
+            <a href="mailto:hallo@rumo.be" class="btn-primary">Ask your question →</a>
+        </div>
+    </div>
+</section>
+
+<section class="final-cta" id="demo">
+    <div class="fade-up">
+        <h2 class="section-title">Ready to try Rumo?</h2>
+        <p class="section-subtitle">No credit card needed. No obligations. Just 14 days to play around with a demo full of fake reservations.</p>
+        <a href="index.html#demo" class="btn-primary">Try 14 days free →</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="footer-brand">rumo<span>.</span></div>
+            <p class="footer-tagline">Hotel software that just works. No manual needed.</p>
+        </div>
+        <div>
+            <div class="footer-label">Product</div>
+            <ul class="footer-links">
+                <li><a href="features.html">Features</a></li>
+        <li><a href="integrations.html">Integrations</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="footer-label">Rumo</div>
+            <ul class="footer-links">
+                <li><a href="https://wa.me/32485382828" target="_blank" rel="noopener">WhatsApp</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="about.html">About us</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 Rumo. All rights reserved.</div>
+</footer>
+
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
+    });
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        });
+    });
+
+    // Category nav highlight on scroll
+    const groups = document.querySelectorAll('.faq-group');
+    const catLinks = document.querySelectorAll('.faq-cat-list a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        groups.forEach(group => {
+            if (window.scrollY >= group.offsetTop - 120) current = group.id;
+        });
+        catLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+        });
+    });
+</script>
+<script src="../rudy-widget.js"></script>
+</body>
+</html>

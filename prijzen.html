@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prijzen | Rumo Hotelsoftware</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Rumo prijzen. Simpel, voorspelbaar, geen verrassingen. Basispakket per kamer plus optionele add-ons.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a; --warm: #2c2418; --cream: #faf7f2; --sand: #f0ebe1;
+            --terracotta: #c4653a; --terracotta-light: #d4794f; --sage: #7a8c6e;
+            --sage-light: #e8ede5; --gold: #b8963e; --mist: #e8e4dc; --white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--cream); color: var(--warm); line-height: 1.7; overflow-x: hidden; }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(250,247,242,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.04); }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--warm); text-decoration: none; letter-spacing: -0.5px; }
+        .nav-logo span { color: var(--terracotta); }
+        .nav-links { display: flex; gap: 2.2rem; align-items: center; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--warm); font-size: 0.92rem; font-weight: 500; opacity: 0.75; transition: opacity 0.2s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; }
+        .nav-links a.active { color: var(--terracotta); }
+        .nav-cta { background: var(--terracotta) !important; color: var(--white) !important; padding: 0.6rem 1.5rem; border-radius: 8px; opacity: 1 !important; font-weight: 600 !important; }
+        .nav-cta:hover { background: var(--terracotta-light) !important; }
+        .nav-lang { display: flex; gap: 0.4rem; align-items: center; margin-left: 0.5rem; }
+        .nav-lang a { text-decoration: none; color: var(--warm); font-size: 0.78rem; font-weight: 600; opacity: 0.35; transition: opacity 0.2s; padding: 0.2rem 0.4rem; border-radius: 4px; }
+        .nav-lang a:hover { opacity: 0.7; }
+        .nav-lang a.active { opacity: 1; background: var(--sand); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-direction: column; gap: 5px; }
+        .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--warm); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+
+        .btn-primary { background: var(--terracotta); color: var(--white); padding: 0.9rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-primary:hover { background: var(--terracotta-light); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(196,101,58,0.25); }
+        .btn-outline { border: 2px solid var(--mist); color: var(--warm); padding: 0.85rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-outline:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+        section { padding: 6rem 3rem; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 2px; color: var(--terracotta); font-weight: 600; display: block; margin-bottom: 1rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .section-subtitle { font-size: 1.05rem; opacity: 0.65; max-width: 600px; line-height: 1.7; }
+
+        /* PAGE HEADER */
+        .page-header { padding: 10rem 3rem 5rem; background: var(--white); text-align: center; }
+        .page-header-inner { max-width: 700px; margin: 0 auto; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.5rem); line-height: 1.15; letter-spacing: -1px; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.1rem; opacity: 0.65; line-height: 1.8; }
+
+        /* PRICING SECTION */
+        .pricing-section { background: var(--cream); }
+        .pricing-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.5rem; margin-top: 3rem; align-items: start; }
+
+        /* BASE PLAN CARD */
+        .plan-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 30px rgba(0,0,0,0.05); }
+        .plan-card-top { padding: 2.5rem 2.5rem 2rem; position: relative; }
+        .plan-card-top::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--terracotta), var(--gold)); }
+        .plan-name { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--terracotta); margin-bottom: 1rem; }
+        .plan-price { display: flex; align-items: flex-end; gap: 0.4rem; margin-bottom: 0.3rem; }
+        .plan-amount { font-family: 'Playfair Display', serif; font-size: 3.5rem; line-height: 1; color: var(--warm); }
+        .plan-unit { font-size: 0.9rem; opacity: 0.5; padding-bottom: 0.6rem; }
+        .plan-note { font-size: 0.85rem; opacity: 0.5; font-style: italic; margin-bottom: 0.5rem; }
+        .plan-minimum { display: inline-block; background: var(--cream); border-radius: 6px; padding: 0.3rem 0.8rem; font-size: 0.82rem; opacity: 0.6; margin-bottom: 1.5rem; }
+        .plan-desc { font-size: 0.95rem; opacity: 0.65; line-height: 1.7; margin-bottom: 2rem; }
+        .plan-features-toggle { display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 2.5rem; cursor: pointer; font-size: 0.92rem; font-weight: 600; color: var(--terracotta); border-top: 1px solid var(--cream); user-select: none; transition: background 0.2s; }
+        .plan-features-toggle:hover { background: rgba(196,101,58,0.03); }
+        .plan-features-toggle .toggle-arrow { transition: transform 0.3s ease; font-size: 0.8rem; }
+        .plan-features-toggle.open .toggle-arrow { transform: rotate(180deg); }
+        .plan-features { list-style: none; padding: 0 2.5rem; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding-bottom 0.4s ease; }
+        .plan-features.open { max-height: 800px; padding-bottom: 2rem; }
+        .plan-features li { padding: 0.55rem 0; font-size: 0.95rem; display: flex; align-items: flex-start; gap: 0.8rem; border-bottom: 1px solid var(--cream); }
+        .plan-features li:last-child { border-bottom: none; }
+        .plan-features li::before { content: '✓'; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--sage-light); color: var(--sage); font-size: 0.75rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+        .plan-cta { padding: 0 2.5rem 2.5rem; }
+        .plan-cta .btn-primary { width: 100%; justify-content: center; }
+
+        /* PRICE CALCULATOR */
+        .calculator { background: var(--white); border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+        .calc-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.3rem; }
+        .calc-sub { font-size: 0.85rem; opacity: 0.5; margin-bottom: 1.5rem; }
+        .calc-slider-label { display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .calc-slider { width: 100%; appearance: none; height: 4px; background: var(--mist); border-radius: 2px; outline: none; margin-bottom: 0.4rem; cursor: pointer; }
+        .calc-slider::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--terracotta); cursor: pointer; box-shadow: 0 2px 8px rgba(196,101,58,0.3); }
+        .calc-range { display: flex; justify-content: space-between; font-size: 0.75rem; opacity: 0.4; margin-bottom: 1.8rem; }
+        .calc-result { background: var(--cream); border-radius: 12px; padding: 1.2rem 1.5rem; margin-bottom: 1rem; }
+        .calc-result-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; padding: 0.3rem 0; }
+        .calc-result-row.total { font-weight: 700; font-size: 1.05rem; padding-top: 0.6rem; margin-top: 0.3rem; border-top: 1px solid var(--mist); }
+        .calc-result-label { opacity: 0.6; }
+        .calc-note { font-size: 0.78rem; opacity: 0.45; text-align: center; font-style: italic; }
+        .calc-addons { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+        .calc-addons-title { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.6rem; }
+        .calc-addon-item { display: flex; align-items: center; gap: 0.6rem; padding: 0.45rem 0; font-size: 0.88rem; cursor: pointer; user-select: none; }
+        .calc-addon-item input[type="checkbox"] { accent-color: var(--terracotta); width: 16px; height: 16px; cursor: pointer; }
+        .calc-addon-item .addon-label { flex: 1; }
+        .calc-addon-item .addon-cost { font-weight: 600; opacity: 0.5; font-size: 0.82rem; white-space: nowrap; }
+        .calc-addon-item.disabled { opacity: 0.45; }
+        .calc-addon-item.disabled .addon-soon { font-size: 0.72rem; color: #c4883a; font-weight: 600; }
+
+        /* ADD-ONS */
+        .addons-section { background: var(--white); }
+        .addons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .addon-card { background: var(--cream); border-radius: 14px; padding: 1.8rem; }
+        .addon-badge { display: inline-block; background: var(--sand); color: var(--warm); padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; margin-bottom: 1rem; opacity: 0.7; }
+        .addon-badge-soon { background: #fef3e2; color: #c4883a; }
+        .addon-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; }
+        .addon-card p { font-size: 0.88rem; opacity: 0.6; line-height: 1.6; margin-bottom: 1rem; }
+        .addon-price { font-weight: 700; color: var(--warm); font-size: 0.95rem; }
+        .addon-price span { font-weight: 400; opacity: 0.5; font-size: 0.82rem; }
+
+        /* COMPARISON */
+        /* TRANSACTION FEES */
+        .fees-section { background: var(--cream); }
+        .fees-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 3rem; align-items: start; }
+        .fees-card { background: var(--white); border-radius: 16px; padding: 2rem; }
+        .fees-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 0.3rem; }
+        .fees-card-sub { font-size: 0.85rem; opacity: 0.5; margin-bottom: 1.5rem; }
+        .fee-row { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid var(--cream); }
+        .fee-row:last-child { border-bottom: none; }
+        .fee-method { display: flex; align-items: center; gap: 0.6rem; font-size: 0.92rem; }
+        .fee-method-icon { width: 32px; height: 22px; background: var(--cream); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: var(--warm); opacity: 0.5; }
+        .fee-rate { font-weight: 600; font-size: 0.92rem; color: var(--warm); white-space: nowrap; }
+        .fees-info { background: var(--white); border-radius: 16px; padding: 2rem; }
+        .fees-info h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 1rem; }
+        .fees-info p { font-size: 0.9rem; opacity: 0.65; line-height: 1.7; margin-bottom: 1rem; }
+        .fees-info p:last-child { margin-bottom: 0; }
+        .fees-highlight { background: var(--sage-light); border-radius: 10px; padding: 1.2rem 1.5rem; margin-top: 1.2rem; }
+        .fees-highlight p { opacity: 0.75; margin-bottom: 0; font-size: 0.88rem; }
+        .fees-highlight strong { color: var(--sage); }
+
+        .compare-section { background: var(--cream); }
+        .compare-table { width: 100%; border-collapse: collapse; margin-top: 3rem; }
+        .compare-table th { text-align: left; padding: 0.8rem 1rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.4; font-weight: 600; border-bottom: 1px solid var(--mist); }
+        .compare-table th:not(:first-child) { text-align: center; }
+        .compare-table td { padding: 0.9rem 1rem; font-size: 0.92rem; border-bottom: 1px solid var(--mist); }
+        .compare-table td:not(:first-child) { text-align: center; }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table .check { color: var(--sage); font-weight: 700; font-size: 1.1rem; }
+        .compare-table .cross { opacity: 0.2; }
+        .compare-table .col-rumo { background: rgba(196,101,58,0.04); }
+        .compare-th-rumo { color: var(--terracotta) !important; opacity: 1 !important; }
+        .compare-table tr:hover td { background: rgba(0,0,0,0.015); }
+
+        /* FINAL CTA */
+        .final-cta { background: var(--warm); color: var(--cream); text-align: center; padding: 5rem 3rem; }
+        .final-cta .section-title { color: var(--cream); font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 1rem; }
+        .final-cta .section-subtitle { color: var(--cream); opacity: 0.5; margin: 0 auto 2rem; max-width: 500px; font-size: 1.05rem; line-height: 1.7; }
+        .final-cta .btn-primary { font-size: 1.1rem; padding: 1rem 2.5rem; }
+
+        footer { background: var(--ink); color: var(--cream); padding: 3rem; }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .footer-brand span { color: var(--terracotta); }
+        .footer-tagline { font-size: 0.85rem; opacity: 0.4; max-width: 280px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.4rem; }
+        .footer-links a { color: var(--cream); text-decoration: none; font-size: 0.88rem; opacity: 0.5; transition: opacity 0.2s; }
+        .footer-links a:hover { opacity: 1; }
+        .footer-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.3; margin-bottom: 0.8rem; }
+        .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.8rem; opacity: 0.3; text-align: center; }
+
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-toggle { display: flex; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,247,242,0.98); backdrop-filter: blur(20px); flex-direction: column; padding: 1.5rem; gap: 0; border-bottom: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+            .nav-links.open { display: flex; }
+            .nav-links li { list-style: none; }
+            .nav-links a { display: block; padding: 0.8rem 0; font-size: 1rem; opacity: 0.8; border-bottom: 1px solid rgba(0,0,0,0.04); }
+            .nav-links li:last-child a { border-bottom: none; }
+            .nav-cta { margin-top: 0.5rem; text-align: center; display: block !important; }
+            section { padding: 4rem 1.5rem; }
+            .page-header { padding: 8rem 1.5rem 3rem; }
+            .pricing-layout { grid-template-columns: 1fr; }
+            .plan-card-top { padding: 2rem 1.5rem 1.5rem; }
+            .plan-features { padding: 0 1.5rem 1.5rem; }
+            .plan-cta { padding: 0 1.5rem 2rem; }
+            .addons-grid { grid-template-columns: 1fr; }
+            .fees-layout { grid-template-columns: 1fr; }
+            .compare-table { font-size: 0.82rem; }
+            .compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            footer { padding: 2.5rem 1.5rem; }
+            .footer-inner { flex-direction: column; gap: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            section { padding: 3rem 1rem; }
+            .page-header { padding: 7rem 1rem 2.5rem; }
+            .addons-grid { gap: 1rem; }
+            .addon-card { padding: 1.5rem; }
+            .final-cta { padding: 3rem 1rem; }
+        }
+    </style>
+    <link rel="stylesheet" href="rudy-widget.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">rumo<span>.</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="index.html#features-preview">Wat zit erin?</a></li>
+        <li><a href="index.html#voor-wie">Voor wie?</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="integraties.html">Integraties</a></li>
+        <li><a href="prijzen.html" class="active">Prijzen</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="over-ons.html">Over ons</a></li>
+        <li><a href="index.html#demo" class="nav-cta">Probeer gratis</a></li>
+        <li class="nav-lang"><a href="prijzen.html" class="active">NL</a><a href="en/pricing.html">EN</a><a href="fr/tarifs.html">FR</a></li>
+    </ul>
+</nav>
+
+<div class="page-header">
+    <div class="page-header-inner fade-up">
+        <span class="section-label">Prijzen</span>
+        <h1>Simpel. Voorspelbaar.<br>Geen verrassingen.</h1>
+        <p>Geen setupkosten. Geen jaarcontract. Opzegbaar wanneer je wil.</p>
+    </div>
+</div>
+
+<!-- PRICING -->
+<section class="pricing-section">
+    <div class="section-inner">
+        <div class="pricing-layout">
+            <div class="plan-card fade-up">
+                <div class="plan-card-top">
+                    <div class="plan-name">Basispakket</div>
+                    <div class="plan-price">
+                        <div class="plan-amount">€12</div>
+                        <div class="plan-unit">/ kamer / maand</div>
+                    </div>
+                    <div class="plan-note">Geen jaarcontract · Geen setupkosten · Opzegbaar wanneer je wil</div>
+                    <div class="plan-desc">Alles wat je nodig hebt om je hotel professioneel te beheren. Van dashboard tot rapporten, van booking engine tot gastcommunicatie. Vijftien modules, geen extra kosten.</div>
+                </div>
+                <div class="plan-features-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+                    <span>Bekijk alle 17 modules</span>
+                    <span class="toggle-arrow">▼</span>
+                </div>
+                <ul class="plan-features">
+                    <li>Dashboard met arrivals, departures en live statistieken</li>
+                    <li>Onbeperkt reservaties met multi-room boekingen</li>
+                    <li>Visuele kalender met drag-and-drop</li>
+                    <li>Booking engine voor directe boekingen op je website</li>
+                    <li>Channel manager (Booking.com, Airbnb, Expedia)</li>
+                    <li>Kamertypes, tariefplannen en allotments</li>
+                    <li>Facturatie met Peppol en UBL 2.1 export</li>
+                    <li>Rapporten: bezetting, omzet, ADR, RevPAR, bronanalyse</li>
+                    <li>Guest portal: pre-check-in, offerte bevestigen, online betalen</li>
+                    <li>Rumo Pay (Bancontact, Visa, Mastercard, iDEAL)</li>
+                    <li>F&B: ontbijtlijsten, minibar en restaurantcharges</li>
+                    <li>Housekeeping module</li>
+                    <li>Gastprofielen, bedrijfsprofielen en bookerprofielen</li>
+                    <li>Automatische e-mails in 4 talen (NL, FR, DE, EN)</li>
+                    <li>Wachtlijst met automatische optiereservering</li>
+                    <li>Koppeling met Exact Online, Yuki, Octopus</li>
+                    <li>Onbeperkt support, in het Nederlands</li>
+                </ul>
+                <div class="plan-cta">
+                    <a href="index.html#demo" class="btn-primary">14 dagen gratis uitproberen →</a>
+                </div>
+            </div>
+
+            <div class="fade-up" style="transition-delay: 0.1s">
+                <div class="calculator">
+                    <div class="calc-title">Bereken jouw prijs</div>
+                    <div class="calc-sub">Schuif naar jouw aantal kamers</div>
+                    <div class="calc-slider-label">
+                        <span>Aantal kamers</span>
+                        <span id="room-count">20</span>
+                    </div>
+                    <input type="range" class="calc-slider" id="room-slider" min="5" max="50" value="20">
+                    <div class="calc-range"><span>5</span><span>50</span></div>
+                    <div class="calc-addons">
+                        <div class="calc-addons-title">Addons toevoegen</div>
+                        <label class="calc-addon-item">
+                            <input type="checkbox" id="addon-whitelabel" onchange="updateCalc()">
+                            <span class="addon-label">Guest Portal: White Label</span>
+                            <span class="addon-cost">+€45/m</span>
+                        </label>
+                        <label class="calc-addon-item disabled">
+                            <input type="checkbox" id="addon-smartpricing" onchange="updateCalc()" disabled>
+                            <span class="addon-label">Smart Pricing <span class="addon-soon">(binnenkort)</span></span>
+                            <span class="addon-cost">+€45/m</span>
+                        </label>
+                        <label class="calc-addon-item disabled">
+                            <input type="checkbox" id="addon-salto" onchange="updateCalc()" disabled>
+                            <span class="addon-label">Sleutelbeheer: Salto <span class="addon-soon">(binnenkort)</span></span>
+                            <span class="addon-cost">+€45/m</span>
+                        </label>
+                    </div>
+                    <div class="calc-result">
+                        <div class="calc-result-row"><span class="calc-result-label"><span id="calc-rooms">20</span> kamers × €12</span><span id="calc-base">€240</span></div>
+                        <div class="calc-result-row" id="calc-addons-row" style="display:none"><span class="calc-result-label"><span id="calc-addon-count">0</span> addon(s)</span><span id="calc-addons-total">€0</span></div>
+                        <div class="calc-result-row total"><span>Per maand</span><span id="calc-total">€240</span></div>
+                    </div>
+                    <div class="calc-note">Excl. transactiekosten Rumo Pay</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ADD-ONS -->
+<section class="addons-section">
+    <div class="section-inner">
+        <div class="fade-up">
+            <span class="section-label">Addons</span>
+            <h2 class="section-title">Uitbreiden wanneer jij er klaar voor bent.</h2>
+            <p class="section-subtitle">Het basispakket dekt alles. Maar als je meer wil, zijn er optionele modules die je per maand kan activeren.</p>
+        </div>
+        <div class="addons-grid">
+            <div class="addon-card fade-up">
+                <div class="addon-badge">Add-on</div>
+                <h3>Guest Portal: White Label</h3>
+                <p>Jouw logo, jouw huisstijl. De gastpagina ziet eruit alsof jij hem gebouwd hebt. Inclusief branded e-mails.</p>
+                <div class="addon-price">€45 <span>/ maand</span></div>
+            </div>
+            <div class="addon-card fade-up" style="transition-delay:0.07s">
+                <div class="addon-badge addon-badge-soon">Binnenkort</div>
+                <h3>Smart Pricing</h3>
+                <p>Automatische prijsaanpassingen op basis van bezettingsgraad, seizoen en vraag. Meer omzet met minder moeite.</p>
+                <div class="addon-price">€45 <span>/ maand</span></div>
+            </div>
+            <div class="addon-card fade-up" style="transition-delay:0.14s">
+                <div class="addon-badge addon-badge-soon">Binnenkort</div>
+                <h3>Sleutelbeheer: Salto</h3>
+                <p>Digitale sleutels gekoppeld aan je reservaties. Gast checkt in via de app, krijgt direct toegang tot zijn kamer.</p>
+                <div class="addon-price">€45 <span>/ maand</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- TRANSACTION FEES -->
+<section class="fees-section">
+    <div class="section-inner">
+        <div class="fade-up">
+            <span class="section-label">Rumo Pay</span>
+            <h2 class="section-title">Transparante transactiekosten.<br>Geen verborgen marges.</h2>
+            <p class="section-subtitle">Rumo Pay is de ingebouwde betaaloplossing waarmee je gasten veilig online laat betalen. Je betaalt enkel per transactie. Geen maandelijkse kosten, geen minimumvolumes.</p>
+        </div>
+        <div class="fees-layout">
+            <div class="fees-card fade-up">
+                <h3>Tarieven per betaalmethode</h3>
+                <div class="fees-card-sub">Per geslaagde transactie. Geen kosten bij mislukte betalingen.</div>
+                <div class="fee-row">
+                    <div class="fee-method">
+                        <div class="fee-method-icon">BC</div>
+                        <span>Bancontact</span>
+                    </div>
+                    <div class="fee-rate">1,8% + €0,25</div>
+                </div>
+                <div class="fee-row">
+                    <div class="fee-method">
+                        <div class="fee-method-icon">V/MC</div>
+                        <span>Visa / Mastercard <span style="opacity:0.45;font-size:0.82rem">(Europees)</span></span>
+                    </div>
+                    <div class="fee-rate">1,9% + €0,25</div>
+                </div>
+                <div class="fee-row">
+                    <div class="fee-method">
+                        <div class="fee-method-icon">V/MC</div>
+                        <span>Visa / Mastercard <span style="opacity:0.45;font-size:0.82rem">(buiten EU)</span></span>
+                    </div>
+                    <div class="fee-rate">3,65% + €0,25</div>
+                </div>
+                <div class="fee-row">
+                    <div class="fee-method">
+                        <div class="fee-method-icon">iD</div>
+                        <span>iDEAL</span>
+                    </div>
+                    <div class="fee-rate">0,4% + €0,29</div>
+                </div>
+                <div class="fee-row">
+                    <div class="fee-method">
+                        <div class="fee-method-icon">AMEX</div>
+                        <span>American Express</span>
+                    </div>
+                    <div class="fee-rate">3,25% + €0,25</div>
+                </div>
+            </div>
+
+            <div class="fees-info fade-up" style="transition-delay:0.1s">
+                <h3>Hoe werkt het?</h3>
+                <p>Rumo Pay verwerkt betalingen rechtstreeks op jouw rekening. Gasten betalen via een beveiligde betaalpagina, vanuit een betalingsverzoek, de booking engine, of het guest portal.</p>
+                <p>Uitbetalingen gebeuren automatisch op je bankrekening. Je houdt alles bij in Rumo: welke gast betaalde, wanneer, en voor welke reservatie.</p>
+                <p>Bij een <strong>chargeback</strong> (betwiste betaling) wordt het betwiste bedrag + een eenmalige disputekost van €15 tijdelijk geblokkeerd op je account. Win je het geschil, dan wordt alles vrijgegeven. In je Rumo dashboard zie je altijd precies welke bedragen geblokkeerd zijn en waarom.</p>
+                <div class="fees-highlight">
+                    <p><strong>Geen maandkosten.</strong> Geen minimumvolumes. Geen contracten. Je betaalt enkel wanneer een gast betaalt.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="demo">
+    <div class="fade-up">
+        <h2 class="section-title">Overtuigd? Probeer het zelf.</h2>
+        <p class="section-subtitle">14 dagen gratis. Geen creditcard. Geen verplichtingen.</p>
+        <a href="index.html#demo" class="btn-primary">Bereken je prijs en start meteen →</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="footer-brand">rumo<span>.</span></div>
+            <p class="footer-tagline">Hotelsoftware die gewoon werkt. Zonder handleiding.</p>
+        </div>
+        <div>
+            <div class="footer-label">Product</div>
+            <ul class="footer-links">
+                <li><a href="features.html">Features</a></li>
+        <li><a href="integraties.html">Integraties</a></li>
+                <li><a href="prijzen.html" class="active">Prijzen</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="footer-label">Rumo</div>
+            <ul class="footer-links">
+                <li><a href="https://wa.me/32485382828" target="_blank" rel="noopener">WhatsApp</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="over-ons.html">Over ons</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 Rumo. Alle rechten voorbehouden.</div>
+</footer>
+
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
+    });
+
+    const PRICE_PER_ROOM = 12;
+    const ADDON_PRICE = 45;
+    const slider = document.getElementById('room-slider');
+    const roomCount = document.getElementById('room-count');
+    const calcRooms = document.getElementById('calc-rooms');
+    const calcBase = document.getElementById('calc-base');
+    const calcTotal = document.getElementById('calc-total');
+    const calcAddonsRow = document.getElementById('calc-addons-row');
+    const calcAddonCount = document.getElementById('calc-addon-count');
+    const calcAddonsTotal = document.getElementById('calc-addons-total');
+    const addonCheckboxes = [
+        document.getElementById('addon-whitelabel'),
+        document.getElementById('addon-smartpricing'),
+        document.getElementById('addon-salto')
+    ];
+
+    function updateCalc() {
+        const rooms = parseInt(slider.value);
+        const base = rooms * PRICE_PER_ROOM;
+        const activeAddons = addonCheckboxes.filter(cb => cb.checked).length;
+        const addonsTotal = activeAddons * ADDON_PRICE;
+        const total = base + addonsTotal;
+
+        roomCount.textContent = rooms;
+        calcRooms.textContent = rooms;
+        calcBase.textContent = '€' + base;
+
+        if (activeAddons > 0) {
+            calcAddonsRow.style.display = '';
+            calcAddonCount.textContent = activeAddons;
+            calcAddonsTotal.textContent = '€' + addonsTotal;
+        } else {
+            calcAddonsRow.style.display = 'none';
+        }
+
+        calcTotal.textContent = '€' + total;
+    }
+    slider.addEventListener('input', updateCalc);
+</script>
+<script src="rudy-widget.js"></script>
+</body>
+</html>

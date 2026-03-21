@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integraties | Rumo Hotelsoftware</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Rumo integreert met Booking.com, Expedia, Airbnb, Google Hotel Ads, Exact Online, Peppol en meer. Alles gesynchroniseerd, zonder extra werk.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a; --warm: #2c2418; --cream: #faf7f2; --sand: #f0ebe1;
+            --terracotta: #c4653a; --terracotta-light: #d4794f; --sage: #7a8c6e;
+            --sage-light: #e8ede5; --gold: #b8963e; --mist: #e8e4dc; --white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--cream); color: var(--warm); line-height: 1.7; overflow-x: hidden; }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(250,247,242,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.04); }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--warm); text-decoration: none; letter-spacing: -0.5px; }
+        .nav-logo span { color: var(--terracotta); }
+        .nav-links { display: flex; gap: 2.2rem; align-items: center; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--warm); font-size: 0.92rem; font-weight: 500; opacity: 0.75; transition: opacity 0.2s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; }
+        .nav-links a.active { color: var(--terracotta); }
+        .nav-cta { background: var(--terracotta) !important; color: var(--white) !important; padding: 0.6rem 1.5rem; border-radius: 8px; opacity: 1 !important; font-weight: 600 !important; }
+        .nav-cta:hover { background: var(--terracotta-light) !important; }
+        .nav-lang { display: flex; gap: 0.4rem; align-items: center; margin-left: 0.5rem; }
+        .nav-lang a { text-decoration: none; color: var(--warm); font-size: 0.78rem; font-weight: 600; opacity: 0.35; transition: opacity 0.2s; padding: 0.2rem 0.4rem; border-radius: 4px; }
+        .nav-lang a:hover { opacity: 0.7; }
+        .nav-lang a.active { opacity: 1; background: var(--sand); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-direction: column; gap: 5px; }
+        .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--warm); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+
+        .btn-primary { background: var(--terracotta); color: var(--white); padding: 0.9rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-primary:hover { background: var(--terracotta-light); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(196,101,58,0.25); }
+
+        section { padding: 6rem 3rem; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 2px; color: var(--terracotta); font-weight: 600; display: block; margin-bottom: 1rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .section-subtitle { font-size: 1.05rem; opacity: 0.65; max-width: 600px; line-height: 1.7; }
+
+        /* PAGE HEADER */
+        .page-header { padding: 10rem 3rem 4rem; background: var(--white); }
+        .page-header-inner { max-width: 1100px; margin: 0 auto; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.5rem); line-height: 1.15; letter-spacing: -1px; margin-bottom: 1rem; }
+        .page-header h1 em { color: var(--terracotta); font-style: italic; }
+        .page-header p { font-size: 1.1rem; opacity: 0.65; max-width: 600px; line-height: 1.8; }
+
+        /* HOW IT WORKS */
+        .how-it-works { background: var(--white); }
+        .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2.5rem; }
+        .how-card { padding: 1.5rem; }
+        .how-number { width: 36px; height: 36px; border-radius: 50%; background: var(--sand); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--terracotta); margin-bottom: 1rem; }
+        .how-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; }
+        .how-card p { font-size: 0.92rem; opacity: 0.6; line-height: 1.7; }
+
+        /* INTEGRATION GROUPS */
+        .integration-group { padding: 5rem 3rem; }
+        .integration-group:nth-child(even) { background: var(--white); }
+        .integration-group-inner { max-width: 1100px; margin: 0 auto; }
+        .integration-group-header { margin-bottom: 2rem; }
+        .integration-group-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.4rem; }
+        .integration-group-desc { font-size: 0.95rem; opacity: 0.55; max-width: 600px; }
+
+        .integration-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .integration-card { background: var(--white); border-radius: 12px; padding: 1.5rem; display: flex; align-items: flex-start; gap: 1rem; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .integration-group:nth-child(even) .integration-card { background: var(--cream); }
+        .integration-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+        .integration-logo { width: 44px; height: 44px; border-radius: 10px; background: var(--sand); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; font-size: 0.65rem; color: var(--warm); opacity: 0.6; text-align: center; line-height: 1.1; }
+        .integration-info h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .integration-info p { font-size: 0.82rem; opacity: 0.55; line-height: 1.5; }
+        .integration-badge { display: inline-block; font-size: 0.65rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 10px; margin-top: 0.3rem; }
+        .badge-live { background: var(--sage-light); color: var(--sage); }
+        .badge-soon { background: #fef3e2; color: #c4883a; }
+
+        /* MISSING CTA */
+        .missing-section { background: var(--cream); }
+        .missing-card { background: var(--white); border-radius: 16px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
+        .missing-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.4rem; }
+        .missing-card p { font-size: 0.92rem; opacity: 0.6; max-width: 480px; }
+
+        /* FINAL CTA */
+        .final-cta { background: var(--warm); color: var(--cream); text-align: center; padding: 5rem 3rem; }
+        .final-cta .section-title { color: var(--cream); font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 1rem; }
+        .final-cta .section-subtitle { color: var(--cream); opacity: 0.5; margin: 0 auto 2rem; max-width: 500px; font-size: 1.05rem; line-height: 1.7; }
+        .final-cta .btn-primary { font-size: 1.1rem; padding: 1rem 2.5rem; }
+
+        /* FOOTER */
+        footer { background: var(--ink); color: var(--cream); padding: 3rem; }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .footer-brand span { color: var(--terracotta); }
+        .footer-tagline { font-size: 0.85rem; opacity: 0.4; max-width: 280px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.4rem; }
+        .footer-links a { color: var(--cream); text-decoration: none; font-size: 0.88rem; opacity: 0.5; transition: opacity 0.2s; }
+        .footer-links a:hover { opacity: 1; }
+        .footer-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.3; margin-bottom: 0.8rem; }
+        .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.8rem; opacity: 0.3; text-align: center; }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-toggle { display: flex; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,247,242,0.98); backdrop-filter: blur(20px); flex-direction: column; padding: 1.5rem; gap: 0; border-bottom: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+            .nav-links.open { display: flex; }
+            .nav-links li { list-style: none; }
+            .nav-links a { display: block; padding: 0.8rem 0; font-size: 1rem; opacity: 0.8; border-bottom: 1px solid rgba(0,0,0,0.04); }
+            .nav-links li:last-child a { border-bottom: none; }
+            .nav-cta { margin-top: 0.5rem; text-align: center; display: block !important; }
+            section, .integration-group { padding: 3rem 1.5rem; }
+            .page-header { padding: 8rem 1.5rem 3rem; }
+            .how-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .integration-grid { grid-template-columns: 1fr; }
+            .missing-card { padding: 1.5rem; flex-direction: column; text-align: center; }
+            .missing-card .btn-primary { width: 100%; justify-content: center; }
+            footer { padding: 2.5rem 1.5rem; }
+            .footer-inner { flex-direction: column; gap: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            section, .integration-group { padding: 2.5rem 1rem; }
+            .page-header { padding: 7rem 1rem 2.5rem; }
+            .final-cta { padding: 3rem 1rem; }
+        }
+    </style>
+    <link rel="stylesheet" href="rudy-widget.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">rumo<span>.</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="index.html#features-preview">Wat zit erin?</a></li>
+        <li><a href="index.html#voor-wie">Voor wie?</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="integraties.html" class="active">Integraties</a></li>
+        <li><a href="prijzen.html">Prijzen</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="over-ons.html">Over ons</a></li>
+        <li><a href="index.html#demo" class="nav-cta">Probeer gratis</a></li>
+        <li class="nav-lang"><a href="integraties.html" class="active">NL</a><a href="en/integrations.html">EN</a><a href="fr/integrations.html">FR</a></li>
+    </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <div class="page-header-inner fade-up">
+        <span class="section-label">Integraties</span>
+        <h1>Verbonden met de platformen<br>die jij <em>al gebruikt.</em></h1>
+        <p>Rumo synchroniseert prijzen, beschikbaarheid en reservaties met alle grote boekingskanalen. Plus koppelingen met je boekhoudsoftware en betaalprovider.</p>
+    </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+    <div class="section-inner">
+        <span class="section-label fade-up">Hoe werkt het</span>
+        <h2 class="section-title fade-up">Eenmaal instellen, altijd gesynchroniseerd.</h2>
+        <div class="how-grid">
+            <div class="how-card fade-up">
+                <div class="how-number">1</div>
+                <h3>Kanaal koppelen</h3>
+                <p>Verbind je Booking.com, Airbnb of ander kanaal vanuit Rumo. Geen aparte channel manager nodig.</p>
+            </div>
+            <div class="how-card fade-up" style="transition-delay:0.1s">
+                <div class="how-number">2</div>
+                <h3>Prijzen en beschikbaarheid</h3>
+                <p>Rumo stuurt automatisch je tarieven en beschikbaarheid door naar alle gekoppelde kanalen. In realtime.</p>
+            </div>
+            <div class="how-card fade-up" style="transition-delay:0.2s">
+                <div class="how-number">3</div>
+                <h3>Boekingen binnenkrijgen</h3>
+                <p>Nieuwe reservaties van elk kanaal verschijnen direct in je dashboard. Geen copy paste, geen dubbele boekingen.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================== -->
+<!-- BOOKING CHANNELS — OTA's        -->
+<!-- =============================== -->
+
+<div class="integration-group" id="boekingskanalen">
+    <div class="integration-group-inner">
+        <div class="integration-group-header fade-up">
+            <span class="section-label">Boekingskanalen</span>
+            <h2 class="integration-group-title">OTA's en boekingsplatformen</h2>
+            <p class="integration-group-desc">Automatische synchronisatie van prijzen, beschikbaarheid en reservaties met de kanalen waar jouw gasten boeken.</p>
+        </div>
+        <div class="integration-grid">
+            <div class="integration-card fade-up">
+                <div class="integration-logo">B.com</div>
+                <div class="integration-info">
+                    <h3>Booking.com</h3>
+                    <p>Het grootste boekingsplatform ter wereld. Prijzen, beschikbaarheid en reservaties in realtime gesynchroniseerd.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">Airbnb</div>
+                <div class="integration-info">
+                    <h3>Airbnb</h3>
+                    <p>Bereik reizigers die op zoek zijn naar unieke verblijven. Perfecte sync voor korte en langere stays.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">Exp</div>
+                <div class="integration-info">
+                    <h3>Expedia</h3>
+                    <p>Expedia, Hotels.com en Vrbo in een koppeling. Internationaal bereik voor zakelijke en leisure reizigers.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <div class="integration-info">
+                    <h3>Google Hotel Ads</h3>
+                    <p>Directe boekingen via Google Zoeken en Google Maps. Gasten boeken rechtstreeks bij jou. Wel commissie voor Google, maar hey, het is hun planeet.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">Agoda</div>
+                <div class="integration-info">
+                    <h3>Agoda</h3>
+                    <p>Populair bij Aziatische reizigers. Sterk groeiend in Europa, vooral voor stedentrips en budgethotels.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">Trip</div>
+                <div class="integration-info">
+                    <h3>Trip.com</h3>
+                    <p>Groot bereik in Azië en groeiend in Europa. Ideaal als je internationale gasten wil aantrekken.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">HRS</div>
+                <div class="integration-info">
+                    <h3>HRS</h3>
+                    <p>Gericht op zakelijke reizigers en corporate klanten. Sterk in Duitsland, Benelux en Centraal-Europa.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">C24</div>
+                <div class="integration-info">
+                    <h3>Check24</h3>
+                    <p>Populaire vergelijkingssite in Duitsland. Bereik Duitse reizigers die prijsbewust boeken.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">eDr</div>
+                <div class="integration-info">
+                    <h3>eDreams</h3>
+                    <p>Europese OTA met sterk bereik in Spanje, Frankrijk en Italie. Combineert vluchten met hotels.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">Hop</div>
+                <div class="integration-info">
+                    <h3>Hopper</h3>
+                    <p>Mobile first platform, populair bij jongere reizigers. Groeiend kanaal voor last minute boekingen.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">VRBO</div>
+                <div class="integration-info">
+                    <h3>VRBO</h3>
+                    <p>Vacation rentals via het Expedia netwerk. Ideaal voor appartementen en familiekamers.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">Get</div>
+                <div class="integration-info">
+                    <h3>Getaroom</h3>
+                    <p>Globale distributie via diverse boekingskanalen. Extra zichtbaarheid zonder extra werk.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =============================== -->
+<!-- B2B / DISTRIBUTION              -->
+<!-- =============================== -->
+
+<div class="integration-group" id="distributie">
+    <div class="integration-group-inner">
+        <div class="integration-group-header fade-up">
+            <span class="section-label">B2B Distributie</span>
+            <h2 class="integration-group-title">Tour operators en wholesalers</h2>
+            <p class="integration-group-desc">Bereik reisbureaus, tour operators en bedrijfsreizigers via B2B distributiekanalen.</p>
+        </div>
+        <div class="integration-grid">
+            <div class="integration-card fade-up">
+                <div class="integration-logo">HB</div>
+                <div class="integration-info">
+                    <h3>Hotelbeds</h3>
+                    <p>Wereldwijd B2B netwerk voor reisbureaus en tour operators. Groot volume, breed bereik.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">TG</div>
+                <div class="integration-info">
+                    <h3>Travelgate</h3>
+                    <p>Marketplace die je verbindt met honderden distributeurs en online reisbureaus wereldwijd.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">GDS</div>
+                <div class="integration-info">
+                    <h3>Reconline (GDS)</h3>
+                    <p>Toegang tot Amadeus, Sabre en Travelport. Bereik zakelijke reizigers en traditionele reisbureaus.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">HG</div>
+                <div class="integration-info">
+                    <h3>Hypergues</h3>
+                    <p>Direct, commissievrij B2B netwerk. Optimaliseer marges door rechtstreeks met reisagenten te werken.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =============================== -->
+<!-- NICHE CHANNELS                  -->
+<!-- =============================== -->
+
+<div class="integration-group" id="niche">
+    <div class="integration-group-inner">
+        <div class="integration-group-header fade-up">
+            <span class="section-label">Nichekanalen</span>
+            <h2 class="integration-group-title">Gespecialiseerde platformen</h2>
+            <p class="integration-group-desc">Bereik specifieke doelgroepen via nicheplatformen die passen bij jouw type accommodatie.</p>
+        </div>
+        <div class="integration-grid">
+            <div class="integration-card fade-up">
+                <div class="integration-logo">HW</div>
+                <div class="integration-info">
+                    <h3>Hostelworld</h3>
+                    <p>Voor hostels en budgetaccommodaties. Bereik backpackers en sociale reizigers.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">TH</div>
+                <div class="integration-info">
+                    <h3>Tablet Hotels</h3>
+                    <p>Curated platform voor boutique en design hotels. Ideaal voor accommodaties met karakter.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">M&M</div>
+                <div class="integration-info">
+                    <h3>Mr & Mrs Smith</h3>
+                    <p>Luxury en boutique stays. Perfect voor hotels die zich richten op koppels en high-end reizigers.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">HT</div>
+                <div class="integration-info">
+                    <h3>Hotel Tonight</h3>
+                    <p>Last-minute boekingen via het Airbnb netwerk. Vul lege kamers op het laatste moment.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =============================== -->
+<!-- ACCOUNTING & PAYMENTS           -->
+<!-- =============================== -->
+
+<div class="integration-group" id="boekhouding">
+    <div class="integration-group-inner">
+        <div class="integration-group-header fade-up">
+            <span class="section-label">Boekhouding & Betalingen</span>
+            <h2 class="integration-group-title">Je boekhouder wordt je beste vriend.</h2>
+            <p class="integration-group-desc">Facturen, betalingen en BTW overzichten stromen automatisch naar je boekhoudsoftware.</p>
+        </div>
+        <div class="integration-grid">
+            <div class="integration-card fade-up">
+                <div class="integration-logo">EO</div>
+                <div class="integration-info">
+                    <h3>Exact Online</h3>
+                    <p>Facturen automatisch doorgestuurd. BTW uitsplitsing, creditnotes en proforma's inbegrepen.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">Yuki</div>
+                <div class="integration-info">
+                    <h3>Yuki</h3>
+                    <p>Directe koppeling met Yuki. Facturen en betalingen verschijnen automatisch in je administratie.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">Oct</div>
+                <div class="integration-info">
+                    <h3>Octopus</h3>
+                    <p>Populair bij Belgische boekhouders. Factuurexport en BTW aangifte zonder extra werk.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+                <div class="integration-info">
+                    <h3>Peppol e-facturatie</h3>
+                    <p>Verplicht voor B2B in Belgie. Rumo verstuurt automatisch UBL 2.1 facturen via het Peppol netwerk.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                </div>
+                <div class="integration-info">
+                    <h3>Rumo Pay</h3>
+                    <p>Ingebouwde betaaloplossing. Bancontact, Visa, Mastercard, iDEAL. Betaallinks, VCC's en pre-autorisaties.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =============================== -->
+<!-- REVENUE MANAGEMENT              -->
+<!-- =============================== -->
+
+<div class="integration-group" id="revenue">
+    <div class="integration-group-inner">
+        <div class="integration-group-header fade-up">
+            <span class="section-label">Revenue Management</span>
+            <h2 class="integration-group-title">Slimmer prijzen, meer omzet.</h2>
+            <p class="integration-group-desc">Koppel een revenue management tool en laat je prijzen automatisch meebewegen met vraag, seizoen en bezetting.</p>
+        </div>
+        <div class="integration-grid">
+            <div class="integration-card fade-up">
+                <div class="integration-logo">RPG</div>
+                <div class="integration-info">
+                    <h3>RoomPriceGenie</h3>
+                    <p>Automatische prijsoptimalisatie, speciaal ontworpen voor kleine en middelgrote hotels. Stel het in en laat het werken.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">Pricel</div>
+                <div class="integration-info">
+                    <h3>Pricelabs</h3>
+                    <p>Data-gedreven dynamic pricing. Analyseert marktdata, events en concurrenten om je tarieven te optimaliseren.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">RD</div>
+                <div class="integration-info">
+                    <h3>Ratedock</h3>
+                    <p>Gecentraliseerd rate en inventory beheer over al je kanalen. Overzichtelijk en effcient.</p>
+                    <span class="integration-badge badge-live">Beschikbaar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =============================== -->
+<!-- HARDWARE / ACCESS               -->
+<!-- =============================== -->
+
+<div class="integration-group" id="hardware">
+    <div class="integration-group-inner">
+        <div class="integration-group-header fade-up">
+            <span class="section-label">Sleutelbeheer</span>
+            <h2 class="integration-group-title">Digitale sleutels, gekoppeld aan reservaties.</h2>
+            <p class="integration-group-desc">Gasten krijgen automatisch toegang tot hun kamer bij check-in. Geen plastic kaartjes meer programmeren.</p>
+        </div>
+        <div class="integration-grid">
+            <div class="integration-card fade-up">
+                <div class="integration-logo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+                </div>
+                <div class="integration-info">
+                    <h3>Salto</h3>
+                    <p>Digitale sleutels gekoppeld aan je reservaties. Check-in via de app, directe kamertoegang. Geen kaartjes meer.</p>
+                    <span class="integration-badge badge-soon">Binnenkort</span>
+                </div>
+            </div>
+            <div class="integration-card fade-up">
+                <div class="integration-logo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+                </div>
+                <div class="integration-info">
+                    <h3>Dormakaba Ambiance</h3>
+                    <p>Sleutelbeheer via het Ambiance-platform. Kamertoegang automatisch gekoppeld aan check-in en check-out.</p>
+                    <span class="integration-badge badge-soon">Binnenkort</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MISSING INTEGRATION CTA -->
+<section class="missing-section">
+    <div class="section-inner fade-up">
+        <div class="missing-card">
+            <div>
+                <h3>Mis je een integratie?</h3>
+                <p>We zijn verbonden met 60+ kanalen en platformen. Staat jouw favoriete kanaal er niet bij? Laat het ons weten.</p>
+            </div>
+            <a href="https://wa.me/32485382828" target="_blank" rel="noopener" class="btn-primary">Stuur een berichtje &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="demo">
+    <div class="fade-up">
+        <h2 class="section-title">Klaar om Rumo te proberen?</h2>
+        <p class="section-subtitle">Geen creditcard nodig. Geen verplichtingen. Gewoon 14 dagen spelen met een demo vol nep-reservaties.</p>
+        <a href="index.html#demo" class="btn-primary">Probeer 14 dagen gratis &rarr;</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="footer-brand">rumo<span>.</span></div>
+            <p class="footer-tagline">Hotelsoftware die gewoon werkt. Zonder handleiding.</p>
+        </div>
+        <div>
+            <div class="footer-label">Product</div>
+            <ul class="footer-links">
+                <li><a href="features.html">Features</a></li>
+                <li><a href="integraties.html" class="active">Integraties</a></li>
+                <li><a href="prijzen.html">Prijzen</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="footer-label">Rumo</div>
+            <ul class="footer-links">
+                <li><a href="https://wa.me/32485382828" target="_blank" rel="noopener">WhatsApp</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="over-ons.html">Over ons</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Rumo. Alle rechten voorbehouden.</div>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
+    });
+</script>
+<script src="rudy-widget.js"></script>
+</body>
+</html>

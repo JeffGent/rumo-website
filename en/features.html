@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features | Rumo Hotel Software</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Discover all Rumo features: AI assistant Rudy, built-in knowledge base, intuitive dashboard, automatic invoicing, channel manager and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a; --warm: #2c2418; --cream: #faf7f2; --sand: #f0ebe1;
+            --terracotta: #c4653a; --terracotta-light: #d4794f; --sage: #7a8c6e;
+            --sage-light: #e8ede5; --gold: #b8963e; --mist: #e8e4dc; --white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--cream); color: var(--warm); line-height: 1.7; overflow-x: hidden; }
+
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(250,247,242,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.04); }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--warm); text-decoration: none; letter-spacing: -0.5px; }
+        .nav-logo span { color: var(--terracotta); }
+        .nav-links { display: flex; gap: 2.2rem; align-items: center; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--warm); font-size: 0.92rem; font-weight: 500; opacity: 0.75; transition: opacity 0.2s; }
+        .nav-links a:hover, .nav-links a.active { opacity: 1; }
+        .nav-links a.active { color: var(--terracotta); }
+        .nav-cta { background: var(--terracotta) !important; color: var(--white) !important; padding: 0.6rem 1.5rem; border-radius: 8px; opacity: 1 !important; font-weight: 600 !important; }
+        .nav-cta:hover { background: var(--terracotta-light) !important; }
+        .nav-lang { display: flex; gap: 0.4rem; align-items: center; margin-left: 0.5rem; }
+        .nav-lang a { text-decoration: none; color: var(--warm); font-size: 0.78rem; font-weight: 600; opacity: 0.35; transition: opacity 0.2s; padding: 0.2rem 0.4rem; border-radius: 4px; }
+        .nav-lang a:hover { opacity: 0.7; }
+        .nav-lang a.active { opacity: 1; background: var(--sand); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-direction: column; gap: 5px; }
+        .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--warm); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+
+        .btn-primary { background: var(--terracotta); color: var(--white); padding: 0.9rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.25s ease; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-primary:hover { background: var(--terracotta-light); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(196,101,58,0.25); }
+
+        section { padding: 6rem 3rem; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 2px; color: var(--terracotta); font-weight: 600; display: block; margin-bottom: 1rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .section-subtitle { font-size: 1.05rem; opacity: 0.65; max-width: 600px; line-height: 1.7; }
+
+        /* PAGE HEADER */
+        .page-header { padding: 10rem 3rem 4rem; background: var(--white); }
+        .page-header-inner { max-width: 1100px; margin: 0 auto; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4vw, 3.5rem); line-height: 1.15; letter-spacing: -1px; margin-bottom: 1rem; }
+        .page-header h1 em { color: var(--terracotta); font-style: italic; }
+        .page-header p { font-size: 1.1rem; opacity: 0.65; max-width: 560px; line-height: 1.8; }
+
+        /* FEATURE MODULES — hero differentiators */
+        .feature-module { padding: 5rem 3rem; }
+        .feature-module:nth-child(even) { background: var(--white); }
+        .feature-module-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .feature-module-inner.wide-visual { grid-template-columns: 2fr 3fr; gap: 3rem; }
+        .feature-module:nth-child(even) .feature-module-inner.wide-visual { grid-template-columns: 3fr 2fr; }
+        .feature-module:nth-child(even) .feature-module-inner { direction: rtl; }
+        .feature-module:nth-child(even) .feature-module-text { direction: ltr; }
+        .feature-module:nth-child(even) .feature-module-visual { direction: ltr; }
+
+        .feature-module-tag { display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: 1.2rem; }
+        .feature-module-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .feature-module-icon svg { width: 20px; height: 20px; stroke-width: 1.5; }
+        .feature-module-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 2px; color: var(--terracotta); font-weight: 600; }
+
+        .feature-module-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.5px; }
+        .feature-module-text p { font-size: 1rem; opacity: 0.65; line-height: 1.8; margin-bottom: 1.5rem; }
+
+        .feature-bullets { list-style: none; margin-bottom: 2rem; }
+        .feature-bullets li { padding: 0.35rem 0; font-size: 0.95rem; font-weight: 500; display: flex; align-items: flex-start; gap: 0.7rem; }
+        .feature-bullets li::before { content: '✓'; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--sage-light); color: var(--sage); font-size: 0.75rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+        /* MOCKUP CARDS */
+        .mockup-card { background: var(--white); border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.07), 0 4px 15px rgba(0,0,0,0.04); padding: 1.5rem; }
+        .mockup-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--mist); }
+        .mockup-card-title { font-family: 'Playfair Display', serif; font-size: 1rem; }
+        .mockup-badge { background: var(--sage-light); color: var(--sage); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
+        .mockup-badge-blue { background: #e8f0f8; color: #4a7fb5; }
+
+        .screenshot { width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 4px 15px rgba(0,0,0,0.04); }
+        .screenshot-wrap { position: relative; }
+        .screenshot-wrap .screenshot { width: 130%; max-width: none; }
+        .feature-module:nth-child(even) .screenshot-wrap .screenshot { margin-left: -30%; }
+
+        /* COMPACT FEATURE GRID — "And more" */
+        .features-compact { background: var(--white); padding: 5rem 3rem; }
+        .features-compact-inner { max-width: 1100px; margin: 0 auto; }
+        .features-compact-inner .section-title { margin-bottom: 0.5rem; }
+        .features-compact-inner .section-subtitle { margin-bottom: 2.5rem; }
+        .compact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+        .compact-card { background: var(--cream); border-radius: 12px; padding: 1.5rem; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .compact-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+        .compact-card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.8rem; }
+        .compact-card-icon svg { width: 20px; height: 20px; stroke-width: 1.5; }
+        .compact-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; line-height: 1.3; }
+        .compact-card p { font-size: 0.88rem; opacity: 0.6; line-height: 1.6; }
+
+        /* FINAL CTA */
+        .final-cta { background: var(--warm); color: var(--cream); text-align: center; padding: 5rem 3rem; }
+        .final-cta .section-title { color: var(--cream); font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 1rem; }
+        .final-cta .section-subtitle { color: var(--cream); opacity: 0.5; margin: 0 auto 2rem; max-width: 500px; font-size: 1.05rem; line-height: 1.7; }
+        .final-cta .btn-primary { font-size: 1.1rem; padding: 1rem 2.5rem; }
+
+        /* FOOTER */
+        footer { background: var(--ink); color: var(--cream); padding: 3rem; }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .footer-brand span { color: var(--terracotta); }
+        .footer-tagline { font-size: 0.85rem; opacity: 0.4; max-width: 280px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.4rem; }
+        .footer-links a { color: var(--cream); text-decoration: none; font-size: 0.88rem; opacity: 0.5; transition: opacity 0.2s; }
+        .footer-links a:hover { opacity: 1; }
+        .footer-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.3; margin-bottom: 0.8rem; }
+        .footer-bottom { max-width: 1100px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.8rem; opacity: 0.3; text-align: center; }
+
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-toggle { display: flex; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,247,242,0.98); backdrop-filter: blur(20px); flex-direction: column; padding: 1.5rem; gap: 0; border-bottom: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+            .nav-links.open { display: flex; }
+            .nav-links li { list-style: none; }
+            .nav-links a { display: block; padding: 0.8rem 0; font-size: 1rem; opacity: 0.8; border-bottom: 1px solid rgba(0,0,0,0.04); }
+            .nav-links li:last-child a { border-bottom: none; }
+            .nav-cta { margin-top: 0.5rem; text-align: center; display: block !important; }
+            section, .feature-module, .features-compact { padding: 3rem 1.5rem; }
+            .page-header { padding: 8rem 1.5rem 3rem; }
+            .feature-module-inner, .feature-module-inner.wide-visual,
+            .feature-module:nth-child(even) .feature-module-inner.wide-visual { grid-template-columns: 1fr; gap: 1.5rem; direction: ltr !important; }
+            .screenshot-wrap .screenshot { width: 100% !important; max-width: 100% !important; margin-left: 0 !important; }
+            .feature-module-inner .feature-module-text,
+            .feature-module-inner .feature-module-visual { direction: ltr; }
+            .feature-module-visual { overflow-x: auto; }
+            .feature-module-text h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+            .feature-module-text p { font-size: 0.92rem; margin-bottom: 0.8rem; }
+            .feature-bullets { display: none; }
+            .feature-module-tag { margin-bottom: 0.8rem; }
+            .mockup-card { padding: 1rem; }
+            .compact-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .compact-card { padding: 1.2rem; }
+            .compact-card h3 { font-size: 1rem; }
+            footer { padding: 2.5rem 1.5rem; }
+            .footer-inner { flex-direction: column; gap: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            section, .feature-module, .features-compact { padding: 2.5rem 1rem; }
+            .page-header { padding: 7rem 1rem 2.5rem; }
+            .feature-module-inner { gap: 1.2rem; }
+            .compact-grid { grid-template-columns: 1fr; }
+            .final-cta { padding: 3rem 1rem; }
+        }
+    </style>
+    <link rel="stylesheet" href="../rudy-widget.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">rumo<span>.</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+        <li><a href="index.html#features-preview">What's included?</a></li>
+        <li><a href="index.html#voor-wie">Who is it for?</a></li>
+        <li><a href="features.html" class="active">Features</a></li>
+        <li><a href="integrations.html">Integrations</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="index.html#demo" class="nav-cta">Try for free</a></li>
+        <li class="nav-lang"><a href="../features.html" onclick="sessionStorage.setItem('rumo-lang-chosen','nl')">NL</a><a href="features.html" class="active" onclick="sessionStorage.setItem('rumo-lang-chosen','en')">EN</a><a href="../fr/features.html" onclick="sessionStorage.setItem('rumo-lang-chosen','fr')">FR</a></li>
+    </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <div class="page-header-inner fade-up">
+        <span class="section-label">Features</span>
+        <h1>Built for hotels<br>that <em>want to run well.</em></h1>
+        <p>Rumo does everything you'd expect from a PMS, but adds an AI assistant, a knowledge base and powerful automation on top.</p>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- HERO DIFFERENTIATORS — what makes Rumo unique -->
+<!-- ============================================ -->
+
+<!-- RUDY -->
+<div class="feature-module" id="rudy">
+    <div class="feature-module-inner">
+        <div class="feature-module-text fade-up">
+            <div class="feature-module-tag">
+                <div class="feature-module-icon" style="background: rgba(196,101,58,0.1); color: #c4653a;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <span class="feature-module-label">Rudy</span>
+            </div>
+            <h2>A colleague who never<br>takes a day off.</h2>
+            <p>Rudy is the AI assistant that lives inside Rumo. He knows your hotel, your procedures and your data. Ask a question in plain language and Rudy gives you the answer. No manual needed, no searching around. Just ask.</p>
+            <ul class="feature-bullets">
+                <li>"Which rooms are available tomorrow?"</li>
+                <li>"How much revenue did we make this month?"</li>
+                <li>"What's our cancellation policy?"</li>
+                <li>Knows your reservations, your numbers and your handbook articles</li>
+                <li>Always available, always patient</li>
+            </ul>
+        </div>
+        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
+            <div class="mockup-card" style="padding:0;">
+                <div style="padding:1.5rem 1.5rem 0;">
+                    <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1.2rem;">
+                        <div style="width:36px;height:36px;border-radius:50%;background:var(--sand);display:flex;align-items:center;justify-content:center;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <div>
+                            <div style="font-family:'Playfair Display',serif;font-size:0.95rem;">Rudy</div>
+                            <div style="font-size:0.65rem;opacity:0.4;">Your hotel assistant</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding:0 1.5rem 1.5rem;display:flex;flex-direction:column;gap:0.6rem;">
+                    <div style="align-self:flex-end;background:var(--sand);padding:0.6rem 0.9rem;border-radius:12px 12px 2px 12px;font-size:0.8rem;max-width:80%;">How many rooms are free tomorrow?</div>
+                    <div style="align-self:flex-start;background:var(--cream);padding:0.6rem 0.9rem;border-radius:12px 12px 12px 2px;font-size:0.8rem;max-width:85%;line-height:1.5;">
+                        Tomorrow there are <strong>4 rooms</strong> available: 2x Comfort Twin, 1x Deluxe Double and 1x Suite. Would you like to create a reservation?
+                    </div>
+                    <div style="align-self:flex-end;background:var(--sand);padding:0.6rem 0.9rem;border-radius:12px 12px 2px 12px;font-size:0.8rem;max-width:80%;">What if someone calls about a late check-in?</div>
+                    <div style="align-self:flex-start;background:var(--cream);padding:0.6rem 0.9rem;border-radius:12px 12px 12px 2px;font-size:0.8rem;max-width:85%;line-height:1.5;">
+                        According to your <strong>front desk procedure</strong>: note down the expected arrival time, send the door code via the guest portal, and notify housekeeping that the room needs to be ready.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HANDBOOK -->
+<div class="feature-module" id="handbook">
+    <div class="feature-module-inner">
+        <div class="feature-module-text fade-up">
+            <div class="feature-module-tag">
+                <div class="feature-module-icon" style="background: rgba(74,127,181,0.1); color: #4a7fb5;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
+                </div>
+                <span class="feature-module-label">Handbook</span>
+            </div>
+            <h2>Your hotel handbook.<br>Always within reach.</h2>
+            <p>Front desk procedures, house rules, emergency plans, onboarding documents. Everything your team needs to know, in a place they can actually find. No more loose Word documents or WhatsApp messages.</p>
+            <ul class="feature-bullets">
+                <li>Articles grouped by category (front desk, housekeeping, F&B, emergency procedures, ...)</li>
+                <li>Search across all articles</li>
+                <li>Write and manage content directly in Rumo</li>
+                <li>New staff members get up to speed faster</li>
+                <li>Everyone works the same way</li>
+            </ul>
+        </div>
+        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
+            <div class="mockup-card">
+                <div class="mockup-card-header">
+                    <span class="mockup-card-title">Handbook</span>
+                    <span class="mockup-badge mockup-badge-blue">36 articles</span>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+                    <div style="background:var(--cream);border-radius:8px;padding:0.7rem;">
+                        <div style="margin-bottom:0.3rem;color:var(--terracotta);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                        <div style="font-weight:600;font-size:0.78rem;">Front Desk</div>
+                        <div style="font-size:0.65rem;opacity:0.5;">4 articles</div>
+                    </div>
+                    <div style="background:var(--cream);border-radius:8px;padding:0.7rem;">
+                        <div style="margin-bottom:0.3rem;color:var(--sage);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+                        <div style="font-weight:600;font-size:0.78rem;">Housekeeping</div>
+                        <div style="font-size:0.65rem;opacity:0.5;">3 articles</div>
+                    </div>
+                    <div style="background:var(--cream);border-radius:8px;padding:0.7rem;">
+                        <div style="margin-bottom:0.3rem;color:var(--gold);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+                        <div style="font-weight:600;font-size:0.78rem;">F&B</div>
+                        <div style="font-size:0.65rem;opacity:0.5;">2 articles</div>
+                    </div>
+                    <div style="background:var(--cream);border-radius:8px;padding:0.7rem;">
+                        <div style="margin-bottom:0.3rem;color:var(--terracotta);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                        <div style="font-weight:600;font-size:0.78rem;">Emergency Procedures</div>
+                        <div style="font-size:0.65rem;opacity:0.5;">2 articles</div>
+                    </div>
+                </div>
+                <div style="margin-top:0.8rem;padding:0.7rem;background:var(--cream);border-radius:8px;">
+                    <div style="font-size:0.7rem;opacity:0.4;margin-bottom:0.3rem;">Last updated</div>
+                    <div style="font-weight:600;font-size:0.8rem;">Check-in procedure for late arrivals</div>
+                    <div style="font-size:0.65rem;opacity:0.5;">Front Desk &middot; 2 days ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DESIGNED TO BE EASY — UX + Dashboard -->
+<div class="feature-module" id="ux">
+    <div class="feature-module-inner wide-visual">
+        <div class="feature-module-text fade-up">
+            <div class="feature-module-tag">
+                <div class="feature-module-icon" style="background: rgba(196,101,58,0.1); color: #c4653a;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="4"/><rect x="14" y="10" width="7" height="7"/><rect x="3" y="13" width="7" height="4"/></svg>
+                </div>
+                <span class="feature-module-label">Intuitive design</span>
+            </div>
+            <h2>Built to be<br>easy to use.</h2>
+            <p>Rumo is made for people who'd rather spend time with guests than with software. Everything is visible, logical and fast. No hidden menus, no unnecessary options.</p>
+            <ul class="feature-bullets">
+                <li>Dashboard with live arrivals, departures and statistics</li>
+                <li>Visual calendar with drag-and-drop</li>
+                <li>Housekeeping your team uses on their phone</li>
+                <li>Search with Alt+K, everything in two clicks</li>
+            </ul>
+        </div>
+        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
+            <div class="mockup-card">
+                <div class="mockup-card-header">
+                    <span class="mockup-card-title">Dashboard</span>
+                    <span class="mockup-badge" style="background:rgba(196,101,58,0.1);color:var(--terracotta);">Live</span>
+                </div>
+                <!-- Stats bar -->
+                <div style="background:var(--charcoal);border-radius:10px;padding:0.8rem 1rem;display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+                    <div style="flex:1;">
+                        <div style="font-size:0.55rem;text-transform:uppercase;letter-spacing:0.05em;color:rgba(255,255,255,0.5);">Revenue</div>
+                        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);">&euro;10,771</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:0.55rem;color:rgba(255,255,255,0.5);">Occ</div>
+                        <div style="font-weight:600;font-size:0.85rem;color:var(--white);">47%</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:0.55rem;color:rgba(255,255,255,0.5);">ADR</div>
+                        <div style="font-weight:600;font-size:0.85rem;color:var(--white);">&euro;449</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:0.55rem;color:rgba(255,255,255,0.5);">Check-ins</div>
+                        <div style="font-weight:600;font-size:0.85rem;color:var(--terracotta);">2 &rarr;</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="font-size:0.55rem;color:rgba(255,255,255,0.5);">Check-outs</div>
+                        <div style="font-weight:600;font-size:0.85rem;color:var(--sage);">4 &larr;</div>
+                    </div>
+                </div>
+                <!-- Room cards -->
+                <div style="font-weight:600;font-size:0.8rem;margin-bottom:0.5rem;">Room Status</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;">
+                    <div style="background:var(--cream);border-radius:8px;padding:0.6rem;border-left:3px solid var(--sage);">
+                        <div style="font-weight:700;font-size:0.95rem;">103</div>
+                        <div style="font-size:0.7rem;opacity:0.7;">Van de Kasseien</div>
+                        <div style="font-size:0.6rem;color:var(--sage);margin-top:0.2rem;">&larr; OUT</div>
+                    </div>
+                    <div style="background:var(--cream);border-radius:8px;padding:0.6rem;border-left:3px solid var(--sage);">
+                        <div style="font-weight:700;font-size:0.95rem;">109</div>
+                        <div style="font-size:0.7rem;opacity:0.7;">De Boer</div>
+                        <div style="font-size:0.6rem;color:var(--sage);margin-top:0.2rem;">&larr; OUT</div>
+                    </div>
+                    <div style="background:var(--cream);border-radius:8px;padding:0.6rem;border-left:3px solid var(--sage);">
+                        <div style="font-weight:700;font-size:0.95rem;">206</div>
+                        <div style="font-size:0.7rem;opacity:0.7;">Lindqvist</div>
+                        <div style="font-size:0.6rem;color:var(--sage);margin-top:0.2rem;">&larr; OUT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CALENDAR -->
+<div class="feature-module" id="kalender">
+    <div class="feature-module-inner wide-visual">
+        <div class="feature-module-text fade-up">
+            <div class="feature-module-tag">
+                <div class="feature-module-icon" style="background: rgba(184,150,62,0.12); color: #b8963e;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <span class="feature-module-label">Calendar</span>
+            </div>
+            <h2>Everything at a glance.<br>Drag and done.</h2>
+            <p>A visual calendar where you drag, move and adjust reservations. By room, by day, by week. Filter on arrivals, departures and in-house guests.</p>
+            <ul class="feature-bullets">
+                <li>Drag-and-drop to move or extend reservations</li>
+                <li>Filter on arrivals, departures and in-house</li>
+                <li>Week and custom views with date navigation</li>
+                <li>Room status and room types at a glance</li>
+            </ul>
+        </div>
+        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
+            <div class="mockup-card" style="padding:1.2rem;">
+                <div class="mockup-card-header" style="margin-bottom:0.8rem;padding-bottom:0.6rem;">
+                    <span class="mockup-card-title">Calendar</span>
+                    <span style="font-size:0.7rem;opacity:0.5;">9 &ndash; 15 Mar 2026</span>
+                </div>
+                <!-- Day headers -->
+                <div style="display:grid;grid-template-columns:80px repeat(5,1fr);gap:2px;margin-bottom:0.4rem;">
+                    <div></div>
+                    <div style="text-align:center;font-size:0.6rem;text-transform:uppercase;opacity:0.4;">Mon 9</div>
+                    <div style="text-align:center;font-size:0.6rem;text-transform:uppercase;opacity:0.4;">Tue 10</div>
+                    <div style="text-align:center;font-size:0.6rem;font-weight:700;color:var(--terracotta);">Wed 11</div>
+                    <div style="text-align:center;font-size:0.6rem;text-transform:uppercase;opacity:0.4;">Thu 12</div>
+                    <div style="text-align:center;font-size:0.6rem;text-transform:uppercase;opacity:0.4;">Fri 13</div>
+                </div>
+                <!-- Room rows -->
+                <div style="display:grid;grid-template-columns:80px repeat(5,1fr);gap:2px;row-gap:0.35rem;">
+                    <!-- Room 101 -->
+                    <div style="font-size:0.7rem;font-weight:600;padding:0.4rem 0;">101 <span style="font-size:0.55rem;opacity:0.4;font-weight:400;">TWIN</span></div>
+                    <div style="grid-column:2/4;background:var(--terracotta);opacity:0.15;border-radius:4px;"></div>
+                    <div style="grid-column:4/7;background:var(--terracotta);border-radius:4px;padding:0.3rem 0.5rem;">
+                        <span style="font-size:0.65rem;color:white;">Kiekeboe</span>
+                    </div>
+                    <!-- Room 102 -->
+                    <div style="font-size:0.7rem;font-weight:600;padding:0.4rem 0;">102 <span style="font-size:0.55rem;opacity:0.4;font-weight:400;">TWIN</span></div>
+                    <div style="grid-column:2/7;background:var(--cream);border-radius:4px;padding:0.3rem;"></div>
+                    <!-- Room 103 -->
+                    <div style="font-size:0.7rem;font-weight:600;padding:0.4rem 0;">103 <span style="font-size:0.55rem;opacity:0.4;font-weight:400;">TWIN</span></div>
+                    <div style="grid-column:2/3;background:var(--cream);border-radius:4px;"></div>
+                    <div style="grid-column:3/6;background:var(--sage);border-radius:4px;padding:0.3rem 0.5rem;">
+                        <span style="font-size:0.65rem;color:white;">Van de Kasseien</span>
+                    </div>
+                    <div style="grid-column:6/7;background:var(--cream);border-radius:4px;"></div>
+                    <!-- Room 104 -->
+                    <div style="font-size:0.7rem;font-weight:600;padding:0.4rem 0;">104 <span style="font-size:0.55rem;opacity:0.4;font-weight:400;">DBL</span></div>
+                    <div style="grid-column:2/5;background:var(--gold);opacity:0.7;border-radius:4px;padding:0.3rem 0.5rem;">
+                        <span style="font-size:0.65rem;color:white;">M&uuml;ller</span>
+                    </div>
+                    <div style="grid-column:5/7;background:var(--cream);border-radius:4px;"></div>
+                    <!-- Room 105 -->
+                    <div style="font-size:0.7rem;font-weight:600;padding:0.4rem 0;">105 <span style="font-size:0.55rem;opacity:0.4;font-weight:400;">SUITE</span></div>
+                    <div style="grid-column:2/7;background:var(--cream);border-radius:4px;padding:0.3rem;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AUTOMATION -->
+<div class="feature-module" id="automatisering">
+    <div class="feature-module-inner wide-visual">
+        <div class="feature-module-text fade-up">
+            <div class="feature-module-tag">
+                <div class="feature-module-icon" style="background: rgba(122,140,110,0.15); color: #7a8c6e;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <span class="feature-module-label">Automation</span>
+            </div>
+            <h2>Fewer clicks.<br>More time for guests.</h2>
+            <p>Check-out takes a single click: create the invoice, link the payment, update the status, notify housekeeping. Emails go out automatically in the right language. Availability is pushed to all channels in real time.</p>
+            <ul class="feature-bullets">
+                <li>Quick check-out: invoice + payment + status change in one click</li>
+                <li>Emails sent automatically based on triggers</li>
+                <li>Channel manager syncs rates and availability</li>
+                <li>Waitlist: when a cancellation comes in, the room is automatically held</li>
+                <li>Peppol e-invoicing and UBL export built in</li>
+            </ul>
+        </div>
+        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
+            <div class="mockup-card">
+                <div class="mockup-card-header">
+                    <span class="mockup-card-title">Quick Check-out</span>
+                    <span class="mockup-badge" style="background:rgba(122,140,110,0.15);color:var(--sage);">Room 103</span>
+                </div>
+                <!-- Steps -->
+                <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                    <div style="display:flex;align-items:center;gap:0.7rem;background:var(--cream);border-radius:8px;padding:0.7rem;">
+                        <div style="width:24px;height:24px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;">&#10003;</div>
+                        <div>
+                            <div style="font-weight:600;font-size:0.78rem;">Invoice created</div>
+                            <div style="font-size:0.6rem;opacity:0.5;">INV-2026-0047 &middot; &euro;1,347.00</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:0.7rem;background:var(--cream);border-radius:8px;padding:0.7rem;">
+                        <div style="width:24px;height:24px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;">&#10003;</div>
+                        <div>
+                            <div style="font-weight:600;font-size:0.78rem;">Payment linked</div>
+                            <div style="font-size:0.6rem;opacity:0.5;">Visa &middot; &euro;1,347.00</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:0.7rem;background:var(--cream);border-radius:8px;padding:0.7rem;">
+                        <div style="width:24px;height:24px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;">&#10003;</div>
+                        <div>
+                            <div style="font-weight:600;font-size:0.78rem;">Status: checked out</div>
+                            <div style="font-size:0.6rem;opacity:0.5;">Housekeeping notified</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:0.7rem;background:var(--cream);border-radius:8px;padding:0.7rem;">
+                        <div style="width:24px;height:24px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;">&#10003;</div>
+                        <div>
+                            <div style="font-weight:600;font-size:0.78rem;">Email sent</div>
+                            <div style="font-size:0.6rem;opacity:0.5;">Check-out confirmation &middot; EN</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- COMPACT GRID — everything else               -->
+<!-- ============================================ -->
+
+<section class="features-compact" id="alle-features">
+    <div class="features-compact-inner">
+        <span class="section-label fade-up">And more</span>
+        <h2 class="section-title fade-up">Everything you'd expect from a PMS.</h2>
+        <p class="section-subtitle fade-up">The essentials are all here. Every single one.</p>
+
+        <div class="compact-grid">
+            <div class="compact-card fade-up">
+                <div class="compact-card-icon" style="background: rgba(196,101,58,0.1); color: #c4653a;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/></svg>
+                </div>
+                <h3>Reservations & Calendar</h3>
+                <p>Visual calendar with drag-and-drop. Multi-room bookings, per-room status, quotes and full booking history.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.07s">
+                <div class="compact-card-icon" style="background: rgba(122,140,110,0.15); color: #7a8c6e;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+                </div>
+                <h3>Channel Manager</h3>
+                <p>Booking.com, Airbnb, Expedia and more. Rates and availability are automatically synced via Channex.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.14s">
+                <div class="compact-card-icon" style="background: rgba(184,150,62,0.12); color: #b8963e;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <h3>Booking Engine</h3>
+                <p>Direct bookings through your own website, commission-free. With referrer tracking and allotments for partners.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.21s">
+                <div class="compact-card-icon" style="background: rgba(74,127,181,0.1); color: #4a7fb5;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <h3>Invoicing & Peppol</h3>
+                <p>Invoices, credit notes and proformas with correct VAT. Peppol e-invoicing and UBL 2.1 XML export built in.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.28s">
+                <div class="compact-card-icon" style="background: rgba(196,101,58,0.1); color: #c4653a;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                </div>
+                <h3>Payments</h3>
+                <p>Online payment links, VCC charging, pre-authorisations. Bancontact, Visa, Mastercard. Automatically linked to invoices.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.35s">
+                <div class="compact-card-icon" style="background: rgba(74,127,181,0.1); color: #4a7fb5;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <h3>Guest Portal</h3>
+                <p>Guests check in online, confirm quotes, pay and fill in their ID details. On their own phone.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.42s">
+                <div class="compact-card-icon" style="background: rgba(122,140,110,0.15); color: #7a8c6e;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                </div>
+                <h3>Housekeeping</h3>
+                <p>Real-time room status. Cleaning staff work from their phone, updates appear instantly in the calendar.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.49s">
+                <div class="compact-card-icon" style="background: rgba(184,150,62,0.12); color: #b8963e;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                </div>
+                <h3>F&B</h3>
+                <p>Breakfast lists, minibar and restaurant charges. Automatically added to the room bill, linked to the rate plan.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.56s">
+                <div class="compact-card-icon" style="background: rgba(196,101,58,0.1); color: #c4653a;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <h3>Communication</h3>
+                <p>Email templates per event, sent automatically in your guest's language. Multilingual: NL, FR, DE, EN.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.63s">
+                <div class="compact-card-icon" style="background: rgba(74,127,181,0.1); color: #4a7fb5;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <h3>Rates & Allotments</h3>
+                <p>Room types, rate plans, cancellation policies and allotments for partners. Pushed to all channels.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.70s">
+                <div class="compact-card-icon" style="background: rgba(184,150,62,0.12); color: #b8963e;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
+                </div>
+                <h3>Reports</h3>
+                <p>Occupancy, ADR, RevPAR, revenue per channel. Central invoice overview. Export to CSV, Excel or PDF.</p>
+            </div>
+
+            <div class="compact-card fade-up" style="transition-delay:0.77s">
+                <div class="compact-card-icon" style="background: rgba(122,140,110,0.15); color: #7a8c6e;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3>Guest Profiles</h3>
+                <p>Automatically built from reservations. Guest, booker and company profiles with VIES VAT validation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="demo">
+    <div class="fade-up">
+        <h2 class="section-title">Ready to try Rumo?</h2>
+        <p class="section-subtitle">No credit card required. No obligations. Just 14 days to play around with a demo full of fake reservations.</p>
+        <a href="index.html#demo" class="btn-primary">See it for yourself, no account needed &rarr;</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="footer-brand">rumo<span>.</span></div>
+            <p class="footer-tagline">Hotel software that just works. No manual needed.</p>
+        </div>
+        <div>
+            <div class="footer-label">Product</div>
+            <ul class="footer-links">
+                <li><a href="#rudy">Rudy</a></li>
+                <li><a href="#handbook">Handbook</a></li>
+                <li><a href="#ux">Dashboard & Calendar</a></li>
+                <li><a href="#automatisering">Automation</a></li>
+                <li><a href="#alle-features">All features</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="footer-label">Rumo</div>
+            <ul class="footer-links">
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="https://wa.me/32485382828" target="_blank" rel="noopener">WhatsApp</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="about.html">About us</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Rumo. All rights reserved.</div>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
+    });
+</script>
+<script src="../rudy-widget.js"></script>
+</body>
+</html>

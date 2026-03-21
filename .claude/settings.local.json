@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.dievandeboekhouding.be)",
+      "Bash(command -v powershell)",
+      "Bash(python -c \":*)"
+    ]
+  }
+}

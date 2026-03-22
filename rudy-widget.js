@@ -357,11 +357,4 @@ Max 3-4 phrases par r\u00e9ponse.`
         return data.content || data.message || data.response || '';
     }
 
-    let autoOpenTimer = setTimeout(() => {
-        if (!panel.classList.contains('open')) {
-            trigger.classList.add('open');
-            panel.classList.add('open');
-        }
-    }, 30000);
-    trigger.addEventListener('click', () => clearTimeout(autoOpenTimer));
 })();

@@ -826,15 +826,6 @@ Keep your answers short and to the point. Max 3-4 sentences per answer, unless a
             return data.content || data.message || data.response || '';
         }
 
-        // Auto-open after 30 seconds if user hasn't interacted
-        let autoOpenTimer = setTimeout(() => {
-            if (!panel.classList.contains('open')) {
-                trigger.classList.add('open');
-                panel.classList.add('open');
-            }
-        }, 30000);
-
-        trigger.addEventListener('click', () => clearTimeout(autoOpenTimer));
     })();
 </script>
 </body>

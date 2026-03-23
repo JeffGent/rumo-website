@@ -826,15 +826,6 @@ Garde tes réponses courtes et concises. Max 3-4 phrases par réponse, sauf si u
             return data.content || data.message || data.response || '';
         }
 
-        // Auto-open after 30 seconds if user hasn't interacted
-        let autoOpenTimer = setTimeout(() => {
-            if (!panel.classList.contains('open')) {
-                trigger.classList.add('open');
-                panel.classList.add('open');
-            }
-        }, 30000);
-
-        trigger.addEventListener('click', () => clearTimeout(autoOpenTimer));
     })();
 </script>
 </body>

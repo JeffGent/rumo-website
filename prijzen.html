@@ -277,24 +277,34 @@
                         <span>Aantal kamers</span>
                         <span id="room-count">20</span>
                     </div>
-                    <input type="range" class="calc-slider" id="room-slider" min="5" max="50" value="20">
-                    <div class="calc-range"><span>5</span><span>50</span></div>
+                    <input type="range" class="calc-slider" id="room-slider" min="5" max="55" value="20">
+                    <div class="calc-range"><span>5</span><span>55</span></div>
                     <div class="calc-addons">
                         <div class="calc-addons-title">Addons toevoegen</div>
                         <label class="calc-addon-item">
-                            <input type="checkbox" id="addon-whitelabel" onchange="updateCalc()">
-                            <span class="addon-label">Guest Portal: White Label</span>
+                            <input type="checkbox" id="addon-whitelabel" data-price="45" onchange="updateCalc()">
+                            <span class="addon-label">White Label</span>
                             <span class="addon-cost">+€45/m</span>
                         </label>
-                        <label class="calc-addon-item disabled">
-                            <input type="checkbox" id="addon-smartpricing" onchange="updateCalc()" disabled>
-                            <span class="addon-label">Smart Pricing <span class="addon-soon">(binnenkort)</span></span>
+                        <label class="calc-addon-item">
+                            <input type="checkbox" id="addon-property" data-price="29" onchange="updateCalc()">
+                            <span class="addon-label">Property Management</span>
+                            <span class="addon-cost">+€29/m</span>
+                        </label>
+                        <label class="calc-addon-item">
+                            <input type="checkbox" id="addon-smartpricing" data-price="45" onchange="updateCalc()">
+                            <span class="addon-label">Smart Pricing</span>
                             <span class="addon-cost">+€45/m</span>
                         </label>
-                        <label class="calc-addon-item disabled">
-                            <input type="checkbox" id="addon-salto" onchange="updateCalc()" disabled>
-                            <span class="addon-label">Sleutelbeheer: Salto <span class="addon-soon">(binnenkort)</span></span>
+                        <label class="calc-addon-item">
+                            <input type="checkbox" id="addon-salto" data-price="45" onchange="updateCalc()">
+                            <span class="addon-label">Sleutelbeheer: Salto</span>
                             <span class="addon-cost">+€45/m</span>
+                        </label>
+                        <label class="calc-addon-item">
+                            <input type="checkbox" id="addon-peppol" data-price="9" onchange="updateCalc()">
+                            <span class="addon-label">Peppol Automatisch</span>
+                            <span class="addon-cost">+€9/m</span>
                         </label>
                     </div>
                     <div class="calc-result">
@@ -320,21 +330,33 @@
         <div class="addons-grid">
             <div class="addon-card fade-up">
                 <div class="addon-badge">Add-on</div>
-                <h3>Guest Portal: White Label</h3>
-                <p>Jouw logo, jouw huisstijl. De gastpagina ziet eruit alsof jij hem gebouwd hebt. Inclusief branded e-mails.</p>
+                <h3>White Label</h3>
+                <p>Jouw logo en huisstijl op de guest portal, booking engine en alle e-mails. Alles ziet eruit alsof jij het gebouwd hebt.</p>
                 <div class="addon-price">€45 <span>/ maand</span></div>
             </div>
             <div class="addon-card fade-up" style="transition-delay:0.07s">
-                <div class="addon-badge addon-badge-soon">Binnenkort</div>
+                <div class="addon-badge">Add-on</div>
+                <h3>Property Management</h3>
+                <p>Installaties, checklists, incidentmeldingen, suggestiebox en evacuatieoefeningen. Je gebouw in orde, zonder de papierberg.</p>
+                <div class="addon-price">€29 <span>/ maand</span></div>
+            </div>
+            <div class="addon-card fade-up" style="transition-delay:0.14s">
+                <div class="addon-badge">Add-on</div>
                 <h3>Smart Pricing</h3>
                 <p>Automatische prijsaanpassingen op basis van bezettingsgraad, seizoen en vraag. Meer omzet met minder moeite.</p>
                 <div class="addon-price">€45 <span>/ maand</span></div>
             </div>
-            <div class="addon-card fade-up" style="transition-delay:0.14s">
-                <div class="addon-badge addon-badge-soon">Binnenkort</div>
+            <div class="addon-card fade-up" style="transition-delay:0.21s">
+                <div class="addon-badge">Add-on</div>
                 <h3>Sleutelbeheer: Salto</h3>
                 <p>Digitale sleutels gekoppeld aan je reservaties. Gast checkt in via de app, krijgt direct toegang tot zijn kamer.</p>
                 <div class="addon-price">€45 <span>/ maand</span></div>
+            </div>
+            <div class="addon-card fade-up" style="transition-delay:0.28s">
+                <div class="addon-badge">Add-on</div>
+                <h3>Peppol Automatisch</h3>
+                <p>Facturen automatisch verzonden via het Peppol-netwerk. Geen XML-bestanden downloaden, geen portalen. Eén klik en klaar.</p>
+                <div class="addon-price">€9 <span>/ maand</span></div>
             </div>
         </div>
     </div>
@@ -453,7 +475,6 @@
     });
 
     const PRICE_PER_ROOM = 12;
-    const ADDON_PRICE = 45;
     const slider = document.getElementById('room-slider');
     const roomCount = document.getElementById('room-count');
     const calcRooms = document.getElementById('calc-rooms');
@@ -464,24 +485,26 @@
     const calcAddonsTotal = document.getElementById('calc-addons-total');
     const addonCheckboxes = [
         document.getElementById('addon-whitelabel'),
+        document.getElementById('addon-property'),
         document.getElementById('addon-smartpricing'),
-        document.getElementById('addon-salto')
+        document.getElementById('addon-salto'),
+        document.getElementById('addon-peppol')
     ];
 
     function updateCalc() {
         const rooms = parseInt(slider.value);
         const base = rooms * PRICE_PER_ROOM;
-        const activeAddons = addonCheckboxes.filter(cb => cb.checked).length;
-        const addonsTotal = activeAddons * ADDON_PRICE;
+        const checkedAddons = addonCheckboxes.filter(cb => cb.checked);
+        const addonsTotal = checkedAddons.reduce((sum, cb) => sum + parseInt(cb.dataset.price), 0);
         const total = base + addonsTotal;
 
         roomCount.textContent = rooms;
         calcRooms.textContent = rooms;
         calcBase.textContent = '€' + base;
 
-        if (activeAddons > 0) {
+        if (checkedAddons.length > 0) {
             calcAddonsRow.style.display = '';
-            calcAddonCount.textContent = activeAddons;
+            calcAddonCount.textContent = checkedAddons.length;
             calcAddonsTotal.textContent = '€' + addonsTotal;
         } else {
             calcAddonsRow.style.display = 'none';

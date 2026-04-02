@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rumo | Hotelsoftware die gewoon werkt</title>
+    <title>Rumo | De PMS dat je dag beter maakt</title>
     <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Rumo is hotelsoftware voor kleine en middelgrote hotels. Reservaties, facturatie met Peppol, channel manager en guest portal. Probeer gratis.">
+    <meta name="description" content="Rumo is hotelsoftware voor kleine en middelgrote hotels. Een PMS dat gewoon werkt, een AI-assistent die alles weet, en een handboek dat je team zelfstandig maakt.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -18,50 +18,45 @@
         /* HERO */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 3rem 4rem; position: relative; overflow: hidden; }
         .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 60%; height: 140%; background: radial-gradient(ellipse at center, rgba(196,101,58,0.06) 0%, transparent 70%); pointer-events: none; }
-        .hero-content { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; }
+        .hero-content { max-width: 900px; margin: 0 auto; width: 100%; text-align: center; }
         .hero-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.15; color: var(--warm); margin-bottom: 1.5rem; letter-spacing: -1px; }
         .hero-text h1 em { color: var(--terracotta); font-style: italic; }
-        .hero-subtitle { font-size: 1.15rem; line-height: 1.8; color: var(--warm); opacity: 0.7; margin-bottom: 2rem; max-width: 520px; }
-        .hero-checklist { list-style: none; margin-bottom: 2.5rem; }
-        .hero-checklist li { padding: 0.4rem 0; font-size: 1.02rem; font-weight: 500; display: flex; align-items: center; gap: 0.7rem; }
-        .hero-checklist li::before { content: '✓'; display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--sage-light); color: var(--sage); font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
-        .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+        .hero-subtitle { font-size: 1.2rem; line-height: 1.8; color: var(--warm); opacity: 0.65; margin: 0 auto 2.5rem; max-width: 620px; }
+        .hero-actions { display: flex; gap: 1rem; align-items: center; justify-content: center; flex-wrap: wrap; }
 
-        /* HERO MOCKUP */
-        .hero-mockup { background: var(--white); border-radius: 16px; box-shadow: 0 25px 80px rgba(0,0,0,0.08), 0 4px 15px rgba(0,0,0,0.04); padding: 1.5rem; transform: perspective(1000px) rotateY(-3deg) rotateX(2deg); transition: transform 0.4s ease; }
-        .hero-mockup:hover { transform: perspective(1000px) rotateY(0deg) rotateX(0deg); }
-        .mockup-topbar { display: flex; gap: 6px; margin-bottom: 1rem; }
-        .mockup-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mist); }
-        .mockup-content { background: var(--cream); border-radius: 10px; padding: 1.5rem; }
-        .mockup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
-        .mockup-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; }
-        .mockup-badge { background: var(--sage-light); color: var(--sage); padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
-        .mockup-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-bottom: 1.2rem; }
-        .mockup-stat { background: var(--white); padding: 0.8rem; border-radius: 8px; text-align: center; }
-        .mockup-stat-value { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--warm); }
-        .mockup-stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.5; margin-top: 0.2rem; }
-        .mockup-rows { display: flex; flex-direction: column; gap: 0.5rem; }
-        .mockup-row { display: flex; justify-content: space-between; align-items: center; background: var(--white); padding: 0.6rem 0.8rem; border-radius: 6px; font-size: 0.82rem; }
-        .mockup-row-name { font-weight: 500; }
-        .mockup-row-status { padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
-        .status-green { background: var(--sage-light); color: var(--sage); }
-        .status-orange { background: #fef3e2; color: #c4883a; }
-        .status-blue { background: #e8f0f8; color: #4a7fb5; }
+        /* HERO PAINS */
+        .hero-pains { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
+        .hero-pain { background: var(--white); border-radius: 8px; padding: 0.5rem 1rem; font-size: 0.88rem; color: var(--warm); opacity: 0.7; display: flex; align-items: center; gap: 0.5rem; }
+        .hero-pain span { color: var(--terracotta); font-weight: 600; font-size: 0.82rem; }
 
-        /* FEATURE PREVIEW CARDS */
-        .features-preview { background: var(--white); }
-        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin-top: 2rem; }
-        .feature-card { background: var(--cream); border-radius: 10px; padding: 0.85rem 1rem; text-decoration: none; color: inherit; transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; align-items: center; gap: 0.7rem; }
-        .feature-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
-        .feature-icon { width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .feature-icon svg { width: 18px; height: 18px; stroke-width: 1.5; }
-        .feature-card:nth-child(odd) .feature-icon { background: rgba(196,101,58,0.1); color: #c4653a; }
-        .feature-card:nth-child(even) .feature-icon { background: rgba(122,140,110,0.15); color: #7a8c6e; }
-        .feature-card:nth-child(3n) .feature-icon { background: rgba(184,150,62,0.12); color: #b8963e; }
-        .feature-card:nth-child(4n) .feature-icon { background: rgba(74,127,181,0.1); color: #4a7fb5; }
-        .feature-card h3 { font-family: 'Playfair Display', serif; font-size: 0.95rem; margin: 0; line-height: 1.3; }
-        .feature-card p { display: none; }
-        .feature-card-arrow { display: none; }
+        /* DE DRIE PIJLERS */
+        .pijler { padding: 6rem 3rem; }
+        .pijler:nth-child(odd) { background: var(--white); }
+        .pijler:nth-child(even) { background: var(--cream); }
+        .pijler-row { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .pijler:nth-child(even) .pijler-row { direction: rtl; }
+        .pijler:nth-child(even) .pijler-row > * { direction: ltr; }
+        .pijler-text h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.8rem; line-height: 1.2; }
+        .pijler-text .pijler-oneliner { font-size: 1.05rem; font-weight: 600; color: var(--terracotta); margin-bottom: 1.2rem; }
+        .pijler-text p { font-size: 1rem; opacity: 0.65; line-height: 1.8; margin-bottom: 1.5rem; }
+        .pijler-text .pijler-quote { font-size: 0.92rem; font-style: italic; opacity: 0.5; padding-top: 1.2rem; border-top: 1px solid var(--mist); }
+        .pijler-img { border-radius: 12px; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04); height: 380px; }
+        .pijler-img img { width: 250%; display: block; height: 100%; object-fit: cover; }
+        .pijler-img.crop-calendar img { object-position: 20% 40%; }
+        .pijler-img.crop-handbook img { object-position: 5% 35%; }
+        .pijler-img.crop-dashboard img { object-position: 5% 5%; }
+
+        /* MAKKELIJK */
+        .makkelijk { background: var(--white); }
+        .makkelijk-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .makkelijk-text .section-subtitle { margin-bottom: 2rem; }
+        .makkelijk-stappen { list-style: none; counter-reset: stap; }
+        .makkelijk-stappen li { counter-increment: stap; padding: 1rem 0; border-bottom: 1px solid var(--mist); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 1rem; }
+        .makkelijk-stappen li::before { content: counter(stap); display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--sage-light); color: var(--sage); font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+        .makkelijk-stappen li:last-child { border-bottom: none; }
+        .makkelijk-quote { background: var(--cream); border-radius: 16px; padding: 2.5rem; position: relative; }
+        .makkelijk-quote blockquote { font-family: 'Playfair Display', serif; font-size: 1.4rem; line-height: 1.5; color: var(--warm); margin-bottom: 1rem; }
+        .makkelijk-quote cite { font-style: normal; font-size: 0.9rem; opacity: 0.5; }
 
         /* PERSONAS */
         .personas { background: var(--cream); }
@@ -78,9 +73,16 @@
         /* INTERMEZZO */
         .intermezzo { background: var(--warm); color: var(--cream); text-align: center; padding: 5rem 3rem; }
         .intermezzo .section-title { color: var(--cream); max-width: 700px; margin: 0 auto 1rem; }
-        .intermezzo .section-subtitle { color: var(--cream); opacity: 0.5; max-width: 500px; margin: 0 auto; }
-        .rumo-meaning { display: inline-block; margin-top: 2rem; padding: 1rem 2rem; background: rgba(255,255,255,0.06); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); }
-        .rumo-meaning em { color: var(--terracotta-light); }
+        .intermezzo .section-subtitle { color: var(--cream); opacity: 0.5; max-width: 550px; margin: 0 auto; }
+
+        /* PRIJS TEASER */
+        .prijs-teaser { background: var(--white); text-align: center; }
+        .prijs-teaser .prijs-bedrag { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 4vw, 3.5rem); color: var(--terracotta); margin: 1.5rem 0 0.5rem; }
+        .prijs-teaser .prijs-uitleg { font-size: 1.05rem; opacity: 0.6; max-width: 500px; margin: 0 auto 0.5rem; }
+        .prijs-teaser .prijs-detail { font-size: 0.9rem; opacity: 0.45; max-width: 500px; margin: 0 auto 2rem; }
+        .prijs-checklist { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem 2rem; margin-bottom: 2.5rem; }
+        .prijs-checklist li { font-size: 0.92rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+        .prijs-checklist li::before { content: '✓'; color: var(--sage); font-weight: 700; }
 
         /* ─── RUDY CHAT WIDGET ─── */
         .rudy-trigger { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 60px; height: 60px; background: var(--terracotta); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(196,101,58,0.35); z-index: 1000; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
@@ -132,53 +134,28 @@
 
         .rudy-footer { padding: 0.4rem 1.2rem 0.6rem; text-align: center; font-size: 0.68rem; opacity: 0.3; }
 
-        /* ─── RUDY SECTION ─── */
-        .rudy-section { background: var(--warm); color: var(--cream); padding: 6rem 3rem; overflow: hidden; }
-        .rudy-section-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .rudy-section .section-label { color: var(--terracotta-light); }
-        .rudy-section .section-title { color: var(--cream); }
-        .rudy-section-text .section-subtitle { color: var(--cream); opacity: 0.55; margin-bottom: 2rem; }
-        .rudy-section-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--terracotta-light); font-weight: 600; font-size: 0.95rem; cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; }
-        .rudy-section-cta:hover { opacity: 0.8; }
-        .rudy-demo-chat { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 1.5rem; max-width: 420px; margin-left: auto; }
-        .rudy-demo-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .rudy-demo-avatar { width: 32px; height: 32px; background: var(--terracotta); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.85rem; color: var(--white); font-weight: 700; }
-        .rudy-demo-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; }
-        .rudy-demo-msgs { display: flex; flex-direction: column; gap: 0.6rem; }
-        .rudy-demo-msg { padding: 0.65rem 0.9rem; border-radius: 12px; font-size: 0.85rem; line-height: 1.55; max-width: 88%; }
-        .rudy-demo-msg.bot { background: rgba(255,255,255,0.08); color: var(--cream); align-self: flex-start; border-bottom-left-radius: 4px; }
-        .rudy-demo-msg.user { background: var(--terracotta); color: var(--white); align-self: flex-end; border-bottom-right-radius: 4px; }
-        .rudy-demo-starters { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
-        .rudy-demo-starter { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.35rem 0.7rem; font-size: 0.75rem; color: var(--cream); opacity: 0.6; }
-
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .hero { padding: 7rem 1.5rem 3rem; }
-            .hero-content { grid-template-columns: 1fr; gap: 3rem; }
-            .hero-visual { order: -1; }
-            .hero-mockup { display: none; }
+            .hero-content { max-width: 100%; }
             .hero-text h1 { font-size: clamp(2.2rem, 7vw, 2.8rem); }
             .hero-actions { flex-direction: column; }
             .hero-actions .btn-primary { width: 100%; justify-content: center; }
             section { padding: 4rem 1.5rem; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 1.5rem; }
-            .feature-card { padding: 0.7rem 0.8rem; gap: 0.5rem; border-radius: 8px; }
-            .feature-icon { width: 32px; height: 32px; }
-            .feature-icon svg { width: 16px; height: 16px; }
-            .feature-card h3 { font-size: 0.85rem; }
+            .herken-grid { grid-template-columns: 1fr; }
+            .pijler { padding: 4rem 1.5rem; }
+            .pijler-row { grid-template-columns: 1fr; gap: 2rem; }
+            .pijler:nth-child(even) .pijler-row { direction: ltr; }
+            .pijler-img { order: -1; }
+            .makkelijk-content { grid-template-columns: 1fr; gap: 2.5rem; }
             .persona-grid { grid-template-columns: 1fr; }
-            .rudy-section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-            .rudy-demo-chat { margin-left: 0; max-width: 100%; }
             .rudy-panel { width: calc(100vw - 1.5rem); right: 0.75rem; bottom: 5.5rem; max-height: calc(100vh - 7rem); }
         }
         @media (max-width: 480px) {
             .hero { padding: 6rem 1rem 2rem; }
             section { padding: 3rem 1rem; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .feature-card { padding: 0.7rem 0.8rem; }
             .persona-img { height: 100px; font-size: 2rem; }
             .intermezzo { padding: 3rem 1rem; }
-            .rudy-section { padding: 4rem 1rem; }
             .rudy-panel { width: calc(100vw - 1rem); right: 0.5rem; bottom: 5.5rem; max-height: calc(100vh - 7rem); }
             .rudy-trigger-label { display: none; }
         }
@@ -203,7 +180,7 @@
         <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-        <li><a href="#features-preview">Wat zit erin?</a></li>
+        <li><a href="#de-drie">Wat doet Rumo?</a></li>
         <li><a href="#voor-wie">Voor wie?</a></li>
         <li><a href="features.html">Features</a></li>
         <li><a href="integraties.html">Integraties</a></li>
@@ -219,170 +196,89 @@
 <section class="hero">
     <div class="hero-content">
         <div class="hero-text fade-up">
-            <h1>Hotelsoftware die <em>gewoon werkt</em>.</h1>
+            <h1>Drie dingen die je dag <em>als hotelier</em> beter maken.</h1>
             <p class="hero-subtitle">
-                Geen opleiding van 3 dagen. Geen handleiding van 200 pagina's.
-                Gewoon een systeem dat werkt zoals jij denkt.
+                Een PMS dat niet in de weg zit. Een AI-assistent die de vragen van je team beantwoordt.
+                En een handboek waardoor niemand je nog op zondag belt. Dat is Rumo.
             </p>
-            <ul class="hero-checklist">
-                <li>Reservaties, facturatie & channel manager in één</li>
-                <li>Booking engine, guest portal en online betalingen</li>
-                <li>Peppol e-facturatie, rapporten en automatische e-mails</li>
-                <li>Vanaf €12 per kamer per maand, geen verborgen kosten</li>
-            </ul>
+            <div class="hero-pains">
+                <div class="hero-pain">Gebeld op zondag? <span>→ Handboek</span></div>
+                <div class="hero-pain">Nieuw personeel inwerken? <span>→ Rudy</span></div>
+                <div class="hero-pain">Eén systeem voor alles? <span>→ PMS</span></div>
+            </div>
             <div class="hero-actions">
-                <a href="#demo" class="btn-primary">Probeer gratis →</a>
-                <a href="features.html" class="btn-secondary">Hoe werkt het?</a>
-            </div>
-        </div>
-        <div class="hero-visual fade-up" style="transition-delay: 0.15s">
-            <div class="hero-mockup">
-                <div class="mockup-topbar">
-                    <div class="mockup-dot"></div>
-                    <div class="mockup-dot"></div>
-                    <div class="mockup-dot"></div>
-                </div>
-                <div class="mockup-content">
-                    <div class="mockup-header">
-                        <span class="mockup-title">Dashboard</span>
-                        <span class="mockup-badge">Live</span>
-                    </div>
-                    <div class="mockup-stats">
-                        <div class="mockup-stat">
-                            <div class="mockup-stat-value">87%</div>
-                            <div class="mockup-stat-label">Bezetting</div>
-                        </div>
-                        <div class="mockup-stat">
-                            <div class="mockup-stat-value">€4.285</div>
-                            <div class="mockup-stat-label">Omzet vandaag</div>
-                        </div>
-                        <div class="mockup-stat">
-                            <div class="mockup-stat-value">6</div>
-                            <div class="mockup-stat-label">Check-ins</div>
-                        </div>
-                    </div>
-                    <div class="mockup-rows">
-                        <div class="mockup-row">
-                            <span class="mockup-row-name">Fam. Janssen · Kamer 204</span>
-                            <span class="mockup-row-status status-green">Checked in</span>
-                        </div>
-                        <div class="mockup-row">
-                            <span class="mockup-row-name">Mr. Dubois · Kamer 108</span>
-                            <span class="mockup-row-status status-orange">Vandaag verwacht</span>
-                        </div>
-                        <div class="mockup-row">
-                            <span class="mockup-row-name">De Vries BV · Kamer 301</span>
-                            <span class="mockup-row-status status-blue">Factuur verstuurd</span>
-                        </div>
-                    </div>
-                </div>
+                <a href="#demo" class="btn-primary">Probeer 14 dagen gratis</a>
+                <a href="#de-drie" class="btn-secondary">Hoe werkt dat?</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FEATURES PREVIEW -->
-<section class="features-preview" id="features-preview">
+<!-- DE DRIE PIJLERS -->
+<div id="de-drie">
+    <section class="pijler">
+        <div class="pijler-row">
+            <div class="pijler-text fade-up">
+                <span class="section-label">De PMS</span>
+                <h3>Alles in één scherm.<br>Zonder cursus.</h3>
+                <div class="pijler-oneliner">Reservaties, facturatie, kanalen — op z'n plek.</div>
+                <p>Kalender, check-in, check-out, channel manager, booking engine, Peppol-facturatie, rapporten, guest portal. Je opent Rumo 's ochtends en je weet meteen wat er vandaag moet gebeuren.</p>
+                <div class="pijler-quote">"Ik kijk niet meer in drie systemen. Alleen nog in Rumo."</div>
+            </div>
+            <div class="pijler-img crop-calendar fade-up" style="transition-delay: 0.15s">
+                <img src="img/Calendar.png" alt="Rumo PMS kalender met reservaties">
+            </div>
+        </div>
+    </section>
+
+    <section class="pijler">
+        <div class="pijler-row">
+            <div class="pijler-text fade-up">
+                <span class="section-label">Het Handboek</span>
+                <h3>Al je procedures.<br>Niemand belt je nog.</h3>
+                <div class="pijler-oneliner">Op één plek. Altijd up-to-date.</div>
+                <p>Hoe werkt de check-in? Wat doe je bij een klacht? Waar ligt de extra sleutel? Je team zoekt het op in het handboek. Nieuwe medewerkers draaien na twee dagen al zelfstandig mee.</p>
+                <div class="pijler-quote">"Mijn receptioniste belt me niet meer op zondag. Ze checkt het handboek."</div>
+            </div>
+            <div class="pijler-img crop-handbook fade-up" style="transition-delay: 0.15s">
+                <img src="img/Handbook.png" alt="Rumo Handboek met procedures en categorieën">
+            </div>
+        </div>
+    </section>
+
+    <section class="pijler">
+        <div class="pijler-row">
+            <div class="pijler-text fade-up">
+                <span class="section-label">Rudy</span>
+                <h3>Je slimste medewerker.<br>Altijd beschikbaar.</h3>
+                <div class="pijler-oneliner">De AI-assistent die je hotel kent.</div>
+                <p>Rudy kent Rumo, je hotel, en je procedures. Je team stelt een vraag en krijgt een concreet antwoord. Geen handleiding nodig, geen opleiding van drie weken.</p>
+                <div class="pijler-quote">"Welke kamers zijn morgen vrij?" — Rudy weet het. Meteen.</div>
+            </div>
+            <div class="pijler-img crop-dashboard fade-up" style="transition-delay: 0.15s">
+                <img src="img/Dashboard.png" alt="Rumo Dashboard">
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- MAKKELIJK -->
+<section class="makkelijk">
     <div class="section-inner">
-        <div class="fade-up">
-            <span class="section-label">Wat zit erin?</span>
-            <h2 class="section-title">Alles wat je nodig hebt.<br>Niks dat je niet nodig hebt.</h2>
-            <p class="section-subtitle">Van reservaties tot rapporten, van booking engine tot gastcommunicatie. Alles in één systeem.</p>
-        </div>
-        <div class="features-grid">
-            <a href="features.html#rudy" class="feature-card fade-up">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </div>
-                <h3>Rudy, de AI-assistent</h3>
-                <p>"Welke kamers zijn morgen vrij?" Rudy kent je hotel, je cijfers en je procedures. Echt slim, niet een chatbot.</p>
-                <span class="feature-card-arrow">Meer info &rarr;</span>
-            </a>
-            <a href="features.html#handbook" class="feature-card fade-up" style="transition-delay:0.07s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
-                </div>
-                <h3>Hotel handboek</h3>
-                <p>Procedures, huisregels en onboarding. Alles wat je team moet weten, in je PMS.</p>
-                <span class="feature-card-arrow">Meer info &rarr;</span>
-            </a>
-            <a href="features.html#ux" class="feature-card fade-up" style="transition-delay:0.14s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="4"/><rect x="14" y="10" width="7" height="7"/><rect x="3" y="13" width="7" height="4"/></svg>
-                </div>
-                <h3>Intuïtief design</h3>
-                <p>Gebouwd om makkelijk te zijn. Logisch, overzichtelijk, snel.</p>
-                <span class="feature-card-arrow">Meer info &rarr;</span>
-            </a>
-            <a href="features.html#automatisering" class="feature-card fade-up" style="transition-delay:0.21s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                </div>
-                <h3>Automatisering</h3>
-                <p>Checkout in een klik, emails automatisch, kanalen realtime gesynchroniseerd.</p>
-                <span class="feature-card-arrow">Meer info &rarr;</span>
-            </a>
-            <a href="features.html#alle-features" class="feature-card fade-up" style="transition-delay:0.28s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
-                </div>
-                <h3>Channel Manager</h3>
-                <p>Booking.com, Airbnb, Expedia. Automatisch gesynchroniseerd.</p>
-                <span class="feature-card-arrow">Meer info &rarr;</span>
-            </a>
-            <a href="features.html#alle-features" class="feature-card fade-up" style="transition-delay:0.35s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                </div>
-                <h3>Facturatie & Peppol</h3>
-                <p>Facturen, credit notes, UBL 2.1 en Peppol e-facturatie ingebouwd.</p>
-                <span class="feature-card-arrow">Meer info &rarr;</span>
-            </a>
-            <a href="features.html#alle-features" class="feature-card fade-up" style="transition-delay:0.42s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                </div>
-                <h3>Guest Portal</h3>
-                <p>Online inchecken, betalen en ID gegevens invullen. Op de telefoon van je gast.</p>
-                <span class="feature-card-arrow">Meer info &rarr;</span>
-            </a>
-            <a href="features.html#alle-features" class="feature-card fade-up" style="transition-delay:0.49s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                </div>
-                <h3>Booking Engine</h3>
-                <p>Directe boekingen via je website. Geen commissie, geen tussenpersoon.</p>
-                <span class="feature-card-arrow">Meer info &rarr;</span>
-            </a>
-        </div>
-        <div style="text-align:center; margin-top: 2.5rem;" class="fade-up">
-            <a href="features.html" class="btn-primary">Alle features bekijken →</a>
-        </div>
-    </div>
-</section>
-
-<!-- RUDY SECTION -->
-<section class="rudy-section" id="rudy">
-    <div class="rudy-section-inner">
-        <div class="rudy-section-text fade-up">
-            <span class="section-label">Ingebouwde AI-assistent</span>
-            <h2 class="section-title">Dit is Rudy.<br>Hij kent Rumo én jouw hotel.</h2>
-            <p class="section-subtitle">Geen generieke chatbot. Rudy weet hoe alles werkt in Rumo. En zodra hij je hotel kent, weet hij ook je kamers, je tarieven en je procedures. Stel een vraag, krijg een concreet antwoord.</p>
-            <button class="rudy-section-cta" onclick="document.querySelector('.rudy-trigger').click()">Stel Rudy een vraag →</button>
-        </div>
-        <div class="rudy-demo-chat fade-up" style="transition-delay:0.15s">
-            <div class="rudy-demo-header">
-                <div class="rudy-demo-avatar">R</div>
-                <div class="rudy-demo-name">Rudy</div>
+        <div class="makkelijk-content">
+            <div class="makkelijk-text fade-up">
+                <span class="section-label">Geen opleiding nodig</span>
+                <h2 class="section-title">Je snapt het gewoon.<br>Zo simpel is het.</h2>
+                <p class="section-subtitle">De meeste PMS-systemen vragen een opleiding van drie dagen en een handleiding van 200 pagina's. Rumo niet.</p>
+                <ol class="makkelijk-stappen">
+                    <li>Je opent Rumo. Het dashboard toont wat er vandaag moet gebeuren.</li>
+                    <li>Iets onduidelijk? Vraag het aan Rudy. Hij legt het uit in je eigen woorden.</li>
+                    <li>Nieuwe medewerker? Het handboek staat klaar. Geen schaduwen, geen uitleggen.</li>
+                </ol>
             </div>
-            <div class="rudy-demo-msgs">
-                <div class="rudy-demo-msg bot">Hé. Ik ben Rudy. Stel gerust je moeilijkste vraag.</div>
-                <div class="rudy-demo-msg user">Mijn receptioniste belt me elke zondag met vragen. Help!</div>
-                <div class="rudy-demo-msg bot">Klinkt als een klassiek geval van "het staat ergens in een mapje". Met het handboek zet je al je procedures op één plek. Je receptioniste vraagt het aan mij, en jij kan van je zondag genieten.</div>
-            </div>
-            <div class="rudy-demo-starters">
-                <span class="rudy-demo-starter">Kan ik weg van Excel?</span>
-                <span class="rudy-demo-starter">Mijn boekhouder zucht altijd...</span>
+            <div class="makkelijk-quote fade-up" style="transition-delay: 0.15s">
+                <blockquote>"Ik was het beu om voortdurend nieuwe mensen te moeten opleiden. Met Rumo kost dat een namiddag in plaats van een week."</blockquote>
+                <cite>Hotel Chamade, Westende</cite>
             </div>
         </div>
     </div>
@@ -394,7 +290,7 @@
         <div class="fade-up">
             <span class="section-label">Voor wie?</span>
             <h2 class="section-title">Herken je jezelf?</h2>
-            <p class="section-subtitle">Bij Rumo werken we het vaakst met hotels die zich herkennen in één van deze profielen.</p>
+            <p class="section-subtitle">Rumo is er voor onafhankelijke hotels. Geen ketens. Geen resorts in Dubai. Gewoon hotels zoals het jouwe.</p>
         </div>
         <div class="persona-grid">
             <div class="persona-card fade-up">
@@ -402,8 +298,8 @@
                 <div class="persona-body">
                     <span class="persona-tag">51 kamers</span>
                     <h3>Hotel Chamade</h3>
-                    <p>Vier vaste receptionisten, ondersteund door een team van fleximedewerkers en studenten. De eigenaars zochten een PMS dat alles aankan, maar tegelijk eenvoudig aan te leren is.</p>
-                    <div class="persona-detail">"Ik was het beu om voortdurend nieuwe mensen te moeten opleiden."</div>
+                    <p>Vier vaste receptionisten, bijgesprongen door flexi's en studenten. Ze zochten een PMS dat iedereen meteen snapt, zodat opleiden niet hun tweede job is.</p>
+                    <div class="persona-detail">"Rudy beantwoordt de vragen die vroeger op mijn bord kwamen."</div>
                 </div>
             </div>
             <div class="persona-card fade-up" style="transition-delay: 0.1s">
@@ -411,8 +307,8 @@
                 <div class="persona-body">
                     <span class="persona-tag">22 kamers</span>
                     <h3>Carlton Hotel</h3>
-                    <p>Stadshotel in Gent met twee receptionisten. Zoekt een systeem dat Peppol, rapporten en gastprofielen combineert zonder de prijs van een enterprise oplossing.</p>
-                    <div class="persona-detail">"Ik wil niet betalen voor 200 features waar ik er 8 van gebruik."</div>
+                    <p>Stadshotel in Gent met twee receptionisten. Wil Peppol-facturatie, gastprofielen en rapporten. Maar niet de prijs van een enterprise systeem.</p>
+                    <div class="persona-detail">"Eindelijk een systeem dat doet wat ik nodig heb. Meer niet, minder niet."</div>
                 </div>
             </div>
             <div class="persona-card fade-up" style="transition-delay: 0.2s">
@@ -421,7 +317,7 @@
                     <span class="persona-tag">5 kamers</span>
                     <h3>Georgie B&amp;B</h3>
                     <p>Gastenverblijf in een herenhuis in Gent. De eigenaars wonen niet ter plaatse en draaien alles op afstand dankzij automatisering.</p>
-                    <div class="persona-detail">“We wonen niet in het hotel. Zonder Rumo zou dat niet kunnen.”</div>
+                    <div class="persona-detail">"We wonen niet in het hotel. Zonder Rumo zou dat niet kunnen."</div>
                 </div>
             </div>
         </div>
@@ -431,21 +327,34 @@
 <!-- INTERMEZZO -->
 <section class="intermezzo">
     <div class="fade-up">
-        <h2 class="section-title">Software die gemaakt is voor hotels zoals het jouwe.</h2>
-        <p class="section-subtitle">Niet voor ketens met 400 kamers. Niet voor resorts in Dubai. Voor jou.</p>
-        <div class="rumo-meaning">
-            <em>Rumo</em> (Portugees): koers, richting, bestemming.
-            <br><small style="opacity:0.5;">Zonder rumo ben je stuurloos. Met Rumo weet je waar je naartoe gaat.</small>
-        </div>
+        <h2 class="section-title">Gebouwd door hoteliers die hun eigen PMS beu waren.</h2>
+        <p class="section-subtitle">Wij runnen zelf hotels. We weten hoe het voelt als je systeem je dag moeilijker maakt in plaats van makkelijker. Daarom hebben we Rumo gebouwd.</p>
+    </div>
+</section>
+
+<!-- PRIJS TEASER -->
+<section class="prijs-teaser">
+    <div class="section-inner fade-up">
+        <span class="section-label">Euh, wat kost dat?</span>
+        <div class="prijs-bedrag">Vanaf &euro;12 / kamer / maand</div>
+        <p class="prijs-uitleg">PMS, channel manager, booking engine, Rudy, handboek. Alles inbegrepen.</p>
+        <p class="prijs-detail">Geen verborgen kosten. Geen "neem contact op voor een prijs". Gewoon een vaste maandprijs.</p>
+        <ul class="prijs-checklist">
+            <li>Alles-in-één prijs</li>
+            <li>Maandelijks opzegbaar</li>
+            <li>Geen setup-kosten</li>
+            <li>14 dagen gratis proberen</li>
+        </ul>
+        <a href="prijzen.html" class="btn-primary">Bekijk de prijzen</a>
     </div>
 </section>
 
 <!-- FINAL CTA -->
 <section class="final-cta" id="demo">
     <div class="fade-up">
-        <h2 class="section-title">Klaar om Rumo te proberen?</h2>
+        <h2 class="section-title">Klaar om het zelf te zien?</h2>
         <p class="section-subtitle">Geen creditcard nodig. Geen verplichtingen. Gewoon 14 dagen spelen met een demo vol nepreservaties. En dan beslis je zelf.</p>
-        <a href="#" class="btn-primary">Probeer 14 dagen gratis →</a>
+        <a href="#" class="btn-primary">Probeer 14 dagen gratis</a>
     </div>
 </section>
 
@@ -453,7 +362,7 @@
     <div class="footer-inner">
         <div>
             <div class="footer-brand">rumo<span>.</span></div>
-            <p class="footer-tagline">Hotelsoftware die gewoon werkt. Zonder handleiding.</p>
+            <p class="footer-tagline">De PMS dat je dag beter maakt. Zonder handleiding.</p>
         </div>
         <div>
             <div class="footer-label">Product</div>
@@ -493,7 +402,7 @@
             </ul>
         </div>
     </div>
-    <div class="footer-bottom">© 2026 Rumo. Alle rechten voorbehouden.</div>
+    <div class="footer-bottom">&copy; 2026 Rumo. Alle rechten voorbehouden.</div>
 </footer>
 
 <!-- RUDY CHAT WIDGET -->

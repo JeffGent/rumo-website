@@ -104,6 +104,20 @@ footer { background: var(--ink); color: var(--cream); padding: 3rem; }
     .trust-block-inner { grid-template-columns: 1fr; gap: 1.5rem; }
 }
 
+/* MINI FAQ */
+.mini-faq { background: var(--white); }
+.mini-faq .section-inner { max-width: 720px; }
+.mini-faq-list { margin-top: 2rem; }
+.mini-faq-list details { border-bottom: 1px solid var(--mist); }
+.mini-faq-list details:first-child { border-top: 1px solid var(--mist); }
+.mini-faq-list summary { padding: 1.1rem 0; font-size: 0.95rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--warm); }
+.mini-faq-list summary::-webkit-details-marker { display: none; }
+.mini-faq-list summary::after { content: '+'; font-size: 1.3rem; font-weight: 400; color: var(--terracotta); transition: transform 0.2s; flex-shrink: 0; margin-left: 1rem; }
+.mini-faq-list details[open] summary::after { content: '\2212'; }
+.mini-faq-list details p { padding: 0 0 1.1rem; font-size: 0.92rem; opacity: 0.65; line-height: 1.7; }
+.mini-faq-link { display: inline-block; margin-top: 1.5rem; font-size: 0.9rem; font-weight: 600; color: var(--terracotta); text-decoration: none; }
+.mini-faq-link:hover { text-decoration: underline; }
+
 /* ANIMATIONS */
 .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }

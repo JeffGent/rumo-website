@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rumo | De PMS die je dag beter maakt</title>
+    <title>Rumo | Hotelsoftware — nieuw personeel draait na 2 dagen mee</title>
     <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Rumo is hotelsoftware voor kleine en middelgrote hotels. Een PMS die gewoon werkt, een AI-assistent die alles weet, en een handboek dat je team zelfstandig maakt.">
+    <meta name="description" content="Rumo is hotelsoftware voor kleine en middelgrote hotels. PMS, channel manager, facturatie en handboek in één. Nieuw personeel werkt na 2 dagen zelfstandig.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -16,18 +16,27 @@
         .btn-secondary:hover { opacity: 1; }
 
         /* HERO */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 3rem 4rem; position: relative; overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 60%; height: 140%; background: radial-gradient(ellipse at center, rgba(196,101,58,0.06) 0%, transparent 70%); pointer-events: none; }
-        .hero-content { max-width: 900px; margin: 0 auto; width: 100%; text-align: center; }
-        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.15; color: var(--warm); margin-bottom: 1.5rem; letter-spacing: -1px; }
-        .hero-text h1 em { color: var(--terracotta); font-style: italic; }
-        .hero-subtitle { font-size: 1.2rem; line-height: 1.8; color: var(--warm); opacity: 0.65; margin: 0 auto 2.5rem; max-width: 620px; }
-        .hero-actions { display: flex; gap: 1rem; align-items: center; justify-content: center; flex-wrap: wrap; }
+        .hero { min-height: auto; display: flex; align-items: center; padding: 11rem 2rem 5rem; position: relative; overflow: hidden; }
+        .hero-content { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: stretch; min-height: auto; }
+        .hero-text-wrap { background: var(--warm); border-radius: 20px; padding: 3rem; display: flex; align-items: center; }
+        .hero-text { text-align: left; }
+        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.15; color: var(--cream); margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .hero-text h1 em { color: var(--terracotta-light); font-style: italic; }
+        .hero-subline { font-size: clamp(1.05rem, 2vw, 1.25rem); font-weight: 600; color: var(--cream); opacity: 0.75; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.05rem; line-height: 1.8; color: var(--cream); opacity: 0.55; margin-bottom: 2rem; }
+        .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 
-        /* HERO PAINS */
-        .hero-pains { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
-        .hero-pain { background: var(--white); border-radius: 8px; padding: 0.5rem 1rem; font-size: 0.88rem; color: var(--warm); opacity: 0.7; display: flex; align-items: center; gap: 0.5rem; }
-        .hero-pain span { color: var(--terracotta); font-weight: 600; font-size: 0.82rem; }
+        /* HERO SHOWCASE */
+        .hero-showcase { position: relative; }
+        .hero-showcase-screen { border-radius: 20px; overflow: hidden; background: var(--warm); box-shadow: 0 25px 80px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06); height: 100%; position: relative; }
+        .hero-showcase-screen video,
+        .hero-showcase-screen img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.5s ease; }
+        .hero-showcase-screen video.active,
+        .hero-showcase-screen img.active { opacity: 1; z-index: 1; }
+        .hero-showcase-tabs { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 0.4rem; background: rgba(44,36,24,0.7); backdrop-filter: blur(12px); padding: 0.35rem; border-radius: 10px; }
+        .hero-tab { background: transparent; border: none; padding: 0.45rem 1rem; border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
+        .hero-tab:hover { color: rgba(255,255,255,0.9); }
+        .hero-tab.active { background: var(--terracotta); color: var(--white); }
 
         /* DE DRIE PIJLERS */
         .pijler { padding: 6rem 3rem; }
@@ -41,10 +50,7 @@
         .pijler-text p { font-size: 1rem; opacity: 0.65; line-height: 1.8; margin-bottom: 1.5rem; }
         .pijler-text .pijler-quote { font-size: 0.92rem; font-style: italic; opacity: 0.5; padding-top: 1.2rem; border-top: 1px solid var(--mist); }
         .pijler-img { border-radius: 12px; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04); height: 380px; }
-        .pijler-img img { width: 250%; display: block; height: 100%; object-fit: cover; }
-        .pijler-img.crop-calendar img { object-position: 20% 40%; }
-        .pijler-img.crop-handbook img { object-position: 5% 35%; }
-        .pijler-img.crop-dashboard img { object-position: 5% 5%; }
+        .pijler-img img { width: 100%; display: block; height: 100%; object-fit: cover; object-position: top center; }
 
         /* MAKKELIJK */
         .makkelijk { background: var(--white); }
@@ -54,9 +60,8 @@
         .makkelijk-stappen li { counter-increment: stap; padding: 1rem 0; border-bottom: 1px solid var(--mist); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 1rem; }
         .makkelijk-stappen li::before { content: counter(stap); display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--sage-light); color: var(--sage); font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
         .makkelijk-stappen li:last-child { border-bottom: none; }
-        .makkelijk-quote { background: var(--cream); border-radius: 16px; padding: 2.5rem; position: relative; }
-        .makkelijk-quote blockquote { font-family: 'Playfair Display', serif; font-size: 1.4rem; line-height: 1.5; color: var(--warm); margin-bottom: 1rem; }
-        .makkelijk-quote cite { font-style: normal; font-size: 0.9rem; opacity: 0.5; }
+        .makkelijk-video { border-radius: 12px; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04); }
+        .makkelijk-video video { width: 100%; display: block; }
 
         /* PERSONAS */
         .personas { background: var(--cream); }
@@ -137,9 +142,12 @@
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .hero { padding: 7rem 1.5rem 3rem; }
-            .hero-content { max-width: 100%; }
-            .hero-text h1 { font-size: clamp(2.2rem, 7vw, 2.8rem); }
-            .hero-actions { flex-direction: column; }
+            .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-text-wrap { padding: 2rem; border-radius: 16px; }
+            .hero-text { text-align: center; }
+            .hero-text h1 { font-size: clamp(2rem, 7vw, 2.8rem); }
+            .hero-showcase-screen { aspect-ratio: 3/4; max-width: 400px; margin: 0 auto; }
+            .hero-actions { flex-direction: column; align-items: center; }
             .hero-actions .btn-primary { width: 100%; justify-content: center; }
             section { padding: 4rem 1.5rem; }
             .herken-grid { grid-template-columns: 1fr; }
@@ -195,24 +203,49 @@
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content">
-        <div class="hero-text fade-up">
-            <h1>Drie dingen die je dag <em>als hotelier</em> beter maken.</h1>
-            <p class="hero-subtitle">
-                Een PMS die niet in de weg zit. Een AI-assistent die de vragen van je team beantwoordt.
-                En een handboek waardoor niemand je nog op zondag belt. Dat is Rumo.
-            </p>
-            <div class="hero-pains">
-                <div class="hero-pain">Gebeld op zondag? <span>→ Handboek</span></div>
-                <div class="hero-pain">Nieuw personeel inwerken? <span>→ Rudy</span></div>
-                <div class="hero-pain">Eén systeem voor alles? <span>→ PMS</span></div>
+        <div class="hero-text-wrap fade-up">
+            <div class="hero-text">
+                <h1>Drie dingen die je dag <em>als hotelier</em> beter maken.</h1>
+                <p class="hero-subline">Nieuw personeel werkt na 2 dagen zelfstandig.</p>
+                <p class="hero-subtitle">
+                    Een PMS die niet in de weg zit. Een AI-assistent die de vragen van je team beantwoordt.
+                    En een handboek waardoor niemand je nog op zondag belt. Dat is Rumo.
+                </p>
+                <div class="hero-actions">
+                    <a href="#demo" class="btn-primary">Probeer 14 dagen gratis</a>
+                    <a href="#de-drie" class="btn-secondary" style="color: var(--cream); opacity: 0.6;">Hoe werkt dat?</a>
+                </div>
             </div>
-            <div class="hero-actions">
-                <a href="#demo" class="btn-primary">Probeer 14 dagen gratis</a>
-                <a href="#de-drie" class="btn-secondary">Hoe werkt dat?</a>
+        </div>
+        <div class="hero-showcase fade-up" style="transition-delay: 0.15s">
+            <div class="hero-showcase-screen">
+                <video class="active" id="hero-vid-pms" autoplay loop muted playsinline>
+                    <source src="img/hero-pms.mp4" type="video/mp4">
+                </video>
+                <img id="hero-vid-handboek" src="img/Handbook.png" alt="Rumo Handboek">
+                <img id="hero-vid-rudy" src="img/rudy.png" alt="Rudy AI-assistent">
+                <div class="hero-showcase-tabs">
+                    <button class="hero-tab active" data-target="hero-vid-pms">De PMS</button>
+                    <button class="hero-tab" data-target="hero-vid-handboek">Het Handboek</button>
+                    <button class="hero-tab" data-target="hero-vid-rudy">Rudy</button>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- INTEGRATION LOGOS -->
+<div class="logo-row">
+    <div class="logo-row-label">Werkt met wat je al gebruikt</div>
+    <div class="logo-row-logos">
+        <svg viewBox="0 0 130 22" fill="var(--warm)" role="img" aria-label="Booking.com"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Booking.com</text></svg>
+        <svg viewBox="0 0 68 22" fill="var(--warm)" role="img" aria-label="Airbnb"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Airbnb</text></svg>
+        <svg viewBox="0 0 62 22" fill="var(--warm)" role="img" aria-label="Stripe"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Stripe</text></svg>
+        <svg viewBox="0 0 120 22" fill="var(--warm)" role="img" aria-label="Exact Online"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Exact Online</text></svg>
+        <svg viewBox="0 0 68 22" fill="var(--warm)" role="img" aria-label="Peppol"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Peppol</text></svg>
+        <svg viewBox="0 0 85 22" fill="var(--warm)" role="img" aria-label="Channex"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Channex</text></svg>
+    </div>
+</div>
 
 <!-- DE DRIE PIJLERS -->
 <div id="de-drie">
@@ -225,8 +258,8 @@
                 <p>Kalender, check-in, check-out, channel manager, booking engine, Peppol-facturatie, rapporten, guest portal. Je opent Rumo 's ochtends en je weet meteen wat er vandaag moet gebeuren.</p>
                 <div class="pijler-quote">"Ik kijk niet meer in drie systemen. Alleen nog in Rumo."</div>
             </div>
-            <div class="pijler-img crop-calendar fade-up" style="transition-delay: 0.15s">
-                <img src="img/Calendar.png" alt="Rumo PMS kalender met reservaties">
+            <div class="pijler-img fade-up" style="transition-delay: 0.15s">
+                <img src="img/Dashboard.png" alt="Rumo PMS dashboard met kamerstatus en arrivals">
             </div>
         </div>
     </section>
@@ -240,7 +273,7 @@
                 <p>Hoe werkt de check-in? Wat doe je bij een klacht? Waar ligt de extra sleutel? Je team zoekt het op in het handboek. Nieuwe medewerkers draaien na twee dagen al zelfstandig mee.</p>
                 <div class="pijler-quote">"Mijn receptioniste belt me niet meer op zondag. Ze checkt het handboek."</div>
             </div>
-            <div class="pijler-img crop-handbook fade-up" style="transition-delay: 0.15s">
+            <div class="pijler-img fade-up" style="transition-delay: 0.15s">
                 <img src="img/Handbook.png" alt="Rumo Handboek met procedures en categorieën">
             </div>
         </div>
@@ -255,8 +288,8 @@
                 <p>Rudy kent Rumo, je hotel, en je procedures. Je team stelt een vraag en krijgt een concreet antwoord. Geen handleiding nodig, geen opleiding van drie weken.</p>
                 <div class="pijler-quote">"Welke kamers zijn morgen vrij?" — Rudy weet het. Meteen.</div>
             </div>
-            <div class="pijler-img crop-dashboard fade-up" style="transition-delay: 0.15s">
-                <img src="img/Dashboard.png" alt="Rumo Dashboard">
+            <div class="pijler-img fade-up" style="transition-delay: 0.15s">
+                <img src="img/rudy.png" alt="Rudy AI-assistent beantwoordt een vraag">
             </div>
         </div>
     </section>
@@ -276,11 +309,33 @@
                     <li>Nieuwe medewerker? Het handboek staat klaar. Geen schaduwen, geen uitleggen.</li>
                 </ol>
             </div>
-            <div class="makkelijk-quote fade-up" style="transition-delay: 0.15s">
-                <blockquote>"Ik was het beu om voortdurend nieuwe mensen te moeten opleiden. Met Rumo kost dat een namiddag in plaats van een week."</blockquote>
-                <cite>Hotel Chamade, Westende</cite>
+            <div class="makkelijk-video fade-up" style="transition-delay: 0.15s">
+                <video autoplay loop muted playsinline>
+                    <source src="img/automatisering.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- REPLACE BLOCK -->
+<section class="replace-block">
+    <div class="section-inner fade-up">
+        <span class="section-label">E&eacute;n systeem, niet zes</span>
+        <h2 class="section-title">Wat vervang je met Rumo?</h2>
+        <div class="replace-inner">
+            <div class="replace-stack">
+                <div class="replace-pill">PMS</div>
+                <div class="replace-pill">Channel manager</div>
+                <div class="replace-pill">Booking engine</div>
+                <div class="replace-pill">Facturatietool</div>
+                <div class="replace-pill">Handboek</div>
+                <div class="replace-pill">Personeelsplanning</div>
+            </div>
+            <div class="replace-arrow">&rarr;</div>
+            <div class="replace-pill-rumo">Rumo</div>
+        </div>
+        <p class="replace-caption">De meeste hotels betalen voor 4 tot 6 losse tools. Rumo doet het in &eacute;&eacute;n.</p>
     </div>
 </section>
 
@@ -324,6 +379,24 @@
     </div>
 </section>
 
+<!-- TRUST BLOCK -->
+<div class="trust-block">
+    <div class="trust-block-inner">
+        <div class="trust-item fade-up">
+            <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+            <p>Peppol e-facturatie &mdash; standaard.</p>
+        </div>
+        <div class="trust-item fade-up" style="transition-delay:0.1s">
+            <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <p>Belgisch product. Belgische support.</p>
+        </div>
+        <div class="trust-item fade-up" style="transition-delay:0.2s">
+            <div class="trust-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <p>GDPR-conform, EU-hosting.</p>
+        </div>
+    </div>
+</div>
+
 <!-- INTERMEZZO -->
 <section class="intermezzo">
     <div class="fade-up">
@@ -349,12 +422,48 @@
     </div>
 </section>
 
+<!-- MINI FAQ -->
+<section class="mini-faq">
+    <div class="section-inner fade-up">
+        <span class="section-label">Vraag of twijfel?</span>
+        <h2 class="section-title">De zes vragen die iedereen stelt.</h2>
+        <div class="mini-faq-list">
+            <details>
+                <summary>Kan ik mijn Booking.com-reservaties migreren?</summary>
+                <p>Ja. We importeren je bestaande reservaties zodat je meteen verder kan. Inclusief gastgegevens en betaalstatus.</p>
+            </details>
+            <details>
+                <summary>Werkt Rumo op mobiel en tablet?</summary>
+                <p>Volledig. Rumo is een webapp die overal draait — laptop, tablet, telefoon. Geen app nodig.</p>
+            </details>
+            <details>
+                <summary>Hoe lang duurt de implementatie?</summary>
+                <p>De meeste hotels zijn binnen een week live. Kleine hotels vaak dezelfde dag nog.</p>
+            </details>
+            <details>
+                <summary>Wat als ik nog in een contract zit bij mijn huidige PMS?</summary>
+                <p>Geen probleem. We plannen de overstap op jouw tempo. Veel hotels starten al met testen terwijl het oude contract uitloopt.</p>
+            </details>
+            <details>
+                <summary>Zit Peppol erin?</summary>
+                <p>Ja. Peppol e-facturatie zit standaard in Rumo. UBL 2.1, automatisch verstuurd via het Peppol-netwerk.</p>
+            </details>
+            <details>
+                <summary>Kan ik maandelijks opzeggen?</summary>
+                <p>Altijd. Geen jaarcontract, geen opzegvergoeding. Je betaalt per maand en stopt wanneer je wil.</p>
+            </details>
+        </div>
+        <a href="faq.html" class="mini-faq-link">Alle veelgestelde vragen &rarr;</a>
+    </div>
+</section>
+
 <!-- FINAL CTA -->
 <section class="final-cta" id="demo">
     <div class="fade-up">
         <h2 class="section-title">Klaar om het zelf te zien?</h2>
         <p class="section-subtitle">Geen creditcard nodig. Geen verplichtingen. Gewoon 14 dagen spelen met een demo vol nepreservaties. En dan beslis je zelf.</p>
         <a href="#" class="btn-primary">Probeer 14 dagen gratis</a>
+        <p class="risk-reversal">Geen credit card &bull; Maandelijks opzegbaar &bull; Gratis datamigratie uit je huidige systeem</p>
     </div>
 </section>
 
@@ -453,6 +562,29 @@
     window.addEventListener('scroll', () => {
         nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
     });
+
+    /* ─── HERO SHOWCASE TABS ─── */
+    (function() {
+        const tabs = document.querySelectorAll('.hero-tab');
+        const screen = document.querySelector('.hero-showcase-screen');
+        if (!tabs.length || !screen) return;
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                screen.querySelectorAll('video, img').forEach(el => {
+                    el.classList.remove('active');
+                    if (el.tagName === 'VIDEO') el.pause();
+                });
+                tab.classList.add('active');
+                const target = document.getElementById(tab.dataset.target);
+                if (target) {
+                    target.classList.add('active');
+                    if (target.tagName === 'VIDEO') target.play();
+                }
+            });
+        });
+    })();
 
     /* ─── RUDY CHAT WIDGET ─── */
     (function() {

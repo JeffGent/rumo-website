@@ -337,12 +337,11 @@
 <div class="logo-row">
     <div class="logo-row-label">Fonctionne avec ce que tu utilises d&eacute;j&agrave;</div>
     <div class="logo-row-logos">
-        <svg viewBox="0 0 130 22" fill="var(--warm)" role="img" aria-label="Booking.com"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Booking.com</text></svg>
-        <svg viewBox="0 0 68 22" fill="var(--warm)" role="img" aria-label="Airbnb"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Airbnb</text></svg>
-        <svg viewBox="0 0 62 22" fill="var(--warm)" role="img" aria-label="Stripe"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Stripe</text></svg>
-        <svg viewBox="0 0 120 22" fill="var(--warm)" role="img" aria-label="Exact Online"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Exact Online</text></svg>
-        <svg viewBox="0 0 68 22" fill="var(--warm)" role="img" aria-label="Peppol"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Peppol</text></svg>
-        <svg viewBox="0 0 85 22" fill="var(--warm)" role="img" aria-label="Channex"><text x="0" y="17" font-family="'DM Sans',sans-serif" font-size="17" font-weight="700">Channex</text></svg>
+        <div class="logo-item"><img src="../img/logos/booking.svg" alt="Booking.com logo"><span>Booking.com</span></div>
+        <div class="logo-item"><img src="../img/logos/airbnb.svg" alt="Airbnb logo"><span>Airbnb</span></div>
+        <div class="logo-item"><img src="../img/logos/stripe.svg" alt="Stripe logo"><span>Stripe</span></div>
+        <div class="logo-item"><span>Exact Online</span></div>
+        <div class="logo-item"><span>Peppol</span></div>
     </div>
 </div>
 
@@ -432,7 +431,7 @@
         <div class="rudy-section-text fade-up">
             <span class="section-label">Assistant IA intégré</span>
             <h2 class="section-title">Voici Rudy.<br>Il connaît Rumo et ton hôtel.</h2>
-            <p class="section-subtitle">Pas un chatbot générique. Rudy sait comment tout fonctionne dans Rumo. Et dès qu'il connaît ton hôtel, il connaît aussi tes chambres, tes tarifs et tes procédures. Pose une question, obtiens une réponse concrète.</p>
+            <p class="section-subtitle">Pas un chatbot générique. Rudy connaît le manuel, mais aussi le PMS lui-même. Il aide tes réceptionnistes à utiliser Rumo, ou fait simplement le travail à leur place. Chercher une réservation, attribuer une chambre, répondre à une question — sans que tu aies à intervenir.</p>
             <button class="rudy-section-cta" onclick="document.querySelector('.rudy-trigger').click()">Pose une question à Rudy &rarr;</button>
         </div>
         <div class="rudy-demo-chat fade-up" style="transition-delay:0.15s">
@@ -531,7 +530,7 @@
         <div class="mini-faq-list">
             <details>
                 <summary>Puis-je migrer mes r&eacute;servations Booking.com ?</summary>
-                <p>Oui. On importe tes r&eacute;servations existantes pour que tu puisses continuer imm&eacute;diatement. Y compris les donn&eacute;es clients et le statut de paiement.</p>
+                <p>Oui. Booking.com, Airbnb, Expedia et la plupart des autres OTA peuvent &ecirc;tre import&eacute;s directement. Y compris les donn&eacute;es clients et le statut de paiement.</p>
             </details>
             <details>
                 <summary>Rumo fonctionne-t-il sur mobile et tablette ?</summary>
@@ -547,11 +546,11 @@
             </details>
             <details>
                 <summary>Peppol est-il inclus ?</summary>
-                <p>Oui. L'e-facturation Peppol est incluse en standard. UBL 2.1, envoy&eacute; automatiquement via le r&eacute;seau Peppol.</p>
+                <p>Peppol est disponible dans Rumo en tant qu'upgrade. Avec l'upgrade, tes factures sont envoy&eacute;es automatiquement via le r&eacute;seau Peppol (UBL 2.1). Sans upgrade, tu cr&eacute;es tes factures dans Rumo et tu les t&eacute;l&eacute;charges en PDF ou fichier UBL pour les envoyer toi-m&ecirc;me.</p>
             </details>
             <details>
                 <summary>Puis-je r&eacute;silier chaque mois ?</summary>
-                <p>Toujours. Pas de contrat annuel, pas de frais de r&eacute;siliation. Tu paies au mois et tu arr&ecirc;tes quand tu veux.</p>
+                <p>Tu commences par une premi&egrave;re p&eacute;riode de 6 mois. Ensuite, c'est au mois, r&eacute;siliable quand tu veux. Pas de petits caract&egrave;res, pas de pr&eacute;avis.</p>
             </details>
         </div>
         <a href="faq.html" class="mini-faq-link">Toutes les questions fr&eacute;quentes &rarr;</a>
@@ -564,7 +563,7 @@
         <h2 class="section-title">Prêt à essayer Rumo ?</h2>
         <p class="section-subtitle">Pas besoin de carte de crédit. Aucune obligation. Juste 14 jours pour jouer avec une démo pleine de fausses réservations. Et après, c'est toi qui décides.</p>
         <a href="#" class="btn-primary">Essai gratuit de 14 jours &rarr;</a>
-        <p class="risk-reversal">Pas de carte de cr&eacute;dit &bull; R&eacute;siliation mensuelle &bull; Migration gratuite depuis ton syst&egrave;me actuel</p>
+        <p class="risk-reversal">Pas de carte de cr&eacute;dit &bull; Mensuel apr&egrave;s 6 mois &bull; Migration gratuite depuis ton syst&egrave;me actuel</p>
     </div>
 </section>
 

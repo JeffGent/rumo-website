@@ -61,6 +61,7 @@ section { padding: 6rem 3rem; }
 .final-cta .section-title { color: var(--cream); font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.2; margin-bottom: 1rem; }
 .final-cta .section-subtitle { color: var(--cream); opacity: 0.5; margin: 0 auto 2rem; max-width: 500px; font-size: 1.05rem; line-height: 1.7; }
 .final-cta .btn-primary { font-size: 1.1rem; padding: 1rem 2.5rem; }
+.final-cta .risk-reversal { margin-top: 1.2rem; font-size: 0.85rem; color: var(--cream); opacity: 0.4; }
 
 /* FOOTER */
 footer { background: var(--ink); color: var(--cream); padding: 3rem; }

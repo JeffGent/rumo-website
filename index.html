@@ -59,14 +59,14 @@
         .btn-secondary:hover { opacity: 1; }
 
         /* HERO */
-        .hero { min-height: auto; display: flex; align-items: center; padding: 11rem 2rem 5rem; position: relative; overflow: hidden; }
-        .hero-content { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: stretch; min-height: auto; }
-        .hero-text-wrap { background: var(--warm); border-radius: 20px; padding: 3rem; display: flex; align-items: center; }
+        .hero { min-height: auto; display: flex; align-items: center; padding: 11rem 2rem 5rem; position: relative; overflow: hidden; background: var(--cream); }
+        .hero-content { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; min-height: auto; }
+        .hero-text-wrap { display: flex; align-items: center; }
         .hero-text { text-align: left; }
-        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.15; color: var(--cream); margin-bottom: 1.5rem; letter-spacing: -1px; }
-        .hero-text h1 em { color: var(--terracotta-light); font-style: italic; }
-        .hero-subline { font-size: clamp(1.05rem, 2vw, 1.25rem); font-weight: 600; color: var(--cream); opacity: 0.75; margin-bottom: 1rem; }
-        .hero-subtitle { font-size: 1.05rem; line-height: 1.8; color: var(--cream); opacity: 0.55; margin-bottom: 2rem; }
+        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.15; color: var(--warm); margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .hero-text h1 em { color: var(--terracotta); font-style: italic; }
+        .hero-subline { font-size: clamp(1.05rem, 2vw, 1.25rem); font-weight: 600; color: var(--warm); opacity: 0.55; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.05rem; line-height: 1.8; color: var(--warm); opacity: 0.55; margin-bottom: 2rem; }
         .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 
         /* HERO SHOWCASE */
@@ -186,7 +186,7 @@
         @media (max-width: 900px) {
             .hero { padding: 7rem 1.5rem 3rem; }
             .hero-content { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-text-wrap { padding: 2rem; border-radius: 16px; }
+            .hero-text-wrap { }
             .hero-text { text-align: center; }
             .hero-text h1 { font-size: clamp(2rem, 7vw, 2.8rem); }
             .hero-showcase-screen { aspect-ratio: 3/4; max-width: 400px; margin: 0 auto; }
@@ -256,7 +256,7 @@
                 </p>
                 <div class="hero-actions">
                     <a href="#demo" class="btn-primary">Probeer 14 dagen gratis</a>
-                    <a href="#de-drie" class="btn-secondary" style="color: var(--cream); opacity: 0.6;">Hoe werkt dat?</a>
+                    <a href="#de-drie" class="btn-secondary">Hoe werkt dat?</a>
                 </div>
             </div>
         </div>

@@ -1,124 +1,99 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 480" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" fill="none">
   <defs>
     <style>
-      .heading { font-family: Georgia, 'Times New Roman', serif; }
-      .ui { font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+      .u { font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+      .h { font-family: Georgia, 'Times New Roman', serif; }
     </style>
-    <clipPath id="round"><rect width="680" height="480" rx="16"/></clipPath>
+    <clipPath id="r"><rect width="640" height="440" rx="16"/></clipPath>
   </defs>
-  <g clip-path="url(#round)">
-    <rect width="680" height="480" fill="#faf7f2"/>
+  <g clip-path="url(#r)">
+    <rect width="640" height="440" fill="#faf7f2"/>
 
     <!-- Top bar -->
-    <rect width="680" height="56" fill="#fff"/>
-    <line x1="0" y1="56" x2="680" y2="56" stroke="#e8e4df"/>
-    <text x="30" y="35" class="heading" fill="#2c2418" font-size="18" font-weight="700" font-style="italic">Handbook</text>
-    <text x="150" y="35" class="ui" fill="#2c2418" font-size="12" opacity="0.35">Knowledge base for the team</text>
+    <rect width="640" height="48" fill="#fff"/>
+    <line x1="0" y1="48" x2="640" y2="48" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="28" y="17" width="64" height="12" rx="3" fill="#2c2418" opacity="0.5"/>
+    <rect x="108" y="19" width="100" height="8" rx="3" fill="#2c2418" opacity="0.1"/>
 
     <!-- Search bar -->
-    <rect x="30" y="76" width="400" height="40" rx="10" fill="#fff" stroke="#e8e4df"/>
-    <circle cx="52" cy="96" r="8" fill="none" stroke="#2c2418" stroke-width="1.5" opacity="0.3"/>
-    <line x1="57" y1="101" x2="62" y2="106" stroke="#2c2418" stroke-width="1.5" opacity="0.3"/>
-    <text x="70" y="100" class="ui" fill="#2c2418" font-size="12" opacity="0.3">Search articles...</text>
+    <rect x="28" y="66" width="360" height="36" rx="9" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <circle cx="48" cy="84" r="7" fill="none" stroke="#2c2418" stroke-width="1.2" opacity="0.2"/>
+    <line x1="53" y1="89" x2="57" y2="93" stroke="#2c2418" stroke-width="1.2" opacity="0.2"/>
+    <rect x="66" y="81" width="80" height="6" rx="2" fill="#2c2418" opacity="0.1"/>
 
-    <!-- Action buttons -->
-    <rect x="446" y="76" width="130" height="40" rx="10" fill="#fff" stroke="#e8e4df"/>
-    <text x="466" y="100" class="ui" fill="#2c2418" font-size="12" opacity="0.5">Read confirmations</text>
+    <!-- Action button -->
+    <rect x="404" y="66" width="120" height="36" rx="9" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="424" y="81" width="80" height="6" rx="2" fill="#2c2418" opacity="0.12"/>
 
-    <!-- Category grid -->
+    <!-- Category cards - 4 columns, 3 rows -->
     <!-- Row 1 -->
-    <!-- Announcements -->
-    <rect x="30" y="140" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="48" y="158" width="34" height="34" rx="8" fill="#c4653a" opacity="0.1"/>
-    <text x="58" y="180" class="ui" fill="#c4653a" font-size="16">&#x1F514;</text>
-    <circle cx="83" cy="155" r="9" fill="#c4653a"/>
-    <text x="83" y="159" class="ui" fill="#fff" font-size="9" font-weight="700" text-anchor="middle">3</text>
-    <text x="48" y="216" class="ui" fill="#2c2418" font-size="13" font-weight="600">Announcements</text>
+    <rect x="28" y="122" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="44" y="138" width="30" height="30" rx="7" fill="#d4a574" opacity="0.1"/>
+    <rect x="52" y="148" width="14" height="10" rx="2" fill="#d4a574" opacity="0.25"/>
+    <circle cx="76" cy="135" r="8" fill="#d4a574" opacity="0.4"/>
+    <text x="76" y="139" class="u" fill="#fff" font-size="8" font-weight="700" text-anchor="middle">3</text>
+    <rect x="44" y="186" width="60" height="8" rx="3" fill="#2c2418" opacity="0.25"/>
 
-    <!-- Receptie -->
-    <rect x="192" y="140" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="210" y="158" width="34" height="34" rx="8" fill="#6b8f71" opacity="0.12"/>
-    <svg x="216" y="164" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b8f71" stroke-width="1.8">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-      <circle cx="9" cy="7" r="4"/>
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-    </svg>
-    <circle cx="335" cy="148" r="5" fill="#c4653a"/>
-    <text x="210" y="216" class="ui" fill="#2c2418" font-size="13" font-weight="600">Receptie</text>
+    <rect x="180" y="122" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="196" y="138" width="30" height="30" rx="7" fill="#6b8f71" opacity="0.08"/>
+    <rect x="204" y="148" width="14" height="10" rx="2" fill="#6b8f71" opacity="0.2"/>
+    <circle cx="320" cy="130" r="4" fill="#d4a574" opacity="0.35"/>
+    <rect x="196" y="186" width="48" height="8" rx="3" fill="#2c2418" opacity="0.25"/>
 
-    <!-- Housekeeping -->
-    <rect x="354" y="140" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="372" y="158" width="34" height="34" rx="8" fill="#6b8f71" opacity="0.12"/>
-    <svg x="378" y="164" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b8f71" stroke-width="1.8">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-      <polyline points="9 22 9 12 15 12 15 22"/>
-    </svg>
-    <circle cx="497" cy="148" r="5" fill="#c4653a"/>
-    <text x="372" y="216" class="ui" fill="#2c2418" font-size="13" font-weight="600">Housekeeping</text>
+    <rect x="332" y="122" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="348" y="138" width="30" height="30" rx="7" fill="#6b8f71" opacity="0.08"/>
+    <rect x="356" y="148" width="14" height="10" rx="2" fill="#6b8f71" opacity="0.2"/>
+    <circle cx="472" cy="130" r="4" fill="#d4a574" opacity="0.35"/>
+    <rect x="348" y="186" width="66" height="8" rx="3" fill="#2c2418" opacity="0.25"/>
 
-    <!-- F&B -->
-    <rect x="516" y="140" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="534" y="158" width="34" height="34" rx="8" fill="#d4a574" opacity="0.2"/>
-    <text x="542" y="181" class="ui" fill="#d4a574" font-size="18">&#x1F374;</text>
-    <circle cx="659" cy="148" r="5" fill="#c4653a"/>
-    <text x="534" y="216" class="ui" fill="#2c2418" font-size="13" font-weight="600">F&amp;B</text>
+    <rect x="484" y="122" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="500" y="138" width="30" height="30" rx="7" fill="#d4a574" opacity="0.1"/>
+    <rect x="508" y="148" width="14" height="10" rx="2" fill="#d4a574" opacity="0.25"/>
+    <circle cx="624" cy="130" r="4" fill="#d4a574" opacity="0.35"/>
+    <rect x="500" y="186" width="32" height="8" rx="3" fill="#2c2418" opacity="0.25"/>
 
     <!-- Row 2 -->
-    <!-- Noodprocedures -->
-    <rect x="30" y="256" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="48" y="274" width="34" height="34" rx="8" fill="#c4653a" opacity="0.1"/>
-    <text x="56" y="296" class="ui" fill="#c4653a" font-size="16">&#x26A0;</text>
-    <circle cx="173" cy="264" r="5" fill="#c4653a"/>
-    <text x="48" y="332" class="ui" fill="#2c2418" font-size="13" font-weight="600">Noodprocedures</text>
+    <rect x="28" y="226" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="44" y="242" width="30" height="30" rx="7" fill="#d4a574" opacity="0.1"/>
+    <rect x="52" y="252" width="14" height="10" rx="2" fill="#d4a574" opacity="0.25"/>
+    <circle cx="168" cy="234" r="4" fill="#d4a574" opacity="0.35"/>
+    <rect x="44" y="290" width="72" height="8" rx="3" fill="#2c2418" opacity="0.25"/>
 
-    <!-- Technisch -->
-    <rect x="192" y="256" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="210" y="274" width="34" height="34" rx="8" fill="#6b8f71" opacity="0.12"/>
-    <text x="218" y="296" class="ui" fill="#6b8f71" font-size="16">&#x2699;</text>
-    <text x="210" y="332" class="ui" fill="#2c2418" font-size="13" font-weight="600">Technisch</text>
+    <rect x="180" y="226" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="196" y="242" width="30" height="30" rx="7" fill="#6b8f71" opacity="0.08"/>
+    <rect x="204" y="252" width="14" height="10" rx="2" fill="#6b8f71" opacity="0.2"/>
+    <rect x="196" y="290" width="52" height="8" rx="3" fill="#2c2418" opacity="0.25"/>
 
-    <!-- Gastvrijheid -->
-    <rect x="354" y="256" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="372" y="274" width="34" height="34" rx="8" fill="#d4a574" opacity="0.2"/>
-    <text x="380" y="296" class="ui" fill="#d4a574" font-size="16">&#x2665;</text>
-    <circle cx="497" cy="264" r="5" fill="#c4653a"/>
-    <text x="372" y="332" class="ui" fill="#2c2418" font-size="13" font-weight="600">Gastvrijheid</text>
+    <rect x="332" y="226" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="348" y="242" width="30" height="30" rx="7" fill="#d4a574" opacity="0.08"/>
+    <rect x="356" y="252" width="14" height="10" rx="2" fill="#d4a574" opacity="0.2"/>
+    <circle cx="472" cy="234" r="4" fill="#d4a574" opacity="0.35"/>
+    <rect x="348" y="290" width="58" height="8" rx="3" fill="#2c2418" opacity="0.25"/>
 
-    <!-- Onboarding -->
-    <rect x="516" y="256" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="534" y="274" width="34" height="34" rx="8" fill="#6b8f71" opacity="0.12"/>
-    <text x="542" y="296" class="ui" fill="#6b8f71" font-size="16">&#x1F393;</text>
-    <text x="534" y="332" class="ui" fill="#2c2418" font-size="13" font-weight="600">Onboarding</text>
+    <rect x="484" y="226" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="500" y="242" width="30" height="30" rx="7" fill="#6b8f71" opacity="0.08"/>
+    <rect x="508" y="252" width="14" height="10" rx="2" fill="#6b8f71" opacity="0.2"/>
+    <rect x="500" y="290" width="56" height="8" rx="3" fill="#2c2418" opacity="0.25"/>
 
     <!-- Row 3 -->
-    <!-- Preventie & Welzijn -->
-    <rect x="30" y="372" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="48" y="390" width="34" height="34" rx="8" fill="#c4653a" opacity="0.1"/>
-    <text x="56" y="412" class="ui" fill="#c4653a" font-size="16">&#x2764;</text>
-    <text x="48" y="448" class="ui" fill="#2c2418" font-size="12" font-weight="600">Preventie &amp; Welzijn</text>
+    <rect x="28" y="330" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="44" y="346" width="30" height="30" rx="7" fill="#d4a574" opacity="0.1"/>
+    <rect x="52" y="356" width="14" height="10" rx="2" fill="#d4a574" opacity="0.25"/>
+    <rect x="44" y="394" width="80" height="7" rx="3" fill="#2c2418" opacity="0.2"/>
 
-    <!-- Gebouwenbeheer -->
-    <rect x="192" y="372" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="210" y="390" width="34" height="34" rx="8" fill="#d4a574" opacity="0.2"/>
-    <text x="218" y="412" class="ui" fill="#d4a574" font-size="16">&#x1F3E2;</text>
-    <text x="210" y="448" class="ui" fill="#2c2418" font-size="12" font-weight="600">Gebouwenbeheer</text>
+    <rect x="180" y="330" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="196" y="346" width="30" height="30" rx="7" fill="#d4a574" opacity="0.08"/>
+    <rect x="204" y="356" width="14" height="10" rx="2" fill="#d4a574" opacity="0.2"/>
+    <rect x="196" y="394" width="72" height="7" rx="3" fill="#2c2418" opacity="0.2"/>
 
-    <!-- Duurzaamheid -->
-    <rect x="354" y="372" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="372" y="390" width="34" height="34" rx="8" fill="#6b8f71" opacity="0.12"/>
-    <text x="380" y="412" class="ui" fill="#6b8f71" font-size="16">&#x1F33F;</text>
-    <text x="372" y="448" class="ui" fill="#2c2418" font-size="12" font-weight="600">Duurzaamheid</text>
+    <rect x="332" y="330" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="348" y="346" width="30" height="30" rx="7" fill="#6b8f71" opacity="0.08"/>
+    <rect x="356" y="356" width="14" height="10" rx="2" fill="#6b8f71" opacity="0.2"/>
+    <rect x="348" y="394" width="60" height="7" rx="3" fill="#2c2418" opacity="0.2"/>
 
-    <!-- Huisregels -->
-    <rect x="516" y="372" width="148" height="100" rx="12" fill="#fff" stroke="#e8e4df"/>
-    <rect x="534" y="390" width="34" height="34" rx="8" fill="#c4653a" opacity="0.1"/>
-    <text x="542" y="412" class="ui" fill="#c4653a" font-size="16">&#x1F4CB;</text>
-    <text x="534" y="448" class="ui" fill="#2c2418" font-size="12" font-weight="600">Huisregels</text>
-
-    <!-- Bottom bar -->
-    <rect x="0" y="452" width="680" height="28" fill="#faf7f2"/>
-    <text x="30" y="468" class="ui" fill="#2c2418" font-size="10" opacity="0.25">Report incident</text>
-    <text x="150" y="468" class="ui" fill="#2c2418" font-size="10" opacity="0.25">Inbox</text>
+    <rect x="484" y="330" width="138" height="88" rx="12" fill="#fff" stroke="#e8e4df" stroke-width="0.5"/>
+    <rect x="500" y="346" width="30" height="30" rx="7" fill="#d4a574" opacity="0.1"/>
+    <rect x="508" y="356" width="14" height="10" rx="2" fill="#d4a574" opacity="0.25"/>
+    <rect x="500" y="394" width="50" height="7" rx="3" fill="#2c2418" opacity="0.2"/>
   </g>
 </svg>

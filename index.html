@@ -1156,7 +1156,7 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 .final p { color:rgba(245,238,226,0.82); font-size:1.15rem; max-width:540px; margin:0 auto 2.5rem; line-height:1.55; }
 .final .btn-paper { padding:1rem 2rem; font-size:1rem; }
 .final-fine {
-  margin-top:1.5rem;
+  margin-top:2.5rem;
   font-family:'JetBrains Mono', monospace;
   font-size:0.72rem;
   letter-spacing:0.1em;
@@ -1481,7 +1481,7 @@ footer {
       </p>
       <div class="hero-ctas">
         <a href="#demo" class="btn-ink">Probeer 14 dagen gratis <span>→</span></a>
-        <a href="#pijlers" class="btn-ghost-white btn-ghost">Hoe het werkt <span class="arr">→</span></a>
+
       </div>
     </div>
   </div>
@@ -1494,7 +1494,7 @@ footer {
     <div class="intro-grid fade-up">
       <div class="intro-label">00 / Intro</div>
       <div class="intro-text">
-        <h2>Goh, en wat is <em>rumo</em> nu juist?</h2>
+        <h2>En wat is <em>rumo</em> nu juist?</h2>
         <p>Awel, we zijn hotelsoftware. Maar niet zoals je denkt. Geen enterprise platform van tweeduizend euro per maand waar je dan nog eens drie weken opleiding voor nodig hebt. Gewoon <em>één</em> systeem dat doet wat het moet doen. Je opent het 's morgens en je weet wat er vandaag moet gebeuren. Dat was eigenlijk het hele idee.</p>
       </div>
     </div>
@@ -1508,7 +1508,7 @@ footer {
     <div class="logos-list">
       <span>Booking.com</span>
       <span>Airbnb</span>
-      <span>Stripe</span>
+
       <span>Exact Online</span>
       <span>Peppol</span>
     </div>
@@ -1530,7 +1530,7 @@ footer {
         <div class="pijler-num">01 · De PMS</div>
         <h3>Alles in <em>één</em> scherm. Zonder cursus.</h3>
         <p>Reservaties, check-in, check-out, channel manager, booking engine, Peppol-facturatie, rapporten, guest portal. Je opent rumo 's ochtends en je weet meteen wat er vandaag moet gebeuren.</p>
-        <p>Geen drie tabbladen open. Geen half-werkende plug-ins. Alles op z'n plek, alles leesbaar op de eerste dag. (Jup, de eerste dag.)</p>
+        <p>Geen drie tabbladen open. Geen half-werkende plug-ins. Alles op z'n plek, alles leesbaar zonder opleiding.</p>
       </div>
       <div class="pijler-visual">
         <svg class="illus" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1633,9 +1633,9 @@ footer {
       <div class="pijler-copy">
         <div class="pijler-num">03 · Rudy</div>
         <h3>Je slimste medewerker. <em>Altijd</em> beschikbaar.</h3>
-        <p>Rudy kent het handboek, maar ook de PMS zelf. Hij helpt je receptionisten bij het uitleggen van rumo, of doet het werk gewoon zelf. Reservatie opzoeken, kamer toewijzen, vraag beantwoorden — zonder dat jij ertussen hoeft te komen.</p>
+        <p>Rudy kent het handboek, maar ook de PMS zelf. Hij helpt je receptionisten bij het uitleggen van rumo, of doet het werk gewoon zelf. Reservatie opzoeken, kamer toewijzen, vraag beantwoorden. Zonder dat jij ertussen hoeft te komen.</p>
         <p>Geen chatbot-scripts die halverwege vastlopen. Een assistent die doorziet wat je bedoelt, ook om elf uur 's avonds.</p>
-        <div class="pijler-quote">"Welke kamers zijn morgen vrij?" — Rudy weet het. Meteen.</div>
+        <div class="pijler-quote">"Er belt iemand voor een groepsreservatie van 8 kamers in juli. Kan dat?" — Rudy checkt het, rekent het uit, en maakt de reservatie aan.</div>
       </div>
       <div class="pijler-visual">
         <svg class="illus" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1674,9 +1674,9 @@ footer {
       <div class="fade-up">
         <span class="kicker">Wie zijn we</span>
         <h2>Hmm oké, maar wie zijn die van <em>rumo</em> nu?</h2>
-        <p>We zijn zelf hoteliers. We runnen zelf hotels in België. We weten hoe het voelt als je systeem je dag moeilijker maakt in plaats van makkelijker. Een kassablok die crashed om 22u, een channel manager die boekingen dubbel laat binnenkomen, een handleiding die niemand leest.</p>
+        <p>We zijn zelf hoteliers. We runnen zelf hotels in België. We weten hoe het voelt als je systeem je dag moeilijker maakt in plaats van makkelijker. Een PMS die vastloopt tijdens check-out, een channel manager die boekingen dubbel laat binnenkomen, een handleiding die niemand leest.</p>
         <p>Uiteindelijk draait het om <strong>gasten</strong>, niet om schermen. Dus bouwden we wat we zelf al jaren zochten.</p>
-        <p class="wie-quote">"We hebben geen software gekocht. We hebben eindelijk iemand gevonden die hetzelfde werk doet als wij."</p>
+
       </div>
       <div class="wie-illus fade-up" style="transition-delay:0.1s">
         <span class="wie-illus-tag">lijn-illustratie · hotel</span>
@@ -2028,7 +2028,7 @@ footer {
   </div>
   <div class="footer-bottom">
     <span>© 2026 Rumo · Gent, BE</span>
-    <span>Direction · Sfeer</span>
+    <span></span>
   </div>
 </footer>
 
@@ -2086,7 +2086,8 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   })
   .then(r => r.json())
   .then(data => {
-    form.innerHTML = '<div class="form-sent"><h3>Got it.</h3><p>We lezen het en antwoorden snel. Meestal sneller dan je verwacht.</p></div>';
+    var wrapper = form.closest('.contact-form');
+    wrapper.innerHTML = '<div class="form-sent"><h3>Got it.</h3><p>We lezen het en antwoorden snel. Meestal sneller dan je verwacht.</p></div>';
   })
   .catch(() => {
     btn.innerHTML = originalText;

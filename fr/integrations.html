@@ -1,521 +1,449 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intégrations | Rumo Logiciel Hôtelier</title>
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Rumo s'intègre avec Booking.com, Expedia, Airbnb, Google Hotel Ads, Exact Online, Peppol et bien plus. Tout synchronisé, sans effort supplémentaire.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../shared.css">
-    <style>
-        /* HOW IT WORKS */
-        .how-it-works { background: var(--white); }
-        .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2.5rem; }
-        .how-card { padding: 1.5rem; }
-        .how-number { width: 36px; height: 36px; border-radius: 50%; background: var(--sand); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--terracotta); margin-bottom: 1rem; }
-        .how-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; }
-        .how-card p { font-size: 0.92rem; opacity: 0.6; line-height: 1.7; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intégrations · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="rumo s'intègre avec Booking.com, Expedia, Airbnb, Google Hotel Ads, Exact Online, Peppol et plus encore. Tout synchronisé, sans effort supplémentaire.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-sfeer.css">
+<style>
+  /* ─── HOW IT WORKS ─── */
+  .how {
+    background:var(--paper);
+    padding:6rem 0;
+  }
+  .how-head { max-width:640px; margin-bottom:3.5rem; }
+  .how-head h2 em { color:var(--terra-dark); }
+  .how-grid {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.5rem;
+  }
+  .how-step {
+    background:var(--paper-panel);
+    border-radius:16px;
+    border:1px solid var(--line);
+    padding:1.75rem;
+  }
+  .how-num {
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-style:italic;
+    font-size:2.5rem;
+    line-height:1;
+    color:var(--terra-dark);
+    margin-bottom:1rem;
+  }
+  .how-step h4 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.2rem;
+    letter-spacing:-0.02em;
+    margin-bottom:0.5rem;
+  }
+  .how-step p {
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
 
-        /* INTEGRATION GROUPS */
-        .integration-group { padding: 5rem 3rem; }
-        .integration-group:nth-child(even) { background: var(--white); }
-        .integration-group-inner { max-width: 1100px; margin: 0 auto; }
-        .integration-group-header { margin-bottom: 2rem; }
-        .integration-group-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.4rem; }
-        .integration-group-desc { font-size: 0.95rem; opacity: 0.55; max-width: 600px; }
+  /* ─── INTEGRATION GROUPS ─── */
+  .group {
+    padding:5rem 0 4rem;
+  }
+  .group:nth-of-type(even) {
+    background:var(--paper-deep);
+  }
+  .group-head {
+    max-width:680px;
+    margin-bottom:2.5rem;
+  }
+  .group-head h2 {
+    font-size:clamp(1.8rem, 3.2vw, 2.4rem);
+    letter-spacing:-0.025em;
+    margin-bottom:0.6rem;
+  }
+  .group-head h2 em { color:var(--terra-dark); }
+  .group-head p {
+    font-size:1rem;
+    color:var(--ink-soft);
+    line-height:1.55;
+    max-width:58ch;
+  }
+  .int-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+    gap:1rem;
+  }
+  .int-card {
+    background:var(--paper-panel);
+    border-radius:12px;
+    border:1px solid var(--line);
+    padding:1.25rem 1.4rem;
+    display:flex;
+    gap:1rem;
+    align-items:flex-start;
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .group:nth-of-type(even) .int-card { background:var(--paper-panel); }
+  .int-card:hover {
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(27,25,23,0.08);
+  }
+  .int-logo {
+    width:44px; height:44px;
+    border-radius:10px;
+    background:var(--sand);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:500;
+    font-size:0.68rem;
+    color:var(--ink);
+    text-align:center;
+    line-height:1.1;
+    letter-spacing:0.02em;
+  }
+  .int-info h3 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.08rem;
+    letter-spacing:-0.015em;
+    margin-bottom:0.2rem;
+    line-height:1.2;
+  }
+  .int-info p {
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin-bottom:0.5rem;
+  }
+  .int-badge {
+    display:inline-flex;
+    align-items:center;
+    gap:0.35em;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem;
+    font-weight:500;
+    padding:0.2rem 0.55rem;
+    border-radius:100px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  .int-badge.live { background:var(--forest-soft); color:var(--forest); }
+  .int-badge.live::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--forest); }
+  .int-badge.soon { background:#FCEDBD; color:#8a6b1a; }
+  .int-badge.soon::before { content:''; width:5px; height:5px; border-radius:50%; background:#d9a53a; }
 
-        .integration-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
-        .integration-card { background: var(--white); border-radius: 12px; padding: 1.5rem; display: flex; align-items: flex-start; gap: 1rem; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .integration-group:nth-child(even) .integration-card { background: var(--cream); }
-        .integration-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
-        .integration-logo { width: 44px; height: 44px; border-radius: 10px; background: var(--sand); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; font-size: 0.65rem; color: var(--warm); opacity: 0.6; text-align: center; line-height: 1.1; }
-        .integration-info h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
-        .integration-info p { font-size: 0.82rem; opacity: 0.55; line-height: 1.5; }
-        .integration-badge { display: inline-block; font-size: 0.65rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 10px; margin-top: 0.3rem; }
-        .badge-live { background: var(--sage-light); color: var(--sage); }
-        .badge-soon { background: #fef3e2; color: #c4883a; }
+  /* ─── MISSING CTA ─── */
+  .missing {
+    background:var(--paper);
+    padding:5rem 0;
+  }
+  .missing-card {
+    max-width:860px;
+    margin:0 auto;
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:2.5rem 3rem;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:2.5rem;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .missing-card::before {
+    content:'';
+    position:absolute;
+    right:-15%; top:-20%;
+    width:45%; height:130%;
+    background:radial-gradient(circle, var(--butter) 0%, transparent 65%);
+    opacity:0.45;
+    filter:blur(12px);
+    pointer-events:none;
+  }
+  .missing-card > * { position:relative; z-index:2; }
+  .missing-card h3 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.7rem;
+    letter-spacing:-0.02em;
+    margin-bottom:0.6rem;
+    line-height:1.1;
+  }
+  .missing-card h3 em { color:var(--terra-dark); }
+  .missing-card p {
+    max-width:44ch;
+    font-size:0.98rem;
+    color:var(--ink-soft);
+  }
 
-        /* MISSING CTA */
-        .missing-section { background: var(--cream); }
-        .missing-card { background: var(--white); border-radius: 16px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
-        .missing-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.4rem; }
-        .missing-card p { font-size: 0.92rem; opacity: 0.6; max-width: 480px; }
-
-        @media (max-width: 900px) {
-            section, .integration-group { padding: 3rem 1.5rem; }
-            .how-grid { grid-template-columns: 1fr; gap: 1rem; }
-            .integration-grid { grid-template-columns: 1fr; }
-            .missing-card { padding: 1.5rem; flex-direction: column; text-align: center; }
-            .missing-card .btn-primary { width: 100%; justify-content: center; }
-        }
-        @media (max-width: 480px) {
-            section, .integration-group { padding: 2.5rem 1rem; }
-        }
-    </style>
-    <link rel="stylesheet" href="../rudy-widget.css">
+  /* Responsive */
+  @media (max-width:900px) {
+    .how-grid { grid-template-columns:1fr; }
+    .int-grid { grid-template-columns:1fr; }
+    .missing-card { grid-template-columns:1fr; padding:2rem; }
+  }
+</style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html" class="nav-logo">rumo<span>.</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
-        <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-        <li><a href="index.html#features-preview">Qu'est-ce qui est inclus ?</a></li>
-        <li><a href="index.html#voor-wie">Pour qui ?</a></li>
-        <li><a href="features.html">Fonctionnalités</a></li>
-        <li><a href="integrations.html" class="active">Intégrations</a></li>
-        <li><a href="tarifs.html">Tarifs</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="a-propos.html">À propos</a></li>
-        <li><a href="index.html#demo" class="nav-cta">Essai gratuit</a></li>
-        <li class="nav-lang"><a href="../integraties.html" onclick="sessionStorage.setItem('rumo-lang-chosen','nl')">NL</a><a href="../en/integrations.html" onclick="sessionStorage.setItem('rumo-lang-chosen','en')">EN</a><a href="integrations.html" class="active" onclick="sessionStorage.setItem('rumo-lang-chosen','fr')">FR</a></li>
-    </ul>
+  <a href="index.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html#piliers">Que fait rumo ?</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="integrations.html" class="active">Intégrations</a></li>
+    <li><a href="tarifs.html">Et euh, ça coûte combien ?</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="a-propos.html">À propos</a></li>
+    <li><a href="index.html#demo" class="nav-cta">Essaie gratuitement →</a></li>
+    <li class="nav-lang">
+      <a href="../integraties.html">NL</a>
+      <a href="../en/integrations.html">EN</a>
+      <a href="integrations.html" class="active">FR</a>
+    </li>
+  </ul>
 </nav>
 
-<!-- PAGE HEADER -->
+<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
 <div class="page-header">
-    <div class="page-header-inner fade-up">
-        <span class="section-label">Intégrations</span>
-        <h1>Connecté aux plateformes<br>que tu <em>utilises déjà.</em></h1>
-        <p>Rumo synchronise les prix, la disponibilité et les réservations avec tous les grands canaux de réservation. Plus des connexions avec ton logiciel comptable et ton prestataire de paiement.</p>
+  <div class="page-header-inner fade-up">
+    <div>
+      <span class="kicker">Intégrations</span>
+      <h1>Connecté aux plateformes<br>que tu <em>utilises déjà.</em></h1>
+      <p class="lead">rumo synchronise les prix, la disponibilité et les réservations avec tous les grands canaux de réservation. Plus des connexions avec ton logiciel comptable et ton prestataire de paiement. Configure une fois, laisse tourner ensuite.</p>
     </div>
+    <div class="page-header-side">
+      60+ connexions<br>
+      <strong>Toujours en temps réel</strong>
+    </div>
+  </div>
+  <div class="page-header-ribbon">
+    <span>OTA's</span>
+    <span>Distribution B2B</span>
+    <span>Comptabilité</span>
+    <span>Paiements</span>
+    <span>Revenue management</span>
+    <span>Gestion des clés</span>
+  </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section class="how-it-works">
-    <div class="section-inner">
-        <span class="section-label fade-up">Comment ça marche</span>
-        <h2 class="section-title fade-up">Configure une fois, synchronisé pour toujours.</h2>
-        <div class="how-grid">
-            <div class="how-card fade-up">
-                <div class="how-number">1</div>
-                <h3>Connecte un canal</h3>
-                <p>Relie ton Booking.com, Airbnb ou un autre canal depuis Rumo. Pas besoin d'un channel manager séparé.</p>
-            </div>
-            <div class="how-card fade-up" style="transition-delay:0.1s">
-                <div class="how-number">2</div>
-                <h3>Prix et disponibilité</h3>
-                <p>Rumo envoie automatiquement tes tarifs et ta disponibilité vers tous les canaux connectés. En temps réel.</p>
-            </div>
-            <div class="how-card fade-up" style="transition-delay:0.2s">
-                <div class="how-number">3</div>
-                <h3>Réception des réservations</h3>
-                <p>Les nouvelles réservations de chaque canal apparaissent directement dans ton tableau de bord. Pas de copier-coller, pas de double réservation.</p>
-            </div>
-        </div>
+<!-- ═══════════════════════ HOW IT WORKS ═══════════════════════ -->
+<section class="how">
+  <div class="wrap">
+    <div class="how-head fade-up">
+      <span class="kicker">Comment ça marche</span>
+      <h2>Configure une fois,<br><em>toujours</em> synchronisé.</h2>
     </div>
+    <div class="how-grid">
+      <div class="how-step fade-up">
+        <div class="how-num">01</div>
+        <h4>Connecter un canal</h4>
+        <p>Connecte ton Booking.com, Airbnb ou un autre canal depuis rumo. Pas besoin d'un channel manager séparé.</p>
+      </div>
+      <div class="how-step fade-up" style="transition-delay:0.1s">
+        <div class="how-num">02</div>
+        <h4>Prix et disponibilité</h4>
+        <p>rumo envoie automatiquement tes tarifs et ta disponibilité vers tous les canaux connectés. En temps réel.</p>
+      </div>
+      <div class="how-step fade-up" style="transition-delay:0.2s">
+        <div class="how-num">03</div>
+        <h4>Recevoir les réservations</h4>
+        <p>Les nouvelles réservations de chaque canal apparaissent directement dans ton tableau de bord. Pas de copier-coller, pas de double réservation.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- =============================== -->
-<!-- BOOKING CHANNELS — OTA's        -->
-<!-- =============================== -->
-
-<div class="integration-group" id="boekingskanalen">
-    <div class="integration-group-inner">
-        <div class="integration-group-header fade-up">
-            <span class="section-label">Canaux de réservation</span>
-            <h2 class="integration-group-title">OTAs et plateformes de réservation</h2>
-            <p class="integration-group-desc">Synchronisation automatique des prix, de la disponibilité et des réservations avec les canaux où tes clients réservent.</p>
-        </div>
-        <div class="integration-grid">
-            <div class="integration-card fade-up">
-                <div class="integration-logo">B.com</div>
-                <div class="integration-info">
-                    <h3>Booking.com</h3>
-                    <p>La plus grande plateforme de réservation au monde. Prix, disponibilité et réservations synchronisés en temps réel.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">Airbnb</div>
-                <div class="integration-info">
-                    <h3>Airbnb</h3>
-                    <p>Touche les voyageurs à la recherche de séjours uniques. Synchronisation parfaite pour les courts et longs séjours.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">Exp</div>
-                <div class="integration-info">
-                    <h3>Expedia</h3>
-                    <p>Expedia, Hotels.com et Vrbo en une seule connexion. Portée internationale pour les voyageurs d'affaires et de loisirs.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                </div>
-                <div class="integration-info">
-                    <h3>Google Hotel Ads</h3>
-                    <p>Réservations directes via Google Recherche et Google Maps. Les clients réservent directement chez toi. Il y a une commission pour Google, mais bon, c'est leur planète.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">Agoda</div>
-                <div class="integration-info">
-                    <h3>Agoda</h3>
-                    <p>Populaire auprès des voyageurs asiatiques. En forte croissance en Europe, surtout pour les city trips et les hôtels économiques.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">Trip</div>
-                <div class="integration-info">
-                    <h3>Trip.com</h3>
-                    <p>Grande portée en Asie et en croissance en Europe. Idéal si tu veux attirer des clients internationaux.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">HRS</div>
-                <div class="integration-info">
-                    <h3>HRS</h3>
-                    <p>Axé sur les voyageurs d'affaires et les clients corporate. Fort en Allemagne, au Benelux et en Europe centrale.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">C24</div>
-                <div class="integration-info">
-                    <h3>Check24</h3>
-                    <p>Site de comparaison populaire en Allemagne. Touche les voyageurs allemands qui réservent au meilleur prix.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">eDr</div>
-                <div class="integration-info">
-                    <h3>eDreams</h3>
-                    <p>OTA européen avec une forte présence en Espagne, en France et en Italie. Combine vols et hôtels.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">Hop</div>
-                <div class="integration-info">
-                    <h3>Hopper</h3>
-                    <p>Plateforme mobile-first, populaire auprès des jeunes voyageurs. Un canal en croissance pour les réservations de dernière minute.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">VRBO</div>
-                <div class="integration-info">
-                    <h3>VRBO</h3>
-                    <p>Locations de vacances via le réseau Expedia. Idéal pour les appartements et les chambres familiales.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">Get</div>
-                <div class="integration-info">
-                    <h3>Getaroom</h3>
-                    <p>Distribution mondiale via plusieurs canaux de réservation. Plus de visibilité sans effort supplémentaire.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-        </div>
+<!-- ═══════════════════════ OTA's ═══════════════════════ -->
+<section class="group" id="canaux-de-reservation">
+  <div class="wrap">
+    <div class="group-head fade-up">
+      <span class="kicker">Canaux de réservation</span>
+      <h2>OTA's et <em>plateformes de réservation</em></h2>
+      <p>Synchronisation automatique des prix, de la disponibilité et des réservations avec les canaux où tes clients réservent.</p>
     </div>
-</div>
-
-<!-- =============================== -->
-<!-- B2B / DISTRIBUTION              -->
-<!-- =============================== -->
-
-<div class="integration-group" id="distributie">
-    <div class="integration-group-inner">
-        <div class="integration-group-header fade-up">
-            <span class="section-label">Distribution B2B</span>
-            <h2 class="integration-group-title">Tour-opérateurs et grossistes</h2>
-            <p class="integration-group-desc">Touche les agences de voyage, les tour-opérateurs et les voyageurs d'affaires via les canaux de distribution B2B.</p>
-        </div>
-        <div class="integration-grid">
-            <div class="integration-card fade-up">
-                <div class="integration-logo">HB</div>
-                <div class="integration-info">
-                    <h3>Hotelbeds</h3>
-                    <p>Réseau B2B mondial pour les agences de voyage et les tour-opérateurs. Gros volume, large portée.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">TG</div>
-                <div class="integration-info">
-                    <h3>Travelgate</h3>
-                    <p>Marketplace qui te connecte avec des centaines de distributeurs et d'agences de voyage en ligne dans le monde entier.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">GDS</div>
-                <div class="integration-info">
-                    <h3>Reconline (GDS)</h3>
-                    <p>Accès à Amadeus, Sabre et Travelport. Touche les voyageurs d'affaires et les agences de voyage traditionnelles.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">HG</div>
-                <div class="integration-info">
-                    <h3>Hypergues</h3>
-                    <p>Réseau B2B direct, sans commission. Optimise tes marges en travaillant directement avec les agents de voyage.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-        </div>
+    <div class="int-grid">
+      <div class="int-card fade-up"><div class="int-logo">B.com</div><div class="int-info"><h3>Booking.com</h3><p>La plus grande plateforme de réservation au monde. Prix, disponibilité et réservations synchronisés en temps réel.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">Airbnb</div><div class="int-info"><h3>Airbnb</h3><p>Touche les voyageurs à la recherche de séjours uniques. Synchronisation parfaite pour les courts et longs séjours.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">Exp</div><div class="int-info"><h3>Expedia</h3><p>Expedia, Hotels.com et Vrbo en une seule connexion. Visibilité internationale pour les voyageurs d'affaires et de loisirs.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">G</div><div class="int-info"><h3>Google Hotel Ads</h3><p>Réservations directes via Google Recherche et Maps. Les clients réservent directement chez toi.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">Agoda</div><div class="int-info"><h3>Agoda</h3><p>Populaire auprès des voyageurs asiatiques. En forte croissance en Europe, surtout pour les city trips et les hôtels économiques.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">Trip</div><div class="int-info"><h3>Trip.com</h3><p>Grande visibilité en Asie et en croissance en Europe. Idéal pour attirer des clients internationaux.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">HRS</div><div class="int-info"><h3>HRS</h3><p>Axé sur les voyageurs d'affaires et les clients corporate. Fort en Allemagne, Benelux et Europe centrale.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">C24</div><div class="int-info"><h3>Check24</h3><p>Comparateur populaire en Allemagne. Touche les voyageurs allemands qui réservent au meilleur prix.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">eDr</div><div class="int-info"><h3>eDreams</h3><p>OTA européenne avec une forte présence en Espagne, France et Italie. Combine vols et hôtels.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">Hop</div><div class="int-info"><h3>Hopper</h3><p>Plateforme mobile-first, populaire auprès des jeunes voyageurs. Canal en croissance pour les réservations de dernière minute.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">VRBO</div><div class="int-info"><h3>VRBO</h3><p>Locations de vacances via le réseau Expedia. Idéal pour les appartements et les chambres familiales.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">Get</div><div class="int-info"><h3>Getaroom</h3><p>Distribution mondiale via divers canaux de réservation. Plus de visibilité sans effort supplémentaire.</p><span class="int-badge live">Disponible</span></div></div>
     </div>
-</div>
-
-<!-- =============================== -->
-<!-- NICHE CHANNELS                  -->
-<!-- =============================== -->
-
-<div class="integration-group" id="niche">
-    <div class="integration-group-inner">
-        <div class="integration-group-header fade-up">
-            <span class="section-label">Canaux de niche</span>
-            <h2 class="integration-group-title">Plateformes spécialisées</h2>
-            <p class="integration-group-desc">Touche des publics spécifiques via des plateformes de niche adaptées à ton type d'hébergement.</p>
-        </div>
-        <div class="integration-grid">
-            <div class="integration-card fade-up">
-                <div class="integration-logo">HW</div>
-                <div class="integration-info">
-                    <h3>Hostelworld</h3>
-                    <p>Pour les auberges de jeunesse et les hébergements économiques. Touche les backpackers et les voyageurs sociaux.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">TH</div>
-                <div class="integration-info">
-                    <h3>Tablet Hotels</h3>
-                    <p>Plateforme sélective pour les hôtels boutique et design. Parfait pour les hébergements avec du caractère.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">M&M</div>
-                <div class="integration-info">
-                    <h3>Mr & Mrs Smith</h3>
-                    <p>Séjours luxe et boutique. Parfait pour les hôtels qui ciblent les couples et les voyageurs haut de gamme.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">HT</div>
-                <div class="integration-info">
-                    <h3>Hotel Tonight</h3>
-                    <p>Réservations de dernière minute via le réseau Airbnb. Remplis tes chambres vides au dernier moment.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- =============================== -->
-<!-- ACCOUNTING & PAYMENTS           -->
-<!-- =============================== -->
-
-<div class="integration-group" id="boekhouding">
-    <div class="integration-group-inner">
-        <div class="integration-group-header fade-up">
-            <span class="section-label">Comptabilité & Paiements</span>
-            <h2 class="integration-group-title">Ton comptable va t'adorer.</h2>
-            <p class="integration-group-desc">Factures, paiements et déclarations de TVA affluent automatiquement vers ton logiciel comptable.</p>
-        </div>
-        <div class="integration-grid">
-            <div class="integration-card fade-up">
-                <div class="integration-logo">EO</div>
-                <div class="integration-info">
-                    <h3>Exact Online</h3>
-                    <p>Factures envoyées automatiquement. Ventilation TVA, notes de crédit et proformas inclus.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">Yuki</div>
-                <div class="integration-info">
-                    <h3>Yuki</h3>
-                    <p>Connexion directe avec Yuki. Factures et paiements apparaissent automatiquement dans ta comptabilité.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">Oct</div>
-                <div class="integration-info">
-                    <h3>Octopus</h3>
-                    <p>Populaire auprès des comptables belges. Export de factures et déclaration TVA sans effort supplémentaire.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                </div>
-                <div class="integration-info">
-                    <h3>Peppol e-facturation</h3>
-                    <p>Obligatoire pour le B2B en Belgique. Rumo envoie automatiquement des factures UBL 2.1 via le réseau Peppol.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                </div>
-                <div class="integration-info">
-                    <h3>Rumo Pay</h3>
-                    <p>Solution de paiement intégrée. Bancontact, Visa, Mastercard, iDEAL. Liens de paiement, VCCs et pré-autorisations.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- =============================== -->
-<!-- REVENUE MANAGEMENT              -->
-<!-- =============================== -->
-
-<div class="integration-group" id="revenue">
-    <div class="integration-group-inner">
-        <div class="integration-group-header fade-up">
-            <span class="section-label">Revenue Management</span>
-            <h2 class="integration-group-title">Des prix plus malins, plus de revenus.</h2>
-            <p class="integration-group-desc">Connecte un outil de revenue management et laisse tes prix s'ajuster automatiquement à la demande, à la saison et au taux d'occupation.</p>
-        </div>
-        <div class="integration-grid">
-            <div class="integration-card fade-up">
-                <div class="integration-logo">RPG</div>
-                <div class="integration-info">
-                    <h3>RoomPriceGenie</h3>
-                    <p>Optimisation automatique des prix, conçue pour les petits et moyens hôtels. Configure-le et laisse-le faire.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">Pricel</div>
-                <div class="integration-info">
-                    <h3>Pricelabs</h3>
-                    <p>Tarification dynamique basée sur les données. Analyse les données du marché, les événements et la concurrence pour optimiser tes tarifs.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">RD</div>
-                <div class="integration-info">
-                    <h3>Ratedock</h3>
-                    <p>Gestion centralisée des tarifs et de l'inventaire sur tous tes canaux. Clair et efficace.</p>
-                    <span class="integration-badge badge-live">Disponible</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- =============================== -->
-<!-- HARDWARE / ACCESS               -->
-<!-- =============================== -->
-
-<div class="integration-group" id="hardware">
-    <div class="integration-group-inner">
-        <div class="integration-group-header fade-up">
-            <span class="section-label">Gestion des clés</span>
-            <h2 class="integration-group-title">Clés numériques, liées aux réservations.</h2>
-            <p class="integration-group-desc">Les clients reçoivent automatiquement l'accès à leur chambre au check-in. Fini la programmation de cartes en plastique.</p>
-        </div>
-        <div class="integration-grid">
-            <div class="integration-card fade-up">
-                <div class="integration-logo">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-                </div>
-                <div class="integration-info">
-                    <h3>Salto</h3>
-                    <p>Clés numériques liées à tes réservations. Check-in via l'appli, accès direct à la chambre. Fini les cartes.</p>
-                    <span class="integration-badge badge-soon">Bientôt</span>
-                </div>
-            </div>
-            <div class="integration-card fade-up">
-                <div class="integration-logo">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-                </div>
-                <div class="integration-info">
-                    <h3>Dormakaba Ambiance</h3>
-                    <p>Gestion des clés via la plateforme Ambiance. Accès à la chambre automatiquement lié au check-in et au check-out.</p>
-                    <span class="integration-badge badge-soon">Bientôt</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- MISSING INTEGRATION CTA -->
-<section class="missing-section">
-    <div class="section-inner fade-up">
-        <div class="missing-card">
-            <div>
-                <h3>Il te manque une intégration ?</h3>
-                <p>On est connecté à plus de 60 canaux et plateformes. Tu ne trouves pas ton canal préféré ? Dis-le nous.</p>
-            </div>
-            <a href="https://wa.me/32485382828" target="_blank" rel="noopener" class="btn-primary">Envoie-nous un message &rarr;</a>
-        </div>
-    </div>
+  </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta" id="demo">
-    <div class="fade-up">
-        <h2 class="section-title">Prêt à essayer Rumo ?</h2>
-        <p class="section-subtitle">Pas de carte de crédit. Pas d'engagement. Juste 14 jours pour jouer avec une démo remplie de fausses réservations.</p>
-        <a href="index.html#demo" class="btn-primary">Essai gratuit de 14 jours &rarr;</a>
+<!-- ═══════════════════════ B2B ═══════════════════════ -->
+<section class="group" id="distribution">
+  <div class="wrap">
+    <div class="group-head fade-up">
+      <span class="kicker">Distribution B2B</span>
+      <h2>Tour opérateurs &amp; <em>grossistes</em></h2>
+      <p>Touche les agences de voyage, tour opérateurs et voyageurs d'affaires via les canaux de distribution B2B.</p>
     </div>
+    <div class="int-grid">
+      <div class="int-card fade-up"><div class="int-logo">HB</div><div class="int-info"><h3>Hotelbeds</h3><p>Réseau B2B mondial pour les agences de voyage et les tour opérateurs. Gros volume, large portée.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">TG</div><div class="int-info"><h3>Travelgate</h3><p>Marketplace qui te connecte à des centaines de distributeurs et d'agences de voyage en ligne dans le monde entier.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">GDS</div><div class="int-info"><h3>Reconline (GDS)</h3><p>Accès à Amadeus, Sabre et Travelport. Touche les voyageurs d'affaires et les agences de voyage traditionnelles.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">HG</div><div class="int-info"><h3>Hypergues</h3><p>Réseau B2B direct, sans commission. Optimise tes marges en travaillant directement avec les agents de voyage.</p><span class="int-badge live">Disponible</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ NICHE ═══════════════════════ -->
+<section class="group" id="niche">
+  <div class="wrap">
+    <div class="group-head fade-up">
+      <span class="kicker">Canaux de niche</span>
+      <h2>Plateformes <em>spécialisées</em></h2>
+      <p>Touche des publics spécifiques via des plateformes de niche adaptées à ton type d'hébergement.</p>
+    </div>
+    <div class="int-grid">
+      <div class="int-card fade-up"><div class="int-logo">HW</div><div class="int-info"><h3>Hostelworld</h3><p>Pour les auberges et hébergements économiques. Touche les backpackers et voyageurs sociaux.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">TH</div><div class="int-info"><h3>Tablet Hotels</h3><p>Plateforme curatée pour les hôtels boutique et design. Idéal pour les hébergements avec du caractère.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">M&amp;M</div><div class="int-info"><h3>Mr &amp; Mrs Smith</h3><p>Séjours luxe et boutique. Parfait pour les hôtels qui ciblent les couples et les voyageurs haut de gamme.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">HT</div><div class="int-info"><h3>Hotel Tonight</h3><p>Réservations de dernière minute via le réseau Airbnb. Remplis tes chambres vides au dernier moment.</p><span class="int-badge live">Disponible</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ BOEKHOUDING ═══════════════════════ -->
+<section class="group" id="comptabilite">
+  <div class="wrap">
+    <div class="group-head fade-up">
+      <span class="kicker">Comptabilité &amp; Paiements</span>
+      <h2>Ton comptable va devenir ton <em>meilleur ami.</em></h2>
+      <p>Factures, paiements et relevés TVA sont automatiquement envoyés vers ton logiciel comptable. Pas d'exports, pas d'e-mails dans tous les sens.</p>
+    </div>
+    <div class="int-grid">
+      <div class="int-card fade-up"><div class="int-logo">EO</div><div class="int-info"><h3>Exact Online</h3><p>Factures envoyées automatiquement. Ventilation TVA, notes de crédit et proformas inclus.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">Yuki</div><div class="int-info"><h3>Yuki</h3><p>Connexion directe avec Yuki. Factures et paiements apparaissent automatiquement dans ta comptabilité.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">Oct</div><div class="int-info"><h3>Octopus</h3><p>Populaire auprès des comptables belges. Export des factures et déclaration TVA sans effort supplémentaire.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">Pep</div><div class="int-info"><h3>Peppol e-facturation</h3><p>Obligatoire pour le B2B en Belgique. rumo envoie automatiquement des factures UBL 2.1 via le réseau Peppol.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">Pay</div><div class="int-info"><h3>rumo Pay</h3><p>Paiements intégrés. Bancontact, Visa, Mastercard, iDEAL. Liens de paiement, VCC et pré-autorisations.</p><span class="int-badge live">Disponible</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ REVENUE ═══════════════════════ -->
+<section class="group" id="revenue">
+  <div class="wrap">
+    <div class="group-head fade-up">
+      <span class="kicker">Revenue management</span>
+      <h2>Des prix plus malins, <em>plus de revenus.</em></h2>
+      <p>Connecte un outil de revenue management et laisse tes prix s'adapter automatiquement à la demande, la saison et le taux d'occupation.</p>
+    </div>
+    <div class="int-grid">
+      <div class="int-card fade-up"><div class="int-logo">RPG</div><div class="int-info"><h3>RoomPriceGenie</h3><p>Optimisation tarifaire automatique, spécialement conçue pour les petits et moyens hôtels. Configure et laisse faire.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">PrLb</div><div class="int-info"><h3>Pricelabs</h3><p>Tarification dynamique basée sur les données. Analyse les données du marché, les événements et la concurrence pour optimiser tes tarifs.</p><span class="int-badge live">Disponible</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">RD</div><div class="int-info"><h3>Ratedock</h3><p>Gestion centralisée des tarifs et de l'inventaire sur tous tes canaux. Clair et efficace.</p><span class="int-badge live">Disponible</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SLEUTELBEHEER ═══════════════════════ -->
+<section class="group" id="hardware">
+  <div class="wrap">
+    <div class="group-head fade-up">
+      <span class="kicker">Gestion des clés</span>
+      <h2>Clés numériques,<br>liées aux <em>réservations.</em></h2>
+      <p>Les clients reçoivent automatiquement l'accès à leur chambre lors du check-in. Plus besoin de programmer des cartes en plastique.</p>
+    </div>
+    <div class="int-grid">
+      <div class="int-card fade-up"><div class="int-logo">Salto</div><div class="int-info"><h3>Salto</h3><p>Clés numériques liées à tes réservations. Check-in via l'app, accès direct à la chambre. Plus de cartes.</p><span class="int-badge soon">Bientôt</span></div></div>
+      <div class="int-card fade-up"><div class="int-logo">DK</div><div class="int-info"><h3>Dormakaba Ambiance</h3><p>Gestion des clés via la plateforme Ambiance. Accès à la chambre automatiquement lié au check-in et check-out.</p><span class="int-badge soon">Bientôt</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ MISSING ═══════════════════════ -->
+<section class="missing">
+  <div class="wrap">
+    <div class="missing-card fade-up">
+      <div>
+        <span class="kicker">Il te manque une intégration ?</span>
+        <h3>Nous sommes connectés à<br><em>60+</em> canaux et plateformes.</h3>
+        <p>Ton canal préféré n'est pas dans la liste ? Envoie-nous un petit message. On regarde ce qu'on peut faire.</p>
+      </div>
+      <a href="https://wa.me/32485382828" class="btn-ink">Envoie un message <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FINAL ═══════════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Essaie toi-même</span>
+    <h2>Pas de démo en visio.<br>Juste <em>14 jours</em> pour tester.</h2>
+    <p>Pas de carte de crédit, pas d'engagement. Un environnement de démo rempli de fausses réservations. Pas convaincu ? Ça disparaît en silence.</p>
+    <a href="index.html#demo" class="btn-paper">Essaie 14 jours gratuitement <span>→</span></a>
+    <p class="final-fine">Pas de carte de crédit · Résiliable mensuellement après 6 mois · Migration des données gratuite</p>
+  </div>
 </section>
 
 <footer>
-    <div class="footer-inner">
-        <div>
-            <div class="footer-brand">rumo<span>.</span></div>
-            <p class="footer-tagline">Un logiciel hôtelier qui marche, tout simplement. Sans mode d'emploi.</p>
-        </div>
-        <div>
-            <div class="footer-label">Produit</div>
-            <ul class="footer-links">
-                <li><a href="features.html">Fonctionnalités</a></li>
-                <li><a href="integrations.html" class="active">Intégrations</a></li>
-                <li><a href="tarifs.html">Tarifs</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-            </ul>
-        </div>
-        <div>
-            <div class="footer-label">Rumo</div>
-            <ul class="footer-links">
-                <li><a href="https://wa.me/32485382828" target="_blank" rel="noopener">WhatsApp</a></li>
-                <li><a href="mailto:hello@rumo.eu">Contact</a></li>
-                <li><a href="a-propos.html">À propos</a></li>
-            </ul>
-        </div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Logiciel hôtelier pour hôteliers indépendants. Sans prise de tête.</p>
     </div>
-    <div class="footer-bottom">&copy; 2026 Rumo. Tous droits réservés.</div>
+    <div>
+      <div class="footer-label">Produit</div>
+      <ul class="footer-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="integrations.html">Intégrations</a></li>
+        <li><a href="tarifs.html">Et euh, ça coûte combien ?</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Envoie-nous un e-mail</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Intégrations</div>
+      <ul class="footer-links">
+        <li><a href="#canaux-de-reservation">Canaux de réservation</a></li>
+        <li><a href="#comptabilite">Comptabilité</a></li>
+        <li><a href="#revenue">Revenue management</a></li>
+        <li><a href="#hardware">Gestion des clés</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Gand, BE</span>
+    <span>Direction · Sfeer</span>
+  </div>
 </footer>
 
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
-    });
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
-<script src="../rudy-widget.js"></script>
 </body>
 </html>

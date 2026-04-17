@@ -1,184 +1,386 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Over ons | Rumo Hotelsoftware</title>
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Rumo wordt gebouwd door een hotelier en een software engineer. Twee mensen die vinden dat hotelsoftware beter kan.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="shared.css">
-    <style>
-        /* HERO */
-        .about-hero { padding: 10rem 3rem 5rem; }
-        .about-hero .section-inner { max-width: 720px; }
-        .about-hero .section-title { font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1.5rem; }
-        .about-hero .section-subtitle { max-width: 720px; font-size: 1.1rem; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Over ons · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="rumo wordt gebouwd door een hotelier en een software engineer. Twee mensen die vinden dat hotelsoftware beter kan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-sfeer.css">
+<style>
+  /* ─── FOUNDERS ─── */
+  .founders {
+    background:var(--paper);
+    padding:6rem 0;
+  }
+  .founders-head { max-width:640px; margin-bottom:4rem; }
+  .founders-grid {
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:2.5rem;
+  }
+  .founder {
+    background:var(--paper-panel);
+    border-radius:20px;
+    padding:2.5rem 2.5rem 3rem;
+    border:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .founder::before {
+    content:'';
+    position:absolute;
+    right:-15%; top:-15%;
+    width:55%; height:55%;
+    border-radius:50%;
+    background:radial-gradient(circle, var(--butter) 0%, transparent 70%);
+    opacity:0.4;
+    filter:blur(12px);
+    pointer-events:none;
+  }
+  .founder:nth-child(2)::before {
+    background:radial-gradient(circle, var(--terra) 0%, transparent 70%);
+    opacity:0.3;
+  }
+  .founder-avatar {
+    width:68px; height:68px;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.8rem;
+    letter-spacing:-0.02em;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:1.75rem;
+    position:relative;
+    z-index:2;
+  }
+  .founder:nth-child(2) .founder-avatar { background:var(--terra-dark); }
+  .founder h3 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:2rem;
+    letter-spacing:-0.02em;
+    margin-bottom:0.3rem;
+    position:relative; z-index:2;
+  }
+  .founder-role {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--terra-dark);
+    margin-bottom:1.5rem;
+    position:relative; z-index:2;
+  }
+  .founder-bio {
+    font-size:1rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+    position:relative; z-index:2;
+  }
+  .founder-bio p { margin-bottom:1rem; }
+  .founder-bio p:last-child { margin-bottom:0; }
+  .founder-bio strong { color:var(--ink); font-weight:600; }
+  .founder-bio em { color:var(--terra-dark); font-style:italic; font-weight:400; }
 
-        /* FOUNDERS */
-        .founders { background: var(--white); }
-        .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
-        .founder-card { background: var(--cream); border-radius: 16px; padding: 2.5rem; }
-        .founder-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--sand); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--warm); margin-bottom: 1.5rem; }
-        .founder-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.3rem; }
-        .founder-role { font-size: 0.88rem; color: var(--terracotta); font-weight: 600; margin-bottom: 1rem; }
-        .founder-bio { font-size: 0.95rem; opacity: 0.7; line-height: 1.8; }
-        .founder-bio p { margin-bottom: 0.8rem; }
+  /* ─── WAAROM ─── */
+  .waarom {
+    background:var(--paper-deep);
+    padding:7rem 0;
+  }
+  .waarom-grid {
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:5rem;
+    align-items:start;
+  }
+  .waarom-label {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--muted);
+    padding-top:0.75rem;
+    white-space:nowrap;
+  }
+  .waarom-content h2 {
+    margin-bottom:1.5rem;
+  }
+  .waarom-content h2 em { color:var(--terra-dark); }
+  .waarom-content p {
+    font-size:1.1rem;
+    line-height:1.6;
+    max-width:58ch;
+    color:var(--ink-soft);
+    margin-bottom:1.25rem;
+  }
+  .waarom-content p em { color:var(--terra-dark); font-style:italic; font-weight:400; }
+  .waarom-pullquote {
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:1.45rem;
+    line-height:1.35;
+    color:var(--ink);
+    padding:2rem 0 0.5rem;
+    border-top:1px solid var(--line);
+    margin-top:2rem;
+    max-width:50ch;
+  }
 
-        /* WHY */
-        .why-section { background: var(--cream); }
-        .why-content { max-width: 720px; margin-top: 2rem; }
-        .why-content p { font-size: 1.02rem; opacity: 0.7; line-height: 1.8; margin-bottom: 1.2rem; }
+  /* ─── PRINCIPES ─── */
+  .principes {
+    background:var(--paper);
+    padding:7rem 0;
+  }
+  .principes-head { max-width:640px; margin-bottom:4rem; }
+  .principes-head h2 em { color:var(--terra-dark); }
+  .principes-grid {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.5rem;
+  }
+  .principe {
+    background:var(--paper-panel);
+    border-radius:16px;
+    padding:2rem 2rem 2.25rem;
+    border:1px solid var(--line);
+    transition:transform 0.25s, box-shadow 0.25s;
+  }
+  .principe:hover {
+    transform:translateY(-3px);
+    box-shadow:0 16px 36px rgba(27,25,23,0.08);
+  }
+  .principe-num {
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-style:italic;
+    font-size:3rem;
+    line-height:1;
+    color:var(--terra-dark);
+    margin-bottom:1rem;
+  }
+  .principe h4 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.35rem;
+    letter-spacing:-0.02em;
+    margin-bottom:0.75rem;
+  }
+  .principe p {
+    font-size:0.96rem;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
 
-        /* VALUES */
-        .values-section { background: var(--white); }
-        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2.5rem; }
-        .value-card { padding: 1.5rem; }
-        .value-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .value-card p { font-size: 0.92rem; opacity: 0.6; line-height: 1.7; }
+  /* page-header side content for this page */
+  .ph-side-illus {
+    width:140px; height:140px;
+    position:relative;
+  }
+  .ph-side-illus svg {
+    width:100%; height:100%;
+    color:var(--terra-dark);
+    opacity:0.85;
+  }
 
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            section { padding: 4rem 1.5rem; }
-            .founders-grid { grid-template-columns: 1fr; }
-            .values-grid { grid-template-columns: 1fr; }
-            .about-hero { padding: 7rem 1.5rem 3rem; }
-        }
-    </style>
-    <link rel="stylesheet" href="rudy-widget.css">
+  /* Responsive */
+  @media (max-width:900px) {
+    .founders-grid { grid-template-columns:1fr; }
+    .waarom-grid { grid-template-columns:1fr; gap:1.5rem; }
+    .principes-grid { grid-template-columns:1fr; }
+    .founder { padding:2rem 1.75rem 2.25rem; }
+  }
+</style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html" class="nav-logo">rumo<span>.</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
-        <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-        <li><a href="index.html#features-preview">Wat zit erin?</a></li>
-        <li><a href="index.html#voor-wie">Voor wie?</a></li>
-        <li><a href="features.html">Features</a></li>
-        <li><a href="integraties.html">Integraties</a></li>
-        <li><a href="prijzen.html">Prijzen</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="over-ons.html" class="active">Over ons</a></li>
-        <li><a href="index.html#demo" class="nav-cta">Probeer gratis</a></li>
-        <li class="nav-lang"><a href="over-ons.html" class="active">NL</a><a href="en/about.html">EN</a><a href="fr/a-propos.html">FR</a></li>
-    </ul>
+  <a href="index.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html#pijlers">Wat doet rumo?</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="integraties.html">Integraties</a></li>
+    <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="over-ons.html" class="active">Over ons</a></li>
+    <li><a href="index.html#demo" class="nav-cta">Probeer gratis →</a></li>
+    <li class="nav-lang">
+      <a href="over-ons.html" class="active">NL</a>
+      <a href="en/about.html">EN</a>
+      <a href="fr/a-propos.html">FR</a>
+    </li>
+  </ul>
 </nav>
 
-<section class="about-hero">
-    <div class="section-inner fade-up">
-        <span class="section-label">Over ons</span>
-        <h1 class="section-title">Gebouwd door een hotelier en een engineer.</h1>
-        <p class="section-subtitle">Rumo is geen product van een grote softwarefabriek. Het is gemaakt door twee mensen die vinden dat hotelsoftware beter kan. Eentje die elke dag achter de receptie staat, en eentje die weet hoe je dat omzet in software.</p>
+<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
+<div class="page-header">
+  <div class="page-header-inner fade-up">
+    <div>
+      <span class="kicker">Over ons</span>
+      <h1>Gebouwd door een hotelier en een <em>engineer.</em></h1>
+      <p class="lead">rumo is geen product van een grote softwarefabriek. Het is gemaakt door twee mensen die vinden dat hotelsoftware beter kan. Eentje die elke dag achter de receptie staat, en eentje die weet hoe je dat omzet in software.</p>
     </div>
-</section>
+    <div class="ph-side-illus">
+      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- Two-person illustration -->
+        <circle cx="40" cy="40" r="10"/>
+        <path d="M25,80 L25,65 Q25,50 40,50 Q55,50 55,65 L55,80"/>
+        <circle cx="80" cy="40" r="10"/>
+        <path d="M65,80 L65,65 Q65,50 80,50 Q95,50 95,65 L95,80"/>
+        <!-- Ground -->
+        <line x1="10" y1="95" x2="110" y2="95"/>
+        <!-- Small house between them -->
+        <path d="M52,92 L52,82 L60,76 L68,82 L68,92 Z"/>
+        <rect x="57" y="85" width="6" height="7"/>
+      </svg>
+    </div>
+  </div>
+  <div class="page-header-ribbon">
+    <span>Gent, België</span>
+    <span>Sinds 2023</span>
+    <span>Twee oprichters</span>
+    <span>Eigenaar van drie hotels</span>
+  </div>
+</div>
 
+<!-- ═══════════════════════ FOUNDERS ═══════════════════════ -->
 <section class="founders">
-    <div class="section-inner">
-        <div class="founders-grid">
-            <div class="founder-card fade-up">
-                <h3>Jeffrey</h3>
-                <div class="founder-role">Product & Design</div>
-                <div class="founder-bio">
-                    <p>Jeffrey runt twee hotels in Belgie: Hotel Chamade (51 kamers) en Carlton Hotel (22 kamers), beiden drie sterren. Hij weet hoe een receptie draait, wat er fout gaat met check-ins om 23u, en waarom de meeste PMS systemen te ingewikkeld zijn voor wat ze doen.</p>
-                    <p>Hij ontwerpt Rumo vanuit wat hij elke dag nodig heeft. Geen features die leuk staan op een slide, maar functies die echt gebruikt worden door echte receptionisten.</p>
-                </div>
-            </div>
-            <div class="founder-card fade-up">
-                <h3>Seba</h3>
-                <div class="founder-role">Technologie & Architectuur</div>
-                <div class="founder-bio">
-                    <p>Seba werkt in een innovatieteam in de techindustrie en bouwt software die schaalt. Hij is verantwoordelijk voor alles onder de motorkap: de backend, de beveiliging, de infrastructuur en de integraties.</p>
-                    <p>Hij zorgt ervoor dat Rumo snel, veilig en betrouwbaar is. Multitenant architectuur, realtime synchronisatie, Peppol e-facturatie, channel manager koppeling. Het technische fundament waarop alles draait.</p>
-
-                </div>
-            </div>
-        </div>
+  <div class="wrap">
+    <div class="founders-head fade-up">
+      <span class="kicker">De mensen erachter</span>
+      <h2>Geen office. Geen vergadertafels.<br>Alleen <em>hotels en code.</em></h2>
     </div>
+    <div class="founders-grid">
+      <article class="founder fade-up">
+        <div class="founder-avatar">J</div>
+        <h3>Jeffrey</h3>
+        <div class="founder-role">Product &amp; Design</div>
+        <div class="founder-bio">
+          <p>Jeffrey runt twee hotels in België: <strong>Hotel Chamade</strong> (51 kamers) en <strong>Carlton Hotel</strong> (22 kamers), beide drie sterren. Hij weet hoe een receptie draait, wat er fout gaat met check-ins om 23u, en waarom de meeste PMS-systemen te ingewikkeld zijn voor wat ze doen.</p>
+          <p>Hij ontwerpt rumo vanuit wat hij elke dag nodig heeft. Geen features die leuk staan op een slide, maar functies die <em>écht</em> gebruikt worden door echte receptionisten.</p>
+        </div>
+      </article>
+      <article class="founder fade-up" style="transition-delay:0.1s">
+        <div class="founder-avatar">S</div>
+        <h3>Seba</h3>
+        <div class="founder-role">Technologie &amp; Architectuur</div>
+        <div class="founder-bio">
+          <p>Seba werkt in een innovatieteam in de techindustrie en bouwt software die schaalt. Hij is verantwoordelijk voor alles onder de motorkap: de backend, de beveiliging, de infrastructuur en de integraties.</p>
+          <p>Hij zorgt ervoor dat rumo <strong>snel, veilig en betrouwbaar</strong> is. Multitenant architectuur, realtime synchronisatie, Peppol e-facturatie, channel manager koppeling. Het technische fundament waarop alles draait.</p>
+        </div>
+      </article>
+    </div>
+  </div>
 </section>
 
-<section class="why-section">
-    <div class="section-inner fade-up">
-        <span class="section-label">Waarom Rumo</span>
-        <h2 class="section-title">Hotelsoftware die niet gemaakt is in een kantoor.</h2>
-        <div class="why-content">
-            <p>Jeffrey werkt al jaren in hotels en miste een systeem dat echt aansloot bij hoe zijn team werkt. Iets dat snel is, overzichtelijk, en geen opleiding van drie dagen vereist. Dus besloot hij het zelf te maken.</p>
-            <p>Samen met Seba bouwt hij een PMS die focust op wat kleine en middelgrote hotels echt nodig hebben. Niet meer. Niet minder. Geen 400 features waarvan je er 12 gebruikt. Gewoon software die werkt zoals jij denkt.</p>
-        </div>
+<!-- ═══════════════════════ WAAROM ═══════════════════════ -->
+<section class="waarom">
+  <div class="wrap">
+    <div class="waarom-grid fade-up">
+      <div class="waarom-label">Waarom rumo</div>
+      <div class="waarom-content">
+        <h2>Hotelsoftware die niet gemaakt is <em>in een kantoor.</em></h2>
+        <p>Jeffrey werkt al jaren in hotels en miste een systeem dat echt aansloot bij hoe zijn team werkt. Iets dat snel is, overzichtelijk, en geen opleiding van drie dagen vereist. Dus besloot hij het zelf te maken.</p>
+        <p>Samen met Seba bouwt hij een PMS die focust op wat kleine en middelgrote hotels écht nodig hebben. Niet meer. Niet minder. Geen 400 features waarvan je er 12 gebruikt. Gewoon software die werkt zoals jij denkt.</p>
+        <p class="waarom-pullquote">"We hebben geen software gebouwd voor hoteliers. We hebben gebouwd wat we zelf al jaren zochten."</p>
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="values-section">
-    <div class="section-inner fade-up">
-        <span class="section-label">Hoe wij denken</span>
-        <h2 class="section-title">Drie principes.</h2>
-        <div class="values-grid">
-            <div class="value-card">
-                <h3>Eenvoud boven alles</h3>
-                <p>Als een receptioniste het niet begrijpt in 10 seconden, is het niet goed genoeg. Elke klik, elk scherm, elk label wordt afgewogen op eenvoud.</p>
-            </div>
-            <div class="value-card">
-                <h3>Gebouwd voor echte hotels</h3>
-                <p>Geen theoretische features. Alles in Rumo is getest in een werkend hotel. Als het niet werkt om 7u 's ochtends bij een check-out rush, dan hoort het er niet in.</p>
-            </div>
-            <div class="value-card">
-                <h3>Eerlijk en transparant</h3>
-                <p>Geen verborgen kosten. Geen jaarverplichting. Geen sales calls van een uur. Wat je ziet is wat je krijgt. En als Rumo niks voor jou is, dan zeggen we dat ook.</p>
-            </div>
-        </div>
+<!-- ═══════════════════════ PRINCIPES ═══════════════════════ -->
+<section class="principes">
+  <div class="wrap">
+    <div class="principes-head fade-up">
+      <span class="kicker">Hoe wij denken</span>
+      <h2>Drie <em>principes.</em><br>Niet meer, niet minder.</h2>
     </div>
+    <div class="principes-grid">
+      <div class="principe fade-up">
+        <div class="principe-num">01</div>
+        <h4>Eenvoud boven alles</h4>
+        <p>Als een receptioniste het niet begrijpt in 10 seconden, is het niet goed genoeg. Elke klik, elk scherm, elk label wordt afgewogen op eenvoud.</p>
+      </div>
+      <div class="principe fade-up" style="transition-delay:0.1s">
+        <div class="principe-num">02</div>
+        <h4>Gebouwd voor echte hotels</h4>
+        <p>Geen theoretische features. Alles in rumo is getest in een werkend hotel. Als het niet werkt om 7u 's ochtends bij een check-out rush, dan hoort het er niet in.</p>
+      </div>
+      <div class="principe fade-up" style="transition-delay:0.2s">
+        <div class="principe-num">03</div>
+        <h4>Eerlijk en transparant</h4>
+        <p>Geen verborgen kosten. Geen jaarverplichting. Geen sales calls van een uur. Wat je ziet is wat je krijgt. En als rumo niks voor jou is, dan zeggen we dat ook. No hard feelings.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="final-cta">
-    <div class="fade-up">
-        <h2 class="section-title">Klaar om Rumo te proberen?</h2>
-        <p class="section-subtitle">Geen creditcard nodig. Geen verplichtingen. Gewoon 14 dagen spelen met een demo vol nepreservaties.</p>
-        <a href="index.html#demo" class="btn-primary">Probeer 14 dagen gratis &rarr;</a>
-    </div>
+<!-- ═══════════════════════ FINAL ═══════════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Klaar om rumo te proberen?</span>
+    <h2>Geen demo-gesprek.<br>Gewoon <em>14 dagen</em> spelen.</h2>
+    <p>Geen creditcard, geen verplichtingen, geen "account manager" die je elke week opbelt. Een demo-omgeving vol nepreservaties. Bevalt het niet? Dan verdwijnt het stilletjes.</p>
+    <a href="index.html#demo" class="btn-paper">Probeer 14 dagen gratis <span>→</span></a>
+    <p class="final-fine">Geen credit card · Na 6 maanden maandelijks opzegbaar · Gratis datamigratie</p>
+  </div>
 </section>
 
 <footer>
-    <div class="footer-inner">
-        <div>
-            <div class="footer-brand">rumo<span>.</span></div>
-            <p class="footer-tagline">Hotelsoftware die gewoon werkt. Zonder handleiding.</p>
-        </div>
-        <div>
-            <div class="footer-label">Product</div>
-            <ul class="footer-links">
-                <li><a href="features.html">Features</a></li>
-        <li><a href="integraties.html">Integraties</a></li>
-                <li><a href="prijzen.html">Prijzen</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-            </ul>
-        </div>
-        <div>
-            <div class="footer-label">Rumo</div>
-            <ul class="footer-links">
-                <li><a href="https://wa.me/32485382828" target="_blank" rel="noopener">WhatsApp</a></li>
-                <li><a href="mailto:hello@rumo.eu">Contact</a></li>
-                <li><a href="over-ons.html" class="active">Over ons</a></li>
-            </ul>
-        </div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Hotelsoftware voor onafhankelijke hoteliers. Zonder gedoe.</p>
     </div>
-    <div class="footer-bottom">&copy; 2026 Rumo. Alle rechten voorbehouden.</div>
+    <div>
+      <div class="footer-label">Product</div>
+      <ul class="footer-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="integraties.html">Integraties</a></li>
+        <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Stuur ons een mailtje</a></li>
+        <li><a href="over-ons.html">Over ons</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Integraties</div>
+      <ul class="footer-links">
+        <li><a href="integraties.html">Booking.com</a></li>
+        <li><a href="integraties.html">Airbnb</a></li>
+        <li><a href="integraties.html">Exact Online</a></li>
+        <li><a href="integraties.html">Peppol</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Gent, BE</span>
+    <span>Direction · Sfeer</span>
+  </div>
 </footer>
 
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
-    });
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
-<script src="rudy-widget.js"></script>
 </body>
 </html>

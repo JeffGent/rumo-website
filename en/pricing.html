@@ -1,450 +1,746 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing | Rumo Hotel Software</title>
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Rumo pricing. Simple, predictable, no surprises. Base package per room plus optional add-ons.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../shared.css">
-    <style>
-        /* PAGE HEADER overrides */
-        .page-header { padding-bottom: 5rem; text-align: center; }
-        .page-header-inner { max-width: 700px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>So, what does it cost? · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="rumo pricing. Simple, predictable, no surprises. Base plan per room plus optional add-ons.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-sfeer.css">
+<style>
+  /* ─── PRICING SECTION ─── */
+  .pricing {
+    background:var(--paper);
+    padding:5rem 0 6rem;
+  }
+  .pricing-layout {
+    display:grid;
+    grid-template-columns:1.3fr 0.8fr;
+    gap:2.5rem;
+    align-items:start;
+  }
 
-        /* PRICING SECTION */
-        .pricing-section { background: var(--cream); }
-        .pricing-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.5rem; margin-top: 3rem; align-items: start; }
+  /* Plan card */
+  .plan {
+    background:var(--paper-panel);
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:0 16px 40px rgba(27,25,23,0.05);
+  }
+  .plan-top {
+    padding:2.5rem 2.5rem 2rem;
+    position:relative;
+    background:var(--paper-panel);
+  }
+  .plan-top::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0;
+    height:4px;
+    background:linear-gradient(90deg, var(--terra-dark), var(--butter));
+  }
+  .plan-name {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.15em;
+    color:var(--terra-dark);
+    text-transform:uppercase;
+    margin-bottom:1rem;
+    font-weight:500;
+  }
+  .plan-price {
+    display:flex;
+    align-items:flex-end;
+    gap:0.4rem;
+    margin-bottom:0.5rem;
+  }
+  .plan-amount {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:clamp(3rem, 6vw, 4.5rem);
+    letter-spacing:-0.045em;
+    line-height:1;
+    color:var(--ink);
+  }
+  .plan-amount em { font-style:italic; color:var(--terra-dark); font-weight:300; }
+  .plan-unit {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--muted);
+    padding-bottom:0.8rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+  }
+  .plan-note {
+    font-size:0.92rem;
+    color:var(--muted);
+    margin-bottom:0.75rem;
+    font-style:italic;
+  }
+  .plan-min {
+    display:inline-block;
+    background:var(--sand);
+    border-radius:6px;
+    padding:0.3rem 0.7rem;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    margin-bottom:1.5rem;
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+  .plan-desc {
+    font-size:1rem;
+    color:var(--ink-soft);
+    line-height:1.6;
+    margin-bottom:2rem;
+  }
+  .plan-desc em { color:var(--terra-dark); font-style:italic; font-weight:400; }
 
-        /* BASE PLAN CARD */
-        .plan-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 30px rgba(0,0,0,0.05); }
-        .plan-card-top { padding: 2.5rem 2.5rem 2rem; position: relative; }
-        .plan-card-top::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--terracotta), var(--gold)); }
-        .plan-name { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--terracotta); margin-bottom: 1rem; }
-        .plan-price { display: flex; align-items: flex-end; gap: 0.4rem; margin-bottom: 0.3rem; }
-        .plan-amount { font-family: 'Playfair Display', serif; font-size: 3.5rem; line-height: 1; color: var(--warm); }
-        .plan-unit { font-size: 0.9rem; opacity: 0.5; padding-bottom: 0.6rem; }
-        .plan-note { font-size: 0.85rem; opacity: 0.5; font-style: italic; margin-bottom: 0.5rem; }
-        .plan-minimum { display: inline-block; background: var(--cream); border-radius: 6px; padding: 0.3rem 0.8rem; font-size: 0.82rem; opacity: 0.6; margin-bottom: 1.5rem; }
-        .plan-desc { font-size: 0.95rem; opacity: 0.65; line-height: 1.7; margin-bottom: 2rem; }
-        .plan-features-toggle { display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 2.5rem; cursor: pointer; font-size: 0.92rem; font-weight: 600; color: var(--terracotta); border-top: 1px solid var(--cream); user-select: none; transition: background 0.2s; }
-        .plan-features-toggle:hover { background: rgba(196,101,58,0.03); }
-        .plan-features-toggle .toggle-arrow { transition: transform 0.3s ease; font-size: 0.8rem; }
-        .plan-features-toggle.open .toggle-arrow { transform: rotate(180deg); }
-        .plan-features { list-style: none; padding: 0 2.5rem; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding-bottom 0.4s ease; }
-        .plan-features.open { max-height: 800px; padding-bottom: 2rem; }
-        .plan-features li { padding: 0.55rem 0; font-size: 0.95rem; display: flex; align-items: flex-start; gap: 0.8rem; border-bottom: 1px solid var(--cream); }
-        .plan-features li:last-child { border-bottom: none; }
-        .plan-features li::before { content: '\2713'; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--sage-light); color: var(--sage); font-size: 0.75rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-        .plan-cta { padding: 0 2.5rem 2.5rem; }
-        .plan-cta .btn-primary { width: 100%; justify-content: center; }
+  .plan-toggle {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1rem 2.5rem;
+    cursor:pointer;
+    font-weight:500;
+    font-size:0.92rem;
+    color:var(--terra-dark);
+    border-top:1px solid var(--line);
+    user-select:none;
+  }
+  .plan-toggle .arr { transition:transform 0.3s; font-family:'JetBrains Mono', monospace; }
+  .plan-toggle.open .arr { transform:rotate(180deg); }
+  .plan-features {
+    list-style:none;
+    padding:0 2.5rem;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease, padding-bottom 0.4s ease;
+  }
+  .plan-features.open { max-height:900px; padding-bottom:2rem; }
+  .plan-features li {
+    padding:0.6rem 0;
+    font-size:0.95rem;
+    display:flex;
+    align-items:flex-start;
+    gap:0.8rem;
+    border-bottom:1px solid var(--line);
+    color:var(--ink-soft);
+  }
+  .plan-features li:last-child { border-bottom:none; }
+  .plan-features li::before {
+    content:'✓';
+    display:inline-flex; align-items:center; justify-content:center;
+    width:20px; height:20px;
+    border-radius:50%;
+    background:var(--forest-soft);
+    color:var(--forest);
+    font-size:0.78rem;
+    font-weight:700;
+    flex-shrink:0;
+    margin-top:1px;
+  }
+  .plan-cta {
+    padding:0 2.5rem 2.5rem;
+  }
+  .plan-cta .btn-ink { width:100%; justify-content:center; }
 
-        /* PRICE CALCULATOR */
-        .calculator { background: var(--white); border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
-        .calc-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.3rem; }
-        .calc-sub { font-size: 0.85rem; opacity: 0.5; margin-bottom: 1.5rem; }
-        .calc-slider-label { display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .calc-slider { width: 100%; appearance: none; height: 4px; background: var(--mist); border-radius: 2px; outline: none; margin-bottom: 0.4rem; cursor: pointer; }
-        .calc-slider::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--terracotta); cursor: pointer; box-shadow: 0 2px 8px rgba(196,101,58,0.3); }
-        .calc-range { display: flex; justify-content: space-between; font-size: 0.75rem; opacity: 0.4; margin-bottom: 1.8rem; }
-        .calc-result { background: var(--cream); border-radius: 12px; padding: 1.2rem 1.5rem; margin-bottom: 1rem; }
-        .calc-result-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; padding: 0.3rem 0; }
-        .calc-result-row.total { font-weight: 700; font-size: 1.05rem; padding-top: 0.6rem; margin-top: 0.3rem; border-top: 1px solid var(--mist); }
-        .calc-result-label { opacity: 0.6; }
-        .calc-note { font-size: 0.78rem; opacity: 0.45; text-align: center; font-style: italic; }
-        .calc-addons { margin-top: 1.5rem; margin-bottom: 1.5rem; }
-        .calc-addons-title { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.6rem; }
-        .calc-addon-item { display: flex; align-items: center; gap: 0.6rem; padding: 0.45rem 0; font-size: 0.88rem; cursor: pointer; user-select: none; }
-        .calc-addon-item input[type="checkbox"] { accent-color: var(--terracotta); width: 16px; height: 16px; cursor: pointer; }
-        .calc-addon-item .addon-label { flex: 1; }
-        .calc-addon-item .addon-cost { font-weight: 600; opacity: 0.5; font-size: 0.82rem; white-space: nowrap; }
-        .calc-addon-item.disabled { opacity: 0.45; }
-        .calc-addon-item.disabled .addon-soon { font-size: 0.72rem; color: #c4883a; font-weight: 600; }
+  /* Calculator */
+  .calc {
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:2rem;
+  }
+  .calc-title {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.45rem;
+    letter-spacing:-0.02em;
+    margin-bottom:0.3rem;
+  }
+  .calc-sub {
+    font-size:0.88rem;
+    color:var(--muted);
+    margin-bottom:1.5rem;
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+  .calc-slider-label {
+    display:flex; justify-content:space-between;
+    font-size:0.95rem;
+    font-weight:500;
+    margin-bottom:0.5rem;
+  }
+  .calc-slider-label strong {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.4rem;
+    color:var(--terra-dark);
+  }
+  .calc-slider {
+    width:100%;
+    -webkit-appearance:none;
+    appearance:none;
+    height:4px;
+    background:var(--sand);
+    border-radius:2px;
+    outline:none;
+    margin-bottom:0.4rem;
+    cursor:pointer;
+  }
+  .calc-slider::-webkit-slider-thumb {
+    -webkit-appearance:none;
+    width:20px; height:20px;
+    border-radius:50%;
+    background:var(--terra-dark);
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(185,107,74,0.3);
+  }
+  .calc-slider::-moz-range-thumb {
+    width:20px; height:20px;
+    border-radius:50%;
+    background:var(--terra-dark);
+    cursor:pointer;
+    border:none;
+    box-shadow:0 2px 8px rgba(185,107,74,0.3);
+  }
+  .calc-range {
+    display:flex; justify-content:space-between;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    color:var(--muted);
+    margin-bottom:1.75rem;
+    letter-spacing:0.02em;
+  }
+  .calc-addons-block {
+    margin-bottom:1.5rem;
+  }
+  .calc-addons-title {
+    font-size:0.88rem;
+    font-weight:600;
+    margin-bottom:0.6rem;
+    color:var(--ink);
+  }
+  .calc-addon {
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+    padding:0.45rem 0;
+    font-size:0.88rem;
+    cursor:pointer;
+    user-select:none;
+  }
+  .calc-addon input {
+    accent-color:var(--terra-dark);
+    width:16px; height:16px;
+    cursor:pointer;
+  }
+  .calc-addon .label { flex:1; color:var(--ink-soft); }
+  .calc-addon .cost {
+    font-family:'JetBrains Mono', monospace;
+    font-weight:500;
+    color:var(--muted);
+    font-size:0.82rem;
+    white-space:nowrap;
+  }
+  .calc-result {
+    background:var(--sand);
+    border-radius:12px;
+    padding:1.25rem 1.5rem;
+    margin-bottom:1rem;
+  }
+  .calc-row {
+    display:flex; justify-content:space-between;
+    align-items:center;
+    font-size:0.92rem;
+    padding:0.35rem 0;
+    color:var(--ink-soft);
+  }
+  .calc-row.total {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.35rem;
+    letter-spacing:-0.015em;
+    padding-top:0.7rem;
+    margin-top:0.3rem;
+    border-top:1px solid rgba(27,25,23,0.12);
+    color:var(--ink);
+  }
+  .calc-row.total span:last-child { color:var(--terra-dark); }
+  .calc-fine {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--muted);
+    text-align:center;
+    letter-spacing:0.03em;
+  }
 
-        /* ADD-ONS */
-        .addons-section { background: var(--white); }
-        .addons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
-        .addon-card { background: var(--cream); border-radius: 14px; padding: 1.8rem; }
-        .addon-badge { display: inline-block; background: var(--sand); color: var(--warm); padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; margin-bottom: 1rem; opacity: 0.7; }
-        .addon-badge-soon { background: #fef3e2; color: #c4883a; }
-        .addon-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; }
-        .addon-card p { font-size: 0.88rem; opacity: 0.6; line-height: 1.6; margin-bottom: 1rem; }
-        .addon-price { font-weight: 700; color: var(--warm); font-size: 0.95rem; }
-        .addon-price span { font-weight: 400; opacity: 0.5; font-size: 0.82rem; }
+  /* ─── ADDONS ─── */
+  .addons {
+    background:var(--paper-deep);
+    padding:7rem 0;
+  }
+  .addons-head { max-width:680px; margin-bottom:3rem; }
+  .addons-head h2 em { color:var(--terra-dark); }
+  .addons-grid {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.5rem;
+  }
+  .addon {
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:1.75rem 1.75rem 2rem;
+    transition:transform 0.25s, box-shadow 0.25s;
+  }
+  .addon:hover { transform:translateY(-3px); box-shadow:0 16px 36px rgba(27,25,23,0.08); }
+  .addon-badge {
+    display:inline-block;
+    background:var(--rose-soft);
+    color:var(--terra-dark);
+    padding:0.25rem 0.75rem;
+    border-radius:100px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-bottom:1rem;
+    font-weight:500;
+  }
+  .addon h4 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.35rem;
+    letter-spacing:-0.02em;
+    margin-bottom:0.5rem;
+    line-height:1.1;
+  }
+  .addon p {
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    line-height:1.55;
+    margin-bottom:1rem;
+  }
+  .addon-price {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.4rem;
+    color:var(--terra-dark);
+    letter-spacing:-0.02em;
+  }
+  .addon-price small {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--muted);
+    letter-spacing:0.04em;
+  }
 
-        /* COMPARISON */
-        /* TRANSACTION FEES */
-        .fees-section { background: var(--cream); }
-        .fees-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 3rem; align-items: start; }
-        .fees-card { background: var(--white); border-radius: 16px; padding: 2rem; }
-        .fees-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 0.3rem; }
-        .fees-card-sub { font-size: 0.85rem; opacity: 0.5; margin-bottom: 1.5rem; }
-        .fee-row { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 0; border-bottom: 1px solid var(--cream); }
-        .fee-row:last-child { border-bottom: none; }
-        .fee-method { display: flex; align-items: center; gap: 0.6rem; font-size: 0.92rem; }
-        .fee-method-icon { width: 32px; height: 22px; background: var(--cream); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: var(--warm); opacity: 0.5; }
-        .fee-rate { font-weight: 600; font-size: 0.92rem; color: var(--warm); white-space: nowrap; }
-        .fees-info { background: var(--white); border-radius: 16px; padding: 2rem; }
-        .fees-info h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 1rem; }
-        .fees-info p { font-size: 0.9rem; opacity: 0.65; line-height: 1.7; margin-bottom: 1rem; }
-        .fees-info p:last-child { margin-bottom: 0; }
-        .fees-highlight { background: var(--sage-light); border-radius: 10px; padding: 1.2rem 1.5rem; margin-top: 1.2rem; }
-        .fees-highlight p { opacity: 0.75; margin-bottom: 0; font-size: 0.88rem; }
-        .fees-highlight strong { color: var(--sage); }
+  /* ─── FEES ─── */
+  .fees { background:var(--paper); padding:7rem 0; }
+  .fees-head { max-width:680px; margin-bottom:3rem; }
+  .fees-head h2 em { color:var(--terra-dark); }
+  .fees-layout {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2rem;
+    align-items:start;
+  }
+  .fees-card {
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:2rem;
+  }
+  .fees-card h4 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.3rem;
+    letter-spacing:-0.02em;
+    margin-bottom:0.3rem;
+  }
+  .fees-card-sub {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    color:var(--muted);
+    letter-spacing:0.05em;
+    margin-bottom:1.5rem;
+    text-transform:uppercase;
+  }
+  .fee-row {
+    display:flex; justify-content:space-between;
+    align-items:center;
+    padding:0.75rem 0;
+    border-bottom:1px solid var(--line);
+  }
+  .fee-row:last-child { border-bottom:none; }
+  .fee-method {
+    display:flex; align-items:center;
+    gap:0.7rem;
+    font-size:0.95rem;
+  }
+  .fee-icon {
+    width:36px; height:24px;
+    background:var(--sand);
+    border-radius:4px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.64rem;
+    font-weight:500;
+    color:var(--ink);
+    letter-spacing:0.02em;
+  }
+  .fee-method small { color:var(--muted); font-size:0.82rem; margin-left:0.4em; }
+  .fee-rate {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.05rem;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+    white-space:nowrap;
+  }
+  .fees-info h4 { margin-bottom:1rem; }
+  .fees-info p {
+    font-size:0.94rem;
+    color:var(--ink-soft);
+    line-height:1.65;
+    margin-bottom:1rem;
+  }
+  .fees-info p:last-child { margin-bottom:0; }
+  .fees-info p strong { color:var(--ink); font-weight:600; }
+  .fees-highlight {
+    background:var(--forest-soft);
+    border-radius:10px;
+    padding:1rem 1.25rem;
+    margin-top:1.25rem;
+  }
+  .fees-highlight p {
+    font-size:0.9rem;
+    margin:0;
+    color:var(--ink);
+  }
+  .fees-highlight p strong { color:var(--forest); }
 
-        .compare-section { background: var(--cream); }
-        .compare-table { width: 100%; border-collapse: collapse; margin-top: 3rem; }
-        .compare-table th { text-align: left; padding: 0.8rem 1rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.4; font-weight: 600; border-bottom: 1px solid var(--mist); }
-        .compare-table th:not(:first-child) { text-align: center; }
-        .compare-table td { padding: 0.9rem 1rem; font-size: 0.92rem; border-bottom: 1px solid var(--mist); }
-        .compare-table td:not(:first-child) { text-align: center; }
-        .compare-table tr:last-child td { border-bottom: none; }
-        .compare-table .check { color: var(--sage); font-weight: 700; font-size: 1.1rem; }
-        .compare-table .cross { opacity: 0.2; }
-        .compare-table .col-rumo { background: rgba(196,101,58,0.04); }
-        .compare-th-rumo { color: var(--terracotta) !important; opacity: 1 !important; }
-        .compare-table tr:hover td { background: rgba(0,0,0,0.015); }
-
-        @media (max-width: 900px) {
-            section { padding: 4rem 1.5rem; }
-            .pricing-layout { grid-template-columns: 1fr; }
-            .plan-card-top { padding: 2rem 1.5rem 1.5rem; }
-            .plan-features { padding: 0 1.5rem 1.5rem; }
-            .plan-cta { padding: 0 1.5rem 2rem; }
-            .addons-grid { grid-template-columns: 1fr; }
-            .fees-layout { grid-template-columns: 1fr; }
-            .compare-table { font-size: 0.82rem; }
-            .compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        }
-        @media (max-width: 480px) {
-            section { padding: 3rem 1rem; }
-            .addons-grid { gap: 1rem; }
-            .addon-card { padding: 1.5rem; }
-        }
-    </style>
-    <link rel="stylesheet" href="../rudy-widget.css">
+  /* Responsive */
+  @media (max-width:900px) {
+    .pricing-layout { grid-template-columns:1fr; }
+    .plan-top { padding:2rem 1.75rem 1.5rem; }
+    .plan-toggle { padding:1rem 1.75rem; }
+    .plan-features { padding:0 1.75rem; }
+    .plan-cta { padding:0 1.75rem 2rem; }
+    .addons-grid { grid-template-columns:1fr; }
+    .fees-layout { grid-template-columns:1fr; }
+  }
+</style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html" class="nav-logo">rumo<span>.</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
-        <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-        <li><a href="index.html#features-preview">What's included?</a></li>
-        <li><a href="index.html#voor-wie">Who is it for?</a></li>
-        <li><a href="features.html">Features</a></li>
-        <li><a href="integrations.html">Integrations</a></li>
-        <li><a href="pricing.html" class="active">Pricing</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="about.html">About us</a></li>
-        <li><a href="index.html#demo" class="nav-cta">Try for free</a></li>
-        <li class="nav-lang"><a href="../prijzen.html" onclick="sessionStorage.setItem('rumo-lang-chosen','nl')">NL</a><a href="pricing.html" class="active" onclick="sessionStorage.setItem('rumo-lang-chosen','en')">EN</a><a href="../fr/tarifs.html" onclick="sessionStorage.setItem('rumo-lang-chosen','fr')">FR</a></li>
-    </ul>
+  <a href="index.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html#pillars">What does rumo do?</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="integrations.html">Integrations</a></li>
+    <li><a href="pricing.html" class="active">So, what does it cost?</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="about.html">About us</a></li>
+    <li><a href="index.html#demo" class="nav-cta">Try for free →</a></li>
+    <li class="nav-lang">
+      <a href="../prijzen.html">NL</a>
+      <a href="pricing.html" class="active">EN</a>
+      <a href="../fr/tarifs.html">FR</a>
+    </li>
+  </ul>
 </nav>
 
+<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
 <div class="page-header">
-    <div class="page-header-inner fade-up">
-        <span class="section-label">Pricing</span>
-        <h1>Simple. Predictable.<br>No surprises.</h1>
-        <p>No setup fees. No annual contract. First 6 months upfront, then cancel anytime.</p>
+  <div class="page-header-inner fade-up">
+    <div>
+      <span class="kicker">So, what does it cost?</span>
+      <h1>Simple. Predictable.<br><em>No surprises.</em></h1>
+      <p class="lead">No setup fees. No annual contract. First six months upfront, then cancel monthly. That's it.</p>
     </div>
+    <div class="page-header-side">
+      From<br>
+      <strong>€12/room/month</strong>
+    </div>
+  </div>
+  <div class="page-header-ribbon">
+    <span>Everything included</span>
+    <span>No setup fees</span>
+    <span>Cancel monthly (after 6m)</span>
+    <span>14 days free</span>
+  </div>
 </div>
 
-<!-- PRICING -->
-<section class="pricing-section">
-    <div class="section-inner">
-        <div class="pricing-layout">
-            <div class="plan-card fade-up">
-                <div class="plan-card-top">
-                    <div class="plan-name">Base Package</div>
-                    <div class="plan-price">
-                        <div class="plan-amount">&euro;12</div>
-                        <div class="plan-unit">/ room / month</div>
-                    </div>
-                    <div class="plan-note">First 6 months upfront &middot; No setup fees &middot; Then cancel anytime</div>
-                    <div class="plan-minimum">Minimum &euro;99/month</div>
-                    <div class="plan-desc">Everything you need to manage your hotel professionally. From dashboard to reports, from booking engine to guest communication. Seventeen modules, no extra costs.</div>
-                </div>
-                <div class="plan-features-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
-                    <span>View all 17 modules</span>
-                    <span class="toggle-arrow">&#9660;</span>
-                </div>
-                <ul class="plan-features">
-                    <li>Dashboard with arrivals, departures and live statistics</li>
-                    <li>Unlimited reservations with multi-room bookings</li>
-                    <li>Visual calendar with drag-and-drop</li>
-                    <li>Booking engine for direct bookings on your website</li>
-                    <li>Channel manager (Booking.com, Airbnb, Expedia)</li>
-                    <li>Room types, rate plans and allotments</li>
-                    <li>Invoicing with Peppol and UBL 2.1 export</li>
-                    <li>Reports: occupancy, revenue, ADR, RevPAR, source analysis</li>
-                    <li>Guest portal: pre-check-in, quote confirmation, online payment</li>
-                    <li>Rumo Pay (Bancontact, Visa, Mastercard, iDEAL)</li>
-                    <li>F&B: breakfast lists, minibar and restaurant charges</li>
-                    <li>Housekeeping module</li>
-                    <li>Guest profiles, company profiles and booker profiles</li>
-                    <li>Automated emails in 4 languages (NL, FR, DE, EN)</li>
-                    <li>Waitlist with automatic option reservations</li>
-                    <li>Integration with Exact Online, Yuki, Octopus</li>
-                    <li>Unlimited support, in English</li>
-                </ul>
-                <div class="plan-cta">
-                    <a href="index.html#demo" class="btn-primary">Try free for 14 days &rarr;</a>
-                </div>
-            </div>
-
-            <div class="fade-up" style="transition-delay: 0.1s">
-                <div class="calculator">
-                    <div class="calc-title">Calculate your price</div>
-                    <div class="calc-sub">Slide to your number of rooms</div>
-                    <div class="calc-slider-label">
-                        <span>Number of rooms</span>
-                        <span id="room-count">20</span>
-                    </div>
-                    <input type="range" class="calc-slider" id="room-slider" min="5" max="55" value="20">
-                    <div class="calc-range"><span>5</span><span>55</span></div>
-                    <div class="calc-addons">
-                        <div class="calc-addons-title">Add add-ons</div>
-                        <label class="calc-addon-item">
-                            <input type="checkbox" id="addon-whitelabel" data-price="45" onchange="updateCalc()">
-                            <span class="addon-label">White Label</span>
-                            <span class="addon-cost">+&euro;45/m</span>
-                        </label>
-                        <label class="calc-addon-item">
-                            <input type="checkbox" id="addon-property" data-price="29" onchange="updateCalc()">
-                            <span class="addon-label">Prevention &amp; Wellbeing</span>
-                            <span class="addon-cost">+&euro;29/m</span>
-                        </label>
-                        <label class="calc-addon-item">
-                            <input type="checkbox" id="addon-smartpricing" data-price="45" onchange="updateCalc()">
-                            <span class="addon-label">Smart Pricing</span>
-                            <span class="addon-cost">+&euro;45/m</span>
-                        </label>
-                        <label class="calc-addon-item">
-                            <input type="checkbox" id="addon-salto" data-price="45" onchange="updateCalc()">
-                            <span class="addon-label">Key Management</span>
-                            <span class="addon-cost">+&euro;45/m</span>
-                        </label>
-                        <label class="calc-addon-item">
-                            <input type="checkbox" id="addon-peppol" data-price="9" onchange="updateCalc()">
-                            <span class="addon-label">Peppol Automatic</span>
-                            <span class="addon-cost">+&euro;9/m</span>
-                        </label>
-                    </div>
-                    <div class="calc-result">
-                        <div class="calc-result-row"><span class="calc-result-label"><span id="calc-rooms">20</span> rooms &times; &euro;12</span><span id="calc-base">&euro;240</span></div>
-                        <div class="calc-result-row" id="calc-addons-row" style="display:none"><span class="calc-result-label"><span id="calc-addon-count">0</span> add-on(s)</span><span id="calc-addons-total">&euro;0</span></div>
-                        <div class="calc-result-row total"><span>Per month</span><span id="calc-total">&euro;240</span></div>
-                    </div>
-                    <div class="calc-note">Excl. Rumo Pay transaction fees</div>
-                </div>
-            </div>
+<!-- ═══════════════════════ PRICING ═══════════════════════ -->
+<section class="pricing">
+  <div class="wrap">
+    <div class="pricing-layout">
+      <div class="plan fade-up">
+        <div class="plan-top">
+          <div class="plan-name">Base plan</div>
+          <div class="plan-price">
+            <div class="plan-amount"><em>€12</em></div>
+            <div class="plan-unit">/ room / month</div>
+          </div>
+          <div class="plan-note">First 6 months upfront · No setup fees · Then cancel monthly</div>
+          <div class="plan-min">Minimum €99/month</div>
+          <div class="plan-desc">Everything you need to run your hotel professionally. From dashboard to reports, from booking engine to guest communication. <em>Seventeen modules</em>, no extra costs.</div>
         </div>
+        <div class="plan-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+          <span>View all 17 modules</span>
+          <span class="arr">▼</span>
+        </div>
+        <ul class="plan-features">
+          <li>Dashboard with arrivals, departures and live statistics</li>
+          <li>Unlimited reservations with multi-room bookings</li>
+          <li>Visual calendar with drag-and-drop</li>
+          <li>Booking engine for direct bookings on your website</li>
+          <li>Channel manager (Booking.com, Airbnb, Expedia)</li>
+          <li>Room types, rate plans and allotments</li>
+          <li>Invoicing with Peppol and UBL 2.1 export</li>
+          <li>Reports: occupancy, revenue, ADR, RevPAR, source analysis</li>
+          <li>Guest portal: pre-check-in, quote confirmation, online payments</li>
+          <li>rumo Pay (Bancontact, Visa, Mastercard, iDEAL)</li>
+          <li>F&amp;B: breakfast lists, minibar and restaurant charges</li>
+          <li>Housekeeping module</li>
+          <li>Guest profiles, company profiles and booker profiles</li>
+          <li>Automated emails in 4 languages (NL, FR, DE, EN)</li>
+          <li>Waitlist with automatic option reservations</li>
+          <li>Integration with Exact Online, Yuki, Octopus</li>
+          <li>Unlimited support, in English and Dutch</li>
+        </ul>
+        <div class="plan-cta">
+          <a href="index.html#demo" class="btn-ink">Try free for 14 days <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="fade-up" style="transition-delay:0.1s">
+        <div class="calc">
+          <div class="calc-title">Calculate your price</div>
+          <div class="calc-sub">Slide to your number of rooms</div>
+          <div class="calc-slider-label">
+            <span>Number of rooms</span>
+            <strong id="room-count">20</strong>
+          </div>
+          <input type="range" class="calc-slider" id="room-slider" min="5" max="55" value="20">
+          <div class="calc-range"><span>5</span><span>55</span></div>
+          <div class="calc-addons-block">
+            <div class="calc-addons-title">Add add-ons</div>
+            <label class="calc-addon"><input type="checkbox" id="addon-whitelabel" data-price="45"><span class="label">White Label</span><span class="cost">+€45/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-property" data-price="29"><span class="label">Prevention &amp; Wellbeing</span><span class="cost">+€29/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-smartpricing" data-price="45"><span class="label">Smart Pricing</span><span class="cost">+€45/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-salto" data-price="45"><span class="label">Key Management</span><span class="cost">+€45/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-peppol" data-price="9"><span class="label">Peppol Automatic</span><span class="cost">+€9/m</span></label>
+          </div>
+          <div class="calc-result">
+            <div class="calc-row"><span><span id="calc-rooms">20</span> rooms × €12</span><span id="calc-base">€240</span></div>
+            <div class="calc-row" id="calc-addons-row" style="display:none"><span><span id="calc-addon-count">0</span> add-on(s)</span><span id="calc-addons-total">€0</span></div>
+            <div class="calc-row total"><span>Per month</span><span id="calc-total">€240</span></div>
+          </div>
+          <div class="calc-fine">Excl. rumo Pay transaction fees</div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ADD-ONS -->
-<section class="addons-section">
-    <div class="section-inner">
-        <div class="fade-up">
-            <span class="section-label">Add-ons</span>
-            <h2 class="section-title">Expand when you're ready.</h2>
-            <p class="section-subtitle">The base package covers everything. But if you want more, there are optional modules you can activate on a monthly basis.</p>
-        </div>
-        <div class="addons-grid">
-            <div class="addon-card fade-up">
-                <div class="addon-badge">Add-on</div>
-                <h3>White Label</h3>
-                <p>Your logo and branding on the guest portal, booking engine and all emails. Everything looks like you built it yourself.</p>
-                <div class="addon-price">&euro;45 <span>/ month</span></div>
-            </div>
-            <div class="addon-card fade-up" style="transition-delay:0.07s">
-                <div class="addon-badge">Add-on</div>
-                <h3>Prevention &amp; Wellbeing</h3>
-                <p>Fire safety, legionella, first aid, evacuations, checklists, incident reports and contractor registration. Always inspection-ready.</p>
-                <div class="addon-price">&euro;29 <span>/ month</span></div>
-            </div>
-            <div class="addon-card fade-up" style="transition-delay:0.14s">
-                <div class="addon-badge">Add-on</div>
-                <h3>Smart Pricing</h3>
-                <p>Automatic price adjustments based on occupancy, season and demand. More revenue with less effort.</p>
-                <div class="addon-price">&euro;45 <span>/ month</span></div>
-            </div>
-            <div class="addon-card fade-up" style="transition-delay:0.21s">
-                <div class="addon-badge">Add-on</div>
-                <h3>Key Management</h3>
-                <p>Digital keys linked to your reservations. Guest checks in via the app and gets instant access to their room.</p>
-                <div class="addon-price">&euro;45 <span>/ month</span></div>
-            </div>
-            <div class="addon-card fade-up" style="transition-delay:0.28s">
-                <div class="addon-badge">Add-on</div>
-                <h3>Peppol Automatic</h3>
-                <p>Invoices sent automatically via the Peppol network. No XML downloads, no portals. One click and done.</p>
-                <div class="addon-price">&euro;9 <span>/ month</span></div>
-            </div>
-        </div>
+<!-- ═══════════════════════ ADDONS ═══════════════════════ -->
+<section class="addons">
+  <div class="wrap">
+    <div class="addons-head fade-up">
+      <span class="kicker">Add-ons</span>
+      <h2>Expand <em>when</em> you're ready.</h2>
+      <p class="lead" style="margin-top:1.25rem;">The base plan covers everything. But if you want more, there are optional modules you can activate per month.</p>
     </div>
+    <div class="addons-grid">
+      <div class="addon fade-up">
+        <span class="addon-badge">Add-on</span>
+        <h4>White Label</h4>
+        <p>Your logo and brand identity on the guest portal, booking engine and all emails. Everything looks like you built it yourself.</p>
+        <div class="addon-price">€45 <small>/ month</small></div>
+      </div>
+      <div class="addon fade-up" style="transition-delay:0.07s">
+        <span class="addon-badge">Add-on</span>
+        <h4>Prevention &amp; Wellbeing</h4>
+        <p>Fire prevention, legionella, first aid, evacuations, checklists, incident reports and contractor registration. Always inspection-ready.</p>
+        <div class="addon-price">€29 <small>/ month</small></div>
+      </div>
+      <div class="addon fade-up" style="transition-delay:0.14s">
+        <span class="addon-badge">Add-on</span>
+        <h4>Smart Pricing</h4>
+        <p>Automatic price adjustments based on occupancy, season and demand. More revenue with less effort.</p>
+        <div class="addon-price">€45 <small>/ month</small></div>
+      </div>
+      <div class="addon fade-up" style="transition-delay:0.21s">
+        <span class="addon-badge">Add-on</span>
+        <h4>Key Management</h4>
+        <p>Digital keys linked to your reservations. Guest checks in via the app and gets instant access to their room.</p>
+        <div class="addon-price">€45 <small>/ month</small></div>
+      </div>
+      <div class="addon fade-up" style="transition-delay:0.28s">
+        <span class="addon-badge">Add-on</span>
+        <h4>Peppol Automatic</h4>
+        <p>Invoices sent automatically via the Peppol network. No downloading XML files, no portals. One click and done.</p>
+        <div class="addon-price">€9 <small>/ month</small></div>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-
-<!-- TRANSACTION FEES -->
-<section class="fees-section">
-    <div class="section-inner">
-        <div class="fade-up">
-            <span class="section-label">Rumo Pay</span>
-            <h2 class="section-title">Transparent transaction fees.<br>No hidden margins.</h2>
-            <p class="section-subtitle">Rumo Pay is the built-in payment solution that lets your guests pay securely online. You only pay per transaction. No monthly fees, no minimum volumes.</p>
-        </div>
-        <div class="fees-layout">
-            <div class="fees-card fade-up">
-                <h3>Rates per payment method</h3>
-                <div class="fees-card-sub">Per successful transaction. No charges for failed payments.</div>
-                <div class="fee-row">
-                    <div class="fee-method">
-                        <div class="fee-method-icon">BC</div>
-                        <span>Bancontact</span>
-                    </div>
-                    <div class="fee-rate">1.8% + &euro;0.25</div>
-                </div>
-                <div class="fee-row">
-                    <div class="fee-method">
-                        <div class="fee-method-icon">V/MC</div>
-                        <span>Visa / Mastercard <span style="opacity:0.45;font-size:0.82rem">(European)</span></span>
-                    </div>
-                    <div class="fee-rate">1.9% + &euro;0.25</div>
-                </div>
-                <div class="fee-row">
-                    <div class="fee-method">
-                        <div class="fee-method-icon">V/MC</div>
-                        <span>Visa / Mastercard <span style="opacity:0.45;font-size:0.82rem">(non-EU)</span></span>
-                    </div>
-                    <div class="fee-rate">3.65% + &euro;0.25</div>
-                </div>
-                <div class="fee-row">
-                    <div class="fee-method">
-                        <div class="fee-method-icon">iD</div>
-                        <span>iDEAL</span>
-                    </div>
-                    <div class="fee-rate">0.4% + &euro;0.29</div>
-                </div>
-                <div class="fee-row">
-                    <div class="fee-method">
-                        <div class="fee-method-icon">AMEX</div>
-                        <span>American Express</span>
-                    </div>
-                    <div class="fee-rate">3.25% + &euro;0.25</div>
-                </div>
-            </div>
-
-            <div class="fees-info fade-up" style="transition-delay:0.1s">
-                <h3>How does it work?</h3>
-                <p>Rumo Pay processes payments directly to your account. Guests pay through a secure payment page, from a payment request, the booking engine, or the guest portal.</p>
-                <p>Payouts are made automatically to your bank account. You can track everything in Rumo: which guest paid, when, and for which reservation.</p>
-                <p>In case of a <strong>chargeback</strong> (disputed payment), the disputed amount + a one-time dispute fee of &euro;15 is temporarily held on your account. If you win the dispute, everything is released. In your Rumo dashboard you can always see exactly which amounts are held and why.</p>
-                <div class="fees-highlight">
-                    <p><strong>No monthly fees.</strong> No minimum volumes. No contracts. You only pay when a guest pays.</p>
-                </div>
-            </div>
-        </div>
+<!-- ═══════════════════════ FEES ═══════════════════════ -->
+<section class="fees">
+  <div class="wrap">
+    <div class="fees-head fade-up">
+      <span class="kicker">rumo Pay</span>
+      <h2>Transparent <em>transaction fees</em>.<br>No hidden margins.</h2>
+      <p class="lead" style="margin-top:1.25rem;">With rumo Pay, guests pay securely online. Built-in, no extra software. You only pay per transaction. No monthly fees, no minimum volumes.</p>
     </div>
+    <div class="fees-layout">
+      <div class="fees-card fade-up">
+        <h4>Rates per payment method</h4>
+        <div class="fees-card-sub">Per successful transaction · No charges on failed payments</div>
+        <div class="fee-row">
+          <div class="fee-method"><div class="fee-icon">BC</div><span>Bancontact</span></div>
+          <div class="fee-rate">1,8% + €0,25</div>
+        </div>
+        <div class="fee-row">
+          <div class="fee-method"><div class="fee-icon">V/MC</div><span>Visa / Mastercard <small>(European)</small></span></div>
+          <div class="fee-rate">1,9% + €0,25</div>
+        </div>
+        <div class="fee-row">
+          <div class="fee-method"><div class="fee-icon">V/MC</div><span>Visa / Mastercard <small>(non-EU)</small></span></div>
+          <div class="fee-rate">3,65% + €0,25</div>
+        </div>
+        <div class="fee-row">
+          <div class="fee-method"><div class="fee-icon">iD</div><span>iDEAL</span></div>
+          <div class="fee-rate">0,4% + €0,29</div>
+        </div>
+        <div class="fee-row">
+          <div class="fee-method"><div class="fee-icon">AMEX</div><span>American Express</span></div>
+          <div class="fee-rate">3,25% + €0,25</div>
+        </div>
+      </div>
+
+      <div class="fees-card fees-info fade-up" style="transition-delay:0.1s">
+        <h4>How does it work?</h4>
+        <p>rumo Pay processes payments directly to your account. Guests pay via a secure payment page, from a payment request, the booking engine, or the guest portal.</p>
+        <p>Payouts happen automatically to your bank account. You keep track of everything in rumo: which guest paid, when, and for which reservation.</p>
+        <p>In case of a <strong>chargeback</strong> (disputed payment), the disputed amount + a one-time dispute fee of €15 is temporarily held on your account. Win the dispute and everything is released.</p>
+        <div class="fees-highlight">
+          <p><strong>No monthly fees.</strong> No minimum volumes. No contracts. You only pay when a guest pays.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta" id="demo">
-    <div class="fade-up">
-        <h2 class="section-title">Convinced? Try it yourself.</h2>
-        <p class="section-subtitle">14 days free. No credit card. No obligations.</p>
-        <a href="index.html#demo" class="btn-primary">Calculate your price and get started &rarr;</a>
-    </div>
+<!-- ═══════════════════════ FINAL ═══════════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Convinced?</span>
+    <h2>Try it <em>yourself.</em></h2>
+    <p>14 days free. No credit card. No strings attached. Not for you? It quietly disappears. No hard feelings.</p>
+    <a href="index.html#demo" class="btn-paper">Calculate your price and get started <span>→</span></a>
+    <p class="final-fine">No credit card · Cancel monthly after 6 months · Free data migration</p>
+  </div>
 </section>
 
 <footer>
-    <div class="footer-inner">
-        <div>
-            <div class="footer-brand">rumo<span>.</span></div>
-            <p class="footer-tagline">Hotel software that just works. No manual needed.</p>
-        </div>
-        <div>
-            <div class="footer-label">Product</div>
-            <ul class="footer-links">
-                <li><a href="features.html">Features</a></li>
-        <li><a href="integrations.html">Integrations</a></li>
-                <li><a href="pricing.html" class="active">Pricing</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-            </ul>
-        </div>
-        <div>
-            <div class="footer-label">Rumo</div>
-            <ul class="footer-links">
-                <li><a href="https://wa.me/32485382828" target="_blank" rel="noopener">WhatsApp</a></li>
-                <li><a href="mailto:hello@rumo.eu">Contact</a></li>
-                <li><a href="about.html">About us</a></li>
-            </ul>
-        </div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Hotel software for independent hoteliers. No fuss.</p>
     </div>
-    <div class="footer-bottom">&copy; 2026 Rumo. All rights reserved.</div>
+    <div>
+      <div class="footer-label">Product</div>
+      <ul class="footer-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="integrations.html">Integrations</a></li>
+        <li><a href="pricing.html">So, what does it cost?</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Send us an email</a></li>
+        <li><a href="about.html">About us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Integrations</div>
+      <ul class="footer-links">
+        <li><a href="integrations.html">Booking.com</a></li>
+        <li><a href="integrations.html">Airbnb</a></li>
+        <li><a href="integrations.html">Exact Online</a></li>
+        <li><a href="integrations.html">Peppol</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Ghent, BE</span>
+    <span>Direction · Sfeer</span>
+  </div>
 </footer>
 
-
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
-    });
+// Calculator
+const slider = document.getElementById('room-slider');
+const roomCount = document.getElementById('room-count');
+const calcRooms = document.getElementById('calc-rooms');
+const calcBase = document.getElementById('calc-base');
+const calcTotal = document.getElementById('calc-total');
+const calcAddonsRow = document.getElementById('calc-addons-row');
+const calcAddonCount = document.getElementById('calc-addon-count');
+const calcAddonsTotal = document.getElementById('calc-addons-total');
+const addonCheckboxes = [
+  document.getElementById('addon-whitelabel'),
+  document.getElementById('addon-property'),
+  document.getElementById('addon-smartpricing'),
+  document.getElementById('addon-salto'),
+  document.getElementById('addon-peppol')
+];
+const PRICE_PER_ROOM = 12, MINIMUM = 99;
 
-    const PRICE_PER_ROOM = 12;
-    const MINIMUM_BASE = 99;
-    const slider = document.getElementById('room-slider');
-    const roomCount = document.getElementById('room-count');
-    const calcRooms = document.getElementById('calc-rooms');
-    const calcBase = document.getElementById('calc-base');
-    const calcTotal = document.getElementById('calc-total');
-    const calcAddonsRow = document.getElementById('calc-addons-row');
-    const calcAddonCount = document.getElementById('calc-addon-count');
-    const calcAddonsTotal = document.getElementById('calc-addons-total');
-    const addonCheckboxes = [
-        document.getElementById('addon-whitelabel'),
-        document.getElementById('addon-property'),
-        document.getElementById('addon-smartpricing'),
-        document.getElementById('addon-salto'),
-        document.getElementById('addon-peppol')
-    ];
+function updateCalc() {
+  const rooms = parseInt(slider.value);
+  const rawBase = rooms * PRICE_PER_ROOM;
+  const base = Math.max(rawBase, MINIMUM);
+  const checked = addonCheckboxes.filter(cb => cb.checked);
+  const addonsTotal = checked.reduce((s, cb) => s + parseInt(cb.dataset.price), 0);
+  const total = base + addonsTotal;
 
-    function updateCalc() {
-        const rooms = parseInt(slider.value);
-        const rawBase = rooms * PRICE_PER_ROOM;
-        const base = Math.max(rawBase, MINIMUM_BASE);
-        const checkedAddons = addonCheckboxes.filter(cb => cb.checked);
-        const addonsTotal = checkedAddons.reduce((sum, cb) => sum + parseInt(cb.dataset.price), 0);
-        const total = base + addonsTotal;
+  roomCount.textContent = rooms;
+  calcRooms.textContent = rooms;
+  calcBase.textContent = '€' + base + (rawBase < MINIMUM ? ' (min.)' : '');
 
-        roomCount.textContent = rooms;
-        calcRooms.textContent = rooms;
-        calcBase.textContent = '\u20AC' + base + (rawBase < MINIMUM_BASE ? ' (min.)' : '');
-
-        if (checkedAddons.length > 0) {
-            calcAddonsRow.style.display = '';
-            calcAddonCount.textContent = checkedAddons.length;
-            calcAddonsTotal.textContent = '\u20AC' + addonsTotal;
-        } else {
-            calcAddonsRow.style.display = 'none';
-        }
-
-        calcTotal.textContent = '\u20AC' + total;
-    }
-    slider.addEventListener('input', updateCalc);
+  if (checked.length > 0) {
+    calcAddonsRow.style.display = '';
+    calcAddonCount.textContent = checked.length;
+    calcAddonsTotal.textContent = '€' + addonsTotal;
+  } else {
+    calcAddonsRow.style.display = 'none';
+  }
+  calcTotal.textContent = '€' + total;
+}
+slider.addEventListener('input', updateCalc);
+addonCheckboxes.forEach(cb => cb.addEventListener('change', updateCalc));
 </script>
-<script src="../rudy-widget.js"></script>
 </body>
 </html>

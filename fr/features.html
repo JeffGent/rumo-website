@@ -1,653 +1,957 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fonctionnalités | Rumo Hotelsoftware</title>
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Découvre toutes les fonctionnalités de Rumo : l'assistant IA Rudy, une handbook intégrée, un tableau de bord intuitif, la facturation automatique, le channel manager et bien plus.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../shared.css">
-    <style>
-        .page-header p { max-width: 560px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fonctionnalités · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="rumo fait tout ce que tu attends d'un PMS, plus un assistant IA, un manuel et une automatisation puissante.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared-sfeer.css">
+<style>
+  /* ─── FEATURE MODULE ─── */
+  .feature {
+    padding:5rem 0;
+    border-top:1px solid var(--line);
+    background:var(--paper);
+  }
+  .feature:nth-of-type(even) {
+    background:var(--paper-deep);
+  }
+  .feature-inner {
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+    gap:5rem;
+    align-items:center;
+  }
+  .feature:nth-of-type(even) .feature-inner > .feature-visual { order:-1; }
 
-        /* FEATURE MODULES — hero differentiators */
-        .feature-module { padding: 5rem 3rem; }
-        .feature-module:nth-child(even) { background: var(--white); }
-        .feature-module-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-        .feature-module-inner.wide-visual { grid-template-columns: 2fr 3fr; gap: 3rem; }
-        .feature-module:nth-child(even) .feature-module-inner.wide-visual { grid-template-columns: 3fr 2fr; }
-        .feature-module:nth-child(even) .feature-module-inner { direction: rtl; }
-        .feature-module:nth-child(even) .feature-module-text { direction: ltr; }
-        .feature-module:nth-child(even) .feature-module-visual { direction: ltr; }
+  .feature-tag {
+    display:inline-flex;
+    align-items:center;
+    gap:0.6em;
+    margin-bottom:1.25rem;
+  }
+  .feature-tag .ic {
+    width:30px; height:30px;
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .feature-tag svg { width:16px; height:16px; stroke-width:1.8; fill:none; }
+  .feature-tag .lbl {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    font-weight:500;
+    color:var(--ink);
+  }
 
-        .feature-module-tag { display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: 1.2rem; }
-        .feature-module-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-        .feature-module-icon svg { width: 20px; height: 20px; stroke-width: 1.5; }
-        .feature-module-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 2px; color: var(--terracotta); font-weight: 600; }
+  .feature h2 {
+    font-size:clamp(1.9rem, 3.8vw, 3rem);
+    line-height:1.04;
+    margin-bottom:1.2rem;
+  }
+  .feature h2 em { color:var(--terra-dark); }
+  .feature p {
+    font-size:1.05rem;
+    line-height:1.6;
+    color:var(--ink-soft);
+    margin-bottom:1.5rem;
+    max-width:52ch;
+  }
+  .feature-bullets {
+    list-style:none;
+  }
+  .feature-bullets li {
+    padding:0.6rem 0;
+    padding-left:1.5rem;
+    position:relative;
+    font-size:0.96rem;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+  }
+  .feature-bullets li:last-child { border-bottom:1px solid var(--line); }
+  .feature-bullets li::before {
+    content:'';
+    position:absolute;
+    left:0; top:50%;
+    transform:translateY(-50%);
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--terra);
+  }
 
-        .feature-module-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.5px; }
-        .feature-module-text p { font-size: 1rem; opacity: 0.65; line-height: 1.8; margin-bottom: 1.5rem; }
+  /* ─── MOCKUP FRAME ─── */
+  .mockup {
+    background:var(--paper-panel);
+    border-radius:20px;
+    padding:1.75rem;
+    box-shadow:
+      0 30px 60px -20px rgba(27,25,23,0.15),
+      0 0 0 1px rgba(27,25,23,0.04);
+    position:relative;
+    overflow:hidden;
+  }
+  .mockup::before {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg, rgba(255,255,255,0.55), transparent 60%);
+    pointer-events:none;
+    border-radius:inherit;
+  }
+  .mockup-head {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:1rem;
+  }
+  .mockup-head h5 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.1rem;
+    letter-spacing:-0.02em;
+  }
+  .mockup-head .meta {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.06em;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+  .mockup-head .badge {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.64rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:0.25rem 0.6rem;
+    border-radius:100px;
+    background:var(--sand);
+    color:var(--ink);
+  }
+  .mockup-head .badge.live { background:var(--terra); color:var(--paper); }
+  .mockup-head .badge.live::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--paper); display:inline-block; margin-right:0.35em; }
 
-        .feature-bullets { list-style: none; margin-bottom: 2rem; }
-        .feature-bullets li { padding: 0.35rem 0; font-size: 0.95rem; font-weight: 500; display: flex; align-items: flex-start; gap: 0.7rem; }
-        .feature-bullets li::before { content: '✓'; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--sage-light); color: var(--sage); font-size: 0.75rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  /* Mockup · Rudy */
+  .mk-rudy .chat { display:flex; flex-direction:column; gap:0.5rem; padding-top:0.5rem; }
+  .mk-rudy .msg {
+    max-width:82%;
+    padding:0.6rem 0.9rem;
+    border-radius:14px;
+    font-size:0.85rem;
+    line-height:1.45;
+  }
+  .mk-rudy .msg.u { background:var(--sand); color:var(--ink); margin-left:auto; border-bottom-right-radius:4px; }
+  .mk-rudy .msg.b { background:var(--ink); color:var(--paper); border-bottom-left-radius:4px; }
+  .mk-rudy .msg.b strong { color:var(--butter); font-weight:600; }
+  .mk-rudy .head-avatar {
+    display:flex; align-items:center; gap:0.6rem;
+    padding-bottom:0.85rem;
+    border-bottom:1px solid var(--line);
+    margin-bottom:0.75rem;
+  }
+  .mk-rudy .avatar {
+    width:32px; height:32px; border-radius:50%;
+    background:var(--terra-dark);
+    color:var(--paper);
+    font-family:'Fraunces', serif;
+    font-size:0.95rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .mk-rudy .head-avatar strong {
+    font-family:'Fraunces', serif; font-weight:400; font-size:1rem;
+    display:block; line-height:1.1;
+  }
+  .mk-rudy .head-avatar span {
+    font-size:0.7rem; color:var(--forest);
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.06em; text-transform:uppercase;
+  }
 
-        /* MOCKUP CARDS */
-        .mockup-card { background: var(--white); border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.07), 0 4px 15px rgba(0,0,0,0.04); padding: 1.5rem; }
-        .mockup-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--mist); }
-        .mockup-card-title { font-family: 'Playfair Display', serif; font-size: 1rem; }
-        .mockup-badge { background: var(--sage-light); color: var(--sage); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
-        .mockup-badge-blue { background: #e8f0f8; color: #4a7fb5; }
+  /* Mockup · Handbook */
+  .mk-handbook .cats {
+    display:grid; grid-template-columns:1fr 1fr; gap:0.6rem;
+    margin-bottom:0.8rem;
+  }
+  .mk-handbook .cat {
+    background:var(--paper); border-radius:10px; padding:0.8rem;
+    border:1px solid var(--line);
+  }
+  .mk-handbook .cat .ic {
+    width:24px; height:24px; border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:0.4rem;
+  }
+  .mk-handbook .cat.a .ic { background:var(--rose-soft); color:var(--terra-dark); }
+  .mk-handbook .cat.b .ic { background:var(--forest-soft); color:var(--forest); }
+  .mk-handbook .cat.c .ic { background:#FCEDBD; color:#8a6b1a; }
+  .mk-handbook .cat.d .ic { background:var(--sand); color:var(--ink); }
+  .mk-handbook .cat .ic svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.6; }
+  .mk-handbook .cat strong {
+    display:block; font-size:0.82rem; font-weight:600; color:var(--ink);
+    margin-bottom:0.15rem;
+  }
+  .mk-handbook .cat span {
+    font-size:0.7rem; color:var(--muted);
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+  .mk-handbook .recent {
+    background:var(--paper); border-radius:10px; padding:0.8rem;
+    border:1px solid var(--line);
+  }
+  .mk-handbook .recent .lbl {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.65rem; color:var(--muted);
+    letter-spacing:0.06em; text-transform:uppercase;
+    margin-bottom:0.3rem;
+  }
+  .mk-handbook .recent strong { display:block; font-size:0.88rem; color:var(--ink); margin-bottom:0.15rem; }
+  .mk-handbook .recent span { font-size:0.72rem; color:var(--muted); }
 
-        .screenshot { width: 100%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 4px 15px rgba(0,0,0,0.04); }
-        .screenshot-wrap { position: relative; }
-        .screenshot-wrap .screenshot { width: 130%; max-width: none; }
-        .feature-module:nth-child(even) .screenshot-wrap .screenshot { margin-left: -30%; }
+  /* Mockup · Dashboard */
+  .mk-dashboard .stats {
+    background:var(--ink); color:var(--paper);
+    border-radius:14px; padding:1rem 1.2rem;
+    display:flex; align-items:center; gap:1.5rem;
+    margin-bottom:0.85rem;
+  }
+  .mk-dashboard .stats div { flex:1; }
+  .mk-dashboard .stats .big {
+    font-family:'Fraunces', serif; font-weight:400;
+    font-size:1.5rem; letter-spacing:-0.03em;
+    line-height:1;
+  }
+  .mk-dashboard .stats .lbl {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem; letter-spacing:0.06em;
+    color:rgba(245,238,226,0.55);
+    text-transform:uppercase; margin-bottom:0.15rem;
+  }
+  .mk-dashboard .stats .mini .big {
+    font-family:'Inter', sans-serif; font-weight:600;
+    font-size:0.95rem;
+  }
+  .mk-dashboard .stats .mini .big.t { color:var(--terra); }
+  .mk-dashboard .stats .mini .big.g { color:var(--butter); }
+  .mk-dashboard .rooms {
+    font-weight:600; font-size:0.85rem; margin-bottom:0.4rem;
+  }
+  .mk-dashboard .room-grid {
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:0.5rem;
+  }
+  .mk-dashboard .room {
+    background:var(--paper); border-radius:10px; padding:0.65rem;
+    border-left:3px solid var(--forest);
+    border-top:1px solid var(--line);
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .mk-dashboard .room .num { font-weight:700; font-size:0.95rem; color:var(--ink); }
+  .mk-dashboard .room .guest { font-size:0.72rem; color:var(--muted); line-height:1.3; margin-top:0.1rem; }
+  .mk-dashboard .room .tag {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem; color:var(--forest);
+    letter-spacing:0.04em; text-transform:uppercase;
+    margin-top:0.25rem;
+  }
 
-        /* COMPACT FEATURE GRID — "Et en plus" */
-        .features-compact { background: var(--white); padding: 5rem 3rem; }
-        .features-compact-inner { max-width: 1100px; margin: 0 auto; }
-        .features-compact-inner .section-title { margin-bottom: 0.5rem; }
-        .features-compact-inner .section-subtitle { margin-bottom: 2.5rem; }
-        .compact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-        .compact-card { background: var(--cream); border-radius: 12px; padding: 1.5rem; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .compact-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
-        .compact-card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.8rem; }
-        .compact-card-icon svg { width: 20px; height: 20px; stroke-width: 1.5; }
-        .compact-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; line-height: 1.3; }
-        .compact-card p { font-size: 0.88rem; opacity: 0.6; line-height: 1.6; }
+  /* Mockup · Calendar */
+  .mk-calendar .hd {
+    display:grid; grid-template-columns:60px repeat(5, 1fr); gap:3px;
+    margin-bottom:0.4rem;
+  }
+  .mk-calendar .hd div {
+    text-align:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem; letter-spacing:0.05em;
+    color:var(--muted); text-transform:uppercase;
+    padding:0.2rem 0;
+  }
+  .mk-calendar .hd div.active { color:var(--terra-dark); font-weight:600; }
+  .mk-calendar .rows { display:grid; grid-template-columns:60px repeat(5, 1fr); gap:3px; row-gap:0.4rem; }
+  .mk-calendar .lbl {
+    font-size:0.74rem; font-weight:600; padding:0.5rem 0;
+    display:flex; align-items:center;
+    color:var(--ink);
+  }
+  .mk-calendar .lbl small { font-weight:400; color:var(--muted); font-size:0.58rem; margin-left:0.3em; letter-spacing:0.04em; text-transform:uppercase; }
+  .mk-calendar .cell {
+    border-radius:4px;
+    padding:0.35rem 0.5rem;
+    font-size:0.68rem;
+    color:#fff;
+    display:flex; align-items:center;
+  }
+  .mk-calendar .cell.empty { background:var(--sand); }
+  .mk-calendar .cell.booked { background:var(--terra); }
+  .mk-calendar .cell.booked2 { background:var(--forest); }
+  .mk-calendar .cell.booked3 { background:#8a6b1a; }
+  .mk-calendar .cell.tentative { background:var(--terra); opacity:0.4; }
 
-        @media (max-width: 900px) {
-            section, .feature-module, .features-compact { padding: 3rem 1.5rem; }
-            .feature-module-inner, .feature-module-inner.wide-visual,
-            .feature-module:nth-child(even) .feature-module-inner.wide-visual { grid-template-columns: 1fr; gap: 1.5rem; direction: ltr !important; }
-            .screenshot-wrap .screenshot { width: 100% !important; max-width: 100% !important; margin-left: 0 !important; }
-            .feature-module-inner .feature-module-text,
-            .feature-module-inner .feature-module-visual { direction: ltr; }
-            .feature-module-visual { overflow-x: auto; }
-            .feature-module-text h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-            .feature-module-text p { font-size: 0.92rem; margin-bottom: 0.8rem; }
-            .feature-bullets { display: none; }
-            .feature-module-tag { margin-bottom: 0.8rem; }
-            .mockup-card { padding: 1rem; }
-            .compact-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-            .compact-card { padding: 1.2rem; }
-            .compact-card h3 { font-size: 1rem; }
-        }
-        @media (max-width: 480px) {
-            section, .feature-module, .features-compact { padding: 2.5rem 1rem; }
-            .feature-module-inner { gap: 1.2rem; }
-            .compact-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-    <link rel="stylesheet" href="../rudy-widget.css">
+  /* Mockup · Automation */
+  .mk-auto .step {
+    display:flex; align-items:center; gap:0.85rem;
+    background:var(--paper); border-radius:10px; padding:0.75rem;
+    border:1px solid var(--line);
+    margin-bottom:0.5rem;
+  }
+  .mk-auto .step .check {
+    width:24px; height:24px; border-radius:50%;
+    background:var(--forest); color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    font-size:0.72rem; font-weight:700;
+  }
+  .mk-auto .step strong {
+    display:block; font-size:0.85rem; color:var(--ink); font-weight:600;
+  }
+  .mk-auto .step span {
+    font-size:0.72rem; color:var(--muted);
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+
+  /* Mockup · Property (notifications) */
+  .mk-property .notif {
+    display:flex; align-items:center; gap:0.75rem;
+    border-radius:10px; padding:0.7rem 0.85rem;
+    margin-bottom:0.45rem;
+    border:1px solid transparent;
+  }
+  .mk-property .notif .ic {
+    width:24px; height:24px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    color:var(--paper);
+    font-size:0.62rem; font-weight:700;
+  }
+  .mk-property .notif.warn { background:#FCEDBD; }
+  .mk-property .notif.warn .ic { background:#D9A53A; }
+  .mk-property .notif.ok { background:var(--forest-soft); }
+  .mk-property .notif.ok .ic { background:var(--forest); }
+  .mk-property .notif.red { background:var(--rose-soft); }
+  .mk-property .notif.red .ic { background:#D25F5F; }
+  .mk-property .notif.info { background:var(--sand); }
+  .mk-property .notif.info .ic { background:var(--ink); }
+  .mk-property .notif strong { display:block; font-size:0.82rem; color:var(--ink); font-weight:600; }
+  .mk-property .notif span { font-size:0.7rem; color:var(--muted); font-family:'JetBrains Mono', monospace; letter-spacing:0.02em; }
+
+  /* ─── COMPACT GRID ─── */
+  .compact {
+    background:var(--paper);
+    padding:6rem 0;
+  }
+  .compact-head { max-width:680px; margin-bottom:3rem; }
+  .compact-head h2 em { color:var(--terra-dark); }
+  .compact-grid {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.25rem;
+  }
+  .compact-card {
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.5rem 1.5rem 1.75rem;
+    transition:transform 0.25s, box-shadow 0.25s;
+  }
+  .compact-card:hover {
+    transform:translateY(-3px);
+    box-shadow:0 16px 36px rgba(27,25,23,0.08);
+  }
+  .compact-ic {
+    width:32px; height:32px;
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:0.9rem;
+  }
+  .compact-ic svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+  .compact-card h4 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.2rem;
+    letter-spacing:-0.02em;
+    margin-bottom:0.4rem;
+    line-height:1.15;
+  }
+  .compact-card p {
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
+
+  /* Responsive */
+  @media (max-width:900px) {
+    .feature-inner { grid-template-columns:1fr; gap:2.5rem; }
+    .feature:nth-of-type(even) .feature-inner > .feature-visual { order:unset; }
+    .feature { padding:3.5rem 0; }
+    .compact-grid { grid-template-columns:1fr; }
+  }
+</style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html" class="nav-logo">rumo<span>.</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
-        <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-        <li><a href="index.html#features-preview">Qu'est-ce qui est inclus ?</a></li>
-        <li><a href="index.html#voor-wie">Pour qui ?</a></li>
-        <li><a href="features.html" class="active">Fonctionnalités</a></li>
-        <li><a href="integrations.html">Intégrations</a></li>
-        <li><a href="tarifs.html">Tarifs</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="a-propos.html">À propos</a></li>
-        <li><a href="index.html#demo" class="nav-cta">Essaie gratuitement</a></li>
-        <li class="nav-lang"><a href="../features.html" onclick="sessionStorage.setItem('rumo-lang-chosen','nl')">NL</a><a href="../en/features.html" onclick="sessionStorage.setItem('rumo-lang-chosen','en')">EN</a><a href="features.html" class="active" onclick="sessionStorage.setItem('rumo-lang-chosen','fr')">FR</a></li>
-    </ul>
+  <a href="index.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html#piliers">Que fait rumo ?</a></li>
+    <li><a href="features.html" class="active">Fonctionnalités</a></li>
+    <li><a href="integrations.html">Intégrations</a></li>
+    <li><a href="tarifs.html">Et euh, ça coûte combien ?</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="a-propos.html">À propos</a></li>
+    <li><a href="index.html#demo" class="nav-cta">Essaie gratuitement →</a></li>
+    <li class="nav-lang">
+      <a href="../features.html">NL</a>
+      <a href="../en/features.html">EN</a>
+      <a href="features.html" class="active">FR</a>
+    </li>
+  </ul>
 </nav>
 
-<!-- PAGE HEADER -->
+<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
 <div class="page-header">
-    <div class="page-header-inner fade-up">
-        <span class="section-label">Fonctionnalités</span>
-        <h1>Conçu pour les hôtels<br>qui veulent <em>bien travailler.</em></h1>
-        <p>Rumo fait tout ce que tu attends d'un PMS, mais y ajoute un assistant IA, une handbook et une automatisation puissante.</p>
+  <div class="page-header-inner fade-up">
+    <div>
+      <span class="kicker">Fonctionnalités</span>
+      <h1>Conçu pour les hôtels<br>qui <em>veulent bien travailler.</em></h1>
+      <p class="lead">rumo fait tout ce que tu attends d'un PMS, plus un assistant IA, un manuel et une automatisation puissante. Six highlights d'abord, ensuite tout le reste.</p>
     </div>
+    <div class="page-header-side">
+      6 highlights<br>
+      <strong>+ 12 modules</strong>
+    </div>
+  </div>
+  <div class="page-header-ribbon">
+    <span>Assistant IA</span>
+    <span>Manuel</span>
+    <span>Dashboard</span>
+    <span>Calendrier</span>
+    <span>Automatisation</span>
+    <span>Prévention &amp; Bien-être</span>
+  </div>
 </div>
 
-<!-- ============================================ -->
-<!-- HERO DIFFERENTIATORS — what makes Rumo unique -->
-<!-- ============================================ -->
-
-<!-- RUDY -->
-<div class="feature-module" id="rudy">
-    <div class="feature-module-inner">
-        <div class="feature-module-text fade-up">
-            <div class="feature-module-tag">
-                <div class="feature-module-icon" style="background: rgba(196,101,58,0.1); color: #c4653a;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </div>
-                <span class="feature-module-label">Rudy</span>
-            </div>
-            <h2>Un collègue qui ne prend<br>jamais congé.</h2>
-            <p>Rudy est l'assistant IA qui vit dans Rumo. Il connaît ton hôtel, tes procédures et tes données. Pose une question en langage courant et Rudy te donne la réponse. Pas besoin de manuel, pas de recherche. Il suffit de demander.</p>
-            <ul class="feature-bullets">
-                <li>"Quelles chambres sont libres demain ?"</li>
-                <li>"Quel chiffre d'affaires avons-nous réalisé ce mois-ci ?"</li>
-                <li>"Quelle est notre procédure d'annulation ?"</li>
-                <li>Connaît tes réservations, tes chiffres et tes articles du handbook</li>
-                <li>Toujours disponible, toujours patient</li>
-            </ul>
+<!-- ═══════════════════════ FEATURE · RUDY ═══════════════════════ -->
+<section class="feature" id="rudy">
+  <div class="wrap">
+    <div class="feature-inner fade-up">
+      <div class="feature-text">
+        <div class="feature-tag">
+          <div class="ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <span class="lbl">Rudy</span>
         </div>
-        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
-            <div class="mockup-card" style="padding:0;">
-                <div style="padding:1.5rem 1.5rem 0;">
-                    <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1.2rem;">
-                        <div style="width:36px;height:36px;border-radius:50%;background:var(--sand);display:flex;align-items:center;justify-content:center;">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2c2418" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div>
-                            <div style="font-family:'Playfair Display',serif;font-size:0.95rem;">Rudy</div>
-                            <div style="font-size:0.65rem;opacity:0.4;">Ton assistant hôtelier</div>
-                        </div>
-                    </div>
-                </div>
-                <div style="padding:0 1.5rem 1.5rem;display:flex;flex-direction:column;gap:0.6rem;">
-                    <div style="align-self:flex-end;background:var(--sand);padding:0.6rem 0.9rem;border-radius:12px 12px 2px 12px;font-size:0.8rem;max-width:80%;">Combien de chambres sont libres demain ?</div>
-                    <div style="align-self:flex-start;background:var(--cream);padding:0.6rem 0.9rem;border-radius:12px 12px 12px 2px;font-size:0.8rem;max-width:85%;line-height:1.5;">
-                        Demain, il y a <strong>4 chambres</strong> disponibles : 2x Comfort Twin, 1x Deluxe Double et 1x Suite. Tu veux créer une réservation ?
-                    </div>
-                    <div style="align-self:flex-end;background:var(--sand);padding:0.6rem 0.9rem;border-radius:12px 12px 2px 12px;font-size:0.8rem;max-width:80%;">Que faire si quelqu'un appelle pour un late check-in ?</div>
-                    <div style="align-self:flex-start;background:var(--cream);padding:0.6rem 0.9rem;border-radius:12px 12px 12px 2px;font-size:0.8rem;max-width:85%;line-height:1.5;">
-                        Selon votre <strong>procédure de réception</strong> : note l'heure d'arrivée prévue, envoie le code de porte via le guest portal, et préviens le housekeeping que la chambre doit être prête.
-                    </div>
-                </div>
+        <h2>Un collègue qui<br>ne prend <em>jamais</em> congé.</h2>
+        <p>Rudy est l'assistant IA qui vit dans rumo. Il connaît ton hôtel, tes procédures et tes données. Pose une question en langage courant et Rudy te donne la réponse. Pas besoin de manuel, pas de recherche. Juste demander.</p>
+        <ul class="feature-bullets">
+          <li>"Quelles chambres sont libres demain ?"</li>
+          <li>"Combien de chiffre d'affaires ce mois-ci ?"</li>
+          <li>"Quelle est notre procédure d'annulation ?"</li>
+          <li>Connaît tes réservations, tes chiffres et tes articles du manuel</li>
+          <li>Toujours disponible, toujours patient</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="mockup mk-rudy">
+          <div class="head-avatar">
+            <div class="avatar">R</div>
+            <div>
+              <strong>Rudy</strong>
+              <span>Ton assistant hôtelier</span>
             </div>
+          </div>
+          <div class="chat">
+            <div class="msg u">Combien de chambres sont libres demain ?</div>
+            <div class="msg b">Demain, il y a <strong>4 chambres</strong> disponibles : 2× Comfort Twin, 1× Deluxe Double et 1× Suite. Tu veux créer une réservation ?</div>
+            <div class="msg u">Et si quelqu'un appelle pour un late check-in ?</div>
+            <div class="msg b">Selon votre <strong>procédure de réception</strong> : note l'heure d'arrivée prévue, envoie le code de porte via le guest portal et préviens le housekeeping.</div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-
-<!-- HANDBOOK -->
-<div class="feature-module" id="handbook">
-    <div class="feature-module-inner">
-        <div class="feature-module-text fade-up">
-            <div class="feature-module-tag">
-                <div class="feature-module-icon" style="background: rgba(74,127,181,0.1); color: #4a7fb5;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
-                </div>
-                <span class="feature-module-label">Handbook</span>
-            </div>
-            <h2>Le manuel de ton hôtel.<br>Toujours à portée de main.</h2>
-            <p>Procédures de réception, règlement intérieur, plans d'urgence, documents d'onboarding. Tout ce que ton équipe doit savoir, à un endroit qu'elle retrouve vraiment. Fini les documents Word éparpillés ou les messages WhatsApp.</p>
-            <ul class="feature-bullets">
-                <li>Articles regroupés par catégorie (réception, housekeeping, F&B, procédures d'urgence, ...)</li>
-                <li>Recherche sur tous les articles</li>
-                <li>Rédige et gère le contenu directement dans Rumo</li>
-                <li>Les nouveaux collaborateurs sont opérationnels plus vite</li>
-                <li>Tout le monde travaille de la même manière</li>
-            </ul>
-        </div>
-        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
-            <div class="mockup-card">
-                <div class="mockup-card-header">
-                    <span class="mockup-card-title">Handbook</span>
-                    <span class="mockup-badge mockup-badge-blue">36 articles</span>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
-                    <div style="background:var(--cream);border-radius:8px;padding:0.7rem;">
-                        <div style="margin-bottom:0.3rem;color:var(--terracotta);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-                        <div style="font-weight:600;font-size:0.78rem;">Réception</div>
-                        <div style="font-size:0.65rem;opacity:0.5;">4 articles</div>
-                    </div>
-                    <div style="background:var(--cream);border-radius:8px;padding:0.7rem;">
-                        <div style="margin-bottom:0.3rem;color:var(--sage);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-                        <div style="font-weight:600;font-size:0.78rem;">Housekeeping</div>
-                        <div style="font-size:0.65rem;opacity:0.5;">3 articles</div>
-                    </div>
-                    <div style="background:var(--cream);border-radius:8px;padding:0.7rem;">
-                        <div style="margin-bottom:0.3rem;color:var(--gold);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-                        <div style="font-weight:600;font-size:0.78rem;">F&B</div>
-                        <div style="font-size:0.65rem;opacity:0.5;">2 articles</div>
-                    </div>
-                    <div style="background:var(--cream);border-radius:8px;padding:0.7rem;">
-                        <div style="margin-bottom:0.3rem;color:var(--terracotta);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
-                        <div style="font-weight:600;font-size:0.78rem;">Procédures d'urgence</div>
-                        <div style="font-size:0.65rem;opacity:0.5;">2 articles</div>
-                    </div>
-                </div>
-                <div style="margin-top:0.8rem;padding:0.7rem;background:var(--cream);border-radius:8px;">
-                    <div style="font-size:0.7rem;opacity:0.4;margin-bottom:0.3rem;">Dernière mise à jour</div>
-                    <div style="font-weight:600;font-size:0.8rem;">Procédure de check-in en cas d'arrivée tardive</div>
-                    <div style="font-size:0.65rem;opacity:0.5;">Réception &middot; il y a 2 jours</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- DESIGNED TO BE EASY — UX + Dashboard -->
-<div class="feature-module" id="ux">
-    <div class="feature-module-inner wide-visual">
-        <div class="feature-module-text fade-up">
-            <div class="feature-module-tag">
-                <div class="feature-module-icon" style="background: rgba(196,101,58,0.1); color: #c4653a;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="4"/><rect x="14" y="10" width="7" height="7"/><rect x="3" y="13" width="7" height="4"/></svg>
-                </div>
-                <span class="feature-module-label">Design intuitif</span>
-            </div>
-            <h2>Conçu pour être<br>facile à utiliser.</h2>
-            <p>Rumo est fait pour les gens qui préfèrent s'occuper de leurs hôtes plutôt que de leur logiciel. Tout est visible, logique et rapide. Pas de menus cachés, pas d'options superflues.</p>
-            <ul class="feature-bullets">
-                <li>Tableau de bord avec arrivées, départs et statistiques en direct</li>
-                <li>Calendrier visuel avec glisser-déposer</li>
-                <li>Housekeeping que ton équipe utilise sur son téléphone</li>
-                <li>Recherche avec Alt+K, tout en deux clics</li>
-            </ul>
-        </div>
-        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
-            <div class="mockup-card">
-                <div class="mockup-card-header">
-                    <span class="mockup-card-title">Dashboard</span>
-                    <span class="mockup-badge" style="background:rgba(196,101,58,0.1);color:var(--terracotta);">Live</span>
-                </div>
-                <!-- Stats bar -->
-                <div style="background:var(--charcoal);border-radius:10px;padding:0.8rem 1rem;display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-                    <div style="flex:1;">
-                        <div style="font-size:0.55rem;text-transform:uppercase;letter-spacing:0.05em;color:rgba(255,255,255,0.5);">Revenue</div>
-                        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);">&euro;10.771</div>
-                    </div>
-                    <div style="text-align:center;">
-                        <div style="font-size:0.55rem;color:rgba(255,255,255,0.5);">Occ</div>
-                        <div style="font-weight:600;font-size:0.85rem;color:var(--white);">47%</div>
-                    </div>
-                    <div style="text-align:center;">
-                        <div style="font-size:0.55rem;color:rgba(255,255,255,0.5);">ADR</div>
-                        <div style="font-weight:600;font-size:0.85rem;color:var(--white);">&euro;449</div>
-                    </div>
-                    <div style="text-align:center;">
-                        <div style="font-size:0.55rem;color:rgba(255,255,255,0.5);">Check-ins</div>
-                        <div style="font-weight:600;font-size:0.85rem;color:var(--terracotta);">2 &rarr;</div>
-                    </div>
-                    <div style="text-align:center;">
-                        <div style="font-size:0.55rem;color:rgba(255,255,255,0.5);">Check-outs</div>
-                        <div style="font-weight:600;font-size:0.85rem;color:var(--sage);">4 &larr;</div>
-                    </div>
-                </div>
-                <!-- Room cards -->
-                <div style="font-weight:600;font-size:0.8rem;margin-bottom:0.5rem;">Room Status</div>
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;">
-                    <div style="background:var(--cream);border-radius:8px;padding:0.6rem;border-left:3px solid var(--sage);">
-                        <div style="font-weight:700;font-size:0.95rem;">103</div>
-                        <div style="font-size:0.7rem;opacity:0.7;">Van de Kasseien</div>
-                        <div style="font-size:0.6rem;color:var(--sage);margin-top:0.2rem;">&larr; OUT</div>
-                    </div>
-                    <div style="background:var(--cream);border-radius:8px;padding:0.6rem;border-left:3px solid var(--sage);">
-                        <div style="font-weight:700;font-size:0.95rem;">109</div>
-                        <div style="font-size:0.7rem;opacity:0.7;">De Boer</div>
-                        <div style="font-size:0.6rem;color:var(--sage);margin-top:0.2rem;">&larr; OUT</div>
-                    </div>
-                    <div style="background:var(--cream);border-radius:8px;padding:0.6rem;border-left:3px solid var(--sage);">
-                        <div style="font-weight:700;font-size:0.95rem;">206</div>
-                        <div style="font-size:0.7rem;opacity:0.7;">Lindqvist</div>
-                        <div style="font-size:0.6rem;color:var(--sage);margin-top:0.2rem;">&larr; OUT</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- CALENDAR -->
-<div class="feature-module" id="kalender">
-    <div class="feature-module-inner wide-visual">
-        <div class="feature-module-text fade-up">
-            <div class="feature-module-tag">
-                <div class="feature-module-icon" style="background: rgba(184,150,62,0.12); color: #b8963e;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                </div>
-                <span class="feature-module-label">Calendrier</span>
-            </div>
-            <h2>Tout en un coup d'oeil.<br>Glisse et c'est fait.</h2>
-            <p>Un calendrier visuel où tu glisses, déplaces et modifies les réservations. Par chambre, par jour, par semaine. Filtre sur les arrivées, départs et hôtes en séjour.</p>
-            <ul class="feature-bullets">
-                <li>Glisser-déposer pour déplacer ou prolonger les réservations</li>
-                <li>Filtre sur les arrivées, départs et en séjour</li>
-                <li>Vue semaine et personnalisée avec navigation par date</li>
-                <li>Statut des chambres et types de chambres en un coup d'oeil</li>
-            </ul>
-        </div>
-        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
-            <div class="mockup-card" style="padding:1.2rem;">
-                <div class="mockup-card-header" style="margin-bottom:0.8rem;padding-bottom:0.6rem;">
-                    <span class="mockup-card-title">Calendrier</span>
-                    <span style="font-size:0.7rem;opacity:0.5;">9 &ndash; 15 Mar 2026</span>
-                </div>
-                <!-- Day headers -->
-                <div style="display:grid;grid-template-columns:80px repeat(5,1fr);gap:2px;margin-bottom:0.4rem;">
-                    <div></div>
-                    <div style="text-align:center;font-size:0.6rem;text-transform:uppercase;opacity:0.4;">Lu 9</div>
-                    <div style="text-align:center;font-size:0.6rem;text-transform:uppercase;opacity:0.4;">Ma 10</div>
-                    <div style="text-align:center;font-size:0.6rem;font-weight:700;color:var(--terracotta);">Me 11</div>
-                    <div style="text-align:center;font-size:0.6rem;text-transform:uppercase;opacity:0.4;">Je 12</div>
-                    <div style="text-align:center;font-size:0.6rem;text-transform:uppercase;opacity:0.4;">Ve 13</div>
-                </div>
-                <!-- Room rows -->
-                <div style="display:grid;grid-template-columns:80px repeat(5,1fr);gap:2px;row-gap:0.35rem;">
-                    <!-- Room 101 -->
-                    <div style="font-size:0.7rem;font-weight:600;padding:0.4rem 0;">101 <span style="font-size:0.55rem;opacity:0.4;font-weight:400;">TWIN</span></div>
-                    <div style="grid-column:2/4;background:var(--terracotta);opacity:0.15;border-radius:4px;"></div>
-                    <div style="grid-column:4/7;background:var(--terracotta);border-radius:4px;padding:0.3rem 0.5rem;">
-                        <span style="font-size:0.65rem;color:white;">Kiekeboe</span>
-                    </div>
-                    <!-- Room 102 -->
-                    <div style="font-size:0.7rem;font-weight:600;padding:0.4rem 0;">102 <span style="font-size:0.55rem;opacity:0.4;font-weight:400;">TWIN</span></div>
-                    <div style="grid-column:2/7;background:var(--cream);border-radius:4px;padding:0.3rem;"></div>
-                    <!-- Room 103 -->
-                    <div style="font-size:0.7rem;font-weight:600;padding:0.4rem 0;">103 <span style="font-size:0.55rem;opacity:0.4;font-weight:400;">TWIN</span></div>
-                    <div style="grid-column:2/3;background:var(--cream);border-radius:4px;"></div>
-                    <div style="grid-column:3/6;background:var(--sage);border-radius:4px;padding:0.3rem 0.5rem;">
-                        <span style="font-size:0.65rem;color:white;">Van de Kasseien</span>
-                    </div>
-                    <div style="grid-column:6/7;background:var(--cream);border-radius:4px;"></div>
-                    <!-- Room 104 -->
-                    <div style="font-size:0.7rem;font-weight:600;padding:0.4rem 0;">104 <span style="font-size:0.55rem;opacity:0.4;font-weight:400;">DBL</span></div>
-                    <div style="grid-column:2/5;background:var(--gold);opacity:0.7;border-radius:4px;padding:0.3rem 0.5rem;">
-                        <span style="font-size:0.65rem;color:white;">M&uuml;ller</span>
-                    </div>
-                    <div style="grid-column:5/7;background:var(--cream);border-radius:4px;"></div>
-                    <!-- Room 105 -->
-                    <div style="font-size:0.7rem;font-weight:600;padding:0.4rem 0;">105 <span style="font-size:0.55rem;opacity:0.4;font-weight:400;">SUITE</span></div>
-                    <div style="grid-column:2/7;background:var(--cream);border-radius:4px;padding:0.3rem;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- AUTOMATION -->
-<div class="feature-module" id="automatisering">
-    <div class="feature-module-inner wide-visual">
-        <div class="feature-module-text fade-up">
-            <div class="feature-module-tag">
-                <div class="feature-module-icon" style="background: rgba(122,140,110,0.15); color: #7a8c6e;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                </div>
-                <span class="feature-module-label">Automatisation</span>
-            </div>
-            <h2>Moins de clics.<br>Plus de temps pour tes hôtes.</h2>
-            <p>Le check-out se fait en un clic : facturer, lier le paiement, mettre à jour le statut, prévenir le housekeeping. Les e-mails partent automatiquement dans la bonne langue. La disponibilité est transmise en temps réel à tous les canaux.</p>
-            <ul class="feature-bullets">
-                <li>Quick check-out : facture + paiement + changement de statut en un clic</li>
-                <li>E-mails envoyés automatiquement selon les déclencheurs</li>
-                <li>Le channel manager synchronise les prix et la disponibilité</li>
-                <li>Liste d'attente : en cas d'annulation, la chambre est automatiquement bloquée</li>
-                <li>E-facturation Peppol et export UBL intégrés</li>
-            </ul>
-        </div>
-        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
-            <div class="mockup-card">
-                <div class="mockup-card-header">
-                    <span class="mockup-card-title">Quick Check-out</span>
-                    <span class="mockup-badge" style="background:rgba(122,140,110,0.15);color:var(--sage);">Chambre 103</span>
-                </div>
-                <!-- Steps -->
-                <div style="display:flex;flex-direction:column;gap:0.6rem;">
-                    <div style="display:flex;align-items:center;gap:0.7rem;background:var(--cream);border-radius:8px;padding:0.7rem;">
-                        <div style="width:24px;height:24px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;">&#10003;</div>
-                        <div>
-                            <div style="font-weight:600;font-size:0.78rem;">Facture créée</div>
-                            <div style="font-size:0.6rem;opacity:0.5;">INV-2026-0047 &middot; &euro;1.347,00</div>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:0.7rem;background:var(--cream);border-radius:8px;padding:0.7rem;">
-                        <div style="width:24px;height:24px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;">&#10003;</div>
-                        <div>
-                            <div style="font-weight:600;font-size:0.78rem;">Paiement lié</div>
-                            <div style="font-size:0.6rem;opacity:0.5;">Visa &middot; &euro;1.347,00</div>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:0.7rem;background:var(--cream);border-radius:8px;padding:0.7rem;">
-                        <div style="width:24px;height:24px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;">&#10003;</div>
-                        <div>
-                            <div style="font-weight:600;font-size:0.78rem;">Statut : checked out</div>
-                            <div style="font-size:0.6rem;opacity:0.5;">Housekeeping prévenu</div>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:0.7rem;background:var(--cream);border-radius:8px;padding:0.7rem;">
-                        <div style="width:24px;height:24px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;flex-shrink:0;">&#10003;</div>
-                        <div>
-                            <div style="font-weight:600;font-size:0.78rem;">E-mail envoyé</div>
-                            <div style="font-size:0.6rem;opacity:0.5;">Confirmation de check-out &middot; FR</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- PR&Eacute;VENTION & BIEN-&Ecirc;TRE -->
-<div class="feature-module" id="property">
-    <div class="feature-module-inner">
-        <div class="feature-module-text fade-up">
-            <div class="feature-module-tag">
-                <div class="feature-module-icon" style="background: rgba(184,150,62,0.12); color: #b8963e;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                </div>
-                <span class="feature-module-label">Pr&eacute;vention &amp; Bien-&ecirc;tre</span>
-            </div>
-            <h2>S&eacute;curit&eacute; incendie, l&eacute;gionelle, premiers secours.<br>Enfin sous contr&ocirc;le.</h2>
-            <p>Chaque h&ocirc;telier conna&icirc;t ce sentiment&nbsp;: quelque part dans un placard se trouve un classeur avec des contr&ocirc;les, des checklists et des plans de s&eacute;curit&eacute;. Personne ne sait si tout est encore en ordre. Jusqu'&agrave; ce qu'un inspecteur se pr&eacute;sente. Rumo remplace ce classeur par un syst&egrave;me vivant qui anticipe, rappelle et documente.</p>
-            <ul class="feature-bullets">
-                <li>Dossier pr&eacute;vention incendie&nbsp;: extincteurs, d&eacute;tection, &eacute;clairage de secours &mdash; avec dates d'expiration et rappels automatiques</li>
-                <li>Plan de gestion l&eacute;gionelle&nbsp;: relev&eacute;s de temp&eacute;rature, rin&ccedil;ages et registre &mdash; toujours pr&ecirc;t pour l'inspection</li>
-                <li>Planifier, enregistrer et &eacute;valuer les exercices d'&eacute;vacuation avec votre &eacute;quipe</li>
-                <li>Suivi du mat&eacute;riel de premiers secours et des DAE&nbsp;: qui est form&eacute;, quoi expire quand</li>
-                <li>Enregistrer les produits chimiques avec fiches de s&eacute;curit&eacute; et lieux de stockage</li>
-                <li>Checklists quotidiennes et p&eacute;riodiques remplies sur le terrain, avec photos et export PDF</li>
-                <li>D&eacute;clarations d'incidents et quasi-accidents&nbsp;: tout le monde signale, les managers assurent le suivi</li>
-                <li>Enregistrement des sous-traitants&nbsp;: les parties externes s'inscrivent, signent les r&egrave;gles de s&eacute;curit&eacute;, tout est document&eacute;</li>
-            </ul>
-        </div>
-        <div class="feature-module-visual fade-up" style="transition-delay: 0.1s">
-            <div class="mockup-card">
-                <div class="mockup-card-header">
-                    <span class="mockup-card-title">Pr&eacute;vention &amp; Bien-&ecirc;tre</span>
-                    <span class="mockup-badge" style="background:rgba(184,150,62,0.12);color:#b8963e;">Notifications</span>
-                </div>
-                <div style="display:flex;flex-direction:column;gap:0.5rem;">
-                    <div style="display:flex;align-items:center;gap:0.7rem;background:#fef3c7;border-radius:8px;padding:0.65rem 0.8rem;">
-                        <div style="width:22px;height:22px;border-radius:50%;background:#f59e0b;color:white;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;flex-shrink:0;">!</div>
-                        <div>
-                            <div style="font-weight:600;font-size:0.75rem;">2 installations expirent bient&ocirc;t</div>
-                            <div style="font-size:0.6rem;opacity:0.5;">Extincteur hall &middot; Filtre HVAC</div>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:0.7rem;background:var(--cream);border-radius:8px;padding:0.65rem 0.8rem;">
-                        <div style="width:22px;height:22px;border-radius:50%;background:var(--sage);color:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-                        <div>
-                            <div style="font-weight:600;font-size:0.75rem;">Checklist cuisine termin&eacute;e</div>
-                            <div style="font-size:0.6rem;opacity:0.5;">7/7 items OK &middot; aujourd'hui 09:15</div>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:0.7rem;background:#fef2f2;border-radius:8px;padding:0.65rem 0.8rem;">
-                        <div style="width:22px;height:22px;border-radius:50%;background:#ef4444;color:white;display:flex;align-items:center;justify-content:center;font-size:0.6rem;flex-shrink:0;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
-                        <div>
-                            <div style="font-weight:600;font-size:0.75rem;">Nouvel incident signal&eacute;</div>
-                            <div style="font-size:0.6rem;opacity:0.5;">Quasi-accident &middot; cuisine &middot; ouvert</div>
-                        </div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:0.7rem;background:rgba(124,58,237,0.06);border-radius:8px;padding:0.65rem 0.8rem;">
-                        <div style="width:22px;height:22px;border-radius:50%;background:#7c3aed;color:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg></div>
-                        <div>
-                            <div style="font-weight:600;font-size:0.75rem;">3 nouvelles suggestions</div>
-                            <div style="font-size:0.6rem;opacity:0.5;">Feedback anonyme de l'&eacute;quipe</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ============================================ -->
-<!-- COMPACT GRID — everything else               -->
-<!-- ============================================ -->
-
-<section class="features-compact" id="alle-features">
-    <div class="features-compact-inner">
-        <span class="section-label fade-up">Et en plus</span>
-        <h2 class="section-title fade-up">Tout ce que tu attends d'un PMS.</h2>
-        <p class="section-subtitle fade-up">Les bases sont là aussi. Sans exception.</p>
-
-        <div class="compact-grid">
-            <div class="compact-card fade-up">
-                <div class="compact-card-icon" style="background: rgba(196,101,58,0.1); color: #c4653a;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/></svg>
-                </div>
-                <h3>Réservations & Calendrier</h3>
-                <p>Calendrier visuel avec glisser-déposer. Réservations multi-chambres, statut par chambre, devis et historique complet des réservations.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.07s">
-                <div class="compact-card-icon" style="background: rgba(122,140,110,0.15); color: #7a8c6e;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
-                </div>
-                <h3>Channel Manager</h3>
-                <p>Booking.com, Airbnb, Expedia et plus encore. Les prix et la disponibilité sont synchronisés automatiquement via Channex.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.14s">
-                <div class="compact-card-icon" style="background: rgba(184,150,62,0.12); color: #b8963e;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                </div>
-                <h3>Booking Engine</h3>
-                <p>Réservations directes via ton propre site web, sans commission. Avec suivi des référents et allotments pour les partenaires.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.21s">
-                <div class="compact-card-icon" style="background: rgba(74,127,181,0.1); color: #4a7fb5;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                </div>
-                <h3>Facturation & Peppol</h3>
-                <p>Factures, notes de crédit et proformas avec TVA correcte. E-facturation Peppol et export XML UBL 2.1 intégrés.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.28s">
-                <div class="compact-card-icon" style="background: rgba(196,101,58,0.1); color: #c4653a;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                </div>
-                <h3>Paiements</h3>
-                <p>Liens de paiement en ligne, débit de VCC, pré-autorisations. Bancontact, Visa, Mastercard. Automatiquement liés aux factures.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.35s">
-                <div class="compact-card-icon" style="background: rgba(74,127,181,0.1); color: #4a7fb5;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                </div>
-                <h3>Guest Portal</h3>
-                <p>Les hôtes font leur check-in en ligne, confirment les devis, paient et remplissent leurs données d'identité. Sur leur propre téléphone.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.42s">
-                <div class="compact-card-icon" style="background: rgba(122,140,110,0.15); color: #7a8c6e;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-                </div>
-                <h3>Housekeeping</h3>
-                <p>Statut des chambres en temps réel. Le personnel de ménage travaille via son téléphone, les mises à jour apparaissent directement dans le calendrier.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.49s">
-                <div class="compact-card-icon" style="background: rgba(184,150,62,0.12); color: #b8963e;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-                </div>
-                <h3>F&B</h3>
-                <p>Listes de petits-déjeuners, minibar et charges restaurant. Automatiquement sur la note de chambre, lié au plan tarifaire.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.56s">
-                <div class="compact-card-icon" style="background: rgba(196,101,58,0.1); color: #c4653a;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </div>
-                <h3>Communication</h3>
-                <p>Modèles d'e-mail par événement, envoyés automatiquement dans la langue de ton hôte. Multilingue : NL, FR, DE, EN.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.63s">
-                <div class="compact-card-icon" style="background: rgba(74,127,181,0.1); color: #4a7fb5;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                </div>
-                <h3>Tarifs & Allotment</h3>
-                <p>Types de chambres, plans tarifaires, politique d'annulation et allotments pour les partenaires. Transmis à tous les canaux.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.70s">
-                <div class="compact-card-icon" style="background: rgba(184,150,62,0.12); color: #b8963e;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
-                </div>
-                <h3>Rapports</h3>
-                <p>Occupation, ADR, RevPAR, chiffre d'affaires par canal. Aperçu central des factures. Export en CSV, Excel ou PDF.</p>
-            </div>
-
-            <div class="compact-card fade-up" style="transition-delay:0.77s">
-                <div class="compact-card-icon" style="background: rgba(122,140,110,0.15); color: #7a8c6e;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
-                <h3>Profils des hôtes</h3>
-                <p>Construits automatiquement à partir des réservations. Profils d'hôtes, de bookers et d'entreprises avec validation TVA VIES.</p>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta" id="demo">
-    <div class="fade-up">
-        <h2 class="section-title">Prêt à essayer Rumo ?</h2>
-        <p class="section-subtitle">Pas de carte de crédit. Pas d'engagement. Juste 14 jours pour jouer avec une démo remplie de fausses réservations.</p>
-        <a href="index.html#demo" class="btn-primary">Vois par toi-même, sans compte &rarr;</a>
+<!-- ═══════════════════════ FEATURE · MANUEL ═══════════════════════ -->
+<section class="feature" id="handbook">
+  <div class="wrap">
+    <div class="feature-inner fade-up">
+      <div class="feature-text">
+        <div class="feature-tag">
+          <div class="ic" style="background:#DCE4F3; color:#4a7fb5;">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
+          </div>
+          <span class="lbl">Manuel</span>
+        </div>
+        <h2>Ton manuel hôtelier.<br><em>Toujours</em> à portée de main.</h2>
+        <p>Procédures de réception, règlement intérieur, plans d'urgence, documents d'onboarding. Tout ce que ton équipe doit savoir, à un seul endroit qu'ils retrouvent vraiment. Fini les documents Word éparpillés ou les messages WhatsApp.</p>
+        <ul class="feature-bullets">
+          <li>Articles par catégorie : réception, housekeeping, F&amp;B, procédures d'urgence…</li>
+          <li>Recherche dans tous les articles</li>
+          <li>Rédige et gère le contenu directement dans rumo</li>
+          <li>Les nouveaux collaborateurs sont opérationnels plus vite</li>
+          <li>Tout le monde travaille de la même manière</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="mockup mk-handbook">
+          <div class="mockup-head">
+            <h5>Manuel</h5>
+            <span class="badge">36 articles</span>
+          </div>
+          <div class="cats">
+            <div class="cat a">
+              <div class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+              <strong>Réception</strong>
+              <span>4 articles</span>
+            </div>
+            <div class="cat b">
+              <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+              <strong>Housekeeping</strong>
+              <span>3 articles</span>
+            </div>
+            <div class="cat c">
+              <div class="ic"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg></div>
+              <strong>F&amp;B</strong>
+              <span>2 articles</span>
+            </div>
+            <div class="cat d">
+              <div class="ic"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg></div>
+              <strong>Procédures d'urgence</strong>
+              <span>2 articles</span>
+            </div>
+          </div>
+          <div class="recent">
+            <div class="lbl">Dernière mise à jour</div>
+            <strong>Procédure de check-in en cas d'arrivée tardive</strong>
+            <span>Réception · il y a 2 jours</span>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FEATURE · UX ═══════════════════════ -->
+<section class="feature" id="ux">
+  <div class="wrap">
+    <div class="feature-inner fade-up">
+      <div class="feature-text">
+        <div class="feature-tag">
+          <div class="ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="4"/><rect x="14" y="10" width="7" height="7"/><rect x="3" y="13" width="7" height="4"/></svg>
+          </div>
+          <span class="lbl">Design intuitif</span>
+        </div>
+        <h2>Conçu pour<br>être <em>simple.</em></h2>
+        <p>rumo est fait pour les gens qui préfèrent s'occuper des clients plutôt que du logiciel. Tout est visible, logique et rapide. Pas de menus cachés, pas d'options superflues.</p>
+        <ul class="feature-bullets">
+          <li>Dashboard avec arrivées, départs et statistiques en temps réel</li>
+          <li>Calendrier visuel avec drag-and-drop</li>
+          <li>Housekeeping que ton équipe utilise sur le téléphone</li>
+          <li>Recherche avec ⌘+K, tout en deux clics</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="mockup mk-dashboard">
+          <div class="mockup-head">
+            <h5>Dashboard</h5>
+            <span class="badge live">Live</span>
+          </div>
+          <div class="stats">
+            <div>
+              <div class="lbl">Revenue</div>
+              <div class="big">€10.771</div>
+            </div>
+            <div class="mini">
+              <div class="lbl">Occ</div>
+              <div class="big">47%</div>
+            </div>
+            <div class="mini">
+              <div class="lbl">ADR</div>
+              <div class="big">€449</div>
+            </div>
+            <div class="mini">
+              <div class="lbl">Check-ins</div>
+              <div class="big t">2 →</div>
+            </div>
+            <div class="mini">
+              <div class="lbl">Check-outs</div>
+              <div class="big g">4 ←</div>
+            </div>
+          </div>
+          <div class="rooms">Statut des chambres</div>
+          <div class="room-grid">
+            <div class="room">
+              <div class="num">103</div>
+              <div class="guest">Van de Kasseien</div>
+              <div class="tag">← out</div>
+            </div>
+            <div class="room">
+              <div class="num">109</div>
+              <div class="guest">De Boer</div>
+              <div class="tag">← out</div>
+            </div>
+            <div class="room">
+              <div class="num">206</div>
+              <div class="guest">Lindqvist</div>
+              <div class="tag">← out</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FEATURE · CALENDRIER ═══════════════════════ -->
+<section class="feature" id="kalender">
+  <div class="wrap">
+    <div class="feature-inner fade-up">
+      <div class="feature-text">
+        <div class="feature-tag">
+          <div class="ic" style="background:#FCEDBD; color:#8a6b1a;">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <span class="lbl">Calendrier</span>
+        </div>
+        <h2>Tout d'un coup d'œil.<br><em>Glisse</em> et c'est fait.</h2>
+        <p>Un calendrier visuel où tu glisses, déplaces et ajustes les réservations. Par chambre, par jour, par semaine. Filtre sur les arrivées, les départs et les clients en séjour.</p>
+        <ul class="feature-bullets">
+          <li>Drag-and-drop pour déplacer ou prolonger les réservations</li>
+          <li>Filtre sur arrivées, départs et en séjour</li>
+          <li>Vue semaine et vue personnalisée avec navigation par date</li>
+          <li>Statut et types de chambres en un coup d'œil</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="mockup mk-calendar">
+          <div class="mockup-head">
+            <h5>Calendrier</h5>
+            <span class="meta">9 – 15 Mar 2026</span>
+          </div>
+          <div class="hd">
+            <div></div>
+            <div>Lu 9</div>
+            <div>Ma 10</div>
+            <div class="active">Me 11</div>
+            <div>Je 12</div>
+            <div>Ve 13</div>
+          </div>
+          <div class="rows">
+            <!-- 101 -->
+            <div class="lbl">101 <small>twin</small></div>
+            <div class="cell tentative" style="grid-column:2 / 4;">—</div>
+            <div class="cell booked" style="grid-column:4 / 7;">Kiekeboe</div>
+            <!-- 102 -->
+            <div class="lbl">102 <small>twin</small></div>
+            <div class="cell empty" style="grid-column:2 / 7;"></div>
+            <!-- 103 -->
+            <div class="lbl">103 <small>twin</small></div>
+            <div class="cell empty" style="grid-column:2 / 3;"></div>
+            <div class="cell booked2" style="grid-column:3 / 6;">Van de Kasseien</div>
+            <div class="cell empty" style="grid-column:6 / 7;"></div>
+            <!-- 104 -->
+            <div class="lbl">104 <small>dbl</small></div>
+            <div class="cell booked3" style="grid-column:2 / 5;">Müller</div>
+            <div class="cell empty" style="grid-column:5 / 7;"></div>
+            <!-- 105 -->
+            <div class="lbl">105 <small>suite</small></div>
+            <div class="cell empty" style="grid-column:2 / 7;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FEATURE · AUTOMATISATION ═══════════════════════ -->
+<section class="feature" id="automatisering">
+  <div class="wrap">
+    <div class="feature-inner fade-up">
+      <div class="feature-text">
+        <div class="feature-tag">
+          <div class="ic" style="background:var(--forest-soft); color:var(--forest);">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <span class="lbl">Automatisation</span>
+        </div>
+        <h2>Moins de clics.<br><em>Plus de temps</em> pour les clients.</h2>
+        <p>Le check-out prend un seul clic : facturer, lier le paiement, mettre à jour le statut, prévenir le housekeeping. Les e-mails partent automatiquement dans la bonne langue. La disponibilité est transmise en temps réel à tous les canaux.</p>
+        <ul class="feature-bullets">
+          <li>Quick check-out : facture + paiement + changement de statut en un clic</li>
+          <li>E-mails envoyés automatiquement selon les déclencheurs</li>
+          <li>Channel manager synchronise prix et disponibilité</li>
+          <li>Liste d'attente : en cas d'annulation, la chambre est automatiquement bloquée</li>
+          <li>E-facturation Peppol et export UBL intégrés</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="mockup mk-auto">
+          <div class="mockup-head">
+            <h5>Quick check-out</h5>
+            <span class="badge">Chambre 103</span>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>Facture créée</strong>
+              <span>INV-2026-0047 · €1.347,00</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>Paiement lié</strong>
+              <span>Visa · €1.347,00</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>Statut : checked out</strong>
+              <span>Housekeeping prévenu</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>E-mail envoyé</strong>
+              <span>Confirmation de check-out · FR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FEATURE · PRÉVENTION ═══════════════════════ -->
+<section class="feature" id="property">
+  <div class="wrap">
+    <div class="feature-inner fade-up">
+      <div class="feature-text">
+        <div class="feature-tag">
+          <div class="ic" style="background:#FCEDBD; color:#8a6b1a;">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <span class="lbl">Prévention &amp; Bien-être</span>
+        </div>
+        <h2>Prévention incendie, légionelle, premiers secours.<br>Enfin <em>sous contrôle.</em></h2>
+        <p>Chaque hôtelier connaît ce sentiment : quelque part dans une armoire se trouve un classeur avec des contrôles, des checklists et des plans de sécurité. Personne ne sait si tout est encore valide. Jusqu'à ce qu'une inspection arrive. rumo remplace cette armoire par un système vivant qui réfléchit, rappelle et documente.</p>
+        <ul class="feature-bullets">
+          <li>Dossier prévention incendie : extincteurs, détection, éclairage de secours — avec dates d'expiration et rappels automatiques</li>
+          <li>Plan de gestion légionelle : mesures de température, rinçages et journal — toujours prêt pour l'inspection</li>
+          <li>Exercices d'évacuation : planifier, enregistrer et évaluer avec ton équipe</li>
+          <li>Matériel de premiers secours et DEA : qui est formé, qu'est-ce qui expire quand</li>
+          <li>Produits chimiques : fiches de sécurité et emplacements de stockage</li>
+          <li>Checklists quotidiennes et périodiques que ton équipe remplit sur le terrain, avec photos et export PDF</li>
+          <li>Déclarations d'incidents et presque-accidents : tout le monde signale, les managers suivent</li>
+          <li>Enregistrement des sous-traitants : les parties externes s'inscrivent, signent les règles de sécurité</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="mockup mk-property">
+          <div class="mockup-head">
+            <h5>Prévention &amp; Bien-être</h5>
+            <span class="badge">Notifications</span>
+          </div>
+          <div class="notif warn">
+            <div class="ic">!</div>
+            <div>
+              <strong>2 installations expirent bientôt</strong>
+              <span>Extincteur hall · Filtre HVAC</span>
+            </div>
+          </div>
+          <div class="notif ok">
+            <div class="ic">✓</div>
+            <div>
+              <strong>Checklist cuisine complétée</strong>
+              <span>7/7 items OK · aujourd'hui 09:15</span>
+            </div>
+          </div>
+          <div class="notif red">
+            <div class="ic">△</div>
+            <div>
+              <strong>Nouvel incident signalé</strong>
+              <span>Presque-accident · cuisine · ouvert</span>
+            </div>
+          </div>
+          <div class="notif info">
+            <div class="ic">💡</div>
+            <div>
+              <strong>3 nouvelles suggestions</strong>
+              <span>Feedback anonyme de l'équipe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ COMPACT GRID ═══════════════════════ -->
+<section class="compact" id="alle-features">
+  <div class="wrap">
+    <div class="compact-head fade-up">
+      <span class="kicker">Et aussi</span>
+      <h2>Tout ce que tu attends d'un PMS.<br>Et <em>peut-être</em> un peu plus.</h2>
+      <p class="lead" style="margin-top:1.25rem;">Les bases sont là aussi. Une par une.</p>
+    </div>
+    <div class="compact-grid">
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/></svg>
+        </div>
+        <h4>Réservations &amp; Calendrier</h4>
+        <p>Calendrier visuel avec drag-and-drop. Réservations multi-chambres, statut par chambre, devis et historique complet des réservations.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+        </div>
+        <h4>Channel Manager</h4>
+        <p>Booking.com, Airbnb, Expedia et plus. Prix et disponibilité synchronisés automatiquement via Channex.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h4>Booking Engine</h4>
+        <p>Réservations directes via ton propre site web, sans commission. Avec suivi de référents et allotments pour partenaires.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h4>Facturation &amp; Peppol</h4>
+        <p>Factures, notes de crédit et proformas avec TVA correcte. E-facturation Peppol et export UBL 2.1 XML intégrés.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h4>Paiements</h4>
+        <p>Liens de paiement en ligne, chargement VCC, pré-autorisations. Bancontact, Visa, Mastercard. Automatiquement liés aux factures.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h4>Guest Portal</h4>
+        <p>Les clients font leur check-in en ligne, confirment les devis, paient et remplissent leurs données d'identité. Sur leur propre téléphone.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        </div>
+        <h4>Housekeeping</h4>
+        <p>Statut des chambres en temps réel. Le personnel de nettoyage travaille via son téléphone, les mises à jour apparaissent directement dans le calendrier.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <h4>F&amp;B</h4>
+        <p>Listes petit-déjeuner, minibar et charges restaurant. Automatiquement sur la note de chambre, lié au plan tarifaire.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h4>Communication</h4>
+        <p>Templates d'e-mail par événement, envoyés automatiquement dans la langue du client. Multilingue : NL, FR, DE, EN.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h4>Tarifs &amp; Allotment</h4>
+        <p>Types de chambres, plans tarifaires, politique d'annulation et allotments pour partenaires. Transmis à tous les canaux.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
+        </div>
+        <h4>Rapports</h4>
+        <p>Taux d'occupation, ADR, RevPAR, chiffre d'affaires par canal. Aperçu centralisé des factures. Export CSV, Excel ou PDF.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h4>Profils clients</h4>
+        <p>Créés automatiquement à partir des réservations. Profils clients, bookers et entreprises avec validation TVA VIES.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FINAL ═══════════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Essaie toi-même</span>
+    <h2>Pas de démo-call.<br>Juste <em>14 jours</em> pour tester.</h2>
+    <p>Pas de carte de crédit, pas d'obligations, pas de "account manager" qui t'appelle chaque semaine. Un environnement démo plein de fausses réservations. Ça ne te plaît pas ? Ça disparaît en silence.</p>
+    <a href="index.html#demo" class="btn-paper">Essaie 14 jours gratuitement <span>→</span></a>
+    <p class="final-fine">Pas de carte de crédit · Résiliable mensuellement après 6 mois · Migration de données gratuite</p>
+  </div>
 </section>
 
 <footer>
-    <div class="footer-inner">
-        <div>
-            <div class="footer-brand">rumo<span>.</span></div>
-            <p class="footer-tagline">Un logiciel hôtelier qui fonctionne, tout simplement. Sans manuel.</p>
-        </div>
-        <div>
-            <div class="footer-label">Produit</div>
-            <ul class="footer-links">
-                <li><a href="#rudy">Rudy</a></li>
-                <li><a href="#handbook">Handbook</a></li>
-                <li><a href="#ux">Dashboard & Calendrier</a></li>
-                <li><a href="#automatisering">Automatisation</a></li>
-                <li><a href="#alle-features">Toutes les fonctionnalités</a></li>
-            </ul>
-        </div>
-        <div>
-            <div class="footer-label">Rumo</div>
-            <ul class="footer-links">
-                <li><a href="tarifs.html">Tarifs</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="https://wa.me/32485382828" target="_blank" rel="noopener">WhatsApp</a></li>
-                <li><a href="mailto:hello@rumo.eu">Contact</a></li>
-                <li><a href="a-propos.html">À propos</a></li>
-            </ul>
-        </div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Logiciel hôtelier pour hôteliers indépendants. Sans prise de tête.</p>
     </div>
-    <div class="footer-bottom">&copy; 2026 Rumo. Tous droits réservés.</div>
+    <div>
+      <div class="footer-label">Produit</div>
+      <ul class="footer-links">
+        <li><a href="features.html">Fonctionnalités</a></li>
+        <li><a href="integrations.html">Intégrations</a></li>
+        <li><a href="tarifs.html">Et euh, ça coûte combien ?</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Envoie-nous un mail</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Intégrations</div>
+      <ul class="footer-links">
+        <li><a href="integrations.html#canaux-de-reservation">Canaux de réservation</a></li>
+        <li><a href="integrations.html#comptabilite">Comptabilité</a></li>
+        <li><a href="integrations.html#revenue">Revenue management</a></li>
+        <li><a href="integrations.html#hardware">Gestion des clés</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Gand, BE</span>
+    <span>Direction · Sfeer</span>
+  </div>
 </footer>
 
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
-    });
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
-<script src="../rudy-widget.js"></script>
 </body>
 </html>

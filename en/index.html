@@ -1,866 +1,2101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rumo | Hotel software — new staff works independently in 2 days</title>
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Rumo is hotel software for small and mid-sized hotels. PMS, channel manager, invoicing and handbook in one. New staff works independently in 2 days.">
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Rumo | Hotel software — new staff works independently in 2 days">
-    <meta property="og:description" content="Hotel software for small and mid-sized hotels. PMS, channel manager, invoicing and handbook in one.">
-    <meta property="og:url" content="https://jeffgent.github.io/rumo-website/en/">
-    <meta property="og:image" content="https://jeffgent.github.io/rumo-website/img/Dashboard.png">
-    <meta property="og:locale" content="en_GB">
-    <meta property="og:locale:alternate" content="nl_BE">
-    <meta property="og:locale:alternate" content="fr_BE">
-    <meta property="og:site_name" content="Rumo">
-    <!-- JSON-LD -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Rumo",
-        "description": "Cloud PMS for independent hotels. Reservations, channel manager, booking engine, invoicing, handbook and AI assistant in one.",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web",
-        "url": "https://jeffgent.github.io/rumo-website/en/",
-        "offers": {
-            "@type": "Offer",
-            "price": "12",
-            "priceCurrency": "EUR",
-            "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "price": "12",
-                "priceCurrency": "EUR",
-                "unitText": "per room per month",
-                "referenceQuantity": {
-                    "@type": "QuantitativeValue",
-                    "value": "1",
-                    "unitCode": "MON"
-                }
-            }
-        },
-        "author": {
-            "@type": "Organization",
-            "name": "Rumo",
-            "url": "https://jeffgent.github.io/rumo-website/"
-        }
-    }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../shared.css">
-    <style>
-        /* BUTTONS — page-specific */
-        .btn-secondary { color: var(--warm); padding: 0.9rem 1.5rem; text-decoration: none; font-weight: 500; font-size: 1rem; opacity: 0.7; transition: opacity 0.2s; }
-        .btn-secondary:hover { opacity: 1; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rumo · hotel software without the hassle</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="rumo is hotel software for independent hotels and B&Bs. PMS, channel manager, invoicing, handbook and an AI assistant. Without the hassle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────────────
+   DIRECTION · SFEER
+   Monzo + Granola + Mercury + energie.be + dvdb-toon
+   Echt hotelleven voorop; software fluistert ernaast.
+   ───────────────────────────────────────────────────── */
 
-        /* HERO */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 3rem 4rem; position: relative; overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 60%; height: 140%; background: radial-gradient(ellipse at center, rgba(196,101,58,0.06) 0%, transparent 70%); pointer-events: none; }
-        .hero-content { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; }
-        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.15; color: var(--warm); margin-bottom: 1.5rem; letter-spacing: -1px; }
-        .hero-text h1 em { color: var(--terracotta); font-style: italic; }
-        .hero-subline { font-size: clamp(1.05rem, 2vw, 1.25rem); font-weight: 600; color: var(--warm); opacity: 0.55; margin-bottom: 0.5rem; }
-        .hero-subtitle { font-size: 1.15rem; line-height: 1.8; color: var(--warm); opacity: 0.7; margin-bottom: 2rem; max-width: 520px; }
-        .hero-checklist { list-style: none; margin-bottom: 2.5rem; }
-        .hero-checklist li { padding: 0.4rem 0; font-size: 1.02rem; font-weight: 500; display: flex; align-items: center; gap: 0.7rem; }
-        .hero-checklist li::before { content: '✓'; display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--sage-light); color: var(--sage); font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
-        .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+:root {
+  --ink:        #1B1917;
+  --ink-soft:   #3a3531;
+  --paper:      #F5EEE2;
+  --paper-deep: #ECE3D1;
+  --paper-panel:#FAF5EA;
+  --sand:       #E3D8C3;
+  --line:       #1B191712;
+  --muted:      #8d8378;
+  --terra:      #D68F6F;
+  --terra-dark: #b96b4a;
+  --forest:     #5F7A55;
+  --forest-soft:#E3EADE;
+  --butter:     #F4D98F;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a { color:inherit; }
+img, video, svg { max-width:100%; display:block; }
 
-        /* HERO MOCKUP */
-        .hero-mockup { background: var(--white); border-radius: 16px; box-shadow: 0 25px 80px rgba(0,0,0,0.08), 0 4px 15px rgba(0,0,0,0.04); padding: 1.5rem; transform: perspective(1000px) rotateY(-3deg) rotateX(2deg); transition: transform 0.4s ease; }
-        .hero-mockup:hover { transform: perspective(1000px) rotateY(0deg) rotateX(0deg); }
-        .mockup-topbar { display: flex; gap: 6px; margin-bottom: 1rem; }
-        .mockup-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mist); }
-        .mockup-content { background: var(--cream); border-radius: 10px; padding: 1.5rem; }
-        .mockup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
-        .mockup-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; }
-        .mockup-badge { background: var(--sage-light); color: var(--sage); padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
-        .mockup-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-bottom: 1.2rem; }
-        .mockup-stat { background: var(--white); padding: 0.8rem; border-radius: 8px; text-align: center; }
-        .mockup-stat-value { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--warm); }
-        .mockup-stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.5; margin-top: 0.2rem; }
-        .mockup-rows { display: flex; flex-direction: column; gap: 0.5rem; }
-        .mockup-row { display: flex; justify-content: space-between; align-items: center; background: var(--white); padding: 0.6rem 0.8rem; border-radius: 6px; font-size: 0.82rem; }
-        .mockup-row-name { font-weight: 500; }
-        .mockup-row-status { padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
-        .status-green { background: var(--sage-light); color: var(--sage); }
-        .status-orange { background: #fef3e2; color: #c4883a; }
-        .status-blue { background: #e8f0f8; color: #4a7fb5; }
+/* Type */
+.kicker {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  display:inline-flex; align-items:center; gap:0.55em;
+  margin-bottom:1.25rem;
+}
+.kicker::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--terra);
+}
 
-        /* FEATURE PREVIEW CARDS */
-        .features-preview { background: var(--white); }
-        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin-top: 2rem; }
-        .feature-card { background: var(--cream); border-radius: 10px; padding: 0.85rem 1rem; text-decoration: none; color: inherit; transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; align-items: center; gap: 0.7rem; }
-        .feature-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
-        .feature-icon { width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .feature-icon svg { width: 18px; height: 18px; stroke-width: 1.5; }
-        .feature-card:nth-child(odd) .feature-icon { background: rgba(196,101,58,0.1); color: #c4653a; }
-        .feature-card:nth-child(even) .feature-icon { background: rgba(122,140,110,0.15); color: #7a8c6e; }
-        .feature-card:nth-child(3n) .feature-icon { background: rgba(184,150,62,0.12); color: #b8963e; }
-        .feature-card:nth-child(4n) .feature-icon { background: rgba(74,127,181,0.1); color: #4a7fb5; }
-        .feature-card h3 { font-family: 'Playfair Display', serif; font-size: 0.95rem; margin: 0; line-height: 1.3; }
-        .feature-card p { display: none; }
-        .feature-card-arrow { display: none; }
+h1, h2, h3, h4 {
+  font-family:'Fraunces', Georgia, serif;
+  font-weight:400;
+  letter-spacing:-0.025em;
+  line-height:1.02;
+  color:var(--ink);
+  text-wrap:balance;
+}
+h1 { font-size:clamp(3rem, 7vw, 6rem); }
+h2 { font-size:clamp(2.2rem, 4.5vw, 3.8rem); letter-spacing:-0.028em; line-height:1.04; }
+h3 { font-size:clamp(1.7rem, 3vw, 2.4rem); letter-spacing:-0.024em; }
 
-        /* PERSONAS */
-        .personas { background: var(--cream); }
-        .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-        .persona-card { background: var(--white); border-radius: 16px; overflow: hidden; transition: transform 0.25s ease, box-shadow 0.25s ease; }
-        .persona-card:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(0,0,0,0.06); }
-        .persona-img { height: 140px; background: var(--sand); display: flex; align-items: center; justify-content: center; font-size: 3rem; }
-        .persona-body { padding: 1.5rem; }
-        .persona-tag { display: inline-block; background: var(--sage-light); color: var(--sage); padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .persona-body h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .persona-body p { font-size: 0.9rem; opacity: 0.6; line-height: 1.7; }
-        .persona-detail { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--mist); font-size: 0.85rem; font-style: italic; opacity: 0.5; }
+em {
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-weight:300;
+  color:var(--terra-dark);
+}
+.handwrite {
+  font-family:'Caveat', cursive;
+  font-weight:500;
+  color:var(--terra-dark);
+  font-style:normal;
+  display:inline-block;
+  transform:rotate(-3deg);
+}
 
-        /* INTERMEZZO */
-        .intermezzo { background: var(--warm); color: var(--cream); text-align: center; padding: 5rem 3rem; }
-        .intermezzo .section-title { color: var(--cream); max-width: 700px; margin: 0 auto 1rem; }
-        .intermezzo .section-subtitle { color: var(--cream); opacity: 0.5; max-width: 500px; margin: 0 auto; }
-        .rumo-meaning { display: inline-block; margin-top: 2rem; padding: 1rem 2rem; background: rgba(255,255,255,0.06); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); }
-        .rumo-meaning em { color: var(--terracotta-light); }
+p { font-size:1rem; color:var(--ink-soft); max-width:62ch; }
+.lead { font-size:1.15rem; color:var(--ink-soft); max-width:58ch; line-height:1.55; }
 
-        /* ─── RUDY CHAT WIDGET ─── */
-        .rudy-trigger { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 60px; height: 60px; background: var(--terracotta); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(196,101,58,0.35); z-index: 1000; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .rudy-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(196,101,58,0.45); }
-        .rudy-trigger svg { width: 26px; height: 26px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: opacity 0.2s; }
-        .rudy-trigger .rudy-icon-close { display: none; }
-        .rudy-trigger.open .rudy-icon-chat { display: none; }
-        .rudy-trigger.open .rudy-icon-close { display: block; }
-        .rudy-trigger-label { position: absolute; right: 72px; top: 50%; transform: translateY(-50%); background: var(--white); color: var(--warm); padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.85rem; font-weight: 500; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,0.08); pointer-events: none; opacity: 0; transition: opacity 0.3s ease; }
-        .rudy-trigger-label::after { content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 6px solid var(--white); }
-        .rudy-trigger:not(.open):hover .rudy-trigger-label { opacity: 1; }
-        .rudy-pulse { position: absolute; top: -2px; right: -2px; width: 14px; height: 14px; background: var(--sage); border: 2px solid var(--cream); border-radius: 50%; animation: rudy-pulse-anim 2s infinite; }
-        .rudy-trigger.open .rudy-pulse { display: none; }
-        @keyframes rudy-pulse-anim { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+/* Wrap */
+.wrap { max-width:1200px; margin:0 auto; padding:0 2rem; }
+section { padding:6.5rem 0; position:relative; }
 
-        .rudy-panel { position: fixed; bottom: 6rem; right: 1.5rem; width: 380px; height: auto; max-height: calc(100vh - 8rem); background: var(--white); border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04); z-index: 999; display: flex; flex-direction: column; overflow: hidden; opacity: 0; transform: translateY(20px) scale(0.95); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; }
-        .rudy-panel.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+/* ─── Nav ─── */
+nav {
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:100;
+  padding:1rem 2rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:background 0.3s;
+}
+nav.scrolled {
+  background:rgba(245,238,226,0.88);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-logo {
+  font-family:'Fraunces', serif;
+  font-size:1.5rem;
+  font-weight:400;
+  letter-spacing:-0.04em;
+  color:var(--ink);
+  text-decoration:none;
+  display:inline-flex; align-items:baseline; gap:0.05em;
+}
+.nav-logo em {
+  font-style:italic;
+  color:var(--terra-dark);
+  font-weight:300;
+}
+nav.on-video .nav-logo { color:var(--paper); }
+nav.on-video .nav-links a { color:var(--paper); }
+nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !important; }
 
-        .rudy-panel-header { background: var(--warm); color: var(--cream); padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
-        .rudy-avatar { width: 38px; height: 38px; background: var(--terracotta); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); font-weight: 700; flex-shrink: 0; }
-        .rudy-header-text { flex: 1; }
-        .rudy-header-text h4 { font-family: 'Playfair Display', serif; font-size: 1rem; margin: 0; color: var(--cream); }
-        .rudy-header-text span { font-size: 0.75rem; opacity: 0.5; }
+.nav-links { display:flex; gap:1.75rem; align-items:center; list-style:none; }
+.nav-links a {
+  text-decoration:none;
+  color:var(--ink);
+  font-size:0.88rem;
+  font-weight:500;
+  opacity:0.8;
+  transition:opacity 0.2s, color 0.3s;
+}
+.nav-links a:hover { opacity:1; }
+.nav-cta {
+  background:var(--ink) !important;
+  color:var(--paper) !important;
+  padding:0.55rem 1.2rem;
+  border-radius:100px;
+  opacity:1 !important;
+  font-weight:500 !important;
+  font-size:0.85rem !important;
+  display:inline-flex; align-items:center; gap:0.4em;
+  transition:background 0.2s, color 0.3s;
+}
+.nav-cta:hover { background:var(--terra-dark) !important; color:var(--paper) !important; }
+.nav-lang {
+  display:flex; gap:0.2rem;
+  align-items:center;
+  margin-left:0.5rem;
+  font-family:'JetBrains Mono', monospace;
+}
+.nav-lang a {
+  font-size:0.72rem; letter-spacing:0.05em;
+  opacity:0.45; padding:0.2rem 0.4rem;
+  border-radius:3px;
+}
+.nav-lang a.active { opacity:1; color:var(--terra-dark); }
 
-        .rudy-messages { flex: 1; overflow-y: auto; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; min-height: 200px; max-height: 280px; scroll-behavior: smooth; }
-        .rudy-msg { max-width: 85%; padding: 0.75rem 1rem; border-radius: 14px; font-size: 0.9rem; line-height: 1.55; animation: rudy-msg-in 0.3s ease; }
-        @keyframes rudy-msg-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-        .rudy-msg.bot { background: var(--cream); color: var(--warm); align-self: flex-start; border-bottom-left-radius: 4px; }
-        .rudy-msg.user { background: var(--terracotta); color: var(--white); align-self: flex-end; border-bottom-right-radius: 4px; }
-        .rudy-msg.bot .rudy-msg-name { font-size: 0.72rem; font-weight: 600; color: var(--terracotta); margin-bottom: 0.25rem; }
-        .rudy-typing { display: flex; gap: 4px; padding: 0.75rem 1rem; align-self: flex-start; }
-        .rudy-typing span { width: 7px; height: 7px; background: var(--mist); border-radius: 50%; animation: rudy-typing-anim 1.2s infinite; }
-        .rudy-typing span:nth-child(2) { animation-delay: 0.15s; }
-        .rudy-typing span:nth-child(3) { animation-delay: 0.3s; }
-        @keyframes rudy-typing-anim { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-4px); opacity: 1; } }
+.nav-toggle {
+  display:none; background:none; border:none; cursor:pointer;
+  padding:0.5rem; flex-direction:column; gap:5px;
+}
+.nav-toggle span {
+  display:block; width:22px; height:1.5px; background:currentColor; border-radius:2px;
+}
 
-        .rudy-starters { padding: 0 1.2rem 0.8rem; display: flex; flex-direction: column; gap: 0.4rem; }
-        .rudy-starter { background: none; border: 1px solid var(--mist); border-radius: 10px; padding: 0.55rem 1rem; font-size: 0.82rem; color: var(--warm); cursor: pointer; text-align: left; font-family: 'DM Sans', sans-serif; transition: all 0.15s ease; }
-        .rudy-starter:hover { background: var(--cream); border-color: var(--terracotta); color: var(--terracotta); }
+/* Buttons */
+.btn-ink, .btn-paper {
+  display:inline-flex; align-items:center; gap:0.5em;
+  padding:0.95rem 1.6rem;
+  border-radius:100px;
+  font-weight:500;
+  font-size:0.98rem;
+  text-decoration:none;
+  transition:all 0.2s ease;
+  border:none;
+  cursor:pointer;
+  font-family:'Inter', sans-serif;
+}
+.btn-ink { background:var(--ink); color:var(--paper); }
+.btn-ink:hover { background:var(--terra-dark); transform:translateY(-1px); }
+.btn-paper {
+  background:var(--paper);
+  color:var(--ink);
+  border:1px solid var(--paper);
+}
+.btn-paper:hover { background:var(--terra); border-color:var(--terra); color:var(--paper); }
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:0.4em;
+  color:var(--ink);
+  font-weight:500; font-size:0.98rem;
+  text-decoration:none;
+  border-bottom:1.5px solid var(--ink);
+  padding-bottom:3px;
+  transition:all 0.2s;
+}
+.btn-ghost:hover { color:var(--terra-dark); border-color:var(--terra-dark); }
+.btn-ghost .arr { display:inline-block; transition:transform 0.25s; }
+.btn-ghost:hover .arr { transform:translateX(3px); }
 
-        .rudy-input-area { padding: 0.8rem 1.2rem; border-top: 1px solid var(--mist); display: flex; gap: 0.5rem; align-items: center; }
-        .rudy-input { flex: 1; border: 1px solid var(--mist); border-radius: 10px; padding: 0.6rem 1rem; font-size: 0.88rem; font-family: 'DM Sans', sans-serif; color: var(--warm); outline: none; transition: border-color 0.2s; resize: none; }
-        .rudy-input:focus { border-color: var(--terracotta); }
-        .rudy-input::placeholder { color: var(--warm); opacity: 0.35; }
-        .rudy-send { width: 38px; height: 38px; background: var(--terracotta); border: none; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; flex-shrink: 0; }
-        .rudy-send:hover { background: var(--terracotta-light); }
-        .rudy-send:disabled { opacity: 0.4; cursor: not-allowed; }
-        .rudy-send svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-ghost-white { color:var(--paper); border-color:var(--paper); }
+.btn-ghost-white:hover { color:var(--terra); border-color:var(--terra); }
 
-        .rudy-footer { padding: 0.4rem 1.2rem 0.6rem; text-align: center; font-size: 0.68rem; opacity: 0.3; }
+/* ─── HERO · full-bleed video ─── */
+.hero {
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  background:var(--ink);
+  color:var(--paper);
+  display:flex;
+  align-items:flex-end;
+  padding:0;
+}
+.hero-video {
+  position:absolute;
+  inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:0;
+  filter:saturate(1.02) contrast(1.02);
+}
+.hero-overlay {
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    linear-gradient(180deg,
+      rgba(27,25,23,0.45) 0%,
+      rgba(27,25,23,0.05) 28%,
+      rgba(27,25,23,0.15) 55%,
+      rgba(27,25,23,0.75) 100%);
+  pointer-events:none;
+}
+.hero-grain {
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  opacity:0.08;
+  background-image:
+    repeating-radial-gradient(#000 0 1px, transparent 1px 3px),
+    repeating-radial-gradient(#fff 0 1px, transparent 1px 2.2px);
+  background-size: 4px 4px, 3px 3px;
+  mix-blend-mode:overlay;
+}
 
-        /* ─── RUDY SECTION ─── */
-        .rudy-section { background: var(--warm); color: var(--cream); padding: 6rem 3rem; overflow: hidden; }
-        .rudy-section-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .rudy-section .section-label { color: var(--terracotta-light); }
-        .rudy-section .section-title { color: var(--cream); }
-        .rudy-section-text .section-subtitle { color: var(--cream); opacity: 0.55; margin-bottom: 2rem; }
-        .rudy-section-cta { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--terracotta-light); font-weight: 600; font-size: 0.95rem; cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s; }
-        .rudy-section-cta:hover { opacity: 0.8; }
-        .rudy-demo-chat { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 1.5rem; max-width: 420px; margin-left: auto; }
-        .rudy-demo-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .rudy-demo-avatar { width: 32px; height: 32px; background: var(--terracotta); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.85rem; color: var(--white); font-weight: 700; }
-        .rudy-demo-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; }
-        .rudy-demo-msgs { display: flex; flex-direction: column; gap: 0.6rem; }
-        .rudy-demo-msg { padding: 0.65rem 0.9rem; border-radius: 12px; font-size: 0.85rem; line-height: 1.55; max-width: 88%; }
-        .rudy-demo-msg.bot { background: rgba(255,255,255,0.08); color: var(--cream); align-self: flex-start; border-bottom-left-radius: 4px; }
-        .rudy-demo-msg.user { background: var(--terracotta); color: var(--white); align-self: flex-end; border-bottom-right-radius: 4px; }
-        .rudy-demo-starters { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
-        .rudy-demo-starter { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.35rem 0.7rem; font-size: 0.75rem; color: var(--cream); opacity: 0.6; }
+.hero-inner {
+  position:relative;
+  z-index:3;
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 2rem 4rem;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:3rem;
+  align-items:end;
+}
+.hero-copy {
+  max-width:780px;
+}
+.hero-kicker {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:rgba(245,238,226,0.75);
+  display:inline-flex; align-items:center; gap:0.55em;
+  margin-bottom:1.5rem;
+  padding:0.4rem 0.8rem;
+  border:1px solid rgba(245,238,226,0.25);
+  border-radius:100px;
+  backdrop-filter:blur(8px);
+  background:rgba(27,25,23,0.35);
+}
+.hero-kicker::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--butter);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.45;} }
 
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .hero { padding: 7rem 1.5rem 3rem; }
-            .hero-content { grid-template-columns: 1fr; gap: 3rem; }
-            .hero-visual { order: -1; }
-            .hero-mockup { display: none; }
-            .hero-text h1 { font-size: clamp(2.2rem, 7vw, 2.8rem); }
-            .hero-actions { flex-direction: column; }
-            .hero-actions .btn-primary { width: 100%; justify-content: center; }
-            section { padding: 4rem 1.5rem; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 1.5rem; }
-            .feature-card { padding: 0.7rem 0.8rem; gap: 0.5rem; border-radius: 8px; }
-            .feature-icon { width: 32px; height: 32px; }
-            .feature-icon svg { width: 16px; height: 16px; }
-            .feature-card h3 { font-size: 0.85rem; }
-            .persona-grid { grid-template-columns: 1fr; }
-            .rudy-section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-            .rudy-demo-chat { margin-left: 0; max-width: 100%; }
-            .rudy-panel { width: calc(100vw - 1.5rem); right: 0.75rem; bottom: 5.5rem; max-height: calc(100vh - 7rem); }
-        }
-        @media (max-width: 480px) {
-            .hero { padding: 6rem 1rem 2rem; }
-            section { padding: 3rem 1rem; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .feature-card { padding: 0.7rem 0.8rem; }
-            .persona-img { height: 100px; font-size: 2rem; }
-            .intermezzo { padding: 3rem 1rem; }
-            .rudy-section { padding: 4rem 1rem; }
-            .rudy-panel { width: calc(100vw - 1rem); right: 0.5rem; bottom: 5.5rem; max-height: calc(100vh - 7rem); }
-            .rudy-trigger-label { display: none; }
-        }
-    </style>
-    <script>
-        // Load persona images from the Dutch version (they are identical, language-independent)
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('../index.html').then(r => r.text()).then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const srcImgs = doc.querySelectorAll('.persona-img');
-                const dstImgs = document.querySelectorAll('.persona-img');
-                srcImgs.forEach((src, i) => {
-                    if (dstImgs[i] && src.style.backgroundImage) {
-                        dstImgs[i].style.backgroundImage = src.style.backgroundImage;
-                        dstImgs[i].style.backgroundSize = src.style.backgroundSize;
-                        dstImgs[i].style.backgroundPosition = src.style.backgroundPosition;
-                    }
-                });
-            }).catch(() => {});
-        });
-    </script>
+.hero h1 {
+  color:var(--paper);
+  font-weight:400;
+  margin-bottom:1.25rem;
+}
+.hero h1 em { color:var(--butter); }
+
+.hero-sub {
+  font-size:1.2rem;
+  line-height:1.5;
+  color:rgba(245,238,226,0.88);
+  max-width:52ch;
+  margin-bottom:2rem;
+  font-weight:400;
+}
+.hero-ctas {
+  display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap;
+}
+.hero-meta-right {
+  display:flex;
+  flex-direction:column;
+  gap:0.3rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.7rem;
+  letter-spacing:0.12em;
+  color:rgba(245,238,226,0.6);
+  text-transform:uppercase;
+  text-align:right;
+}
+.hero-meta-right span::before {
+  content:'— ';
+  color:var(--butter);
+}
+
+.hero-scroll {
+  position:absolute;
+  bottom:2rem; left:50%;
+  transform:translateX(-50%);
+  z-index:3;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.65rem;
+  letter-spacing:0.2em;
+  color:rgba(245,238,226,0.5);
+  text-transform:uppercase;
+  display:inline-flex;
+  align-items:center;
+  gap:0.5em;
+}
+.hero-scroll::after {
+  content:'';
+  display:block;
+  width:1px; height:20px;
+  background:linear-gradient(180deg, rgba(245,238,226,0.5), transparent);
+  animation:scroll-line 2s infinite;
+}
+@keyframes scroll-line { 0%{transform:scaleY(0.3);} 50%{transform:scaleY(1);} 100%{transform:scaleY(0.3);} }
+
+/* ─── INTRO BELOW HERO ─── */
+.intro {
+  background:var(--paper);
+  padding:5rem 0 4rem;
+  text-align:left;
+}
+.intro-grid {
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:3rem;
+  align-items:start;
+}
+.intro-label {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.15em;
+  color:var(--muted);
+  text-transform:uppercase;
+  padding-top:0.6rem;
+  white-space:nowrap;
+}
+.intro-text h2 {
+  font-size:clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height:1.1;
+  margin-bottom:1rem;
+  max-width:24ch;
+}
+.intro-text h2 em { color:var(--terra-dark); }
+.intro-text p {
+  font-size:1.1rem;
+  max-width:58ch;
+  line-height:1.6;
+  color:var(--ink-soft);
+}
+.intro-text p em { color:var(--terra-dark); font-style:italic; font-weight:400; }
+
+/* ─── LOGOS ─── */
+.logos {
+  padding:2.25rem 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--paper);
+}
+.logos-inner {
+  max-width:1200px; margin:0 auto;
+  padding:0 2rem;
+  display:flex; align-items:center; gap:2.5rem;
+  flex-wrap:wrap; justify-content:space-between;
+}
+.logos-label {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.7rem;
+  letter-spacing:0.12em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.logos-list {
+  display:flex; gap:2.5rem; align-items:center; flex-wrap:wrap;
+}
+.logos-list span {
+  font-family:'Fraunces', serif;
+  font-size:1.15rem;
+  font-weight:400;
+  color:var(--ink);
+  opacity:0.55;
+  transition:opacity 0.2s;
+  letter-spacing:-0.02em;
+}
+.logos-list span:hover { opacity:1; }
+
+/* ─── PIJLERS (Granola-style: clean UI, cream background) ─── */
+.pijlers { background:var(--paper); padding:7rem 0 4rem; }
+.pijlers-intro {
+  max-width:680px;
+  margin-bottom:5rem;
+}
+.pijlers-intro h2 { margin-bottom:1rem; }
+.pijlers-intro h2 em { color:var(--terra-dark); }
+
+.pijler {
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:5rem;
+  align-items:center;
+  padding:4rem 0;
+  border-top:1px solid var(--line);
+}
+.pijler:last-of-type { border-bottom:1px solid var(--line); }
+.pijler:nth-of-type(even) .pijler-visual { order:-1; }
+
+.pijler-num {
+  display:inline-flex; align-items:center; gap:0.5em;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  color:var(--terra-dark);
+  text-transform:uppercase;
+  margin-bottom:1.25rem;
+}
+.pijler-num::before {
+  content:'';
+  width:20px; height:1px;
+  background:var(--terra);
+}
+.pijler-copy h3 {
+  margin-bottom:1.2rem;
+}
+.pijler-copy h3 em { color:var(--terra-dark); }
+.pijler-copy > p {
+  font-size:1.05rem;
+  margin-bottom:1rem;
+  max-width:50ch;
+  color:var(--ink-soft);
+}
+.pijler-quote {
+  margin-top:2rem;
+  padding:1.25rem 1.5rem;
+  background:var(--paper-panel);
+  border-radius:6px;
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:1.1rem;
+  line-height:1.4;
+  max-width:44ch;
+  color:var(--ink);
+  border-left:2px solid var(--terra);
+}
+
+/* Pijler-visual — cream panel met lijn-illustratie (energie.be stijl) */
+.pijler-visual {
+  position:relative;
+  aspect-ratio:5/4;
+  max-width:560px;
+  margin:0 auto;
+  background:var(--paper-panel);
+  border-radius:20px;
+  padding:2rem;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 20px 40px -15px rgba(27,25,23,0.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.pijler-visual::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,0.5), transparent 60%);
+  pointer-events:none;
+  border-radius:inherit;
+}
+.pijler-visual > svg.illus {
+  width:86%;
+  height:auto;
+  max-height:86%;
+  color:var(--ink);
+  position:relative;
+  z-index:2;
+  stroke-width:1.5;
+}
+.pijler-chip {
+  position:absolute;
+  bottom:1rem; left:1rem;
+  z-index:3;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:100px;
+  padding:0.38rem 0.85rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.68rem;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  display:inline-flex; align-items:center; gap:0.45em;
+}
+.pijler-chip::before {
+  content:'';
+  width:6px; height:6px; border-radius:50%;
+  background:var(--terra);
+}
+.pijler-chip.live::before { background:var(--forest); animation:pulse 2s infinite; }
+.pijler-note-wrap {
+  position:absolute;
+  right:1.75rem; top:1.5rem;
+  z-index:4;
+  text-align:right;
+}
+.pijler-note {
+  font-family:'Caveat', cursive;
+  font-weight:500;
+  color:var(--terra-dark);
+  font-size:1.15rem;
+  line-height:1.1;
+  transform:rotate(4deg);
+  display:inline-block;
+}
+.pijler-note-arrow {
+  display:block;
+  width:46px;
+  color:var(--terra-dark);
+  transform:rotate(-20deg);
+  margin-left:auto;
+  margin-top:-2px;
+}
+
+/* PMS visual · kalender */
+.viz-pms .ui-frame { padding:1.6rem 1.5rem; }
+.viz-pms .head {
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:1rem;
+}
+.viz-pms .head h5 {
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:1.15rem;
+  letter-spacing:-0.02em;
+}
+.viz-pms .head .date {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.7rem;
+  letter-spacing:0.08em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.viz-pms .cal {
+  display:grid;
+  grid-template-columns:36px repeat(7, 1fr);
+  gap:3px;
+}
+.viz-pms .cal .lbl {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.6rem;
+  color:var(--muted);
+  letter-spacing:0.05em;
+  display:flex; align-items:center;
+  padding-right:0.3rem;
+  text-transform:uppercase;
+}
+.viz-pms .cal .hd {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.58rem;
+  color:var(--ink);
+  letter-spacing:0.06em;
+  display:flex; align-items:center; justify-content:center;
+  height:18px;
+  text-transform:uppercase;
+  font-weight:500;
+}
+.viz-pms .cal .c {
+  height:24px;
+  border-radius:3px;
+  background:var(--sand);
+  position:relative;
+}
+.viz-pms .cal .c.t1 { background:var(--terra); }
+.viz-pms .cal .c.t2 { background:var(--forest); }
+.viz-pms .cal .c.t3 { background:var(--butter); }
+.viz-pms .cal .c.t4 { background:var(--terra-dark); }
+.viz-pms .cal .c.t5 { background:var(--forest-soft); }
+.viz-pms .illus {
+  position:absolute;
+  top:12%; right:-6%;
+  width:90px;
+  z-index:2;
+  color:var(--terra-dark);
+  opacity:0.9;
+  transform:rotate(8deg);
+}
+
+/* Handbook visual */
+.viz-handbook .ui-frame { padding:1.5rem 1.4rem; }
+.viz-handbook .head {
+  display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:1rem;
+}
+.viz-handbook .head h5 {
+  font-family:'Fraunces', serif; font-weight:400; font-size:1.15rem; letter-spacing:-0.02em;
+}
+.viz-handbook .search {
+  display:flex; align-items:center; gap:0.5em;
+  background:var(--sand);
+  border-radius:100px;
+  padding:0.45rem 0.9rem;
+  font-size:0.78rem;
+  color:var(--muted);
+  flex:1; max-width:200px;
+  margin-left:1rem;
+}
+.viz-handbook .search::before { content:'⌕'; opacity:0.6; }
+.viz-handbook .tabs {
+  display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:1rem;
+}
+.viz-handbook .tab {
+  padding:0.25rem 0.65rem;
+  border-radius:100px;
+  font-size:0.7rem;
+  font-weight:500;
+  background:var(--sand);
+  color:var(--ink-soft);
+}
+.viz-handbook .tab.act { background:var(--ink); color:var(--paper); }
+.viz-handbook .entry {
+  display:flex; gap:0.85rem; padding:0.7rem 0;
+  border-top:1px solid var(--line);
+  align-items:flex-start;
+}
+.viz-handbook .entry:last-child { border-bottom:1px solid var(--line); }
+.viz-handbook .entry .ic {
+  flex-shrink:0;
+  width:28px; height:28px; border-radius:7px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.95rem;
+}
+.viz-handbook .entry .ic.a { background:#FBE1D2; }
+.viz-handbook .entry .ic.b { background:var(--forest-soft); }
+.viz-handbook .entry .ic.c { background:#FCEDBD; }
+.viz-handbook .entry .t strong {
+  display:block; font-size:0.88rem; font-weight:600; color:var(--ink);
+  margin-bottom:0.1rem;
+}
+.viz-handbook .entry .t span {
+  font-size:0.72rem; color:var(--muted);
+  font-family:'JetBrains Mono', monospace;
+  letter-spacing:0.02em;
+}
+.viz-handbook .note {
+  position:absolute;
+  right:-2%; bottom:10%;
+  font-family:'Caveat', cursive;
+  font-weight:500;
+  font-size:1.1rem;
+  color:var(--terra-dark);
+  transform:rotate(6deg);
+  line-height:1.1;
+  max-width:130px;
+  z-index:3;
+}
+.viz-handbook .note-arrow {
+  position:absolute;
+  right:8%; bottom:30%;
+  width:50px;
+  color:var(--terra-dark);
+  transform:rotate(-30deg);
+  z-index:3;
+}
+
+/* Rudy visual · chat */
+.viz-rudy .ui-frame { padding:1.3rem 1.3rem; }
+.viz-rudy .head {
+  display:flex; gap:0.7rem; align-items:center;
+  padding-bottom:0.85rem;
+  margin-bottom:0.85rem;
+  border-bottom:1px solid var(--line);
+}
+.viz-rudy .head .av {
+  width:36px; height:36px; border-radius:50%;
+  background:var(--terra-dark);
+  color:var(--paper);
+  font-family:'Fraunces', serif;
+  font-weight:500;
+  font-size:1rem;
+  display:flex; align-items:center; justify-content:center;
+}
+.viz-rudy .head strong {
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:1.1rem;
+  letter-spacing:-0.02em;
+  display:block;
+  line-height:1.1;
+}
+.viz-rudy .head span {
+  font-size:0.7rem; color:var(--forest);
+  font-family:'JetBrains Mono', monospace;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  display:inline-flex; align-items:center; gap:0.3em;
+  margin-top:0.1rem;
+}
+.viz-rudy .head span::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+  background:var(--forest);
+}
+.viz-rudy .msg {
+  max-width:82%;
+  padding:0.6rem 0.9rem;
+  border-radius:14px;
+  font-size:0.85rem;
+  line-height:1.45;
+  margin-bottom:0.55rem;
+}
+.viz-rudy .msg.u {
+  background:var(--sand);
+  color:var(--ink);
+  margin-left:auto;
+  border-bottom-right-radius:4px;
+}
+.viz-rudy .msg.b {
+  background:var(--ink);
+  color:var(--paper);
+  border-bottom-left-radius:4px;
+}
+.viz-rudy .msg.b small {
+  display:block;
+  font-size:0.65rem;
+  color:var(--butter);
+  font-family:'JetBrains Mono', monospace;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  margin-bottom:0.2rem;
+}
+.viz-rudy .action {
+  display:inline-flex; align-items:center; gap:0.35em;
+  border:1px solid rgba(245,238,226,0.3);
+  padding:0.25rem 0.6rem;
+  border-radius:100px;
+  font-size:0.72rem;
+  margin-top:0.4rem;
+}
+
+/* ─── Hmm oké ─── */
+.wie {
+  background:var(--paper-deep);
+  padding:6rem 0;
+}
+.wie-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5rem;
+  align-items:center;
+}
+.wie h2 em { color:var(--terra-dark); }
+.wie p {
+  font-size:1.1rem;
+  line-height:1.6;
+  color:var(--ink-soft);
+  margin-bottom:1.25rem;
+  max-width:54ch;
+}
+.wie p strong { color:var(--ink); font-weight:600; }
+.wie p em { color:var(--terra-dark); font-style:italic; font-weight:400; }
+.wie .wie-quote {
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:1.2rem;
+  line-height:1.45;
+  color:var(--ink);
+  padding-top:1.5rem;
+  border-top:1px solid var(--line);
+  margin-top:2rem;
+  max-width:46ch;
+}
+.wie-illus {
+  position:relative;
+  aspect-ratio:4/5;
+  max-width:460px;
+  margin-left:auto;
+  background:var(--paper-panel);
+  border-radius:20px;
+  padding:3rem 2rem;
+  overflow:hidden;
+}
+.wie-illus::before {
+  content:'';
+  position:absolute;
+  right:-20%; bottom:-20%;
+  width:70%; height:70%;
+  border-radius:50%;
+  background:radial-gradient(circle, var(--butter), transparent 65%);
+  opacity:0.7;
+  filter:blur(12px);
+}
+.wie-illus svg {
+  position:relative; z-index:2;
+  width:100%; height:auto;
+  color:var(--ink);
+}
+.wie-illus-tag {
+  position:absolute;
+  bottom:1.25rem; left:1.5rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.66rem;
+  letter-spacing:0.1em;
+  color:var(--muted);
+  text-transform:uppercase;
+  z-index:2;
+}
+
+/* ─── MAKKELIJK ─── */
+.makkelijk {
+  background:var(--paper);
+  padding:7rem 0;
+}
+.makkelijk-grid {
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:5rem;
+  align-items:center;
+}
+.makkelijk h2 em { color:var(--terra-dark); }
+.stappen { list-style:none; margin-top:2rem; }
+.stappen li {
+  display:flex; gap:1rem;
+  align-items:baseline;
+  padding:0.7rem 0;
+  border-top:1px solid var(--line);
+  font-size:0.98rem;
+  color:var(--ink-soft);
+  line-height:1.5;
+}
+.stappen li:last-child { border-bottom:1px solid var(--line); }
+.stappen li .n {
+  flex-shrink:0;
+  width:24px; height:24px;
+  border-radius:50%;
+  background:var(--forest-soft);
+  color:var(--forest);
+  font-family:'JetBrains Mono', monospace;
+  font-weight:500;
+  font-size:0.72rem;
+  display:inline-flex; align-items:center; justify-content:center;
+  align-self:center;
+}
+.stappen li:nth-child(2) .n { background:#FCEDBD; color:#8a6b1a; }
+.stappen li:nth-child(3) .n { background:#FBE1D2; color:var(--terra-dark); }
+.stappen li .t strong {
+  color:var(--ink);
+  font-weight:600;
+}
+
+.makkelijk-illus {
+  position:relative;
+  aspect-ratio:4/3;
+  max-width:560px;
+  margin:0 auto;
+  background:var(--paper-panel);
+  border-radius:20px;
+  padding:2rem;
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 20px 40px -15px rgba(27,25,23,0.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.makkelijk-illus::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,0.5), transparent 60%);
+  pointer-events:none;
+  border-radius:inherit;
+}
+.makkelijk-illus .illus {
+  width:86%;
+  height:auto;
+  max-height:86%;
+  color:var(--ink);
+  position:relative;
+  z-index:2;
+  stroke-width:1.5;
+}
+
+/* ─── PERSONAS ─── */
+.personas { background:var(--paper-deep); padding:7rem 0; }
+.personas-head { max-width:640px; margin-bottom:4rem; }
+.personas h2 em { color:var(--terra-dark); }
+.persona-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:2rem;
+}
+.persona {
+  background:var(--paper-panel);
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+.persona:hover {
+  transform:translateY(-4px);
+  box-shadow:0 20px 40px rgba(27,25,23,0.08);
+}
+.persona-img {
+  aspect-ratio:4/3;
+  background-size:cover;
+  background-position:center;
+  filter:contrast(1.04) saturate(0.92);
+  position:relative;
+}
+.persona-img::after {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 55%, rgba(27,25,23,0.18));
+}
+.persona-body { padding:1.5rem 1.5rem 1.75rem; }
+.persona-meta {
+  display:flex; justify-content:space-between;
+  align-items:center;
+  margin-bottom:0.8rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.68rem;
+  letter-spacing:0.1em;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.persona-meta .count { color:var(--terra-dark); }
+.persona-body h4 {
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:1.4rem;
+  letter-spacing:-0.02em;
+  margin-bottom:0.5rem;
+  line-height:1.1;
+}
+.persona-body p {
+  font-size:0.92rem; color:var(--ink-soft);
+  margin-bottom:1.25rem; line-height:1.55;
+}
+.persona-quote {
+  padding-top:1rem;
+  border-top:1px solid var(--line);
+  font-family:'Fraunces', serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:0.98rem;
+  color:var(--ink);
+  line-height:1.4;
+}
+
+/* ─── TRUST ─── */
+.trust {
+  background:var(--paper);
+  padding:4rem 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.trust-grid {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:3rem;
+}
+.trust-item {
+  display:flex; gap:1rem; align-items:flex-start;
+}
+.trust-item .ic {
+  flex-shrink:0;
+  width:32px; height:32px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--paper-panel);
+  color:var(--terra-dark);
+}
+.trust-item:nth-child(2) .ic { color:var(--forest); background:var(--forest-soft); }
+.trust-item:nth-child(3) .ic { color:#8a6b1a; background:#FCEDBD; }
+.trust-item p { margin:0; font-size:0.95rem; line-height:1.5; max-width:32ch; }
+.trust-item p strong {
+  display:block;
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:1.08rem;
+  letter-spacing:-0.015em;
+  color:var(--ink);
+  margin-bottom:0.1rem;
+}
+
+/* ─── PRIJS ─── */
+.prijs {
+  background:var(--paper);
+  padding:7rem 0;
+  text-align:center;
+}
+.prijs-inner { max-width:780px; margin:0 auto; padding:0 2rem; position:relative; }
+.prijs h2 em { color:var(--terra-dark); }
+.prijs-bedrag {
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:clamp(3.2rem, 7vw, 5.4rem);
+  letter-spacing:-0.045em;
+  line-height:1;
+  margin:1.5rem 0 0.5rem;
+  color:var(--ink);
+}
+.prijs-bedrag em {
+  font-style:italic;
+  color:var(--terra-dark);
+  font-weight:300;
+}
+.prijs-unit {
+  display:block;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.82rem;
+  font-weight:500;
+  letter-spacing:0.1em;
+  color:var(--muted);
+  text-transform:uppercase;
+  margin-bottom:1.75rem;
+}
+.prijs-copy {
+  max-width:52ch;
+  margin:0 auto 2rem;
+  color:var(--ink-soft);
+  font-size:1.05rem;
+  line-height:1.55;
+}
+.prijs-checklist {
+  display:flex; flex-wrap:wrap; justify-content:center;
+  gap:1rem 2.5rem;
+  margin-bottom:2.5rem;
+  list-style:none;
+  font-size:0.95rem;
+  color:var(--ink);
+}
+.prijs-checklist li { display:flex; align-items:center; gap:0.5em; }
+.prijs-checklist li::before {
+  content:'✓';
+  color:var(--forest);
+  font-weight:700;
+}
+
+/* ─── FAQ ─── */
+.faq {
+  background:var(--paper-deep);
+  padding:7rem 0;
+}
+.faq-inner { max-width:780px; margin:0 auto; padding:0 2rem; }
+.faq h2 em { color:var(--terra-dark); }
+.faq-list { margin-top:2.5rem; }
+.faq-list details {
+  background:var(--paper-panel);
+  border-radius:12px;
+  margin-bottom:0.6rem;
+  border:1px solid var(--line);
+  overflow:hidden;
+}
+.faq-list details[open] { box-shadow:0 10px 24px rgba(27,25,23,0.08); }
+.faq-list summary {
+  padding:1.15rem 1.4rem;
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:1.08rem;
+  letter-spacing:-0.01em;
+  cursor:pointer;
+  list-style:none;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.faq-list summary::-webkit-details-marker { display:none; }
+.faq-list summary::after {
+  content:'+';
+  font-family:'JetBrains Mono', monospace;
+  font-size:1.35rem;
+  color:var(--terra-dark);
+  transition:transform 0.2s;
+  margin-left:1rem;
+}
+.faq-list details[open] summary::after { content:'−'; }
+.faq-list details p {
+  padding:0 1.4rem 1.2rem;
+  font-size:0.96rem;
+  color:var(--ink-soft);
+  line-height:1.65;
+  max-width:62ch;
+}
+.faq-link {
+  display:inline-flex;
+  margin-top:2rem;
+  font-size:0.95rem;
+  font-weight:500;
+  color:var(--terra-dark);
+  text-decoration:none;
+  border-bottom:1.5px solid var(--terra-dark);
+  padding-bottom:2px;
+}
+
+/* ─── FINAL ─── */
+.final {
+  background:var(--ink);
+  color:var(--paper);
+  padding:8rem 0;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.final::before {
+  content:'';
+  position:absolute;
+  right:-10%; top:-20%;
+  width:45%; height:110%;
+  background:radial-gradient(circle, var(--terra-dark) 0%, transparent 60%);
+  opacity:0.55; filter:blur(15px);
+}
+.final::after {
+  content:'';
+  position:absolute;
+  left:-8%; bottom:-20%;
+  width:35%; height:75%;
+  background:radial-gradient(circle, var(--butter) 0%, transparent 60%);
+  opacity:0.3; filter:blur(16px);
+}
+.final-inner { max-width:760px; margin:0 auto; padding:0 2rem; position:relative; z-index:2; }
+.final .kicker { color:rgba(245,238,226,0.6); }
+.final .kicker::before { background:var(--butter); }
+.final h2 {
+  color:var(--paper);
+  font-weight:400;
+  margin-bottom:1.25rem;
+}
+.final h2 em { color:var(--butter); font-style:italic; font-weight:300; }
+.final p { color:rgba(245,238,226,0.82); font-size:1.15rem; max-width:540px; margin:0 auto 2.5rem; line-height:1.55; }
+.final .btn-paper { padding:1rem 2rem; font-size:1rem; }
+.final-fine {
+  margin-top:2.5rem;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.1em;
+  color:rgba(245,238,226,0.45);
+  text-transform:uppercase;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background:var(--ink);
+  color:var(--paper);
+  padding:4rem 2rem 2rem;
+  border-top:1px solid rgba(245,238,226,0.08);
+}
+.footer-grid {
+  max-width:1200px; margin:0 auto;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:3rem;
+  margin-bottom:3rem;
+}
+.footer-brand {
+  font-family:'Fraunces', serif;
+  font-size:1.45rem;
+  font-weight:400;
+  letter-spacing:-0.04em;
+  margin-bottom:0.6rem;
+}
+.footer-brand em { font-style:italic; color:var(--terra); font-weight:300; }
+.footer-tagline { font-size:0.9rem; color:rgba(245,238,226,0.65); max-width:30ch; line-height:1.55; }
+.footer-label {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.7rem;
+  letter-spacing:0.12em;
+  color:rgba(245,238,226,0.5);
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.footer-links { list-style:none; }
+.footer-links li { margin-bottom:0.5rem; }
+.footer-links a {
+  color:var(--paper);
+  text-decoration:none;
+  font-size:0.88rem;
+  opacity:0.7;
+  transition:opacity 0.2s, color 0.2s;
+}
+.footer-links a:hover { opacity:1; color:var(--butter); }
+.footer-bottom {
+  max-width:1200px; margin:0 auto;
+  padding-top:2rem;
+  border-top:1px solid rgba(245,238,226,0.1);
+  display:flex; justify-content:space-between;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.08em;
+  color:rgba(245,238,226,0.45);
+  text-transform:uppercase;
+}
+
+/* ─── CONTACT ─── */
+.contact-section {
+  background:var(--paper-deep);
+  padding:7rem 0;
+}
+.contact-grid {
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:5rem;
+  align-items:start;
+}
+.contact-copy h2 em { color:var(--terra-dark); }
+.contact-copy > p {
+  font-size:1.1rem;
+  line-height:1.6;
+  color:var(--ink-soft);
+  margin-bottom:1.5rem;
+  max-width:48ch;
+}
+.contact-channels {
+  list-style:none;
+  margin-top:2rem;
+  border-top:1px solid var(--line);
+  padding-top:1.5rem;
+}
+.contact-channels li {
+  display:flex; align-items:center; gap:0.8rem;
+  padding:0.6rem 0;
+  font-size:0.95rem;
+  color:var(--ink-soft);
+}
+.contact-channels li a {
+  color:var(--terra-dark);
+  text-decoration:none;
+  border-bottom:1px dotted var(--terra-dark);
+}
+.contact-channels .ch-ic {
+  width:28px; height:28px; border-radius:7px;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  background:var(--paper-panel);
+  color:var(--terra-dark);
+}
+.contact-form {
+  background:var(--paper-panel);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:2.5rem;
+  box-shadow:0 16px 40px rgba(27,25,23,0.05);
+}
+.contact-form-title {
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:1.4rem;
+  letter-spacing:-0.02em;
+  margin-bottom:0.3rem;
+}
+.contact-form-sub {
+  font-size:0.88rem;
+  color:var(--muted);
+  margin-bottom:1.75rem;
+}
+.form-field {
+  margin-bottom:1.25rem;
+}
+.form-field label {
+  display:block;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:0.4rem;
+}
+.form-field input,
+.form-field textarea {
+  width:100%;
+  padding:0.75rem 1rem;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter', sans-serif;
+  font-size:0.95rem;
+  line-height:1.5;
+  transition:border-color 0.2s, box-shadow 0.2s;
+  outline:none;
+  resize:vertical;
+}
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color:var(--terra-dark);
+  box-shadow:0 0 0 3px rgba(185,107,74,0.12);
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color:var(--muted);
+  opacity:0.7;
+}
+.form-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+}
+.form-submit {
+  margin-top:0.5rem;
+}
+.form-submit .btn-ink {
+  width:100%;
+  justify-content:center;
+  padding:0.85rem 1.6rem;
+}
+.form-fine {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.68rem;
+  color:var(--muted);
+  text-align:center;
+  margin-top:0.75rem;
+  letter-spacing:0.03em;
+}
+.form-sent {
+  text-align:center;
+  padding:2rem 0;
+}
+.form-sent h3 {
+  font-family:'Fraunces', serif;
+  font-weight:400;
+  font-size:1.6rem;
+  margin-bottom:0.5rem;
+}
+.form-sent p {
+  color:var(--ink-soft);
+  font-size:1rem;
+}
+
+/* ─── Fade ─── */
+.fade-up { opacity:0; transform:translateY(20px); transition:opacity 0.8s, transform 0.8s; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+
+/* ─── Responsive ─── */
+@media (max-width:960px) {
+  .nav-toggle { display:flex; }
+  .nav-links {
+    display:none;
+    position:absolute; top:100%; left:0; right:0;
+    background:rgba(245,238,226,0.98);
+    backdrop-filter:blur(20px);
+    flex-direction:column;
+    padding:1.5rem;
+    gap:0;
+    border-bottom:1px solid var(--line);
+  }
+  nav.on-video .nav-links { background:rgba(27,25,23,0.94); }
+  nav.on-video .nav-links a { color:var(--paper); }
+  .nav-links.open { display:flex; }
+  .nav-links li { list-style:none; width:100%; }
+  .nav-links a {
+    display:block; padding:0.75rem 0;
+    font-size:1rem; border-bottom:1px solid var(--line);
+  }
+  .nav-links li:last-child a { border-bottom:none; }
+  .nav-cta { margin-top:0.75rem; text-align:center; display:block !important; }
+
+  .hero { min-height:90vh; }
+  .hero-video { object-position:center 40%; }
+  .hero-inner { grid-template-columns:1fr; gap:1.5rem; padding:0 1.5rem 3rem; }
+  .hero-meta-right { text-align:left; }
+  .hero-scroll { display:none; }
+
+  .intro-grid { grid-template-columns:1fr; gap:1.5rem; }
+
+  .pijler { grid-template-columns:1fr; gap:2.5rem; padding:3rem 0; }
+  .pijler:nth-of-type(even) .pijler-visual { order:unset; }
+  .pijler-visual { max-width:460px; }
+
+  .makkelijk-grid { grid-template-columns:1fr; gap:3rem; }
+  .personas-head { margin-bottom:3rem; }
+  .persona-grid { grid-template-columns:1fr; }
+  .trust-grid { grid-template-columns:1fr; gap:1.5rem; }
+  .wie-grid { grid-template-columns:1fr; gap:3rem; }
+  .wie-illus { max-width:360px; }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:2.5rem; }
+  .wrap, .logos-inner { padding:0 1.5rem; }
+  section { padding:5rem 0; }
+  .logos-list { gap:1.5rem; }
+  .contact-grid { grid-template-columns:1fr; gap:3rem; }
+  .contact-form { padding:2rem 1.75rem; }
+}
+@media (max-width:560px) {
+  .hero { min-height:100svh; }
+  .hero-video { object-position:center 35%; }
+  .hero-overlay {
+    background:
+      linear-gradient(180deg,
+        rgba(27,25,23,0.55) 0%,
+        rgba(27,25,23,0.1) 25%,
+        rgba(27,25,23,0.2) 50%,
+        rgba(27,25,23,0.82) 100%);
+  }
+  .hero h1 { font-size:clamp(2.4rem, 10vw, 3.2rem); }
+  .hero-sub { font-size:1.05rem; max-width:38ch; }
+  .hero-inner { padding:0 1.25rem 2.5rem; }
+  .hero-ctas { flex-direction:column; align-items:stretch; }
+  .hero-ctas .btn-ink { justify-content:center; }
+  .hero-ctas .btn-ghost-white { justify-content:center; }
+  .footer-grid { grid-template-columns:1fr; }
+  .footer-bottom { flex-direction:column; gap:0.5rem; text-align:left; }
+  .hero-kicker { font-size:0.65rem; }
+  .logos-list { gap:1rem; }
+  .logos-list span { font-size:1rem; }
+  .persona-body { padding:1.25rem; }
+  .form-row { grid-template-columns:1fr; }
+  .contact-form { padding:1.5rem; }
+}
+/* Landscape mobile — hero mag korter, video wordt breder */
+@media (max-height:500px) and (orientation:landscape) {
+  .hero { min-height:100svh; }
+  .hero-video { object-position:center center; }
+  .hero h1 { font-size:clamp(1.8rem, 5vw, 2.6rem); }
+  .hero-sub { font-size:0.95rem; margin-bottom:1rem; }
+  .hero-inner { padding:0 2rem 1.5rem; }
+  .hero-kicker { margin-bottom:0.75rem; }
+}
+</style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html" class="nav-logo">rumo<span>.</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
-        <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links">
-        <li><a href="#features-preview">What's included?</a></li>
-        <li><a href="#who-is-it-for">Who is it for?</a></li>
-        <li><a href="features.html">Features</a></li>
-        <li><a href="integrations.html">Integrations</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="about.html">About us</a></li>
-        <li><a href="#demo" class="nav-cta">Try for free</a></li>
-        <li class="nav-lang"><a href="../index.html" onclick="sessionStorage.setItem('rumo-lang-chosen','nl')">NL</a><a href="index.html" class="active" onclick="sessionStorage.setItem('rumo-lang-chosen','en')">EN</a><a href="../fr/index.html" onclick="sessionStorage.setItem('rumo-lang-chosen','fr')">FR</a></li>
-    </ul>
+  <a href="index.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#pijlers">What does rumo do?</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="integrations.html">Integrations</a></li>
+    <li><a href="pricing.html">So, what does it cost?</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="about.html">About us</a></li>
+    <li><a href="#contact" class="nav-cta">Let's have a chat →</a></li>
+    <li class="nav-lang">
+      <a href="../index.html">NL</a>
+      <a href="index.html" class="active">EN</a>
+      <a href="../fr/index.html">FR</a>
+    </li>
+  </ul>
 </nav>
 
-<!-- HERO -->
+<!-- ══════════════════ HERO · FILMIC VIDEO ══════════════════ -->
 <section class="hero">
-    <div class="hero-content">
-        <div class="hero-text fade-up">
-            <h1>Hotel software that <em>just works</em>.</h1>
-            <p class="hero-subline">New staff works independently in 2 days.</p>
-            <p class="hero-subtitle">
-                No 3-day training. No 200-page manual.
-                Just a system that works the way you think.
-            </p>
-            <ul class="hero-checklist">
-                <li>Reservations, invoicing &amp; channel manager in one</li>
-                <li>Booking engine, guest portal and online payments</li>
-                <li>Peppol e-invoicing, reports and automated emails</li>
-                <li>From &euro;12 per room per month, no hidden costs</li>
-            </ul>
-            <div class="hero-actions">
-                <a href="#demo" class="btn-primary">Try for free &rarr;</a>
-                <a href="features.html" class="btn-secondary">How does it work?</a>
-            </div>
-        </div>
-        <div class="hero-visual fade-up" style="transition-delay: 0.15s">
-            <div class="hero-mockup">
-                <div class="mockup-topbar">
-                    <div class="mockup-dot"></div>
-                    <div class="mockup-dot"></div>
-                    <div class="mockup-dot"></div>
-                </div>
-                <div class="mockup-content">
-                    <div class="mockup-header">
-                        <span class="mockup-title">Dashboard</span>
-                        <span class="mockup-badge">Live</span>
-                    </div>
-                    <div class="mockup-stats">
-                        <div class="mockup-stat">
-                            <div class="mockup-stat-value">87%</div>
-                            <div class="mockup-stat-label">Occupancy</div>
-                        </div>
-                        <div class="mockup-stat">
-                            <div class="mockup-stat-value">&euro;4.285</div>
-                            <div class="mockup-stat-label">Revenue today</div>
-                        </div>
-                        <div class="mockup-stat">
-                            <div class="mockup-stat-value">6</div>
-                            <div class="mockup-stat-label">Check-ins</div>
-                        </div>
-                    </div>
-                    <div class="mockup-rows">
-                        <div class="mockup-row">
-                            <span class="mockup-row-name">Fam. Janssen &middot; Room 204</span>
-                            <span class="mockup-row-status status-green">Checked in</span>
-                        </div>
-                        <div class="mockup-row">
-                            <span class="mockup-row-name">Mr. Dubois &middot; Room 108</span>
-                            <span class="mockup-row-status status-orange">Expected today</span>
-                        </div>
-                        <div class="mockup-row">
-                            <span class="mockup-row-name">De Vries BV &middot; Room 301</span>
-                            <span class="mockup-row-status status-blue">Invoice sent</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <video class="hero-video" autoplay loop muted playsinline preload="auto">
+    <source src="../img/sfeer.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-grain"></div>
+
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1>Running your hotel<br><em>without the hassle.</em></h1>
+      <p class="hero-sub">
+        rumo is built for hoteliers who still stand in their own hotel every day. PMS, channel manager, invoicing and handbook in one. Plus a smart colleague. Nothing more.
+      </p>
+      <div class="hero-ctas">
+        <a href="#demo" class="btn-ink">Try 14 days free <span>→</span></a>
+
+      </div>
     </div>
+  </div>
+  <div class="hero-scroll">scroll</div>
 </section>
 
-<!-- INTEGRATION LOGOS -->
-<div class="logo-row">
-    <div class="logo-row-label">Works with what you already use</div>
-    <div class="logo-row-logos">
-        <div class="logo-item"><img src="../img/logos/booking.svg" alt="Booking.com logo"><span>Booking.com</span></div>
-        <div class="logo-item"><img src="../img/logos/airbnb.svg" alt="Airbnb logo"><span>Airbnb</span></div>
-        <div class="logo-item"><img src="../img/logos/stripe.svg" alt="Stripe logo"><span>Stripe</span></div>
-        <div class="logo-item"><span>Exact Online</span></div>
-        <div class="logo-item"><span>Peppol</span></div>
+<!-- ══════════════════ INTRO · So, what exactly is rumo? ══════════════════ -->
+<section class="intro">
+  <div class="wrap">
+    <div class="intro-grid fade-up">
+      <div class="intro-label">00 / Intro</div>
+      <div class="intro-text">
+        <h2>So, what exactly is <em>rumo?</em></h2>
+        <p>Well, we're hotel software. But not the kind you're thinking of. No enterprise platform at two thousand euros a month where you still need three weeks of training. Just <em>one</em> system that does what it's supposed to do. You open it in the morning and you know what needs to happen today. That was basically the whole idea.</p>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ══════════════════ LOGOS ══════════════════ -->
+<div class="logos">
+  <div class="logos-inner">
+    <div class="logos-label">Works with what you already use</div>
+    <div class="logos-list">
+      <span>Booking.com</span>
+      <span>Airbnb</span>
+
+      <span>Exact Online</span>
+      <span>Peppol</span>
+    </div>
+  </div>
 </div>
 
-<!-- FEATURES PREVIEW -->
-<section class="features-preview" id="features-preview">
-    <div class="section-inner">
-        <div class="fade-up">
-            <span class="section-label">What's included?</span>
-            <h2 class="section-title">Everything you need.<br>Nothing you don't.</h2>
-            <p class="section-subtitle">From reservations to reports, from booking engine to guest communication. All in one system.</p>
-        </div>
-        <div class="features-grid">
-            <a href="features.html#rudy" class="feature-card fade-up">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </div>
-                <h3>Rudy, the AI assistant</h3>
-                <p>"Which rooms are available tomorrow?" Rudy knows your hotel, your numbers and your procedures. Actually smart, not a chatbot.</p>
-                <span class="feature-card-arrow">More info &rarr;</span>
-            </a>
-            <a href="features.html#handbook" class="feature-card fade-up" style="transition-delay:0.07s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
-                </div>
-                <h3>Hotel handbook</h3>
-                <p>Procedures, house rules and onboarding. Everything your team needs to know, in your PMS.</p>
-                <span class="feature-card-arrow">More info &rarr;</span>
-            </a>
-            <a href="features.html#ux" class="feature-card fade-up" style="transition-delay:0.14s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="4"/><rect x="14" y="10" width="7" height="7"/><rect x="3" y="13" width="7" height="4"/></svg>
-                </div>
-                <h3>Intuitive design</h3>
-                <p>Built to be easy. Logical, clear, fast.</p>
-                <span class="feature-card-arrow">More info &rarr;</span>
-            </a>
-            <a href="features.html#automatisering" class="feature-card fade-up" style="transition-delay:0.21s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                </div>
-                <h3>Automation</h3>
-                <p>Checkout in one click, emails automated, channels synced in real-time.</p>
-                <span class="feature-card-arrow">More info &rarr;</span>
-            </a>
-            <a href="features.html#alle-features" class="feature-card fade-up" style="transition-delay:0.28s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
-                </div>
-                <h3>Channel Manager</h3>
-                <p>Booking.com, Airbnb, Expedia. Automatically synced.</p>
-                <span class="feature-card-arrow">More info &rarr;</span>
-            </a>
-            <a href="features.html#alle-features" class="feature-card fade-up" style="transition-delay:0.35s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                </div>
-                <h3>Invoicing &amp; Peppol</h3>
-                <p>Invoices, credit notes, UBL 2.1 and Peppol e-invoicing built in.</p>
-                <span class="feature-card-arrow">More info &rarr;</span>
-            </a>
-            <a href="features.html#alle-features" class="feature-card fade-up" style="transition-delay:0.42s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                </div>
-                <h3>Guest Portal</h3>
-                <p>Online check-in, payments and ID details. On your guest's phone.</p>
-                <span class="feature-card-arrow">More info &rarr;</span>
-            </a>
-            <a href="features.html#alle-features" class="feature-card fade-up" style="transition-delay:0.49s">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                </div>
-                <h3>Booking Engine</h3>
-                <p>Direct bookings through your website. No commission, no middleman.</p>
-                <span class="feature-card-arrow">More info &rarr;</span>
-            </a>
-        </div>
-        <div style="text-align:center; margin-top: 2.5rem;" class="fade-up">
-            <a href="features.html" class="btn-primary">View all features &rarr;</a>
-        </div>
+<!-- ══════════════════ PIJLERS ══════════════════ -->
+<section class="pijlers" id="pijlers">
+  <div class="wrap">
+    <div class="pijlers-intro fade-up">
+      <span class="kicker">What does rumo do</span>
+      <h2>Three things that make your day <em>better.</em> Nothing more.</h2>
+      <p class="lead" style="margin-top:1.5rem;">rumo isn't trying to be the 47th hotel platform. It does three things really well. The rest we leave to someone else.</p>
     </div>
+
+    <!-- Pijler 1 -->
+    <div class="pijler fade-up">
+      <div class="pijler-copy">
+        <div class="pijler-num">01 · The PMS</div>
+        <h3>Everything in <em>one</em> screen. No training needed.</h3>
+        <p>Reservations, check-in, check-out, channel manager, booking engine, Peppol invoicing, reports, guest portal. You open rumo in the morning and you instantly know what needs to happen today.</p>
+        <p>No three tabs open. No half-working plug-ins. Everything in its place, everything readable without training.</p>
+      </div>
+      <div class="pijler-visual">
+        <svg class="illus" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <!-- Agenda open -->
+          <path d="M60,70 L60,270 L200,275 L200,75 Z"/>
+          <path d="M200,75 L200,275 L340,270 L340,70 Z"/>
+          <line x1="200" y1="75" x2="200" y2="275"/>
+          <!-- Spiral binding dots -->
+          <circle cx="200" cy="100" r="3"/>
+          <circle cx="200" cy="130" r="3"/>
+          <circle cx="200" cy="160" r="3"/>
+          <circle cx="200" cy="190" r="3"/>
+          <circle cx="200" cy="220" r="3"/>
+          <circle cx="200" cy="250" r="3"/>
+          <!-- Left page lines (text) -->
+          <line x1="75" y1="105" x2="130" y2="105"/>
+          <line x1="75" y1="120" x2="180" y2="120"/>
+          <line x1="75" y1="150" x2="160" y2="150"/>
+          <line x1="75" y1="165" x2="180" y2="165"/>
+          <line x1="75" y1="195" x2="145" y2="195"/>
+          <line x1="75" y1="210" x2="180" y2="210"/>
+          <line x1="75" y1="240" x2="170" y2="240"/>
+          <line x1="75" y1="255" x2="150" y2="255"/>
+          <!-- Right page — mini calendar grid -->
+          <rect x="220" y="100" width="24" height="20" rx="2"/>
+          <rect x="248" y="100" width="24" height="20" rx="2" fill="#D68F6F" stroke="none"/>
+          <rect x="276" y="100" width="24" height="20" rx="2"/>
+          <rect x="304" y="100" width="24" height="20" rx="2" fill="#5F7A55" stroke="none"/>
+          <rect x="220" y="124" width="24" height="20" rx="2" fill="#F4D98F" stroke="none"/>
+          <rect x="248" y="124" width="24" height="20" rx="2"/>
+          <rect x="276" y="124" width="24" height="20" rx="2" fill="#D68F6F" stroke="none"/>
+          <rect x="304" y="124" width="24" height="20" rx="2" fill="#D68F6F" stroke="none"/>
+          <rect x="220" y="148" width="24" height="20" rx="2"/>
+          <rect x="248" y="148" width="24" height="20" rx="2" fill="#5F7A55" stroke="none"/>
+          <rect x="276" y="148" width="24" height="20" rx="2" fill="#5F7A55" stroke="none"/>
+          <rect x="304" y="148" width="24" height="20" rx="2"/>
+          <rect x="220" y="172" width="24" height="20" rx="2" fill="#D68F6F" stroke="none"/>
+          <rect x="248" y="172" width="24" height="20" rx="2"/>
+          <rect x="276" y="172" width="24" height="20" rx="2" fill="#F4D98F" stroke="none"/>
+          <rect x="304" y="172" width="24" height="20" rx="2"/>
+          <rect x="220" y="196" width="24" height="20" rx="2"/>
+          <rect x="248" y="196" width="24" height="20" rx="2" fill="#D68F6F" stroke="none"/>
+          <rect x="276" y="196" width="24" height="20" rx="2"/>
+          <rect x="304" y="196" width="24" height="20" rx="2" fill="#5F7A55" stroke="none"/>
+          <!-- Pencil accent -->
+          <line x1="340" y1="295" x2="380" y2="258" stroke-width="2.5"/>
+          <line x1="380" y1="258" x2="385" y2="253" stroke="#D68F6F" stroke-width="2.5"/>
+        </svg>
+        <div class="pijler-chip live">Week 16 · 47% occupied</div>
+      </div>
+    </div>
+
+    <!-- Pijler 2 -->
+    <div class="pijler fade-up">
+      <div class="pijler-copy">
+        <div class="pijler-num">02 · The handbook</div>
+        <h3>All your procedures. Nobody calls you <em>on Sunday</em> anymore.</h3>
+        <p>How does check-in work? What do you do with a complaint? Where's the spare key? Your team looks it up in the handbook. New employees work independently after two days.</p>
+        <p>No word document on a network drive. No verbal handover that evaporates halfway. Just: question, answer, done.</p>
+        <div class="pijler-quote">My receptionist doesn't call me on Sunday anymore. She checks the handbook.</div>
+      </div>
+      <div class="pijler-visual">
+        <svg class="illus" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <!-- Book pages -->
+          <path d="M70,90 L70,260 L200,270 L200,95 Z"/>
+          <path d="M200,95 L200,270 L330,260 L330,90 Z"/>
+          <line x1="200" y1="95" x2="200" y2="270"/>
+          <!-- Ribbon bookmark -->
+          <path d="M232,90 L232,130 L242,120 L252,130 L252,90" fill="#D68F6F" stroke="#D68F6F" stroke-linejoin="miter"/>
+          <!-- Left page — lines of text -->
+          <line x1="85" y1="120" x2="180" y2="120"/>
+          <line x1="85" y1="135" x2="160" y2="135"/>
+          <line x1="85" y1="150" x2="185" y2="150"/>
+          <line x1="85" y1="175" x2="175" y2="175"/>
+          <line x1="85" y1="190" x2="160" y2="190"/>
+          <line x1="85" y1="205" x2="180" y2="205"/>
+          <line x1="85" y1="230" x2="170" y2="230"/>
+          <line x1="85" y1="245" x2="155" y2="245"/>
+          <!-- Right page — headings + lines -->
+          <rect x="215" y="150" width="90" height="12" rx="2" fill="currentColor" stroke="none" opacity="0.92"/>
+          <line x1="215" y1="175" x2="315" y2="175"/>
+          <line x1="215" y1="190" x2="300" y2="190"/>
+          <line x1="215" y1="205" x2="310" y2="205"/>
+          <rect x="215" y="228" width="60" height="10" rx="2" fill="currentColor" stroke="none" opacity="0.92"/>
+          <line x1="215" y1="250" x2="310" y2="250"/>
+        </svg>
+        <div class="pijler-note-wrap">
+          <span class="pijler-note">answer<br>within 20 sec</span>
+          <svg class="pijler-note-arrow" viewBox="0 0 50 30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M5,5 Q25,25 45,20"/>
+            <path d="M38,13 L45,20 L40,27"/>
+          </svg>
+        </div>
+        <div class="pijler-chip">36 articles · searchable</div>
+      </div>
+    </div>
+
+    <!-- Pijler 3 -->
+    <div class="pijler fade-up">
+      <div class="pijler-copy">
+        <div class="pijler-num">03 · Rudy</div>
+        <h3>Your smartest employee. <em>Always</em> available.</h3>
+        <p>Rudy knows the handbook, but also the PMS itself. He helps your receptionists explain rumo, or just does the work himself. Look up a reservation, assign a room, answer a question. Without you having to step in.</p>
+        <p>No chatbot scripts that get stuck halfway. An assistant who understands what you mean, even at eleven at night.</p>
+        <div class="pijler-quote">"Someone's calling about a group reservation of 8 rooms in July. Is that possible?" — Rudy checks it, calculates it, and creates the reservation.</div>
+      </div>
+      <div class="pijler-visual">
+        <svg class="illus" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <!-- User bubble (top-left) -->
+          <path d="M40,80 L40,140 Q40,155 55,155 L130,155 L135,172 L150,155 L170,155 Q185,155 185,140 L185,80 Q185,65 170,65 L55,65 Q40,65 40,80 Z"/>
+          <line x1="62" y1="95" x2="160" y2="95"/>
+          <line x1="62" y1="115" x2="145" y2="115"/>
+          <line x1="62" y1="135" x2="165" y2="135"/>
+          <!-- Rudy avatar (right) -->
+          <circle cx="320" cy="90" r="26" fill="#D68F6F" stroke="none"/>
+          <text x="320" y="100" font-family="Fraunces, serif" font-size="24" font-weight="400" fill="#F5EEE2" stroke="none" text-anchor="middle">R</text>
+          <!-- Pulse ring around avatar -->
+          <circle cx="320" cy="90" r="32" stroke-dasharray="2 3" opacity="0.4"/>
+          <!-- Rudy bubble (bottom-right, dark) -->
+          <path d="M210,200 L210,275 Q210,290 225,290 L325,290 L340,305 L340,290 L345,290 Q360,290 360,275 L360,200 Q360,185 345,185 L225,185 Q210,185 210,200 Z" fill="#1B1917" stroke="#1B1917" stroke-linejoin="round"/>
+          <line x1="232" y1="215" x2="325" y2="215" stroke="#F4D98F" stroke-width="2.5"/>
+          <line x1="232" y1="240" x2="340" y2="240" stroke="#F5EEE2" opacity="0.7"/>
+          <line x1="232" y1="258" x2="320" y2="258" stroke="#F5EEE2" opacity="0.7"/>
+          <!-- Action chip inside bubble -->
+          <rect x="232" y="270" width="85" height="14" rx="7" stroke="#F5EEE2" opacity="0.5"/>
+          <!-- Typing dots in user bubble -->
+          <circle cx="248" cy="175" r="3" fill="#D68F6F" stroke="none"/>
+          <circle cx="260" cy="175" r="3" fill="#D68F6F" stroke="none" opacity="0.7"/>
+          <circle cx="272" cy="175" r="3" fill="#D68F6F" stroke="none" opacity="0.4"/>
+        </svg>
+        <div class="pijler-chip live">Rudy · online</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- RUDY SECTION -->
-<section class="rudy-section" id="rudy">
-    <div class="rudy-section-inner">
-        <div class="rudy-section-text fade-up">
-            <span class="section-label">Built-in AI assistant</span>
-            <h2 class="section-title">Meet Rudy.<br>He knows Rumo and your hotel.</h2>
-            <p class="section-subtitle">Not a generic chatbot. Rudy knows the handbook, but also the PMS itself. He helps your receptionists navigate Rumo, or simply does the work for them. Look up a reservation, assign a room, answer a question — without you having to step in.</p>
-            <button class="rudy-section-cta" onclick="document.querySelector('.rudy-trigger').click()">Ask Rudy a question &rarr;</button>
-        </div>
-        <div class="rudy-demo-chat fade-up" style="transition-delay:0.15s">
-            <div class="rudy-demo-header">
-                <div class="rudy-demo-avatar">R</div>
-                <div class="rudy-demo-name">Rudy</div>
-            </div>
-            <div class="rudy-demo-msgs">
-                <div class="rudy-demo-msg bot">Hey. I'm Rudy. Go ahead, ask me your toughest question.</div>
-                <div class="rudy-demo-msg user">My receptionist calls me every Sunday with questions. Help!</div>
-                <div class="rudy-demo-msg bot">Sounds like a classic case of "it's in a folder somewhere". With the handbook you put all your procedures in one place. Your receptionist asks me, and you get to enjoy your Sunday.</div>
-            </div>
-            <div class="rudy-demo-starters">
-                <span class="rudy-demo-starter">Can I ditch Excel?</span>
-                <span class="rudy-demo-starter">My accountant always sighs...</span>
-            </div>
-        </div>
+<!-- ══════════════════ HMM OKÉ ══════════════════ -->
+<section class="wie" id="wie">
+  <div class="wrap">
+    <div class="wie-grid">
+      <div class="fade-up">
+        <span class="kicker">Who we are</span>
+        <h2>Okay, but who are the people behind <em>rumo?</em></h2>
+        <p>We're hoteliers ourselves. We run our own hotels in Belgium. We know what it feels like when your system makes your day harder instead of easier. A PMS that crashes during check-out, a channel manager that lets bookings come in twice, a manual that nobody reads.</p>
+        <p>In the end, it's about <strong>guests</strong>, not screens. So we built what we'd been looking for ourselves for years.</p>
+
+      </div>
+      <div class="wie-illus fade-up" style="transition-delay:0.1s">
+        <span class="wie-illus-tag">line illustration · hotel</span>
+        <!-- Simple line illustration of a hotel/inn -->
+        <svg viewBox="0 0 320 400" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <!-- Ground line -->
+          <line x1="10" y1="360" x2="310" y2="360" />
+          <!-- Hotel facade -->
+          <path d="M60,360 L60,140 L160,80 L260,140 L260,360 Z" />
+          <!-- Roof line detail -->
+          <line x1="60" y1="150" x2="260" y2="150" />
+          <!-- Door -->
+          <path d="M140,360 L140,290 Q160,272 180,290 L180,360" />
+          <line x1="160" y1="290" x2="160" y2="360" />
+          <circle cx="172" cy="325" r="1.5" fill="currentColor"/>
+          <!-- Windows row 1 -->
+          <rect x="80" y="180" width="28" height="38" rx="2" />
+          <rect x="212" y="180" width="28" height="38" rx="2" />
+          <line x1="94" y1="180" x2="94" y2="218"/>
+          <line x1="226" y1="180" x2="226" y2="218"/>
+          <!-- Windows row 2 -->
+          <rect x="80" y="240" width="28" height="38" rx="2" />
+          <rect x="212" y="240" width="28" height="38" rx="2" />
+          <line x1="94" y1="240" x2="94" y2="278"/>
+          <line x1="226" y1="240" x2="226" y2="278"/>
+          <!-- Windows row 3 (ground) -->
+          <rect x="80" y="300" width="28" height="48" rx="2" />
+          <rect x="212" y="300" width="28" height="48" rx="2" />
+          <line x1="94" y1="300" x2="94" y2="348"/>
+          <line x1="226" y1="300" x2="226" y2="348"/>
+          <!-- Sign -->
+          <line x1="155" y1="175" x2="155" y2="195"/>
+          <line x1="165" y1="175" x2="165" y2="195"/>
+          <path d="M148,200 L172,200 L172,215 L148,215 Z"/>
+          <!-- Chimney -->
+          <path d="M215,108 L215,85 L230,85 L230,117"/>
+          <!-- Little cloud -->
+          <path d="M50,55 Q45,45 55,43 Q60,30 75,35 Q90,30 95,42 Q105,45 100,55 Z" />
+          <!-- Sun tiny -->
+          <circle cx="275" cy="48" r="10"/>
+          <line x1="275" y1="25" x2="275" y2="32"/>
+          <line x1="275" y1="64" x2="275" y2="71"/>
+          <line x1="252" y1="48" x2="259" y2="48"/>
+          <line x1="291" y1="48" x2="298" y2="48"/>
+          <!-- Coffee cup on doorstep -->
+          <path d="M125,360 L125,370 L135,370 L135,360" />
+          <path d="M135,363 Q140,363 140,366 Q140,369 135,369"/>
+          <!-- Tiny figure -->
+          <circle cx="40" cy="335" r="4"/>
+          <path d="M40,339 L40,350 M40,350 L35,360 M40,350 L45,360 M36,343 L40,347 M44,343 L40,347"/>
+        </svg>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- WHO IS IT FOR -->
-<section class="personas" id="who-is-it-for">
-    <div class="section-inner">
-        <div class="fade-up">
-            <span class="section-label">Who is it for?</span>
-            <h2 class="section-title">Sound familiar?</h2>
-            <p class="section-subtitle">At Rumo we mostly work with hotels that recognize themselves in one of these profiles.</p>
-        </div>
-        <div class="persona-grid">
-            <div class="persona-card fade-up">
-                <div class="persona-img" style="background-image: url('../img/persona-resort.jpg'); background-size: cover; background-position: center;"></div>
-                <div class="persona-body">
-                    <span class="persona-tag">51 rooms</span>
-                    <h3>Hotel Chamade</h3>
-                    <p>Four permanent receptionists, supported by a team of flex workers and students. The owners were looking for a PMS that can handle everything, yet is easy to learn.</p>
-                    <div class="persona-detail">"I was tired of constantly having to train new people."</div>
-                </div>
-            </div>
-            <div class="persona-card fade-up" style="transition-delay: 0.1s">
-                <div class="persona-img" style="background-image: url('../img/persona-carlton.jpg'); background-size: cover; background-position: center;"></div>
-                <div class="persona-body">
-                    <span class="persona-tag">22 rooms</span>
-                    <h3>Carlton Hotel</h3>
-                    <p>City hotel in Ghent with two receptionists. Looking for a system that combines Peppol, reports and guest profiles without the price of an enterprise solution.</p>
-                    <div class="persona-detail">"I don't want to pay for 200 features when I use 8 of them."</div>
-                </div>
-            </div>
-            <div class="persona-card fade-up" style="transition-delay: 0.2s">
-                <div class="persona-img" style="background-image: url('../img/persona-georgie.jpg'); background-size: cover; background-position: center;"></div>
-                <div class="persona-body">
-                    <span class="persona-tag">5 rooms</span>
-                    <h3>Georgie B&amp;B</h3>
-                    <p>Guesthouse in a townhouse in Ghent. The owners don't live on-site and run everything remotely thanks to automation.</p>
-                    <div class="persona-detail">"We don't live at the hotel. Without Rumo, that wouldn't be possible."</div>
-                </div>
-            </div>
-        </div>
+<!-- ══════════════════ MAKKELIJK ══════════════════ -->
+<section class="makkelijk">
+  <div class="wrap">
+    <div class="makkelijk-grid">
+      <div class="fade-up">
+        <span class="kicker">No training needed</span>
+        <h2>You get it.<br><em>It's that</em> simple.</h2>
+        <p class="lead" style="margin-top:1.25rem;">Most PMS systems require three days of training and a 200-page manual. rumo doesn't.</p>
+        <ol class="stappen stappen-compact">
+          <li><span class="n">1</span><span class="t"><strong>Open rumo.</strong> The dashboard shows what needs to happen today.</span></li>
+          <li><span class="n">2</span><span class="t"><strong>Something unclear?</strong> Ask Rudy. He explains it in your own words.</span></li>
+          <li><span class="n">3</span><span class="t"><strong>New employee?</strong> The handbook is ready. No shadowing needed.</span></li>
+        </ol>
+      </div>
+      <div class="makkelijk-illus fade-up" style="transition-delay:0.15s">
+        <svg class="illus" viewBox="0 0 400 340" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <!-- Desk line -->
+          <line x1="30" y1="275" x2="370" y2="275"/>
+          <!-- Laptop base -->
+          <path d="M90,275 L100,225 L290,225 L300,275 Z"/>
+          <line x1="165" y1="275" x2="225" y2="275" stroke-width="3"/>
+          <!-- Laptop screen -->
+          <rect x="105" y="115" width="180" height="110" rx="4"/>
+          <!-- Screen content -->
+          <line x1="115" y1="128" x2="155" y2="128"/>
+          <circle cx="270" cy="128" r="3" fill="#5F7A55" stroke="none"/>
+          <line x1="115" y1="148" x2="260" y2="148"/>
+          <rect x="115" y="158" width="50" height="8" rx="2" fill="#D68F6F" stroke="none"/>
+          <rect x="170" y="158" width="40" height="8" rx="2" fill="#F4D98F" stroke="none"/>
+          <rect x="215" y="158" width="60" height="8" rx="2" fill="#5F7A55" stroke="none"/>
+          <line x1="115" y1="178" x2="275" y2="178"/>
+          <rect x="115" y="188" width="35" height="8" rx="2"/>
+          <rect x="155" y="188" width="75" height="8" rx="2" fill="#D68F6F" stroke="none"/>
+          <rect x="235" y="188" width="40" height="8" rx="2"/>
+          <line x1="115" y1="208" x2="200" y2="208"/>
+          <!-- Person -->
+          <circle cx="200" cy="60" r="20"/>
+          <path d="M175,115 L175,90 Q175,78 200,78 Q225,78 225,90 L225,115"/>
+          <!-- Arms reaching toward laptop -->
+          <path d="M178,100 Q160,115 145,135"/>
+          <path d="M222,100 Q240,115 255,135"/>
+          <!-- Coffee cup -->
+          <path d="M330,250 L330,275 L355,275 L355,250 Z"/>
+          <path d="M355,255 Q365,255 365,262 Q365,270 355,270"/>
+          <!-- Steam from coffee -->
+          <path d="M337,240 Q337,235 341,235 Q341,230 345,230" opacity="0.5"/>
+          <path d="M346,240 Q346,235 350,235" opacity="0.5"/>
+          <!-- Small plant -->
+          <path d="M45,275 L45,255 Q55,245 60,255 Q55,240 48,245 Q45,235 42,245 Q35,240 40,255 Q45,245 45,255"/>
+          <rect x="38" y="275" width="20" height="5" rx="1"/>
+          <!-- Small notebook on desk -->
+          <rect x="310" y="268" width="35" height="7" rx="1" fill="#D68F6F" stroke="none"/>
+        </svg>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- TRUST BLOCK -->
-<div class="trust-block">
-    <div class="trust-block-inner">
-        <div class="trust-item fade-up">
-            <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-            <p>Peppol e-invoicing &mdash; built in.</p>
-        </div>
-        <div class="trust-item fade-up" style="transition-delay:0.1s">
-            <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-            <p>Belgian product. Belgian support.</p>
-        </div>
-        <div class="trust-item fade-up" style="transition-delay:0.2s">
-            <div class="trust-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-            <p>GDPR compliant, EU hosting.</p>
-        </div>
+<!-- ══════════════════ PERSONAS ══════════════════ -->
+<section class="personas" id="voor-wie">
+  <div class="wrap">
+    <div class="personas-head fade-up">
+      <span class="kicker">For whom</span>
+      <h2>Recognize <em>yourself?</em></h2>
+      <p class="lead" style="margin-top:1.25rem;">rumo is for independent hotels. No chains. No resorts in Dubai. Just hotels like yours.</p>
     </div>
+    <div class="persona-grid">
+      <article class="persona fade-up">
+        <div class="persona-img" style="background-image:url('../img/persona-resort.jpg')"></div>
+        <div class="persona-body">
+          <div class="persona-meta"><span>Hotel</span><span class="count">51 rooms</span></div>
+          <h4>Hotel Chamade</h4>
+          <p>Four permanent receptionists, backed up by temps and students. They were looking for a PMS that everyone gets right away, so training isn't their second job.</p>
+          <div class="persona-quote">"Rudy answers the questions that used to end up on my plate."</div>
+        </div>
+      </article>
+
+      <article class="persona fade-up" style="transition-delay:0.1s">
+        <div class="persona-img" style="background-image:url('../img/persona-carlton.jpg')"></div>
+        <div class="persona-body">
+          <div class="persona-meta"><span>City hotel</span><span class="count">22 rooms</span></div>
+          <h4>Carlton Hotel</h4>
+          <p>City hotel in Ghent with two receptionists. Wants Peppol invoicing, guest profiles and reports. But not the price tag of an enterprise system.</p>
+          <div class="persona-quote">"Finally a system that does what I need. Nothing more, nothing less."</div>
+        </div>
+      </article>
+
+      <article class="persona fade-up" style="transition-delay:0.2s">
+        <div class="persona-img" style="background-image:url('../img/persona-georgie.jpg')"></div>
+        <div class="persona-body">
+          <div class="persona-meta"><span>B&amp;B</span><span class="count">5 rooms</span></div>
+          <h4>Georgie B&amp;B</h4>
+          <p>Guest house in a townhouse in Ghent. The owners don't live on-site and run everything remotely thanks to automation.</p>
+          <div class="persona-quote">"We don't live in the hotel. Without rumo that wouldn't be possible."</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ TRUST ══════════════════ -->
+<div class="trust">
+  <div class="wrap">
+    <div class="trust-grid">
+      <div class="trust-item fade-up">
+        <div class="ic">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+        </div>
+        <p><strong>Peppol e-invoicing</strong>Built in as standard. UBL 2.1 via the official network.</p>
+      </div>
+      <div class="trust-item fade-up" style="transition-delay:0.1s">
+        <div class="ic">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          </svg>
+        </div>
+        <p><strong>Belgian product</strong>Made in Ghent. Support in NL, FR and EN.</p>
+      </div>
+      <div class="trust-item fade-up" style="transition-delay:0.2s">
+        <div class="ic">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <p><strong>GDPR &amp; EU-hosting</strong>Data stays within Europe. No compromises.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- INTERMEZZO -->
-<section class="intermezzo">
-    <div class="fade-up">
-        <h2 class="section-title">Software built for hotels like yours.</h2>
-        <p class="section-subtitle">Not for chains with 400 rooms. Not for resorts in Dubai. For you.</p>
-        <div class="rumo-meaning">
-            <em>Rumo</em> (Portuguese): course, direction, destination.
-            <br><small style="opacity:0.5;">Without rumo you're adrift. With Rumo you know where you're headed.</small>
-        </div>
-    </div>
+<!-- ══════════════════ PRIJS ══════════════════ -->
+<section class="prijs">
+  <div class="prijs-inner fade-up">
+    <span class="kicker">So, what does it cost?</span>
+    <div class="prijs-bedrag">From <em>€12</em></div>
+    <div class="prijs-unit">per room · per month</div>
+    <p class="prijs-copy">PMS, channel manager, booking engine, Rudy and the handbook. Everything included. (That's a lot of checkmarks. So... is really everything included? Yep, really.)</p>
+    <ul class="prijs-checklist">
+      <li>All-in-one price</li>
+      <li>Cancel monthly</li>
+      <li>No setup fees</li>
+      <li>14 days free</li>
+    </ul>
+    <a href="pricing.html" class="btn-ink">View pricing <span>→</span></a>
+  </div>
 </section>
 
-<!-- MINI FAQ -->
-<section class="mini-faq">
-    <div class="section-inner fade-up">
-        <span class="section-label">Question or doubt?</span>
-        <h2 class="section-title">The six questions everyone asks.</h2>
-        <div class="mini-faq-list">
-            <details>
-                <summary>Can I migrate my Booking.com reservations?</summary>
-                <p>Yes. Booking.com, Airbnb, Expedia and most other OTAs can be imported directly. Including guest data and payment status.</p>
-            </details>
-            <details>
-                <summary>Does Rumo work on mobile and tablet?</summary>
-                <p>Fully. Rumo is a web app that runs everywhere — laptop, tablet, phone. No app download needed.</p>
-            </details>
-            <details>
-                <summary>How long does implementation take?</summary>
-                <p>Most hotels go live within a week. Small hotels often the same day.</p>
-            </details>
-            <details>
-                <summary>What if I'm still in a contract with my current PMS?</summary>
-                <p>No problem. We plan the switch at your pace. Many hotels start testing while the old contract runs out.</p>
-            </details>
-            <details>
-                <summary>Is Peppol included?</summary>
-                <p>Peppol is available in Rumo as an upgrade. With the upgrade, your invoices are sent automatically via the Peppol network (UBL 2.1). Without it, you create your invoices in Rumo and download them as PDF or UBL file to send yourself.</p>
-            </details>
-            <details>
-                <summary>Can I cancel monthly?</summary>
-                <p>You start with a first period of 6 months. After that it's month to month, cancellable whenever you want. No fine print, no notice period.</p>
-            </details>
-        </div>
-        <a href="faq.html" class="mini-faq-link">All frequently asked questions &rarr;</a>
+<!-- ══════════════════ FAQ ══════════════════ -->
+<section class="faq">
+  <div class="faq-inner fade-up">
+    <span class="kicker">Question or doubt?</span>
+    <h2>The six questions<br>that <em>everyone</em> asks.</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Can I migrate my Booking.com reservations?</summary>
+        <p>Yes. Booking.com, Airbnb, Expedia and most other OTAs can be imported directly. Including guest data and payment status.</p>
+      </details>
+      <details>
+        <summary>Does rumo work on mobile and tablet?</summary>
+        <p>Fully. rumo is a web app that runs everywhere — laptop, tablet, phone. No app needed.</p>
+      </details>
+      <details>
+        <summary>How long does implementation take?</summary>
+        <p>Most hotels are live within a week. Smaller hotels often the same day.</p>
+      </details>
+      <details>
+        <summary>What if I'm still in a contract with my current PMS?</summary>
+        <p>No problem. We plan the switch at your pace. Many hotels start testing while the old contract is still running out.</p>
+      </details>
+      <details>
+        <summary>Is Peppol included?</summary>
+        <p>Peppol is available in rumo as an upgrade. With the upgrade, your invoices are automatically sent via the Peppol network (UBL 2.1). Without the upgrade, you simply create your invoices in rumo and download them as PDF or UBL files.</p>
+      </details>
+      <details>
+        <summary>Can I cancel monthly?</summary>
+        <p>You start with an initial period of six months. After that, month by month, cancelable whenever you want. No fine print, no notice period.</p>
+      </details>
     </div>
+    <a href="faq.html" class="faq-link">All frequently asked questions →</a>
+  </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta" id="demo">
-    <div class="fade-up">
-        <h2 class="section-title">Ready to try Rumo?</h2>
-        <p class="section-subtitle">No credit card needed. No commitments. Just 14 days playing with a demo full of fake reservations. And then you decide.</p>
-        <a href="#" class="btn-primary">Try free for 14 days &rarr;</a>
-        <p class="risk-reversal">No credit card &bull; Monthly after 6 months &bull; Free data migration from your current system</p>
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<section class="contact-section" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="fade-up">
+        <span class="kicker">Let's have a chat</span>
+        <h2>Rather <em>talk?</em></h2>
+        <p>No hour-long sales pitch. Just an honest conversation about what you need and whether rumo is the right fit. Usually takes about fifteen minutes.</p>
+        <p>Don't feel like calling? Send us an email or a message on WhatsApp. We always reply ourselves.</p>
+        <ul class="contact-channels">
+          <li>
+            <div class="ch-ic">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <a href="mailto:jeffrey@rumo.eu">jeffrey@rumo.eu</a>
+          </li>
+          <li>
+            <div class="ch-ic">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <a href="https://wa.me/32485382828">WhatsApp</a>
+          </li>
+        </ul>
+      </div>
+      <div class="contact-form fade-up" style="transition-delay:0.1s">
+        <div class="contact-form-title">Send a message</div>
+        <p class="contact-form-sub">We usually reply within a few hours.</p>
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" placeholder="you@hotel.com" required>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="cf-hotel">Hotel <span style="opacity:0.5;text-transform:none;letter-spacing:0">(optional)</span></label>
+            <input type="text" id="cf-hotel" name="hotel" placeholder="Name of your hotel or B&B">
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="4" placeholder="Tell us briefly what you're looking for, or just ask something." required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn-ink">Send message <span>→</span></button>
+          </div>
+          <p class="form-fine">No spam, no newsletter, no follow-up you didn't ask for.</p>
+        </form>
+      </div>
     </div>
+  </div>
 </section>
 
+<!-- ══════════════════ FINAL ══════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Not much of a talker?</span>
+    <h2>No demo call.<br>Just <em>14 days</em> to play.</h2>
+    <p>No credit card, no obligations, no "account manager" calling you every week. A demo environment full of fake reservations. Don't like it? It quietly disappears. No hard feelings.</p>
+    <a href="#" class="btn-paper">Try 14 days free <span>→</span></a>
+    <p class="final-fine">No credit card · Cancel monthly after 6 months · Free data migration</p>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
 <footer>
-    <div class="footer-inner">
-        <div>
-            <div class="footer-brand">rumo<span>.</span></div>
-            <p class="footer-tagline">Hotel software that just works. No manual needed.</p>
-        </div>
-        <div>
-            <div class="footer-label">Product</div>
-            <ul class="footer-links">
-                <li><a href="features.html#dashboard">Dashboard</a></li>
-                <li><a href="features.html#reservaties">Reservations &amp; Calendar</a></li>
-                <li><a href="features.html#booking-engine">Booking Engine</a></li>
-                <li><a href="features.html#channel-manager">Channel Manager</a></li>
-                <li><a href="features.html#tarieven">Rates &amp; Allotment</a></li>
-                <li><a href="features.html#facturatie">Invoicing &amp; Peppol</a></li>
-                <li><a href="features.html#guest-portal">Guest Portal</a></li>
-                <li><a href="features.html#betalingen">Rumo Pay</a></li>
-                <li><a href="features.html#fnb">F&amp;B</a></li>
-                <li><a href="features.html#housekeeping">Housekeeping</a></li>
-                <li><a href="features.html#rapporten">Reports</a></li>
-                <li><a href="features.html#communicatie">Communication</a></li>
-            </ul>
-        </div>
-        <div>
-            <div class="footer-label">Rumo</div>
-            <ul class="footer-links">
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="https://wa.me/32485382828" target="_blank" rel="noopener">WhatsApp</a></li>
-                <li><a href="mailto:hello@rumo.eu">Contact</a></li>
-                <li><a href="about.html">About us</a></li>
-            </ul>
-        </div>
-        <div>
-            <div class="footer-label">Integrations</div>
-            <ul class="footer-links">
-                <li><a href="#">Booking.com</a></li>
-                <li><a href="#">Airbnb</a></li>
-                <li><a href="#">Exact Online</a></li>
-                <li><a href="#">Rumo Pay</a></li>
-                <li><a href="#">Peppol</a></li>
-            </ul>
-        </div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Hotel software for independent hoteliers. Without the hassle.</p>
     </div>
-    <div class="footer-bottom">&copy; 2026 Rumo. All rights reserved.</div>
+    <div>
+      <div class="footer-label">Product</div>
+      <ul class="footer-links">
+        <li><a href="features.html#dashboard">Dashboard</a></li>
+        <li><a href="features.html#reservaties">Reservations</a></li>
+        <li><a href="features.html#booking-engine">Booking engine</a></li>
+        <li><a href="features.html#channel-manager">Channel manager</a></li>
+        <li><a href="features.html#facturatie">Invoicing &amp; Peppol</a></li>
+        <li><a href="features.html#housekeeping">Housekeeping</a></li>
+        <li><a href="features.html#rapporten">Reports</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="pricing.html">So, what does it cost?</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Send us an email</a></li>
+        <li><a href="about.html">Who are the people behind rumo?</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Integrations</div>
+      <ul class="footer-links">
+        <li><a href="integrations.html">Booking.com</a></li>
+        <li><a href="integrations.html">Airbnb</a></li>
+        <li><a href="integrations.html">Exact Online</a></li>
+        <li><a href="integrations.html">Rumo Pay</a></li>
+        <li><a href="integrations.html">Peppol</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Ghent, BE</span>
+    <span></span>
+  </div>
 </footer>
 
-<!-- RUDY CHAT WIDGET -->
-<button class="rudy-trigger" id="rudyTrigger" aria-label="Chat with Rudy">
-    <span class="rudy-trigger-label">Ask Rudy</span>
-    <span class="rudy-pulse"></span>
-    <svg class="rudy-icon-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <svg class="rudy-icon-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-</button>
-
-<div class="rudy-panel" id="rudyPanel">
-    <div class="rudy-panel-header">
-        <div class="rudy-avatar">R</div>
-        <div class="rudy-header-text">
-            <h4>Rudy</h4>
-            <span>Rumo's AI assistant</span>
-        </div>
-    </div>
-    <div class="rudy-messages" id="rudyMessages">
-        <div class="rudy-msg bot">
-            <div class="rudy-msg-name">Rudy</div>
-            Hey. I'm Rudy. I know Rumo inside and out. Go ahead, ask me your toughest question.
-        </div>
-    </div>
-    <div class="rudy-starters" id="rudyStarters">
-        <button class="rudy-starter" data-q="How does the Booking.com connection work?">How does the Booking.com connection work?</button>
-        <button class="rudy-starter" data-q="Is Rumo right for a 15-room hotel?">Is Rumo right for a 15-room hotel?</button>
-        <button class="rudy-starter" data-q="How long does implementation take?">How long does implementation take?</button>
-        <button class="rudy-starter" data-q="What exactly is included in the package?">What exactly is included in the package?</button>
-        <button class="rudy-starter" data-q="What does it cost?">What does it cost?</button>
-    </div>
-    <div class="rudy-input-area">
-        <input type="text" class="rudy-input" id="rudyInput" placeholder="Ask your question..." autocomplete="off">
-        <button class="rudy-send" id="rudySend" disabled>
-            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </button>
-    </div>
-    <div class="rudy-footer">Powered by Rumo AI</div>
-</div>
+<link rel="stylesheet" href="../rudy-widget.css">
+<script src="../rudy-widget.js"></script>
 
 <script>
-    /* ─── PAGE ANIMATIONS ─── */
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-        nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
-    });
+// Nav — track when we leave the hero video
+const nav = document.querySelector('nav');
+const hero = document.querySelector('.hero');
 
-    /* ─── RUDY CHAT WIDGET ─── */
-    (function() {
-        const RUDY_SYSTEM_PROMPT = `You are Rudy, the AI assistant of Rumo. A cloud-based property management system built for independent hotels.
+function updateNav() {
+  const heroBottom = hero.getBoundingClientRect().bottom;
+  if (heroBottom > 60) {
+    nav.classList.add('on-video');
+    nav.classList.remove('scrolled');
+  } else {
+    nav.classList.remove('on-video');
+    nav.classList.add('scrolled');
+  }
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
 
-You are not a generic chatbot. You are Rudy. You know Rumo inside and out, because you work with it day and night. You speak like someone who has been a hotelier themselves: direct, concrete, no beating around the bush. You have a sense of humor but you don't overdo it. You don't sell. You inform, and the quality of your answers does the rest.
+// Fade-up
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-## How you speak
-- English, informal but professional. "you", not "sir/madam".
-- Short when you can, detailed when you must.
-- No filler sentences. No "Absolutely!", "Great question!", "Sure thing!".
-- No corporate jargon. No "end-to-end solution", no "streamlined ecosystem".
-- Dry humor is welcome, but always in service of the answer, never as a substitute.
-- You never start with a compliment on the question.
+// Contact form → Formsubmit.co
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = 'Sending… <span>→</span>';
+  btn.disabled = true;
 
-## What you know
-Rumo is a cloud PMS for independent hotels of 5 to 100 rooms, primarily in Belgium and the Netherlands. Built by hoteliers, for hoteliers.
-
-Modules:
-- PMS & Reservations: room management, reservation screen, check-in/check-out, room planning
-- The Manual: digital hotel handbook, procedures, onboarding for staff
-- Staff Planning: shifts, roster, personnel management
-- Facilities Management: technical management, maintenance, notifications
-
-Integrations:
-- Booking.com and Expedia (including VCC payments via Stripe)
-- Channex for channel management
-- Stripe for payments (including credit card guarantee and pre-authorization)
-- Peppol / e-invoicing (on roadmap)
-- Exact Online (on roadmap)
-
-Pricing: Always refer to the pricing page on rumo.eu for the most up-to-date info. Don't give amounts unless you're sure of them. You can say that Rumo works with a fixed monthly price per hotel, no surprises afterwards.
-
-## What sets Rumo apart
-- Built by hoteliers who knew their own systems (and had had enough of them)
-- One system for operations, reservations and knowledge management
-- No licenses for 200 features you never use
-- Belgian product, Belgian support
-- Rudy is built in too. So you know what you're buying
-
-## Recognizing visitor stage
-Adapt your answer based on where the visitor is:
-- Orientation ("what is Rumo?"): explain briefly, spark interest
-- Comparison ("how is this different from X?"): position on own strengths, never mention competitors negatively
-- Deep dive (technical questions): concrete and to-the-point
-- Decision (price, implementation): transparent, refer to website
-
-## Competitors
-Never mention a competitor negatively. Position Rumo on what it is: built for small hotels, not stripped down from an enterprise product.
-
-## Common objections
-- "Too expensive" → Fixed monthly price, no surprises. Compare with what you currently pay for separate systems.
-- "We're in a contract" → No problem, we plan it at your pace.
-- "Does it work with X?" → Honest yes or no, plus roadmap if relevant.
-
-## What Rumo is not (yet)
-Be honest if someone asks about something outside the scope. Just say it: "That's not included at the moment, but it's on the roadmap" or "That's something for a specialist. We're happy to refer you."
-
-## Language switch
-If someone writes in French or Dutch, reply in the same language.
-
-## How you end a conversation
-Always end with one concrete step. Pick one:
-- "Want to schedule a demo?"
-- "I can put you in touch with the team. Interested?"
-- "Got another concrete question I can give you an honest answer to?"
-
-## Lead capture
-If a visitor asks 3+ substantive questions, proactively offer a demo or callback.
-
-## Handoff
-For price negotiations, contract questions or complaints: offer to refer to the team.
-
-Keep your answers short and to the point. Max 3-4 sentences per answer, unless a longer explanation is truly needed.`;
-
-        // ─── CONFIG ───
-        const API_ENDPOINT = '/api/chat'; // TODO: replace with your own backend proxy endpoint
-        const API_KEY = ''; // Never in frontend, use a backend proxy
-
-        const trigger = document.getElementById('rudyTrigger');
-        const panel = document.getElementById('rudyPanel');
-        const messages = document.getElementById('rudyMessages');
-        const starters = document.getElementById('rudyStarters');
-        const input = document.getElementById('rudyInput');
-        const sendBtn = document.getElementById('rudySend');
-        let conversationHistory = [];
-        let questionCount = 0;
-
-        // Toggle panel
-        trigger.addEventListener('click', () => {
-            const isOpen = trigger.classList.toggle('open');
-            panel.classList.toggle('open');
-            if (isOpen) input.focus();
-        });
-
-        // Close on escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && panel.classList.contains('open')) {
-                trigger.classList.remove('open');
-                panel.classList.remove('open');
-            }
-        });
-
-        // Starter questions
-        starters.querySelectorAll('.rudy-starter').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const q = btn.getAttribute('data-q');
-                sendMessage(q);
-            });
-        });
-
-        // Input handling
-        input.addEventListener('input', () => {
-            sendBtn.disabled = !input.value.trim();
-        });
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && input.value.trim()) sendMessage(input.value.trim());
-        });
-        sendBtn.addEventListener('click', () => {
-            if (input.value.trim()) sendMessage(input.value.trim());
-        });
-
-        function addMessage(text, role) {
-            const div = document.createElement('div');
-            div.className = 'rudy-msg ' + role;
-            if (role === 'bot') {
-                div.innerHTML = '<div class="rudy-msg-name">Rudy</div>' + text;
-            } else {
-                div.textContent = text;
-            }
-            messages.appendChild(div);
-            messages.scrollTop = messages.scrollHeight;
-            return div;
-        }
-
-        function showTyping() {
-            const div = document.createElement('div');
-            div.className = 'rudy-typing';
-            div.id = 'rudyTyping';
-            div.innerHTML = '<span></span><span></span><span></span>';
-            messages.appendChild(div);
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        function hideTyping() {
-            const el = document.getElementById('rudyTyping');
-            if (el) el.remove();
-        }
-
-        async function sendMessage(text) {
-            // Hide starters after first message
-            starters.style.display = 'none';
-
-            // Add user message
-            addMessage(text, 'user');
-            input.value = '';
-            sendBtn.disabled = true;
-            questionCount++;
-
-            // Add to history
-            conversationHistory.push({ role: 'user', content: text });
-
-            // Show typing
-            showTyping();
-
-            try {
-                const response = await callAPI(conversationHistory);
-                hideTyping();
-
-                // Lead capture after 3 questions
-                let responseText = response;
-                if (questionCount === 3 && !responseText.includes('demo')) {
-                    responseText += '\n\nYou\'ve already asked some good questions. Want to schedule a demo so you can see it for yourself?';
-                }
-
-                addMessage(responseText, 'bot');
-                conversationHistory.push({ role: 'assistant', content: responseText });
-            } catch (err) {
-                hideTyping();
-                addMessage('Hang on, I\'ll be right back. Try again in a moment, or send us a message via <a href="https://wa.me/32485382828" target="_blank" style="color:var(--terracotta)">WhatsApp</a>.', 'bot');
-            }
-        }
-
-        async function callAPI(history) {
-            // Backend proxy call
-            const res = await fetch(API_ENDPOINT, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    system: RUDY_SYSTEM_PROMPT,
-                    messages: history
-                })
-            });
-            if (!res.ok) throw new Error('API error');
-            const data = await res.json();
-            return data.content || data.message || data.response || '';
-        }
-
-    })();
+  fetch('https://formsubmit.co/ajax/jeffrey@rumo.eu', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      name: document.getElementById('cf-name').value.trim(),
+      email: document.getElementById('cf-email').value.trim(),
+      hotel: document.getElementById('cf-hotel').value.trim(),
+      message: document.getElementById('cf-message').value.trim(),
+      _subject: 'Contact via rumo.eu'
+    })
+  })
+  .then(r => r.json())
+  .then(data => {
+    var wrapper = form.closest('.contact-form');
+    wrapper.innerHTML = '<div class="form-sent"><h3>Got it.</h3><p>We\'ll read it and get back to you. Usually faster than you\'d expect.</p></div>';
+  })
+  .catch(() => {
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+    alert('Something went wrong. Try again or send an email to jeffrey@rumo.eu.');
+  });
+});
 </script>
+
 </body>
 </html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helpdesk · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Helpdesk voor rumo hotelsoftware. Korte stukjes uitleg over reservaties, channel manager, facturatie, Belgische compliance en Rudy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-sfeer.css">
+<style>
+  /* ─── KB LAYOUT (mirrors faq pattern) ─── */
+  .kb-main {
+    background:var(--paper);
+    padding:5rem 0 7rem;
+  }
+  .kb-layout {
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:4rem;
+    align-items:start;
+  }
+  .kb-nav {
+    position:sticky;
+    top:7rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  .kb-nav-title {
+    color:var(--muted);
+    letter-spacing:0.15em;
+    font-size:0.7rem;
+    margin-bottom:1rem;
+  }
+  .kb-nav ul { list-style:none; }
+  .kb-nav li { margin-bottom:0.4rem; }
+  .kb-nav a {
+    color:var(--ink-soft);
+    text-decoration:none;
+    opacity:0.65;
+    transition:opacity 0.2s, color 0.2s;
+    display:block;
+    padding:0.35rem 0;
+    border-left:2px solid transparent;
+    padding-left:0.8rem;
+  }
+  .kb-nav a:hover { opacity:1; color:var(--terra-dark); }
+  .kb-nav a.active {
+    opacity:1;
+    color:var(--terra-dark);
+    border-left-color:var(--terra-dark);
+  }
+
+  .kb-group {
+    margin-bottom:3.5rem;
+    scroll-margin-top:7rem;
+  }
+  .kb-group-title {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.75rem;
+    letter-spacing:-0.02em;
+    margin-bottom:0.4rem;
+    display:inline-flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .kb-group-title::before {
+    content:'';
+    width:24px; height:1.5px;
+    background:var(--terra);
+  }
+  .kb-group-title em { color:var(--terra-dark); font-style:italic; font-weight:300; }
+  .kb-group-intro {
+    color:var(--muted);
+    font-size:0.92rem;
+    margin:0.2rem 0 1.5rem 2.1rem;
+    max-width:60ch;
+  }
+
+  .kb-articles {
+    display:grid;
+    gap:0.9rem;
+  }
+  .kb-article {
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:1.4rem 1.6rem;
+    transition:box-shadow 0.2s, transform 0.2s;
+  }
+  .kb-article:hover {
+    box-shadow:0 12px 28px rgba(27,25,23,0.06);
+  }
+  .kb-article-kicker {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:0.35rem;
+  }
+  .kb-article-title {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.15rem;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin-bottom:0.55rem;
+  }
+  .kb-article-title em { color:var(--terra-dark); font-style:italic; font-weight:300; }
+  .kb-article-body p {
+    font-size:0.94rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin-bottom:0.65rem;
+  }
+  .kb-article-body p:last-child { margin-bottom:0; }
+  .kb-article-body em { color:var(--terra-dark); font-style:italic; }
+  .kb-article-body strong { font-weight:600; color:var(--ink); }
+  .kb-article-body ul {
+    margin:0.4rem 0 0.6rem 0;
+    padding-left:1.2rem;
+    font-size:0.94rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+  }
+  .kb-article-body li { margin-bottom:0.25rem; }
+
+  .kb-stub {
+    opacity:0.55;
+    border-style:dashed;
+  }
+  .kb-stub .kb-article-kicker { color:var(--terra); }
+
+  /* meta strip onder titel */
+  .kb-meta {
+    background:var(--paper-deep);
+    padding:2.5rem 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .kb-meta-grid {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:2rem;
+    max-width:900px;
+    margin:0 auto;
+  }
+  .kb-meta-item {
+    text-align:center;
+  }
+  .kb-meta-num {
+    font-family:'Fraunces', serif;
+    font-size:2rem;
+    color:var(--terra-dark);
+    font-style:italic;
+    font-weight:300;
+    line-height:1;
+  }
+  .kb-meta-label {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:0.5rem;
+  }
+
+  /* contact block (zelfde als faq-sfeer) */
+  .contact {
+    background:var(--paper-deep);
+    padding:5rem 0;
+  }
+  .contact-card {
+    max-width:860px;
+    margin:0 auto;
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:3rem;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:2.5rem;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-card::before {
+    content:'';
+    position:absolute;
+    right:-15%; top:-15%;
+    width:50%; height:130%;
+    background:radial-gradient(circle, var(--butter) 0%, transparent 65%);
+    opacity:0.5;
+    filter:blur(12px);
+    pointer-events:none;
+  }
+  .contact-card > * { position:relative; z-index:2; }
+  .contact-card h3 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.8rem;
+    letter-spacing:-0.02em;
+    margin-bottom:0.6rem;
+    line-height:1.1;
+  }
+  .contact-card h3 em { color:var(--terra-dark); }
+  .contact-card p {
+    max-width:42ch;
+    color:var(--ink-soft);
+    font-size:1rem;
+  }
+
+  /* responsive */
+  @media (max-width:880px) {
+    .kb-layout { grid-template-columns:1fr; gap:2rem; }
+    .kb-nav { position:static; top:auto; }
+    .kb-nav ul { display:flex; flex-wrap:wrap; gap:0.4rem; }
+    .kb-nav li { margin-bottom:0; }
+    .kb-nav a {
+      border-left:none;
+      padding:0.4rem 0.8rem;
+      background:var(--paper-panel);
+      border-radius:999px;
+      font-size:0.7rem;
+    }
+    .kb-nav a.active {
+      background:var(--terra-dark);
+      color:var(--paper);
+      border-left:none;
+    }
+    .kb-meta-grid { grid-template-columns:1fr; }
+    .contact-card {
+      grid-template-columns:1fr;
+      padding:2rem;
+      text-align:left;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index-sfeer.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index-sfeer.html#pijlers">Wat doet rumo?</a></li>
+    <li><a href="features-sfeer.html">Features</a></li>
+    <li><a href="integraties-sfeer.html">Integraties</a></li>
+    <li><a href="prijzen-sfeer.html">En euh, wat kost dat?</a></li>
+    <li><a href="faq-sfeer.html">FAQ</a></li>
+    <li><a href="over-ons-sfeer.html">Over ons</a></li>
+    <li><a href="index-sfeer.html#demo" class="nav-cta">Probeer gratis →</a></li>
+    <li class="nav-lang">
+      <a href="kb-sfeer.html" class="active">NL</a>
+      <a href="en/index.html">EN</a>
+      <a href="fr/index.html">FR</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
+<div class="page-header">
+  <div class="page-header-inner fade-up">
+    <div>
+      <span class="kicker">Helpdesk</span>
+      <h1>Hoe doe je dat <em>ook alweer?</em></h1>
+      <p class="lead">Geen 300 artikels die je niet vindt. Korte stukjes die je vertellen wat je wil weten — en eerlijk zeggen wanneer rumo het even van jou overneemt. Ook geschreven zodat <em>Rudy</em> precies weet wat hij mag uitvoeren namens jou.</p>
+    </div>
+    <div class="page-header-side">
+      7 categorieën<br>
+      <strong>22 stukjes</strong>
+    </div>
+  </div>
+  <div class="page-header-ribbon">
+    <span>Korter dan een handleiding</span>
+    <span>Eerlijk wat Rudy mag</span>
+    <span>Belgische compliance erin</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ META STRIP ═══════════════════════ -->
+<section class="kb-meta">
+  <div class="wrap">
+    <div class="kb-meta-grid fade-up">
+      <div class="kb-meta-item">
+        <div class="kb-meta-num">1×</div>
+        <div class="kb-meta-label">Eén pagina, één scrollbeweging</div>
+      </div>
+      <div class="kb-meta-item">
+        <div class="kb-meta-num">2×</div>
+        <div class="kb-meta-label">Voor jou én voor Rudy</div>
+      </div>
+      <div class="kb-meta-item">
+        <div class="kb-meta-num">0</div>
+        <div class="kb-meta-label">Schermafdrukken die niet meer kloppen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ KB ═══════════════════════ -->
+<section class="kb-main">
+  <div class="wrap">
+    <div class="kb-layout">
+
+      <aside class="kb-nav">
+        <div class="kb-nav-title">Categorieën</div>
+        <ul>
+          <li><a href="#aan-de-slag" class="active">Aan de slag</a></li>
+          <li><a href="#reservaties">Reservaties</a></li>
+          <li><a href="#channels">Channel manager</a></li>
+          <li><a href="#tarieven">Tarieven</a></li>
+          <li><a href="#facturatie">Facturatie &amp; Peppol</a></li>
+          <li><a href="#belgie">Belgische compliance</a></li>
+          <li><a href="#rudy">Rudy</a></li>
+        </ul>
+      </aside>
+
+      <div class="kb-groups">
+
+        <!-- ─────────────── AAN DE SLAG ─────────────── -->
+        <div class="kb-group" id="aan-de-slag">
+          <h2 class="kb-group-title">Aan de <em>slag</em></h2>
+          <p class="kb-group-intro">De eerste week. Inloggen, kamers opzetten, eerste reservatie boeken, eerste OTA koppelen. Geen onboarding-call van twee uur — gewoon doen, en bellen als je vastloopt.</p>
+
+          <div class="kb-articles">
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Eerste login</div>
+              <h3 class="kb-article-title">De eerste keer inloggen op rumo</h3>
+              <div class="kb-article-body">
+                <p>Je krijgt van ons een mail met een persoonlijke link. Klikken, wachtwoord kiezen, klaar. Geen apart hotel-id, geen "vraag het aan je beheerder". Als je zelf de eigenaar bent, ben jij ook de beheerder.</p>
+                <p><em>Vergeet niet:</em> twee-factor staat standaard aan voor nieuwe accounts. Je telefoon hangt aan je rumo, niet andersom.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Setup</div>
+              <h3 class="kb-article-title">Je kamers en kamertypes <em>opzetten</em></h3>
+              <div class="kb-article-body">
+                <p>Eerst kamertypes (Standard, Deluxe, Junior Suite, …), dan individuele kamers. Een kamertype heeft een tarief en een maximum bezetting; een individuele kamer hangt aan zo'n type. Hetzelfde patroon dat Booking.com en de andere OTA's verwachten.</p>
+                <p>Tip: hou kamertypes <strong>beperkt</strong>. Drie of vier is meestal genoeg. Twintig kamertypes geeft je twintig synchronisatie-problemen.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Demo-data</div>
+              <h3 class="kb-article-title">Spelen met nepreservaties</h3>
+              <div class="kb-article-body">
+                <p>Je startomgeving zit standaard vol met dummy-reservaties zodat je kan klikken zonder iets stuk te maken. Klaar om écht te beginnen? Eén klik op "Reset data" en alles is leeg. Je eigen kamers blijven staan.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Migratie</div>
+              <h3 class="kb-article-title">Komen vanuit een ander PMS</h3>
+              <div class="kb-article-body">
+                <p>We doen de overstap samen. Bestaande reservaties, gastprofielen, openstaande facturen — wij importeren, jij controleert. De meeste hotels zijn binnen een paar dagen volledig over, zonder dubbele invoer.</p>
+                <p>Komt het uit een schrift met ezelsoren? Ook prima. Stuur de boel door en we praten erover.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ─────────────── RESERVATIES ─────────────── -->
+        <div class="kb-group" id="reservaties">
+          <h2 class="kb-group-title">Reservaties &amp; <em>guest portal</em></h2>
+          <p class="kb-group-intro">Het deel waar je elke dag in zit. Aanmaken, wijzigen, in- en uitchecken, factureren. Plus het guest portal — de link die je gast krijgt om zelf zijn pre-checkin in te vullen.</p>
+
+          <div class="kb-articles">
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Wijzigen</div>
+              <h3 class="kb-article-title">Een reservatie wijzigen, splitsen of <em>verplaatsen</em></h3>
+              <div class="kb-article-body">
+                <p>Datums verschuiven of een kamer wisselen kan gewoon door te slepen op de kalender. Sleep tussen kamers binnen hetzelfde type, of tussen types — rumo herrekent de prijs en stelt een nieuwe lijn voor. Jij beslist of die door mag.</p>
+                <p>Kostenposten — minibar, ontbijten, extra's — kan je <strong>tussen reservaties verschuiven</strong> via een booking-referentie zoeken. Geen datumfilter, geen restricties: gewoon de juiste reservatie vinden en de lijn slepen.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Online check-in</div>
+              <h3 class="kb-article-title">Het guest portal voor je gast</h3>
+              <div class="kb-article-body">
+                <p>Elke gast krijgt een persoonlijke link in de bevestigingsmail. Daarmee vult hij zelf in:</p>
+                <ul>
+                  <li>Pre-checkin gegevens (ID, adres, geboortedatum)</li>
+                  <li>Een offerte bevestigen of weigeren</li>
+                  <li>Online betalen of een kaart als garantie achterlaten</li>
+                </ul>
+                <p>De link is geldig <em>tot 2 weken na check-out</em>, voor het geval een gast nog iets moet aanvullen of de factuur wil downloaden.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Annuleringen</div>
+              <h3 class="kb-article-title">Een reservatie <em>annuleren</em> — direct vs. OTA</h3>
+              <div class="kb-article-body">
+                <p><strong>Direct geboekt:</strong> annuleer in rumo. Je beslist zelf of er een annuleringsfee aangerekend wordt en of er een credit nota gemaakt wordt.</p>
+                <p><strong>Via een OTA geboekt:</strong> de annulering moet bij de OTA gebeuren (Booking.com, Airbnb, Expedia). rumo synchroniseert de status automatisch zodra de OTA hem doorgeeft. Dat is een keuze van de OTA's, geen tekortkoming van rumo — ze laten PMS'en hun cancellaties niet rechtstreeks terugschrijven.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Offertes</div>
+              <h3 class="kb-article-title">Een offerte versturen en laten bevestigen</h3>
+              <div class="kb-article-body">
+                <p>Maak een reservatie aan met status <em>optie</em>, geef ze een vervaldatum, en stuur de gast een link via het guest portal. De gast bevestigt online en betaalt eventueel meteen. Pas dan wordt het een echte reservatie. Geen ja/nee/misschien-mailtjes meer.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">No-show</div>
+              <h3 class="kb-article-title">Wat te doen bij een no-show</h3>
+              <div class="kb-article-body">
+                <p>Je markeert de reservatie als no-show. rumo houdt de kamerdag in de bezettingsstatistiek (zodat je revenue klopt) en stelt voor om de standaard no-show fee aan te rekenen. Of niet — dat blijft jouw keuze, niet die van het systeem.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ─────────────── CHANNEL MANAGER ─────────────── -->
+        <div class="kb-group" id="channels">
+          <h2 class="kb-group-title">Channel <em>manager</em></h2>
+          <p class="kb-group-intro">Hoe rumo en de OTA's met elkaar praten. We werken met Channex achter de schermen — zodat één wijziging in rumo netjes naar Booking, Expedia, Airbnb en de rest gaat. Hieronder wat je daarvan moet weten.</p>
+
+          <div class="kb-articles">
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Hoe het werkt</div>
+              <h3 class="kb-article-title">rumo + Channex: wie doet wat?</h3>
+              <div class="kb-article-body">
+                <p><strong>rumo</strong> is jouw front-office: kalender, reservaties, gastprofielen, facturatie. <strong>Channex</strong> is de tussenlaag die met elke OTA in zijn eigen taal praat. Jij ziet alleen rumo. Wij regelen de rest.</p>
+                <p>In de praktijk: je past een prijs aan in rumo, Channex duwt die binnen seconden naar elke gekoppelde OTA. Een nieuwe boeking op Booking.com komt langs Channex en staat binnen seconden in je rumo-kalender.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Setup</div>
+              <h3 class="kb-article-title">Een nieuwe OTA <em>koppelen</em></h3>
+              <div class="kb-article-body">
+                <p>Voor elk kanaal is er een vast pad: in de OTA-extranet aanvragen om Channex als provider toe te laten, propertyID doorgeven, en in rumo de mapping leggen tussen jouw kamertypes en die van de OTA. Bij Airbnb gebeurt dat via OAuth, bij Booking via XML-akkoord.</p>
+                <p>De eerste OTA-koppeling doen we <strong>samen</strong>. Vanaf de tweede gaat het meestal vanzelf. Als je wil dat Rudy het doet, vraag het hem — voor wat hij kan automatiseren via Channex doet hij dat, en voor wat handmatig moet, geeft hij je de exacte stappen.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Sync</div>
+              <h3 class="kb-article-title">Wanneer is een wijziging zichtbaar bij de OTA?</h3>
+              <div class="kb-article-body">
+                <p>Meestal binnen <em>enkele seconden</em>. In drukke periodes kan het een halve minuut duren. Als het langer duurt, vermoeden we Channex of de OTA — en dan zie je dat in je rumo-statuslog.</p>
+                <p>Eén belangrijke nuance: <strong>annuleringen, no-shows en prijswijzigingen na boeking</strong> stuur je niet vanuit rumo terug naar de OTA. De meeste OTA's accepteren dat type schrijven gewoon niet. Je doet dat in de OTA-extranet, en de status komt via Channex weer terug naar rumo.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Conflicten</div>
+              <h3 class="kb-article-title">Een dubbele boeking — wat dan?</h3>
+              <div class="kb-article-body">
+                <p>Theoretisch onmogelijk dankzij real-time sync, maar in de praktijk gebeurt het ooit (twee OTA's verkopen tegelijk de laatste kamer). rumo waarschuwt je meteen. Jij beslist welke gast je upgrade en welke je verplaatst — niet de algoritmes.</p>
+              </div>
+            </article>
+
+            <article class="kb-article kb-stub">
+              <div class="kb-article-kicker">Binnenkort</div>
+              <h3 class="kb-article-title">Per OTA: Booking.com, Airbnb, Expedia</h3>
+              <div class="kb-article-body">
+                <p>Diepere setup-uitleg per kanaal komt eraan. Tot dan: vraag Rudy, of stuur ons een berichtje.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ─────────────── TARIEVEN ─────────────── -->
+        <div class="kb-group" id="tarieven">
+          <h2 class="kb-group-title">Tarieven &amp; <em>arrangementen</em></h2>
+          <p class="kb-group-intro">Eén basistarief, en de rest wordt afgeleid. Geen vier verschillende rate plans handmatig invoeren voor één kamer. Geen 23 schermen om een weekendprijs in te stellen.</p>
+
+          <div class="kb-articles">
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Basismodel</div>
+              <h3 class="kb-article-title">Hoe rumo prijzen modelleert</h3>
+              <div class="kb-article-body">
+                <p>Je vertrekt van een <em>basistarief</em> per kamertype. Daarop komen modifiers: bezetting (1, 2, 3 personen), kinderprijs, lengte van het verblijf, kanaal-uplift, seizoen. Je past de modifier aan, niet de vier afgeleide tarieven.</p>
+                <p>Dat is anders dan bij de meeste channel managers, waar je voor elke bezetting een aparte regel moet onderhouden. Wij vinden dat onnodig werk.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Bezetting</div>
+              <h3 class="kb-article-title">Tarieven per bezetting (1, 2, 3 personen)</h3>
+              <div class="kb-article-body">
+                <p>Voor een kamer waar 1, 2 of 3 personen kunnen logeren: zet één basistarief en twee modifiers. Bijvoorbeeld <em>−€30 voor single-occupancy</em> en <em>+€40 voor de derde gast</em>. rumo rekent de drie tarieven uit en stuurt ze allemaal naar de OTA's.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Arrangementen</div>
+              <h3 class="kb-article-title">Een <em>arrangement</em> bouwen (overnachting + ontbijt + diner)</h3>
+              <div class="kb-article-body">
+                <p>Een arrangement is een tarief met inbegrepen extra's. "Romantisch weekend" = overnachting + ontbijt + 4-gangen-menu, voor één prijs. Op de factuur worden de drie posten netjes uitgesplitst (handig voor de BTW), op het OTA-tarief zien gasten één bedrag.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Periodes</div>
+              <h3 class="kb-article-title">Seizoens- en weekendprijzen</h3>
+              <div class="kb-article-body">
+                <p>Selecteer een datumbereik op de kalender, kies de modifier ("+15% voor zomerseizoen"), klaar. Werkt op alle kamertypes tegelijk of op één. Kan ook per weekdag — anders prijs op vrijdag/zaterdag dan op maandag/dinsdag.</p>
+              </div>
+            </article>
+
+            <article class="kb-article kb-stub">
+              <div class="kb-article-kicker">Binnenkort</div>
+              <h3 class="kb-article-title">Korting per kanaal &amp; promo codes</h3>
+              <div class="kb-article-body">
+                <p>Specifieke kortingen voor één OTA, last-minute, of met een code voor je website. Komt nog uitgewerkt.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ─────────────── FACTURATIE ─────────────── -->
+        <div class="kb-group" id="facturatie">
+          <h2 class="kb-group-title">Facturatie &amp; <em>Peppol</em></h2>
+          <p class="kb-group-intro">Boekhoud-correcte facturatie zonder dat jij erover moet nadenken. BTW-splitsing per regel, automatische Peppol voor B2B, doorzending naar je boekhouder.</p>
+
+          <div class="kb-articles">
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Peppol</div>
+              <h3 class="kb-article-title">Hoe Peppol werkt in rumo</h3>
+              <div class="kb-article-body">
+                <p>Voor B2B-facturen verplicht in België vanaf 2026. rumo regelt het automatisch: factuur in UBL 2.1 formaat, via het Peppol-netwerk, naar de Peppol-ID van je klant. Geen aparte tool, geen handmatige verzending.</p>
+                <p>Particulieren krijgen gewoon een PDF per mail. rumo herkent het verschil en doet het juiste.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">BTW</div>
+              <h3 class="kb-article-title">BTW-splitsing 6% horeca / 21%</h3>
+              <div class="kb-article-body">
+                <p>Per factuurregel het juiste tarief: overnachting en ontbijt aan 6%, alcohol en overige diensten aan 21%. Bij arrangementen wordt de splitsing automatisch toegepast op de samengestelde lijnen.</p>
+                <p>Aan het einde van de maand of het kwartaal exporteer je een BTW-rapport voor je boekhouder. Met grondslag, BTW-bedrag en totalen per tarief.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Credit nota's</div>
+              <h3 class="kb-article-title">Een credit nota maken</h3>
+              <div class="kb-article-body">
+                <p>Facturen in rumo kunnen niet verwijderd worden — dat moet ook niet, dat is precies wat je boekhouder graag heeft. Wil je iets corrigeren? Maak een credit nota. rumo legt automatisch het verband met de oorspronkelijke factuur. Audit trail compleet.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Boekhouding</div>
+              <h3 class="kb-article-title">Doorsturen naar Octopus, Exact Online, Yuki</h3>
+              <div class="kb-article-body">
+                <p>Directe koppeling met de drie meest gebruikte boekhoudpakketten in BE/NL. Facturen, credit nota's en betaalingen komen automatisch in je boekhouding terecht. Je boekhouder krijgt voortaan minder mails van jou — en dat is fijn voor jullie allebei.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ─────────────── BELGISCHE COMPLIANCE ─────────────── -->
+        <div class="kb-group" id="belgie">
+          <h2 class="kb-group-title">Belgische <em>compliance</em></h2>
+          <p class="kb-group-intro">Het deel waar de meeste internationale PMS'en de bal laten vallen. Gemeentebelasting, politiemelding, Brusselse logiestaks. Wij doen het wél, omdat we hier wonen.</p>
+
+          <div class="kb-articles">
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Stadstaks</div>
+              <h3 class="kb-article-title">Gemeentebelasting / city tax</h3>
+              <div class="kb-article-body">
+                <p>Per gemeente een ander tarief, soms per nacht, soms per gast, soms vrijgesteld onder een bepaalde leeftijd. rumo kent de regel van jouw gemeente en past hem automatisch toe op elke reservatie. Op de factuur als aparte regel zichtbaar — zo wil je gast dat zien.</p>
+                <p>Aan het einde van het jaar krijg je een export per gemeente, klaar om in te dienen. Geen manueel turven meer.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Politiemelding</div>
+              <h3 class="kb-article-title">Gastenregistratie voor de politie</h3>
+              <div class="kb-article-body">
+                <p>Sinds de wet op gastenregistratie ben je verplicht om bij elke gast een aantal gegevens vast te leggen: naam, geboortedatum, ID-nummer, adres. Het guest portal vraagt die gegevens aan je gast tijdens de pre-checkin — vóór hij arriveert. Jij hoeft niets in te tikken.</p>
+                <p>De export naar de politie zit in je rumo. Maandelijks of op aanvraag, in het juiste formaat.</p>
+              </div>
+            </article>
+
+            <article class="kb-article kb-stub">
+              <div class="kb-article-kicker">Binnenkort</div>
+              <h3 class="kb-article-title">Brusselse logiestaks &amp; jaarrapport</h3>
+              <div class="kb-article-body">
+                <p>Gewest-specifieke aangiftes en het verplichte jaarverslag. Wordt nog volledig uitgewerkt.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- ─────────────── RUDY ─────────────── -->
+        <div class="kb-group" id="rudy">
+          <h2 class="kb-group-title">Rudy, je <em>AI-assistent</em></h2>
+          <p class="kb-group-intro">Geen chatbot. Geen FAQ-zoeker. Een echte assistent die taken voor je uitvoert in rumo en in de gekoppelde systemen — en eerlijk zegt wanneer hij iets niet zelf mag doen.</p>
+
+          <div class="kb-articles">
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Wat is Rudy?</div>
+              <h3 class="kb-article-title">Wat <em>Rudy</em> kan, in één paragraaf</h3>
+              <div class="kb-article-body">
+                <p>Rudy leest deze artikels (en de rest van rumo) en kan op basis daarvan acties uitvoeren: een prijs aanpassen, een datum blokkeren, een minimum-stay zetten, een betaallink versturen, een rapport genereren. Je vraagt het in gewone taal — "verlaag mijn weekendprijs voor mei met 10%" — hij stelt een actie voor, jij bevestigt, hij voert uit.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Wat hij doet</div>
+              <h3 class="kb-article-title">Wat Rudy automatisch <em>uitvoert</em></h3>
+              <div class="kb-article-body">
+                <p>De dagelijkse channel-manager- en kalendertaken. Concreet:</p>
+                <ul>
+                  <li>Stop-sell of open-sell op specifieke datums</li>
+                  <li>Bulk inventory aanpassen ("sluit kamer 3 volgend weekend")</li>
+                  <li>Min-stay, max-stay, CTA, CTD instellen</li>
+                  <li>Datums of kamer wijzigen op een reservatie</li>
+                  <li>Een betaallink samenstellen en versturen</li>
+                  <li>Een rapport draaien over een periode</li>
+                </ul>
+                <p>Voor elke actie krijgt hij eerst een bevestigings-stap van jou. Reversibel? Hij doet het meteen. Onomkeerbaar (bv. een charge)? Hij wacht op je expliciete OK.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Wat hij <em>niet</em> doet</div>
+              <h3 class="kb-article-title">Wat Rudy bewust <em>laat liggen</em></h3>
+              <div class="kb-article-body">
+                <p>Een aantal dingen doet Rudy expliciet <strong>niet</strong> automatisch — niet omdat hij het niet kan, maar omdat het verkeerd zou zijn:</p>
+                <ul>
+                  <li>Geen automatische credit nota's, refunds of penalty-aanrekeningen — die meldt hij aan jou (of je receptionist), met een voorstel</li>
+                  <li>Geen prijsbeleid (hij voert wijzigingen uit, hij beslist niet of jouw prijs te hoog of te laag is)</li>
+                  <li>Geen acties in OTA-extranetten waarvoor manuele keuzes nodig zijn (Genius-promo, Mobile Rate, listing-content)</li>
+                  <li>Geen onomkeerbare integratie-keuzes (een nieuw boekhoud-grootboek kiezen)</li>
+                </ul>
+                <p>Het idee: Rudy doet de tijdrovende dingen, jij houdt de beleidsbeslissingen.</p>
+              </div>
+            </article>
+
+            <article class="kb-article">
+              <div class="kb-article-kicker">Hoe vraag je</div>
+              <h3 class="kb-article-title">Hoe je iets aan Rudy vraagt</h3>
+              <div class="kb-article-body">
+                <p>Gewoon Nederlands. "Sluit alle kamers voor 14 mei", "stuur een betaallink naar de reservatie van Janssens", "wat was mijn omzet vorige week per kanaal". Geen commando-syntaxis. Geen menu's onthouden.</p>
+                <p>Als hij twijfelt of de vraag dubbelzinnig is, vraagt hij door. Als hij iets niet kan, zegt hij het.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+<section class="contact">
+  <div class="wrap">
+    <div class="contact-card fade-up">
+      <div>
+        <span class="kicker">Iets niet duidelijk?</span>
+        <h3>Mis je een <em>stukje uitleg?</em></h3>
+        <p>Stuur ons een bericht. We vullen aan, en jij krijgt direct antwoord — geen wachtrij, geen ticket-systeem.</p>
+      </div>
+      <a href="mailto:hello@rumo.eu" class="btn-ink">Stuur een mailtje <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FINAL ═══════════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Zelf proberen</span>
+    <h2>Geen demo-gesprek.<br>Gewoon <em>14 dagen</em> spelen.</h2>
+    <p>Geen creditcard, geen verplichtingen, geen "account manager" die je elke week opbelt. Een demo-omgeving vol nepreservaties. Bevalt het niet? Dan verdwijnt het stilletjes.</p>
+    <a href="index-sfeer.html#demo" class="btn-paper">Probeer 14 dagen gratis <span>→</span></a>
+    <p class="final-fine">Geen credit card · Na 6 maanden maandelijks opzegbaar · Gratis datamigratie</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Hotelsoftware voor onafhankelijke hoteliers. Zonder gedoe.</p>
+    </div>
+    <div>
+      <div class="footer-label">Product</div>
+      <ul class="footer-links">
+        <li><a href="features-sfeer.html">Features</a></li>
+        <li><a href="integraties-sfeer.html">Integraties</a></li>
+        <li><a href="prijzen-sfeer.html">En euh, wat kost dat?</a></li>
+        <li><a href="kb-sfeer.html">Helpdesk</a></li>
+        <li><a href="faq-sfeer.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Stuur ons een mailtje</a></li>
+        <li><a href="over-ons-sfeer.html">Over ons</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Integraties</div>
+      <ul class="footer-links">
+        <li><a href="integraties-sfeer.html">Booking.com</a></li>
+        <li><a href="integraties-sfeer.html">Airbnb</a></li>
+        <li><a href="integraties-sfeer.html">Exact Online</a></li>
+        <li><a href="integraties-sfeer.html">Peppol</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Gent, BE</span>
+    <span>Direction · Sfeer</span>
+  </div>
+</footer>
+
+<script>
+// fade-up observer (zelfde patroon als andere -sfeer paginas)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// active section in sticky nav
+const navLinks = document.querySelectorAll('.kb-nav a');
+const groups = document.querySelectorAll('.kb-group');
+const groupObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+groups.forEach(g => groupObserver.observe(g));
+</script>
+
+</body>
+</html>

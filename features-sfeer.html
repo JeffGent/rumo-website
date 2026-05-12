@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Features · rumo</title>
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="description" content="rumo doet alles wat je van een PMS verwacht, plus AI-assistent, handboek en sterke automatisering.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -390,6 +391,94 @@
     .feature { padding:3.5rem 0; }
     .compact-grid { grid-template-columns:1fr; }
   }
+
+  /* ─── MARQUEE GRID (6 hoofdfeatures) ─── */
+  .marquee {
+    background: var(--paper);
+    padding: 5rem 0 5.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .marquee-head {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3.5rem;
+  }
+  .marquee-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    margin: 0.9rem 0 1rem;
+  }
+  .marquee-head h2 em { color: var(--terra-dark); font-style: italic; }
+  .marquee-head .lead {
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-size: 1.02rem;
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+  .marquee-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .marquee-card {
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1.7rem 1.55rem;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+  }
+  .marquee-card:hover {
+    box-shadow: 0 16px 34px rgba(27,25,23,0.09);
+    transform: translateY(-3px);
+    border-color: var(--terra);
+  }
+  .marquee-ic {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .marquee-ic svg { width: 18px; height: 18px; stroke-width: 1.8; fill: none; }
+  .marquee-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .marquee-card h3 em { color: var(--terra-dark); font-style: italic; font-weight: 300; }
+  .marquee-card p {
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .marquee-card .arrow {
+    margin-top: auto;
+    padding-top: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+  }
+  .marquee-card .arrow::after { content: ' →'; }
+  @media (max-width: 880px) {
+    .marquee-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .marquee-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -429,371 +518,79 @@
     </div>
   </div>
   <div class="page-header-ribbon">
-    <span>AI-assistent</span>
+    <span>PMS</span>
+    <span>Rudy</span>
     <span>Handboek</span>
-    <span>Dashboard</span>
-    <span>Kalender</span>
-    <span>Automatisering</span>
-    <span>Preventie &amp; Welzijn</span>
+    <span>Preventie</span>
+    <span>Channel manager</span>
+    <span>Guest portal</span>
   </div>
 </div>
 
-<!-- ═══════════════════════ FEATURE · RUDY ═══════════════════════ -->
-<section class="feature" id="rudy">
+<!-- ═══════════════════════ MARQUEE · 6 HOOFDFEATURES ═══════════════════════ -->
+<section class="marquee">
   <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:var(--rose-soft); color:var(--terra-dark);">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <span class="lbl">Rudy</span>
-        </div>
-        <h2>Een collega die<br><em>nooit</em> vrij neemt.</h2>
-        <p>Rudy is de AI-assistent die in rumo leeft. Hij kent je hotel, je procedures en je data. Stel een vraag in gewone taal en Rudy geeft je het antwoord. Geen handleiding nodig, geen zoekwerk. Gewoon vragen.</p>
-        <ul class="feature-bullets">
-          <li>"Welke kamers zijn morgen vrij?"</li>
-          <li>"Hoeveel omzet hebben we deze maand?"</li>
-          <li>"Wat is onze annulatieprocedure?"</li>
-          <li>Kent je reservaties, cijfers en handboek-artikels</li>
-          <li>Altijd beschikbaar, altijd geduldig</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-rudy">
-          <div class="head-avatar">
-            <div class="avatar">R</div>
-            <div>
-              <strong>Rudy</strong>
-              <span>Je hotel-assistent</span>
-            </div>
-          </div>
-          <div class="chat">
-            <div class="msg u">Hoeveel kamers zijn er morgen vrij?</div>
-            <div class="msg b">Morgen zijn er <strong>4 kamers</strong> beschikbaar: 2× Comfort Twin, 1× Deluxe Double en 1× Suite. Wil je een reservatie aanmaken?</div>
-            <div class="msg u">Wat als iemand belt voor een late check-in?</div>
-            <div class="msg b">Volgens jullie <strong>receptieprocedure</strong>: noteer het verwachte aankomstuur, stuur de deurcode via de guest portal, en verwittig housekeeping.</div>
-          </div>
-        </div>
-      </div>
+    <div class="marquee-head fade-up">
+      <span class="kicker">De zes lagen</span>
+      <h2>Eén hotel, <em>zes lagen</em> rumo.</h2>
+      <p class="lead">Het PMS doet het dagelijkse werk. Rudy neemt de routine uit handen. Het handboek houdt het team op één lijn. Preventie bewaakt je dossiers. Channel manager praat met de OTA's. Guest portal laat je gast zelf het werk doen. Klik er eentje open voor het volledige verhaal.</p>
     </div>
-  </div>
-</section>
+    <div class="marquee-grid">
 
-<!-- ═══════════════════════ FEATURE · HANDBOEK ═══════════════════════ -->
-<section class="feature" id="handbook">
-  <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:#DCE4F3; color:#4a7fb5;">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
-          </div>
-          <span class="lbl">Handboek</span>
+      <a class="marquee-card fade-up" href="pms.html">
+        <div class="marquee-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-        <h2>Je hotelhandboek.<br><em>Altijd</em> bij de hand.</h2>
-        <p>Receptieprocedures, huisregels, noodplannen, onboardingdocumenten. Alles wat je team moet weten, op één plek die ze ook écht terugvinden. Geen losse Word-documenten of WhatsApp-berichten meer.</p>
-        <ul class="feature-bullets">
-          <li>Artikels per categorie: receptie, housekeeping, F&amp;B, noodprocedures…</li>
-          <li>Zoekfunctie over alle artikels</li>
-          <li>Schrijf en beheer content rechtstreeks in rumo</li>
-          <li>Nieuwe medewerkers zijn sneller ingewerkt</li>
-          <li>Iedereen werkt op dezelfde manier</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-handbook">
-          <div class="mockup-head">
-            <h5>Handboek</h5>
-            <span class="badge">36 artikels</span>
-          </div>
-          <div class="cats">
-            <div class="cat a">
-              <div class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-              <strong>Receptie</strong>
-              <span>4 artikels</span>
-            </div>
-            <div class="cat b">
-              <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-              <strong>Housekeeping</strong>
-              <span>3 artikels</span>
-            </div>
-            <div class="cat c">
-              <div class="ic"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg></div>
-              <strong>F&amp;B</strong>
-              <span>2 artikels</span>
-            </div>
-            <div class="cat d">
-              <div class="ic"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg></div>
-              <strong>Noodprocedures</strong>
-              <span>2 artikels</span>
-            </div>
-          </div>
-          <div class="recent">
-            <div class="lbl">Laatst bijgewerkt</div>
-            <strong>Check-in procedure bij late arrival</strong>
-            <span>Receptie · 2 dagen geleden</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <h3>Het <em>PMS</em></h3>
+        <p>Kalender, check-out in één klik, Peppol-facturatie, dashboard. Het hart van rumo, zonder 47 menu's diep.</p>
+        <span class="arrow">Lees meer</span>
+      </a>
 
-<!-- ═══════════════════════ FEATURE · UX ═══════════════════════ -->
-<section class="feature" id="ux">
-  <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:var(--rose-soft); color:var(--terra-dark);">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="4"/><rect x="14" y="10" width="7" height="7"/><rect x="3" y="13" width="7" height="4"/></svg>
-          </div>
-          <span class="lbl">Intuïtief design</span>
+      <a class="marquee-card fade-up" href="rudy.html">
+        <div class="marquee-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <h2>Gebouwd om<br><em>makkelijk</em> te zijn.</h2>
-        <p>rumo is gemaakt voor mensen die liever met gasten bezig zijn dan met software. Alles is zichtbaar, logisch en snel. Geen verborgen menu's, geen overbodige opties.</p>
-        <ul class="feature-bullets">
-          <li>Dashboard met live arrivals, departures en statistieken</li>
-          <li>Visuele kalender met drag-and-drop</li>
-          <li>Housekeeping die je team op de telefoon gebruikt</li>
-          <li>Zoeken met ⌘+K, alles op twee klikken</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-dashboard">
-          <div class="mockup-head">
-            <h5>Dashboard</h5>
-            <span class="badge live">Live</span>
-          </div>
-          <div class="stats">
-            <div>
-              <div class="lbl">Revenue</div>
-              <div class="big">€10.771</div>
-            </div>
-            <div class="mini">
-              <div class="lbl">Occ</div>
-              <div class="big">47%</div>
-            </div>
-            <div class="mini">
-              <div class="lbl">ADR</div>
-              <div class="big">€449</div>
-            </div>
-            <div class="mini">
-              <div class="lbl">Check-ins</div>
-              <div class="big t">2 →</div>
-            </div>
-            <div class="mini">
-              <div class="lbl">Check-outs</div>
-              <div class="big g">4 ←</div>
-            </div>
-          </div>
-          <div class="rooms">Room Status</div>
-          <div class="room-grid">
-            <div class="room">
-              <div class="num">103</div>
-              <div class="guest">Van de Kasseien</div>
-              <div class="tag">← out</div>
-            </div>
-            <div class="room">
-              <div class="num">109</div>
-              <div class="guest">De Boer</div>
-              <div class="tag">← out</div>
-            </div>
-            <div class="room">
-              <div class="num">206</div>
-              <div class="guest">Lindqvist</div>
-              <div class="tag">← out</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <h3><em>Rudy</em>, je AI-assistent</h3>
+        <p>Stel een vraag in gewone taal over je hotel, je procedures of je cijfers. Rudy antwoordt. Eerlijk over zijn grenzen.</p>
+        <span class="arrow">Lees meer</span>
+      </a>
 
-<!-- ═══════════════════════ FEATURE · KALENDER ═══════════════════════ -->
-<section class="feature" id="kalender">
-  <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:#FCEDBD; color:#8a6b1a;">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <span class="lbl">Kalender</span>
+      <a class="marquee-card fade-up" href="handbook.html">
+        <div class="marquee-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
         </div>
-        <h2>Alles in een oogopslag.<br><em>Sleep</em> en klaar.</h2>
-        <p>Een visuele kalender waar je reservaties sleept, verplaatst en aanpast. Per kamer, per dag, per week. Filtert op arrivals, departures en in-house gasten.</p>
-        <ul class="feature-bullets">
-          <li>Drag-and-drop om reservaties te verplaatsen of verlengen</li>
-          <li>Filter op arrivals, departures en in-house</li>
-          <li>Week- en custom weergave met datumnavigatie</li>
-          <li>Kamerstatus en kamertypes in een oogopslag</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-calendar">
-          <div class="mockup-head">
-            <h5>Kalender</h5>
-            <span class="meta">9 – 15 Mar 2026</span>
-          </div>
-          <div class="hd">
-            <div></div>
-            <div>Ma 9</div>
-            <div>Di 10</div>
-            <div class="active">Wo 11</div>
-            <div>Do 12</div>
-            <div>Vr 13</div>
-          </div>
-          <div class="rows">
-            <!-- 101 -->
-            <div class="lbl">101 <small>twin</small></div>
-            <div class="cell tentative" style="grid-column:2 / 4;">—</div>
-            <div class="cell booked" style="grid-column:4 / 7;">Kiekeboe</div>
-            <!-- 102 -->
-            <div class="lbl">102 <small>twin</small></div>
-            <div class="cell empty" style="grid-column:2 / 7;"></div>
-            <!-- 103 -->
-            <div class="lbl">103 <small>twin</small></div>
-            <div class="cell empty" style="grid-column:2 / 3;"></div>
-            <div class="cell booked2" style="grid-column:3 / 6;">Van de Kasseien</div>
-            <div class="cell empty" style="grid-column:6 / 7;"></div>
-            <!-- 104 -->
-            <div class="lbl">104 <small>dbl</small></div>
-            <div class="cell booked3" style="grid-column:2 / 5;">Müller</div>
-            <div class="cell empty" style="grid-column:5 / 7;"></div>
-            <!-- 105 -->
-            <div class="lbl">105 <small>suite</small></div>
-            <div class="cell empty" style="grid-column:2 / 7;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <h3>Het <em>handboek</em></h3>
+        <p>Receptieprocedures, huisregels, noodplannen. Eén doorzoekbare plek voor alles wat je team moet weten.</p>
+        <span class="arrow">Lees meer</span>
+      </a>
 
-<!-- ═══════════════════════ FEATURE · AUTOMATISERING ═══════════════════════ -->
-<section class="feature" id="automatisering">
-  <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:var(--forest-soft); color:var(--forest);">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <span class="lbl">Automatisering</span>
+      <a class="marquee-card fade-up" href="prevention.html">
+        <div class="marquee-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h2>Minder klikken.<br><em>Meer tijd</em> voor gasten.</h2>
-        <p>De check-out duurt één klik: factureren, betaling koppelen, status aanpassen, housekeeping verwittigen. E-mails gaan automatisch uit in de juiste taal. Beschikbaarheid wordt realtime doorgestuurd naar alle kanalen.</p>
-        <ul class="feature-bullets">
-          <li>Quick check-out: factuur + betaling + statuswijziging in één klik</li>
-          <li>E-mails automatisch verstuurd op basis van triggers</li>
-          <li>Channel manager synchroniseert prijzen en beschikbaarheid</li>
-          <li>Wachtlijst: bij annulering wordt de kamer automatisch geblokkeerd</li>
-          <li>Peppol e-facturatie en UBL-export ingebouwd</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-auto">
-          <div class="mockup-head">
-            <h5>Quick check-out</h5>
-            <span class="badge">Kamer 103</span>
-          </div>
-          <div class="step">
-            <div class="check">✓</div>
-            <div>
-              <strong>Factuur aangemaakt</strong>
-              <span>INV-2026-0047 · €1.347,00</span>
-            </div>
-          </div>
-          <div class="step">
-            <div class="check">✓</div>
-            <div>
-              <strong>Betaling gekoppeld</strong>
-              <span>Visa · €1.347,00</span>
-            </div>
-          </div>
-          <div class="step">
-            <div class="check">✓</div>
-            <div>
-              <strong>Status: checked out</strong>
-              <span>Housekeeping verwittigd</span>
-            </div>
-          </div>
-          <div class="step">
-            <div class="check">✓</div>
-            <div>
-              <strong>E-mail verstuurd</strong>
-              <span>Check-out bevestiging · NL</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <h3><em>Preventie</em> &amp; welzijn</h3>
+        <p>Brandpreventie, legionella, EHBO, checklists, incidenten. Eindelijk in één levend dossier.</p>
+        <span class="arrow">Lees meer</span>
+      </a>
 
-<!-- ═══════════════════════ FEATURE · PREVENTIE ═══════════════════════ -->
-<section class="feature" id="property">
-  <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:#FCEDBD; color:#8a6b1a;">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <span class="lbl">Preventie &amp; Welzijn</span>
+      <a class="marquee-card fade-up" href="channel-manager.html">
+        <div class="marquee-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
         </div>
-        <h2>Brandpreventie, legionella, EHBO.<br>Eindelijk <em>onder controle.</em></h2>
-        <p>Elke hotelier kent het gevoel: ergens in een kast ligt een map met keuringen, checklists en veiligheidsplannen. Niemand weet of alles nog geldig is. Tot er een inspectie komt. rumo vervangt die kast door een levend systeem dat meedenkt, herinnert en documenteert.</p>
-        <ul class="feature-bullets">
-          <li>Brandpreventiedossier: blussers, detectie, noodverlichting, met vervaldatums en automatische herinneringen</li>
-          <li>Legionellabeheersplan: temperatuurmetingen, spoelingen en logboek, altijd inspectie-klaar</li>
-          <li>Evacuatieoefeningen plannen, registreren en evalueren met je team</li>
-          <li>EHBO-materiaal en AED's bijhouden: wie is opgeleid, wat verloopt wanneer</li>
-          <li>Chemische producten registreren met veiligheidsfiches en opslaglocaties</li>
-          <li>Dagelijkse en periodieke checklists die je team op de vloer invult, met foto's en PDF-export</li>
-          <li>Incidentmeldingen en near-misses: iedereen rapporteert, managers volgen op</li>
-          <li>Aannemersregistratie: externe partijen registreren zich, tekenen veiligheidsregels</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-property">
-          <div class="mockup-head">
-            <h5>Preventie &amp; Welzijn</h5>
-            <span class="badge">Notificaties</span>
-          </div>
-          <div class="notif warn">
-            <div class="ic">!</div>
-            <div>
-              <strong>2 installaties vervallen binnenkort</strong>
-              <span>Brandblusser hal · HVAC-filter</span>
-            </div>
-          </div>
-          <div class="notif ok">
-            <div class="ic">✓</div>
-            <div>
-              <strong>Keukenchecklist voltooid</strong>
-              <span>7/7 items OK · vandaag 09:15</span>
-            </div>
-          </div>
-          <div class="notif red">
-            <div class="ic">△</div>
-            <div>
-              <strong>Nieuw incident gemeld</strong>
-              <span>Near miss · keuken · open</span>
-            </div>
-          </div>
-          <div class="notif info">
-            <div class="ic">💡</div>
-            <div>
-              <strong>3 nieuwe suggesties</strong>
-              <span>Anoniem teamfeedback</span>
-            </div>
-          </div>
+        <h3><em>Channel</em> manager</h3>
+        <p>Eén wijziging in rumo, binnen seconden op Booking, Airbnb, Expedia en de rest. Via Channex, realtime.</p>
+        <span class="arrow">Lees meer</span>
+      </a>
+
+      <a class="marquee-card fade-up" href="guest-portal.html">
+        <div class="marquee-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
         </div>
-      </div>
+        <h3>Guest <em>portal</em></h3>
+        <p>Boeken via je eigen site zonder commissie. Pre-checkin, online betalen, politie-export. Op de telefoon van je gast.</p>
+        <span class="arrow">Lees meer</span>
+      </a>
+
     </div>
   </div>
 </section>

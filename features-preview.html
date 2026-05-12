@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Features preview · drawer pattern · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-sfeer.css">
+<style>
+  /* ─── preview banner ─── */
+  .preview-banner {
+    background:var(--terra-dark);
+    color:var(--paper);
+    text-align:center;
+    padding:0.6rem 1rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+  .preview-banner a { color:var(--butter); text-decoration:underline; }
+
+  /* ─── grid ─── */
+  .fp-main {
+    background:var(--paper);
+    padding:5rem 0 7rem;
+  }
+  .fp-head {
+    text-align:center;
+    max-width:680px;
+    margin:0 auto 4rem;
+  }
+  .fp-head h1 {
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size:clamp(2.4rem, 5vw, 3.4rem);
+    letter-spacing:-0.025em;
+    line-height:1.05;
+    margin-bottom:1.2rem;
+  }
+  .fp-head h1 em { color:var(--terra-dark); font-style:italic; }
+  .fp-head p {
+    color:var(--ink-soft);
+    font-size:1.05rem;
+    line-height:1.55;
+  }
+
+  .fp-grid {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.25rem;
+  }
+  .fp-card {
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.5rem 1.4rem;
+    cursor:pointer;
+    transition:box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+    text-align:left;
+    display:flex;
+    flex-direction:column;
+    gap:0.75rem;
+    font-family:inherit;
+    color:inherit;
+  }
+  .fp-card:hover {
+    box-shadow:0 14px 30px rgba(27,25,23,0.08);
+    transform:translateY(-2px);
+    border-color:var(--terra);
+  }
+  .fp-card-ic {
+    width:36px; height:36px;
+    border-radius:9px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .fp-card-ic svg { width:18px; height:18px; stroke-width:1.8; fill:none; }
+  .fp-card h3 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1.2rem;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    line-height:1.2;
+  }
+  .fp-card h3 em { color:var(--terra-dark); font-style:italic; font-weight:300; }
+  .fp-card p {
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    line-height:1.55;
+    margin:0;
+  }
+  .fp-card-more {
+    margin-top:auto;
+    padding-top:0.4rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--terra-dark);
+    display:flex;
+    align-items:center;
+    gap:0.4em;
+  }
+  .fp-card-more::after { content:'→'; transition:transform 0.2s; }
+  .fp-card:hover .fp-card-more::after { transform:translateX(3px); }
+
+  /* ─── drawer ─── */
+  .fp-backdrop {
+    position:fixed;
+    inset:0;
+    background:rgba(20,15,10,0.45);
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.25s ease;
+    z-index:90;
+  }
+  .fp-backdrop.open { opacity:1; pointer-events:auto; }
+
+  .fp-drawer {
+    position:fixed;
+    top:0; right:0;
+    width:min(560px, 100%);
+    height:100%;
+    background:var(--paper);
+    box-shadow:-30px 0 60px rgba(27,25,23,0.18);
+    transform:translateX(100%);
+    transition:transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index:100;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+  }
+  .fp-drawer.open { transform:translateX(0); }
+
+  .fp-drawer-head {
+    position:sticky;
+    top:0;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:1.4rem 1.8rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    z-index:2;
+  }
+  .fp-drawer-tag {
+    display:inline-flex;
+    align-items:center;
+    gap:0.6em;
+  }
+  .fp-drawer-tag .ic {
+    width:30px; height:30px;
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .fp-drawer-tag svg { width:16px; height:16px; stroke-width:1.8; fill:none; }
+  .fp-drawer-tag .lbl {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink);
+    font-weight:500;
+  }
+  .fp-close {
+    width:36px; height:36px;
+    border:1px solid var(--line);
+    background:var(--paper-panel);
+    border-radius:50%;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink);
+    transition:background 0.15s, border-color 0.15s;
+  }
+  .fp-close:hover { background:var(--sand); border-color:var(--terra); }
+  .fp-close svg { width:14px; height:14px; stroke-width:2; fill:none; stroke:currentColor; }
+
+  .fp-drawer-body {
+    flex:1;
+    overflow-y:auto;
+    padding:2rem 1.8rem 3rem;
+  }
+  .fp-drawer-body h2 {
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size:1.9rem;
+    letter-spacing:-0.022em;
+    line-height:1.1;
+    margin-bottom:1rem;
+    color:var(--ink);
+  }
+  .fp-drawer-body h2 em { color:var(--terra-dark); font-style:italic; }
+  .fp-drawer-body > p {
+    color:var(--ink-soft);
+    font-size:1rem;
+    line-height:1.65;
+    margin-bottom:1.5rem;
+    max-width:46ch;
+  }
+  .fp-drawer-bullets {
+    list-style:none;
+    margin:0 0 2rem 0;
+    padding:0;
+  }
+  .fp-drawer-bullets li {
+    position:relative;
+    padding-left:1.4rem;
+    margin-bottom:0.65rem;
+    font-size:0.95rem;
+    line-height:1.55;
+    color:var(--ink);
+  }
+  .fp-drawer-bullets li::before {
+    content:'';
+    position:absolute;
+    left:0; top:0.65em;
+    width:8px; height:1.5px;
+    background:var(--terra);
+  }
+  .fp-drawer-bullets li em {
+    color:var(--terra-dark); font-style:italic;
+  }
+
+  /* drawer pane visibility */
+  .fp-pane { display:none; }
+  .fp-pane.active { display:block; }
+
+  /* ─── mockup wrapper inside drawer ─── */
+  .fp-mockup {
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.2rem;
+    box-shadow:0 8px 24px rgba(27,25,23,0.05);
+  }
+  .fp-mockup-head {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:0.85rem;
+    padding-bottom:0.65rem;
+    border-bottom:1px solid var(--line);
+  }
+  .fp-mockup-head h5 {
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1rem;
+    color:var(--ink);
+    margin:0;
+  }
+  .fp-mockup-head .badge {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:0.2rem 0.55rem;
+    border-radius:100px;
+    background:var(--sand);
+    color:var(--ink);
+  }
+
+  /* mk-rudy (real mockup for Rudy drawer) */
+  .mk-rudy .chat { display:flex; flex-direction:column; gap:0.5rem; padding-top:0.3rem; }
+  .mk-rudy .msg {
+    max-width:82%;
+    padding:0.6rem 0.9rem;
+    border-radius:14px;
+    font-size:0.85rem;
+    line-height:1.45;
+  }
+  .mk-rudy .msg.u { background:var(--sand); color:var(--ink); margin-left:auto; border-bottom-right-radius:4px; }
+  .mk-rudy .msg.b { background:var(--ink); color:var(--paper); border-bottom-left-radius:4px; }
+  .mk-rudy .msg.b strong { color:var(--butter); font-weight:600; }
+  .mk-rudy .head-avatar {
+    display:flex; align-items:center; gap:0.6rem;
+    padding-bottom:0.85rem;
+    border-bottom:1px solid var(--line);
+    margin-bottom:0.75rem;
+  }
+  .mk-rudy .avatar {
+    width:32px; height:32px; border-radius:50%;
+    background:var(--terra-dark);
+    color:var(--paper);
+    font-family:'Fraunces', serif;
+    font-size:0.95rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .mk-rudy .head-avatar strong {
+    font-family:'Fraunces', serif; font-weight:400; font-size:1rem;
+    display:block; line-height:1.1;
+  }
+  .mk-rudy .head-avatar span {
+    font-size:0.7rem; color:var(--forest);
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.06em; text-transform:uppercase;
+  }
+
+  /* placeholder block for non-Rudy mockups */
+  .fp-mockup-placeholder {
+    background:var(--paper-deep);
+    border:1px dashed var(--line);
+    border-radius:10px;
+    padding:2rem 1.5rem;
+    text-align:center;
+    color:var(--muted);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+  .fp-mockup-placeholder strong {
+    display:block;
+    color:var(--ink);
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    font-size:1rem;
+    letter-spacing:0;
+    text-transform:none;
+    margin-bottom:0.4rem;
+  }
+
+  /* body scroll lock */
+  body.fp-locked { overflow:hidden; }
+
+  /* ─── responsive ─── */
+  @media (max-width: 900px) {
+    .fp-grid { grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .fp-grid { grid-template-columns:1fr; }
+    .fp-drawer { width:100%; }
+    .fp-drawer-head { padding:1.1rem 1.3rem; }
+    .fp-drawer-body { padding:1.5rem 1.3rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-banner">
+  Preview · drawer pattern · niet de live pagina · <a href="features-sfeer.html">terug naar live features</a>
+</div>
+
+<nav>
+  <a href="index-sfeer.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="features-sfeer.html">Features (live)</a></li>
+    <li><a href="kb-sfeer.html">Helpdesk</a></li>
+    <li><a href="prijzen-sfeer.html">Prijzen</a></li>
+  </ul>
+</nav>
+
+<section class="fp-main">
+  <div class="wrap">
+
+    <div class="fp-head">
+      <span class="kicker">Preview</span>
+      <h1>Compact grid<br>+ <em>side-drawer</em></h1>
+      <p>Zes hoofdfeatures als kleine cards. Klik er een open en de detail-uitleg (inclusief mockup) schuift binnen vanaf rechts. Probeer Rudy voor de volledig uitgewerkte versie, de andere vijf tonen de structuur met een placeholder waar de mockup komt.</p>
+    </div>
+
+    <div class="fp-grid">
+
+      <button class="fp-card" data-feature="rudy">
+        <div class="fp-card-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Rudy, je <em>AI-assistent</em></h3>
+        <p>Stel een vraag in gewone taal over je hotel, je procedures of je cijfers. Rudy antwoordt.</p>
+        <span class="fp-card-more">Lees meer</span>
+      </button>
+
+      <button class="fp-card" data-feature="handbook">
+        <div class="fp-card-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
+        </div>
+        <h3>Je <em>hotelhandboek</em></h3>
+        <p>Receptieprocedures, huisregels, noodplannen. Eén doorzoekbare plek voor alles wat je team moet weten.</p>
+        <span class="fp-card-more">Lees meer</span>
+      </button>
+
+      <button class="fp-card" data-feature="ux">
+        <div class="fp-card-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="4"/><rect x="14" y="10" width="7" height="7"/><rect x="3" y="13" width="7" height="4"/></svg>
+        </div>
+        <h3>Intuïtief <em>design</em></h3>
+        <p>Alles zichtbaar, logisch en snel. Geen verborgen menu's, geen overbodige opties.</p>
+        <span class="fp-card-more">Lees meer</span>
+      </button>
+
+      <button class="fp-card" data-feature="kalender">
+        <div class="fp-card-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Visuele <em>kalender</em></h3>
+        <p>Sleep reservaties, verleng nachten, wissel kamers. Per dag, per week, in een oogopslag.</p>
+        <span class="fp-card-more">Lees meer</span>
+      </button>
+
+      <button class="fp-card" data-feature="automatisering">
+        <div class="fp-card-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Slimme <em>automatisering</em></h3>
+        <p>Check-out in één klik, mails automatisch in de juiste taal, kanalen realtime gesynchroniseerd.</p>
+        <span class="fp-card-more">Lees meer</span>
+      </button>
+
+      <button class="fp-card" data-feature="preventie">
+        <div class="fp-card-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Preventie &amp; <em>welzijn</em></h3>
+        <p>Brandpreventie, legionella, EHBO, checklists, incidenten. Eindelijk in één levend dossier.</p>
+        <span class="fp-card-more">Lees meer</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ BACKDROP + DRAWER ═══════════════════════ -->
+<div class="fp-backdrop" id="fp-backdrop"></div>
+
+<aside class="fp-drawer" id="fp-drawer" role="dialog" aria-modal="true" aria-labelledby="fp-drawer-title">
+  <div class="fp-drawer-head">
+    <div class="fp-drawer-tag" id="fp-drawer-tag-host"></div>
+    <button class="fp-close" id="fp-close" aria-label="Sluit">
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="fp-drawer-body">
+
+    <!-- ─── RUDY pane (volledig uitgewerkt) ─── -->
+    <div class="fp-pane" data-pane="rudy">
+      <h2>Een collega die<br><em>nooit</em> vrij neemt.</h2>
+      <p>Rudy is de AI-assistent die in rumo leeft. Hij kent je hotel, je procedures en je data. Stel een vraag in gewone taal en Rudy geeft je het antwoord. Geen handleiding nodig, geen zoekwerk. Gewoon vragen.</p>
+      <ul class="fp-drawer-bullets">
+        <li><em>"Welke kamers zijn morgen vrij?"</em></li>
+        <li><em>"Hoeveel omzet hebben we deze maand?"</em></li>
+        <li><em>"Wat is onze annulatieprocedure?"</em></li>
+        <li>Kent je reservaties, cijfers en handboek-artikels</li>
+        <li>Altijd beschikbaar, altijd geduldig</li>
+      </ul>
+      <div class="fp-mockup mk-rudy">
+        <div class="head-avatar">
+          <div class="avatar">R</div>
+          <div>
+            <strong>Rudy</strong>
+            <span>Je hotel-assistent</span>
+          </div>
+        </div>
+        <div class="chat">
+          <div class="msg u">Hoeveel kamers zijn er morgen vrij?</div>
+          <div class="msg b">Morgen zijn er <strong>4 kamers</strong> beschikbaar: 2× Comfort Twin, 1× Deluxe Double en 1× Suite. Wil je een reservatie aanmaken?</div>
+          <div class="msg u">Wat als iemand belt voor een late check-in?</div>
+          <div class="msg b">Volgens jullie <strong>receptieprocedure</strong>: noteer het verwachte aankomstuur, stuur de deurcode via de guest portal, en verwittig housekeeping.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── HANDBOEK pane ─── -->
+    <div class="fp-pane" data-pane="handbook">
+      <h2>Je hotelhandboek.<br><em>Altijd</em> bij de hand.</h2>
+      <p>Receptieprocedures, huisregels, noodplannen, onboardingdocumenten. Alles wat je team moet weten, op één plek die ze ook écht terugvinden. Geen losse Word-documenten of WhatsApp-berichten meer.</p>
+      <ul class="fp-drawer-bullets">
+        <li>Artikels per categorie: receptie, housekeeping, F&amp;B, noodprocedures</li>
+        <li>Zoekfunctie over alle artikels</li>
+        <li>Schrijf en beheer content rechtstreeks in rumo</li>
+        <li>Nieuwe medewerkers zijn sneller ingewerkt</li>
+        <li>Iedereen werkt op dezelfde manier</li>
+      </ul>
+      <div class="fp-mockup-placeholder">
+        <strong>Handboek-mockup</strong>
+        Categorie-grid + laatst-bijgewerkt-card komen hier
+      </div>
+    </div>
+
+    <!-- ─── UX pane ─── -->
+    <div class="fp-pane" data-pane="ux">
+      <h2>Gebouwd om<br><em>makkelijk</em> te zijn.</h2>
+      <p>rumo is gemaakt voor mensen die liever met gasten bezig zijn dan met software. Alles is zichtbaar, logisch en snel. Geen verborgen menu's, geen overbodige opties.</p>
+      <ul class="fp-drawer-bullets">
+        <li>Dashboard met live arrivals, departures en statistieken</li>
+        <li>Visuele kalender met drag-and-drop</li>
+        <li>Housekeeping die je team op de telefoon gebruikt</li>
+        <li>Zoeken met ⌘+K, alles op twee klikken</li>
+      </ul>
+      <div class="fp-mockup-placeholder">
+        <strong>Dashboard-mockup</strong>
+        Revenue + occ + ADR + room status komen hier
+      </div>
+    </div>
+
+    <!-- ─── KALENDER pane ─── -->
+    <div class="fp-pane" data-pane="kalender">
+      <h2>Alles in een oogopslag.<br><em>Sleep</em> en klaar.</h2>
+      <p>Een visuele kalender waar je reservaties sleept, verplaatst en aanpast. Per kamer, per dag, per week. Filtert op arrivals, departures en in-house gasten.</p>
+      <ul class="fp-drawer-bullets">
+        <li>Drag-and-drop om reservaties te verplaatsen of verlengen</li>
+        <li>Filter op arrivals, departures en in-house</li>
+        <li>Week- en custom weergave met datumnavigatie</li>
+        <li>Kamerstatus en kamertypes in een oogopslag</li>
+      </ul>
+      <div class="fp-mockup-placeholder">
+        <strong>Kalender-mockup</strong>
+        Strips per kamer met booking-blokken komen hier
+      </div>
+    </div>
+
+    <!-- ─── AUTOMATISERING pane ─── -->
+    <div class="fp-pane" data-pane="automatisering">
+      <h2>Minder klikken.<br><em>Meer tijd</em> voor gasten.</h2>
+      <p>De check-out duurt één klik: factureren, betaling koppelen, status aanpassen, housekeeping verwittigen. E-mails gaan automatisch uit in de juiste taal. Beschikbaarheid wordt realtime doorgestuurd naar alle kanalen.</p>
+      <ul class="fp-drawer-bullets">
+        <li>Quick check-out: factuur + betaling + statuswijziging in één klik</li>
+        <li>E-mails automatisch verstuurd op basis van triggers</li>
+        <li>Channel manager synchroniseert prijzen en beschikbaarheid</li>
+        <li>Wachtlijst: bij annulering wordt de kamer automatisch geblokkeerd</li>
+        <li>Peppol e-facturatie en UBL-export ingebouwd</li>
+      </ul>
+      <div class="fp-mockup-placeholder">
+        <strong>Quick-checkout-mockup</strong>
+        Stappenlijst met groene vinkjes komt hier
+      </div>
+    </div>
+
+    <!-- ─── PREVENTIE pane ─── -->
+    <div class="fp-pane" data-pane="preventie">
+      <h2>Brandpreventie, legionella, EHBO.<br>Eindelijk <em>onder controle.</em></h2>
+      <p>Elke hotelier kent het gevoel: ergens in een kast ligt een map met keuringen, checklists en veiligheidsplannen. Niemand weet of alles nog geldig is. Tot er een inspectie komt. rumo vervangt die kast door een levend systeem dat meedenkt, herinnert en documenteert.</p>
+      <ul class="fp-drawer-bullets">
+        <li>Brandpreventiedossier: blussers, detectie, noodverlichting, met vervaldatums en herinneringen</li>
+        <li>Legionellabeheersplan: temperatuurmetingen, spoelingen en logboek</li>
+        <li>Evacuatieoefeningen plannen, registreren en evalueren met je team</li>
+        <li>EHBO-materiaal en AED's bijhouden: wie is opgeleid, wat verloopt wanneer</li>
+        <li>Dagelijkse en periodieke checklists die je team op de vloer invult</li>
+        <li>Incidentmeldingen en near-misses: iedereen rapporteert, managers volgen op</li>
+      </ul>
+      <div class="fp-mockup-placeholder">
+        <strong>Notificatie-mockup</strong>
+        Vervaldatums + checklist-status + incidenten komen hier
+      </div>
+    </div>
+
+  </div>
+</aside>
+
+<script>
+  const drawer = document.getElementById('fp-drawer');
+  const backdrop = document.getElementById('fp-backdrop');
+  const closeBtn = document.getElementById('fp-close');
+  const tagHost = document.getElementById('fp-drawer-tag-host');
+  const panes = document.querySelectorAll('.fp-pane');
+  const cards = document.querySelectorAll('.fp-card');
+
+  function openDrawer(featureId) {
+    const card = document.querySelector(`.fp-card[data-feature="${featureId}"]`);
+    if (!card) return;
+
+    // copy the card's icon + label into the drawer header
+    const icon = card.querySelector('.fp-card-ic').cloneNode(true);
+    const title = card.querySelector('h3').innerText.replace(/\s+/g, ' ').trim();
+    tagHost.innerHTML = '';
+    const iconWrap = document.createElement('div');
+    iconWrap.className = 'ic';
+    iconWrap.style.cssText = icon.style.cssText;
+    iconWrap.innerHTML = icon.innerHTML;
+    // shrink the icon
+    iconWrap.querySelector('svg').setAttribute('width', '16');
+    iconWrap.querySelector('svg').setAttribute('height', '16');
+    const lbl = document.createElement('span');
+    lbl.className = 'lbl';
+    lbl.textContent = title;
+    tagHost.appendChild(iconWrap);
+    tagHost.appendChild(lbl);
+
+    // show matching pane
+    panes.forEach(p => p.classList.toggle('active', p.dataset.pane === featureId));
+
+    // open
+    drawer.classList.add('open');
+    backdrop.classList.add('open');
+    document.body.classList.add('fp-locked');
+    closeBtn.focus();
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    backdrop.classList.remove('open');
+    document.body.classList.remove('fp-locked');
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => openDrawer(card.dataset.feature));
+  });
+
+  backdrop.addEventListener('click', closeDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+  });
+</script>
+
+</body>
+</html>

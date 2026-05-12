@@ -74,6 +74,53 @@
     margin-right: 0.5em;
   }
 
+  /* ─── languages band ─── */
+  .fp-langs {
+    background: var(--paper);
+    padding: 4rem 0;
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+  .fp-langs-inner { max-width: 760px; margin: 0 auto; }
+  .fp-langs h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0.7rem 0 1.4rem;
+  }
+  .fp-langs h3 em { color: var(--terra-dark); font-style: italic; }
+  .fp-langs-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem;
+    margin: 0 0 1.6rem;
+  }
+  .fp-langs-pills span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.85rem;
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--ink);
+  }
+  .fp-langs-pills span.more {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .fp-langs p {
+    max-width: 56ch;
+    margin: 0 auto;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
   /* ─── SECTIONS ─── */
   .fp-section {
     padding: 6rem 0;
@@ -554,10 +601,10 @@
           Rudy · AI-assistent
         </span>
         <h1>Een collega die<br><em>nooit</em> vrij neemt.</h1>
-        <p class="lead">Rudy is de AI-assistent die in rumo leeft. Hij kent je hotel, je procedures en je data, en voert taken voor je uit in gewone taal. Geen menu's leren, geen handleidingen lezen. Je stelt een vraag, hij antwoordt. Je vraagt iets te doen, hij stelt voor en wacht op je akkoord.</p>
+        <p class="lead">Rudy is je collega in rumo. Hij kent je hotel, je procedures, je gasten. Stel een vraag in je eigen taal, hij antwoordt. Vraag iets te doen, hij stelt voor, jij keurt goed, klaar. Geen menu's onthouden. Geen syntax. Gewoon zeggen wat je nodig hebt. (En ja, ook in het Pools, als dat moet.)</p>
         <ul class="fp-hero-bullets">
-          <li>Gewoon Nederlands</li>
-          <li>Vraagt door bij twijfel</li>
+          <li>Gewoon Nederlands. Of Frans. Of Pools.</li>
+          <li>Vraagt door, raadt niet</li>
           <li>Eerlijk over zijn grenzen</li>
         </ul>
       </div>
@@ -582,6 +629,34 @@
   </div>
 </section>
 
+<!-- ═══════════════════════ TALEN-BAND ═══════════════════════ -->
+<section class="fp-langs">
+  <div class="wrap">
+    <div class="fp-langs-inner fade-up">
+      <span class="kicker">Spreekt mee</span>
+      <h3>In <em>elke taal</em> die je gast spreekt.</h3>
+      <div class="fp-langs-pills">
+        <span>NL</span>
+        <span>FR</span>
+        <span>EN</span>
+        <span>DE</span>
+        <span>ES</span>
+        <span>IT</span>
+        <span>PT</span>
+        <span>PL</span>
+        <span>RO</span>
+        <span>TR</span>
+        <span>AR</span>
+        <span>HE</span>
+        <span>JA</span>
+        <span>ZH</span>
+        <span class="more">+ nog 60</span>
+      </div>
+      <p>Je gast schrijft Pools? Rudy schrijft Pools terug. Je receptionist tikt liever Vlaams? Geen probleem. Een Japanse boeking met een vraag in romaji? Hij begrijpt waar het over gaat en antwoordt netjes. Zonder dat je iets moet aanvinken of omschakelen.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════ SECTIE 1 · WAT HIJ DOET ═══════════════════════ -->
 <section class="fp-section">
   <div class="wrap">
@@ -589,7 +664,7 @@
       <div class="fp-section-text">
         <span class="fp-section-kicker">Wat hij doet</span>
         <h2>De dagelijkse <em>handelingen</em>.</h2>
-        <p class="lead">Rudy neemt de routine uit handen: de honderden kleine acties die je dag versnipperen. Voor elke handeling stelt hij voor wat hij gaat doen, jij keurt goed of stuurt bij. Reversibele acties voert hij meteen uit, onomkeerbare wachten op je expliciete OK.</p>
+        <p class="lead">De routine, dat is wat Rudy uit handen neemt. De honderden kleine acties die je dag aan stukken klikken. Hij stelt voor wat hij gaat doen, jij geeft een seintje (of stuurt bij), hij voert uit. Reversibel? Direct. Onomkeerbaar? Hij wacht braaf op je OK.</p>
         <ul class="fp-bullets">
           <li>Reservaties verplaatsen, verlengen, splitsen of opdelen over kamers</li>
           <li>Stop-sell en open-sell op specifieke datums of kanalen</li>
@@ -636,7 +711,7 @@
       <div class="fp-section-text">
         <span class="fp-section-kicker">Wat hij laat liggen</span>
         <h2>Eerlijk over wat <em>jij beslist</em>.</h2>
-        <p class="lead">Een aantal dingen doet Rudy expliciet niet automatisch. Niet omdat hij het niet kan, maar omdat het verkeerd zou zijn. Beleidsbeslissingen, onomkeerbare keuzes en alles wat een menselijke afweging vraagt blijft bij jou. Hij wijst er actief op wanneer iets buiten zijn bereik valt.</p>
+        <p class="lead">Sommige dingen doet Rudy bewust niet. Niet omdat hij ze niet kan (dat zou hij), maar omdat het verkeerd zou voelen. Een refund tikken, een prijsstrategie kiezen, een Genius-promo aanvinken: dat zijn beslissingen met een staartje. Die wil je niet aan een algoritme overlaten. Rudy weet dat. En hij zegt het ook gewoon.</p>
         <ul class="fp-bullets">
           <li>Geen automatische credit nota's, refunds of penalty-aanrekeningen, hij meldt het aan jou of je receptionist met een voorstel</li>
           <li>Geen prijsbeleid (hij voert wijzigingen uit, hij beslist niet of jouw prijs te hoog of te laag is)</li>
@@ -672,7 +747,7 @@
     <div class="fp-section-full-head fade-up">
       <span class="fp-section-kicker">Hoe je hem vraagt</span>
       <h2>Gewoon Nederlands.<br><em>Geen syntax.</em></h2>
-      <p class="lead">Schrijf of typ wat je wil dat er gebeurt, in de taal waarin je denkt. Rudy parseert de bedoeling, kijkt naar je context, en stelt een actie voor. Als hij twijfelt vraagt hij door. Als hij iets niet kan, zegt hij het meteen.</p>
+      <p class="lead">Typ of zeg wat je wil, in de taal waarin je denkt. Rudy kijkt naar je context (welk hotel, welke datum, welke gast) en stelt een actie voor. Twijfelt hij? Hij vraagt door. Kan hij iets niet? Hij zegt het, zonder eromheen te draaien.</p>
     </div>
 
     <div class="fp-cheat-wrap fade-up">
@@ -682,9 +757,11 @@
         </thead>
         <tbody>
           <tr><td class="ask">"Sluit kamer 12 voor het weekend van 15 mei"</td><td class="does">Blokkeert kamer 12 op die datums. Wacht op je OK.</td></tr>
+          <tr><td class="ask">"Combien de chambres sont libres demain ?"</td><td class="does"><em>Réponse en français.</em> Geen taalknop om aan te vinken, hij schakelt mee met de vraag.</td></tr>
           <tr><td class="ask">"Verlaag mijn weekendprijs voor mei met 10%"</td><td class="does">Past de weekend-modifier aan, toont het effect op de afgeleide tarieven, jij keurt goed.</td></tr>
           <tr><td class="ask">"Zet min-stay 2 nachten op alle Junior Suites in juli"</td><td class="does">Stelt de restrictie voor, voert pas uit na bevestiging.</td></tr>
           <tr><td class="ask">"Wat was mijn omzet vorige week per kanaal?"</td><td class="does">Toont een tabel. Geen actie nodig.</td></tr>
+          <tr><td class="ask">"Send a payment link to the Müller booking, in English"</td><td class="does">Drafts the email in English. <em>You confirm before he sends.</em></td></tr>
           <tr><td class="ask">"Welke kamers staan leeg dit weekend?"</td><td class="does">Lijst met directe link naar de kalender.</td></tr>
           <tr><td class="ask">"Verplaats de reservatie van Janssens naar 12 mei"</td><td class="does">Berekent de nieuwe prijs, toont het verschil, jij keurt goed.</td></tr>
           <tr><td class="ask">"Genereer de politie-export voor april"</td><td class="does">Bestand klaar om te downloaden, in het juiste formaat.</td></tr>
@@ -705,13 +782,13 @@
       <div class="fp-section-text">
         <span class="fp-section-kicker">Zijn kennis</span>
         <h2>Waar Rudy's <em>antwoorden</em> vandaan komen.</h2>
-        <p class="lead">Rudy is geen losse chatbot die op een aparte database draait. Hij leeft in jouw rumo en kent drie soorten kennis: je live operationele data, je hotelhandboek, en je historiek. Hij kan niets verzinnen, want hij citeert altijd terug naar de bron.</p>
+        <p class="lead">Rudy is geen losse chatbot die met je hotel niks te maken heeft. Hij leeft in jouw rumo, kent drie soorten kennis, en citeert altijd terug naar de bron. (Hallucineren laat hij aan de chatbots van de concurrentie over.)</p>
         <ul class="fp-bullets">
           <li><em>Live data:</em> reservaties, kamers, prijzen, beschikbaarheid, gastprofielen</li>
           <li><em>Jouw handboek:</em> procedures, huisregels, noodplannen, F&amp;B-instructies</li>
           <li><em>Historiek:</em> wat er vorige week, vorige maand, vorig jaar gebeurde</li>
           <li><em>OTA's via Channex:</em> real-time channel-data voor Booking, Airbnb, Expedia</li>
-          <li>Hij draait op infrastructuur binnen de EU, gebruikt jouw data nooit om publieke modellen te trainen, en elke actie zit in je audit log</li>
+          <li>Draait binnen de EU. Traint niet op jouw data. Elke actie zit in je audit log.</li>
         </ul>
       </div>
       <div class="fp-section-visual">
@@ -761,8 +838,8 @@
   <div class="wrap">
     <div class="fp-others-head fade-up">
       <span class="kicker">Andere features</span>
-      <h3>Rudy is één <em>laag</em>.<br>Hieronder ligt de rest.</h3>
-      <p>Het PMS, het handboek, preventie, channel manager, guest portal. Allemaal samen één systeem.</p>
+      <h3>Rudy is één <em>laag</em>.<br>Daaronder ligt nog wat.</h3>
+      <p>Het PMS, het handboek, preventie, channel manager, guest portal. Allemaal in dezelfde rumo. (En allemaal met Rudy die erin meeleest.)</p>
     </div>
     <div class="fp-others-grid fade-up">
 

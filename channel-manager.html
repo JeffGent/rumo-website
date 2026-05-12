@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Channel manager · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Eén wijziging in rumo, binnen seconden op Booking, Airbnb, Expedia en de rest. Via Channex, realtime, met dubbele-boekingen-bewaking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-sfeer.css">
+<style>
+  .fp-hero {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .fp-hero-inner {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 4.5rem;
+    align-items: center;
+  }
+  .fp-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    background: var(--rose-soft);
+    padding: 0.4rem 0.85rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .fp-hero-tag svg { width: 14px; height: 14px; stroke-width: 1.8; fill: none; }
+  .fp-hero-text h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2.6rem, 5.2vw, 3.8rem);
+    letter-spacing: -0.028em;
+    line-height: 1.04;
+    margin-bottom: 1.4rem;
+  }
+  .fp-hero-text h1 em { color: var(--terra-dark); font-style: italic; }
+  .fp-hero-text .lead {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 52ch;
+    margin-bottom: 2rem;
+  }
+  .fp-hero-bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .fp-hero-bullets li::before { content: '·'; color: var(--terra); margin-right: 0.5em; }
+
+  .fp-section {
+    padding: 6rem 0;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .fp-section.alt { background: var(--paper-deep); }
+  .fp-section-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .fp-section.reverse .fp-section-inner > .fp-section-visual { order: -1; }
+  .fp-section-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    margin-bottom: 0.9rem;
+    display: inline-block;
+  }
+  .fp-section-text h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    margin-bottom: 1.3rem;
+  }
+  .fp-section-text h2 em { color: var(--terra-dark); font-style: italic; }
+  .fp-section-text .lead {
+    color: var(--ink-soft);
+    line-height: 1.65;
+    max-width: 52ch;
+    font-size: 1.02rem;
+    margin-bottom: 1.3rem;
+  }
+  .fp-bullets {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+  }
+  .fp-bullets li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .fp-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.65em;
+    width: 8px; height: 1.5px;
+    background: var(--terra);
+  }
+  .fp-bullets li em { color: var(--terra-dark); font-style: italic; }
+
+  .mockup {
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.4rem;
+    box-shadow: 0 20px 40px rgba(27,25,23,0.08);
+  }
+  .mockup-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .mockup-head h5 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+  .mockup-head .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 100px;
+    background: var(--sand);
+    color: var(--ink);
+  }
+  .mockup-head .badge.live { background: var(--terra); color: var(--paper); }
+  .mockup-head .badge.live::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--paper); display:inline-block; margin-right:0.35em; }
+
+  /* Mockup · Sync flow */
+  .mk-flow .flow-node {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .mk-flow .flow-node.rumo {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .mk-flow .flow-node.channex {
+    background: var(--paper-deep);
+    border-style: dashed;
+  }
+  .mk-flow .flow-node strong {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .mk-flow .flow-node span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .mk-flow .flow-node.rumo span { color: var(--butter); }
+  .mk-flow .flow-arrow {
+    text-align: center;
+    color: var(--terra);
+    font-size: 1.1rem;
+    line-height: 1;
+    margin: 0.2rem 0;
+  }
+  .mk-flow .flow-otas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  .mk-flow .flow-ota {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.6rem 0.5rem;
+    text-align: center;
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    color: var(--ink);
+  }
+  .mk-flow .flow-ota .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--forest);
+    display: inline-block;
+    margin-right: 0.3em;
+    vertical-align: middle;
+  }
+
+  /* Mockup · Sync log */
+  .mk-log .log-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 70px;
+    gap: 0.7rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--line);
+    align-items: center;
+    font-size: 0.86rem;
+  }
+  .mk-log .log-item:last-child { border-bottom: none; }
+  .mk-log .log-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .mk-log .log-text strong { display: block; font-size: 0.88rem; color: var(--ink); margin-bottom: 0.1rem; }
+  .mk-log .log-text span { font-size: 0.72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; }
+  .mk-log .log-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+    text-align: center;
+  }
+  .mk-log .log-status.ok { background: var(--forest-soft); color: var(--forest); }
+  .mk-log .log-status.sync { background: var(--rose-soft); color: var(--terra-dark); }
+
+  /* Mockup · Conflict */
+  .mk-conflict .conflict-head {
+    background: var(--rose-soft);
+    color: var(--terra-dark);
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .mk-conflict .conflict-head::before { content: '!  '; }
+  .mk-conflict .conflict-rooms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 0.85rem;
+  }
+  .mk-conflict .conflict-room {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.85rem;
+  }
+  .mk-conflict .conflict-room .src {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .mk-conflict .conflict-room strong {
+    font-family: 'Fraunces', serif;
+    font-size: 0.98rem;
+    color: var(--ink);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .mk-conflict .conflict-room span { font-size: 0.78rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .mk-conflict .conflict-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .mk-conflict .conflict-btn {
+    flex: 1;
+    padding: 0.65rem;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink-soft);
+  }
+  .mk-conflict .conflict-btn.primary {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  /* Mockup · OTAs grid */
+  .mk-otas .ota-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.55rem;
+  }
+  .mk-otas .ota-tile {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mk-otas .ota-tile.connected { border-left: 3px solid var(--forest); }
+  .mk-otas .ota-tile strong { font-family: 'Fraunces', serif; font-size: 0.95rem; color: var(--ink); }
+  .mk-otas .ota-tile .status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--forest);
+  }
+  .mk-otas .ota-tile .status::before {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--forest);
+    margin-right: 0.4em;
+    vertical-align: middle;
+  }
+  .mk-otas .ota-more {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 0.85rem;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ─── andere features strip ─── */
+  .fp-others {
+    background: var(--paper-deep);
+    padding: 5rem 0 6rem;
+    border-top: 1px solid var(--line);
+  }
+  .fp-others-head {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .fp-others-head h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0.6rem 0 0.8rem;
+  }
+  .fp-others-head h3 em { color: var(--terra-dark); font-style: italic; }
+  .fp-others-head p { color: var(--ink-soft); font-size: 0.98rem; }
+  .fp-others-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  .fp-others-card {
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.3rem;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+  }
+  .fp-others-card:hover {
+    box-shadow: 0 14px 28px rgba(27,25,23,0.08);
+    transform: translateY(-3px);
+    border-color: var(--terra);
+  }
+  .fp-others-ic {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .fp-others-ic svg { width: 16px; height: 16px; stroke-width: 1.8; fill: none; }
+  .fp-others-card h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .fp-others-card h4 em { color: var(--terra-dark); font-style: italic; font-weight: 300; }
+  .fp-others-card .arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    margin-top: auto;
+  }
+
+  @media (max-width: 880px) {
+    .fp-hero { padding: 4rem 0; }
+    .fp-hero-inner, .fp-section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .fp-section.reverse .fp-section-inner > .fp-section-visual { order: 0; }
+    .fp-section { padding: 4rem 0; }
+    .fp-others-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .fp-others-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index-sfeer.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index-sfeer.html#pijlers">Wat doet rumo?</a></li>
+    <li><a href="features-sfeer.html">Features</a></li>
+    <li><a href="integraties-sfeer.html">Integraties</a></li>
+    <li><a href="prijzen-sfeer.html">En euh, wat kost dat?</a></li>
+    <li><a href="faq-sfeer.html">FAQ</a></li>
+    <li><a href="over-ons-sfeer.html">Over ons</a></li>
+    <li><a href="index-sfeer.html#demo" class="nav-cta">Probeer gratis →</a></li>
+    <li class="nav-lang">
+      <a href="channel-manager.html" class="active">NL</a>
+      <a href="en/index.html">EN</a>
+      <a href="fr/index.html">FR</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="fp-hero">
+  <div class="wrap">
+    <div class="fp-hero-inner fade-up">
+      <div class="fp-hero-text">
+        <span class="fp-hero-tag">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+          Channel manager
+        </span>
+        <h1>Eén wijziging,<br><em>alle OTA's</em>.</h1>
+        <p class="lead">rumo praat met de OTA's via Channex, een gespecialiseerde tussenlaag die de taal van elke OTA spreekt. Jij verandert een prijs in rumo, binnen seconden staat hij op Booking, Airbnb, Expedia, en de rest. Komt er een boeking binnen, dan staat ze meteen op je kalender. (Geen XML-mailtjes meer naar Booking. Awel ja, dat is toch al iets.)</p>
+        <ul class="fp-hero-bullets">
+          <li>Realtime sync</li>
+          <li>~100 kanalen</li>
+          <li>Conflict-bewaking</li>
+        </ul>
+      </div>
+      <div class="fp-hero-visual">
+        <div class="mockup mk-flow">
+          <div class="mockup-head">
+            <h5>Hoe het werkt</h5>
+            <span class="badge live">Live</span>
+          </div>
+          <div class="flow-node rumo">
+            <strong>rumo</strong>
+            <span>Jouw front-office</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-node channex">
+            <strong>Channex</strong>
+            <span>De simultaantolk</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-otas">
+            <div class="flow-ota"><span class="dot"></span>Booking</div>
+            <div class="flow-ota"><span class="dot"></span>Airbnb</div>
+            <div class="flow-ota"><span class="dot"></span>Expedia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 1 · HOE HET WERKT ═══════════════════════ -->
+<section class="fp-section">
+  <div class="wrap">
+    <div class="fp-section-inner fade-up">
+      <div class="fp-section-text">
+        <span class="fp-section-kicker">rumo + Channex</span>
+        <h2>Wie doet <em>wat</em>.</h2>
+        <p class="lead">rumo is het front-office: je kalender, je reservaties, je tarieven. Channex is de simultaantolk die achter de schermen met elke OTA in zijn eigen API spreekt, in zijn eigen volgorde, met zijn eigen kleine eigenaardigheden. Jij ziet alleen rumo. (Da's het hele punt.)</p>
+        <ul class="fp-bullets">
+          <li><em>rumo:</em> jij wijzigt prijzen, beschikbaarheid, restricties</li>
+          <li><em>Channex:</em> vertaalt naar het OTA-protocol en stuurt door</li>
+          <li><em>OTA's:</em> Booking, Airbnb, Expedia, en zo'n 100 anderen</li>
+          <li>Eén abonnement bij ons. Geen aparte Channex-rekening</li>
+          <li>Eerste OTA-koppeling doen we samen, vanaf de tweede gaat het meestal vanzelf</li>
+        </ul>
+      </div>
+      <div class="fp-section-visual">
+        <div class="mockup mk-log">
+          <div class="mockup-head">
+            <h5>Sync-log</h5>
+            <span class="badge live">Live</span>
+          </div>
+          <div class="log-item">
+            <div class="log-time">14:22:18</div>
+            <div class="log-text">
+              <strong>Prijs gewijzigd · Junior Suite</strong>
+              <span>Naar Booking, Airbnb, Expedia</span>
+            </div>
+            <div class="log-status ok">OK · 0.8s</div>
+          </div>
+          <div class="log-item">
+            <div class="log-time">14:21:54</div>
+            <div class="log-text">
+              <strong>Boeking ingekomen · Booking</strong>
+              <span>Müller · 12-15 mei · €420</span>
+            </div>
+            <div class="log-status sync">Sync</div>
+          </div>
+          <div class="log-item">
+            <div class="log-time">14:20:11</div>
+            <div class="log-text">
+              <strong>Min-stay aangepast · 14 mei</strong>
+              <span>2 nachten, alle Junior Suites</span>
+            </div>
+            <div class="log-status ok">OK · 1.2s</div>
+          </div>
+          <div class="log-item">
+            <div class="log-time">14:18:02</div>
+            <div class="log-text">
+              <strong>Beschikbaarheid herberekend</strong>
+              <span>5 kamertypes naar 3 OTA's</span>
+            </div>
+            <div class="log-status ok">OK · 0.5s</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 2 · WAT SYNCED ═══════════════════════ -->
+<section class="fp-section alt reverse">
+  <div class="wrap">
+    <div class="fp-section-inner fade-up">
+      <div class="fp-section-text">
+        <span class="fp-section-kicker">Wat over de draad gaat</span>
+        <h2>Alles wat ze moeten <em>weten</em>.</h2>
+        <p class="lead">Prijzen, beschikbaarheid, restricties (min-stay, max-stay, CTA, CTD), kamerstatus. In beide richtingen: jouw wijzigingen gaan naar de OTA's, hun boekingen komen meteen naar rumo. Meestal binnen een handvol seconden. (Soms een halve minuut als Booking weer eens een dipje heeft.)</p>
+        <ul class="fp-bullets">
+          <li><em>Outbound:</em> prijzen, beschikbaarheid, restricties, kamertype-mapping</li>
+          <li><em>Inbound:</em> nieuwe boekingen, annulaties (zodra de OTA ze meldt)</li>
+          <li>Per-occupancy pricing voor 1, 2, 3 personen</li>
+          <li>Per-OTA modifiers (uplift voor Booking, andere voor Airbnb)</li>
+          <li>Status-log per wijziging: vertrokken, doorgestuurd, aangekomen</li>
+        </ul>
+      </div>
+      <div class="fp-section-visual">
+        <div class="mockup mk-flow">
+          <div class="mockup-head">
+            <h5>Tweerichtingsverkeer</h5>
+            <span class="badge">Bidirectional</span>
+          </div>
+          <div class="flow-node rumo">
+            <strong>Wijziging in rumo</strong>
+            <span>Prijs · Beschikbaarheid · Min-stay</span>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-otas">
+            <div class="flow-ota"><span class="dot"></span>Booking</div>
+            <div class="flow-ota"><span class="dot"></span>Airbnb</div>
+            <div class="flow-ota"><span class="dot"></span>Expedia</div>
+          </div>
+          <div class="flow-arrow">↑</div>
+          <div class="flow-node rumo" style="background:var(--forest); border-color:var(--forest);">
+            <strong>Nieuwe boeking</strong>
+            <span style="color:rgba(245,238,226,0.7);">In rumo binnen seconden</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 3 · CONFLICTEN ═══════════════════════ -->
+<section class="fp-section">
+  <div class="wrap">
+    <div class="fp-section-inner fade-up">
+      <div class="fp-section-text">
+        <span class="fp-section-kicker">Wanneer het misgaat</span>
+        <h2>Een <em>dubbele</em> boeking. Wat dan?</h2>
+        <p class="lead">Theoretisch onmogelijk dankzij realtime sync, maar in de praktijk gebeurt het ooit (twee OTA's verkopen tegelijk de laatste kamer). rumo waarschuwt je meteen met een rode banner, met de twee betrokken boekingen naast elkaar. Jij beslist welke gast je upgrade en welke je verplaatst. Niet een algoritme.</p>
+        <ul class="fp-bullets">
+          <li>Realtime detectie op basis van Channex-feeds</li>
+          <li>Banner met de twee conflicterende boekingen naast elkaar</li>
+          <li>Klik op een actie: upgrade, verplaats, of contacteer de gast</li>
+          <li>Logging van wat er gebeurde voor later beoordelen</li>
+          <li>Statistiek over de tijd: hoe vaak gebeurt het, op welke kanalen</li>
+        </ul>
+      </div>
+      <div class="fp-section-visual">
+        <div class="mockup mk-conflict">
+          <div class="mockup-head">
+            <h5>Dubbele boeking</h5>
+            <span class="badge">Wacht op beslissing</span>
+          </div>
+          <div class="conflict-head">Kamer 104 · 12-15 mei</div>
+          <div class="conflict-rooms">
+            <div class="conflict-room">
+              <div class="src">Booking · 14:21</div>
+              <strong>Familie Müller</strong>
+              <span>3 nachten · €420 · prepaid</span>
+            </div>
+            <div class="conflict-room">
+              <div class="src">Airbnb · 14:21</div>
+              <strong>Anna Janssens</strong>
+              <span>2 nachten · €280 · niet betaald</span>
+            </div>
+          </div>
+          <div class="conflict-actions">
+            <div class="conflict-btn primary">Upgrade Müller</div>
+            <div class="conflict-btn">Contacteer Janssens</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 4 · OTA'S ═══════════════════════ -->
+<section class="fp-section alt reverse">
+  <div class="wrap">
+    <div class="fp-section-inner fade-up">
+      <div class="fp-section-text">
+        <span class="fp-section-kicker">De lijst</span>
+        <h2>Booking, Airbnb, Expedia, <em>en zo'n 100 anderen</em>.</h2>
+        <p class="lead">Via Channex zijn ongeveer honderd kanalen bereikbaar. De grote drie zijn out-of-the-box, voor exotischere kanalen (HotelsCombined, Agoda, lokale OTA's) helpen we met de eerste connectie. (Hou je het bij de grote drie? Helemaal prima. De meeste hotels doen dat.)</p>
+        <ul class="fp-bullets">
+          <li>Out-of-the-box: Booking, Airbnb, Expedia, Hotelbeds, Agoda</li>
+          <li>Op aanvraag: HotelsCombined, Hostelworld, Despegar, lokale OTA's</li>
+          <li>Eigen booking engine voor directe boekingen via je website</li>
+          <li>Voor elk kanaal aparte prijs-uplift mogelijk</li>
+          <li>Lijst groeit, Channex voegt regelmatig nieuwe kanalen toe</li>
+        </ul>
+      </div>
+      <div class="fp-section-visual">
+        <div class="mockup mk-otas">
+          <div class="mockup-head">
+            <h5>Gekoppelde kanalen</h5>
+            <span class="badge">5 actief</span>
+          </div>
+          <div class="ota-grid">
+            <div class="ota-tile connected">
+              <strong>Booking.com</strong>
+              <span class="status">Verbonden</span>
+            </div>
+            <div class="ota-tile connected">
+              <strong>Airbnb</strong>
+              <span class="status">Verbonden</span>
+            </div>
+            <div class="ota-tile connected">
+              <strong>Expedia</strong>
+              <span class="status">Verbonden</span>
+            </div>
+            <div class="ota-tile connected">
+              <strong>Hotelbeds</strong>
+              <span class="status">Verbonden</span>
+            </div>
+            <div class="ota-tile connected">
+              <strong>Agoda</strong>
+              <span class="status">Verbonden</span>
+            </div>
+            <div class="ota-tile">
+              <strong>Eigen website</strong>
+              <span class="status">Verbonden</span>
+            </div>
+            <div class="ota-more">+ ~95 andere kanalen via Channex</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ANDERE FEATURES ═══════════════════════ -->
+<section class="fp-others">
+  <div class="wrap">
+    <div class="fp-others-head fade-up">
+      <span class="kicker">Andere features</span>
+      <h3>Channel manager is <em>één laag</em>.<br>Daar omheen ligt nog wat.</h3>
+      <p>Het PMS, Rudy, het handboek, preventie, guest portal. Allemaal in dezelfde rumo, allemaal samen één systeem.</p>
+    </div>
+    <div class="fp-others-grid fade-up">
+
+      <a class="fp-others-card" href="pms.html">
+        <div class="fp-others-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h4>Het <em>PMS</em></h4>
+        <span class="arrow">Lees meer →</span>
+      </a>
+
+      <a class="fp-others-card" href="rudy.html">
+        <div class="fp-others-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h4><em>Rudy</em></h4>
+        <span class="arrow">Lees meer →</span>
+      </a>
+
+      <a class="fp-others-card" href="handbook.html">
+        <div class="fp-others-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
+        </div>
+        <h4>Het <em>handboek</em></h4>
+        <span class="arrow">Lees meer →</span>
+      </a>
+
+      <a class="fp-others-card" href="prevention.html">
+        <div class="fp-others-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h4><em>Preventie</em> &amp; welzijn</h4>
+        <span class="arrow">Lees meer →</span>
+      </a>
+
+      <a class="fp-others-card" href="guest-portal.html">
+        <div class="fp-others-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h4>Guest <em>portal</em></h4>
+        <span class="arrow">Lees meer →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FINAL ═══════════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Zelf proberen</span>
+    <h2>Geen demo-gesprek.<br>Gewoon <em>14 dagen</em> spelen.</h2>
+    <p>Geen creditcard, geen verplichtingen, geen "account manager" die je elke week opbelt. Een demo-omgeving vol nepreservaties. Bevalt het niet? Dan verdwijnt het stilletjes.</p>
+    <a href="index-sfeer.html#demo" class="btn-paper">Probeer 14 dagen gratis <span>→</span></a>
+    <p class="final-fine">Geen credit card · Na 6 maanden maandelijks opzegbaar · Gratis datamigratie</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Hotelsoftware voor onafhankelijke hoteliers. Zonder gedoe.</p>
+    </div>
+    <div>
+      <div class="footer-label">Product</div>
+      <ul class="footer-links">
+        <li><a href="features-sfeer.html">Features</a></li>
+        <li><a href="integraties-sfeer.html">Integraties</a></li>
+        <li><a href="prijzen-sfeer.html">En euh, wat kost dat?</a></li>
+        <li><a href="kb-sfeer.html">Helpdesk</a></li>
+        <li><a href="faq-sfeer.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Stuur ons een mailtje</a></li>
+        <li><a href="over-ons-sfeer.html">Over ons</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Integraties</div>
+      <ul class="footer-links">
+        <li><a href="integraties-sfeer.html">Booking.com</a></li>
+        <li><a href="integraties-sfeer.html">Airbnb</a></li>
+        <li><a href="integraties-sfeer.html">Exact Online</a></li>
+        <li><a href="integraties-sfeer.html">Peppol</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Gent, BE</span>
+    <span>Direction · Sfeer</span>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

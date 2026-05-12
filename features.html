@@ -392,10 +392,38 @@
     .compact-grid { grid-template-columns:1fr; }
   }
 
+  /* ─── COMPACT HERO ─── */
+  .features-hero {
+    background: var(--paper-deep);
+    padding: 3.5rem 0 2.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .features-hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .features-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 0.7rem 0 1rem;
+  }
+  .features-hero h1 em { color: var(--terra-dark); font-style: italic; }
+  .features-hero .lead {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+
   /* ─── MARQUEE GRID (6 hoofdfeatures) ─── */
   .marquee {
     background: var(--paper);
-    padding: 5rem 0 5.5rem;
+    padding: 3rem 0 5.5rem;
     border-top: 1px solid var(--line);
   }
   .marquee-head {
@@ -504,37 +532,20 @@
   </ul>
 </nav>
 
-<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
-<div class="page-header">
-  <div class="page-header-inner fade-up">
-    <div>
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="features-hero">
+  <div class="wrap">
+    <div class="features-hero-inner fade-up">
       <span class="kicker">Features</span>
-      <h1>Gebouwd voor hotels<br>die <em>goed willen werken.</em></h1>
-      <p class="lead">rumo doet alles wat je van een PMS verwacht, plus een AI-assistent, een handboek en sterke automatisering. Zes highlights eerst, daarna al de rest.</p>
-    </div>
-    <div class="page-header-side">
-      6 highlights<br>
-      <strong>+ 12 modules</strong>
+      <h1>Eén hotel,<br><em>zes lagen</em> rumo.</h1>
+      <p class="lead">Het PMS, Rudy, het handboek, preventie, channel manager, guest portal. Klik er eentje open voor het volledige verhaal.</p>
     </div>
   </div>
-  <div class="page-header-ribbon">
-    <span>PMS</span>
-    <span>Rudy</span>
-    <span>Handboek</span>
-    <span>Preventie</span>
-    <span>Channel manager</span>
-    <span>Guest portal</span>
-  </div>
-</div>
+</section>
 
 <!-- ═══════════════════════ MARQUEE · 6 HOOFDFEATURES ═══════════════════════ -->
 <section class="marquee">
   <div class="wrap">
-    <div class="marquee-head fade-up">
-      <span class="kicker">De zes lagen</span>
-      <h2>Eén hotel, <em>zes lagen</em> rumo.</h2>
-      <p class="lead">Het PMS doet het dagelijkse werk. Rudy neemt de routine uit handen. Het handboek houdt het team op één lijn. Preventie bewaakt je dossiers. Channel manager praat met de OTA's. Guest portal laat je gast zelf het werk doen. Klik er eentje open voor het volledige verhaal.</p>
-    </div>
     <div class="marquee-grid">
 
       <a class="marquee-card fade-up" href="pms.html">

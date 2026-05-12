@@ -1155,9 +1155,9 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 }
 .final h2 em { color:var(--butter); font-style:italic; font-weight:300; }
 .final p { color:rgba(245,238,226,0.82); font-size:1.15rem; max-width:540px; margin:0 auto 2.5rem; line-height:1.55; }
-.final .btn-paper { padding:1rem 2rem; font-size:1rem; margin-bottom:3rem; }
+.final .btn-paper { padding:1rem 2rem; font-size:1rem; }
 .final-fine {
-  margin-top:2rem;
+  margin-top:1.5rem;
   font-family:'JetBrains Mono', monospace;
   font-size:0.72rem;
   letter-spacing:0.1em;
@@ -1218,141 +1218,6 @@ footer {
   text-transform:uppercase;
 }
 
-/* ─── CONTACT ─── */
-.contact-section {
-  background:var(--paper-deep);
-  padding:7rem 0;
-}
-.contact-grid {
-  display:grid;
-  grid-template-columns:1fr 1.1fr;
-  gap:5rem;
-  align-items:start;
-}
-.contact-copy h2 em { color:var(--terra-dark); }
-.contact-copy > p {
-  font-size:1.1rem;
-  line-height:1.6;
-  color:var(--ink-soft);
-  margin-bottom:1.5rem;
-  max-width:48ch;
-}
-.contact-channels {
-  list-style:none;
-  margin-top:2rem;
-  border-top:1px solid var(--line);
-  padding-top:1.5rem;
-}
-.contact-channels li {
-  display:flex; align-items:center; gap:0.8rem;
-  padding:0.6rem 0;
-  font-size:0.95rem;
-  color:var(--ink-soft);
-}
-.contact-channels li a {
-  color:var(--terra-dark);
-  text-decoration:none;
-  border-bottom:1px dotted var(--terra-dark);
-}
-.contact-channels .ch-ic {
-  width:28px; height:28px; border-radius:7px;
-  display:flex; align-items:center; justify-content:center;
-  flex-shrink:0;
-  background:var(--paper-panel);
-  color:var(--terra-dark);
-}
-.contact-form {
-  background:var(--paper-panel);
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:2.5rem;
-  box-shadow:0 16px 40px rgba(27,25,23,0.05);
-}
-.contact-form-title {
-  font-family:'Fraunces', serif;
-  font-weight:400;
-  font-size:1.4rem;
-  letter-spacing:-0.02em;
-  margin-bottom:0.3rem;
-}
-.contact-form-sub {
-  font-size:0.88rem;
-  color:var(--muted);
-  margin-bottom:1.75rem;
-}
-.form-field {
-  margin-bottom:1.25rem;
-}
-.form-field label {
-  display:block;
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.72rem;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:0.4rem;
-}
-.form-field input,
-.form-field textarea {
-  width:100%;
-  padding:0.75rem 1rem;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:'Inter', sans-serif;
-  font-size:0.95rem;
-  line-height:1.5;
-  transition:border-color 0.2s, box-shadow 0.2s;
-  outline:none;
-  resize:vertical;
-}
-.form-field input:focus,
-.form-field textarea:focus {
-  border-color:var(--terra-dark);
-  box-shadow:0 0 0 3px rgba(185,107,74,0.12);
-}
-.form-field input::placeholder,
-.form-field textarea::placeholder {
-  color:var(--muted);
-  opacity:0.7;
-}
-.form-row {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1rem;
-}
-.form-submit {
-  margin-top:0.5rem;
-}
-.form-submit .btn-ink {
-  width:100%;
-  justify-content:center;
-  padding:0.85rem 1.6rem;
-}
-.form-fine {
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.68rem;
-  color:var(--muted);
-  text-align:center;
-  margin-top:0.75rem;
-  letter-spacing:0.03em;
-}
-.form-sent {
-  text-align:center;
-  padding:2rem 0;
-}
-.form-sent h3 {
-  font-family:'Fraunces', serif;
-  font-weight:400;
-  font-size:1.6rem;
-  margin-bottom:0.5rem;
-}
-.form-sent p {
-  color:var(--ink-soft);
-  font-size:1rem;
-}
-
 /* ─── Fade ─── */
 .fade-up { opacity:0; transform:translateY(20px); transition:opacity 0.8s, transform 0.8s; }
 .fade-up.visible { opacity:1; transform:translateY(0); }
@@ -1382,7 +1247,6 @@ footer {
   .nav-cta { margin-top:0.75rem; text-align:center; display:block !important; }
 
   .hero { min-height:90vh; }
-  .hero-video { object-position:center 40%; }
   .hero-inner { grid-template-columns:1fr; gap:1.5rem; padding:0 1.5rem 3rem; }
   .hero-meta-right { text-align:left; }
   .hero-scroll { display:none; }
@@ -1402,44 +1266,13 @@ footer {
   .footer-grid { grid-template-columns:1fr 1fr; gap:2.5rem; }
   .wrap, .logos-inner { padding:0 1.5rem; }
   section { padding:5rem 0; }
-  .logos-list { gap:1.5rem; }
-  .contact-grid { grid-template-columns:1fr; gap:3rem; }
-  .contact-form { padding:2rem 1.75rem; }
 }
 @media (max-width:560px) {
-  .hero { min-height:100svh; }
-  .hero-video { object-position:center 35%; }
-  .hero-overlay {
-    background:
-      linear-gradient(180deg,
-        rgba(27,25,23,0.55) 0%,
-        rgba(27,25,23,0.1) 25%,
-        rgba(27,25,23,0.2) 50%,
-        rgba(27,25,23,0.82) 100%);
-  }
-  .hero h1 { font-size:clamp(2.4rem, 10vw, 3.2rem); }
-  .hero-sub { font-size:1.05rem; max-width:38ch; }
-  .hero-inner { padding:0 1.25rem 2.5rem; }
   .hero-ctas { flex-direction:column; align-items:stretch; }
   .hero-ctas .btn-ink { justify-content:center; }
-  .hero-ctas .btn-ghost-white { justify-content:center; }
   .footer-grid { grid-template-columns:1fr; }
   .footer-bottom { flex-direction:column; gap:0.5rem; text-align:left; }
   .hero-kicker { font-size:0.65rem; }
-  .logos-list { gap:1rem; }
-  .logos-list span { font-size:1rem; }
-  .persona-body { padding:1.25rem; }
-  .form-row { grid-template-columns:1fr; }
-  .contact-form { padding:1.5rem; }
-}
-/* Landscape mobile, hero mag korter, video wordt breder */
-@media (max-height:500px) and (orientation:landscape) {
-  .hero { min-height:100svh; }
-  .hero-video { object-position:center center; }
-  .hero h1 { font-size:clamp(1.8rem, 5vw, 2.6rem); }
-  .hero-sub { font-size:0.95rem; margin-bottom:1rem; }
-  .hero-inner { padding:0 2rem 1.5rem; }
-  .hero-kicker { margin-bottom:0.75rem; }
 }
 </style>
 </head>
@@ -1452,12 +1285,10 @@ footer {
   </button>
   <ul class="nav-links">
     <li><a href="#pijlers">Wat doet rumo?</a></li>
+    <li><a href="#wie">Wie zijn die van rumo?</a></li>
     <li><a href="features.html">Features</a></li>
-    <li><a href="integraties.html">Integraties</a></li>
     <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="over-ons.html">Over ons</a></li>
-    <li><a href="#contact" class="nav-cta">Plan een babbelke →</a></li>
+    <li><a href="#demo" class="nav-cta">Plan een babbelke →</a></li>
     <li class="nav-lang">
       <a href="index.html" class="active">NL</a>
       <a href="en/index.html">EN</a>
@@ -1478,11 +1309,11 @@ footer {
     <div class="hero-copy">
       <h1>Je hotel runnen<br><em>zonder gedoe.</em></h1>
       <p class="hero-sub">
-        Rumo is gemaakt voor hoteliers die elke dag in hun eigen hotel staan. PMS, channel manager, facturatie en handboek in één. Plus een slimme collega. Niets meer.
+        Rumo is gemaakt voor hoteliers die nog elke dag in hun eigen hotel staan. PMS, channel manager, facturatie en handboek in één. Plus een slimme collega. Niets meer.
       </p>
       <div class="hero-ctas">
         <a href="#demo" class="btn-ink">Probeer 14 dagen gratis <span>→</span></a>
-
+        <a href="#pijlers" class="btn-ghost-white btn-ghost">Hoe het werkt <span class="arr">→</span></a>
       </div>
     </div>
   </div>
@@ -1495,8 +1326,8 @@ footer {
     <div class="intro-grid fade-up">
       <div class="intro-label">00 / Intro</div>
       <div class="intro-text">
-        <h2>En wat is <em>rumo</em> nu juist?</h2>
-        <p>Awel, we zijn hotelsoftware. Maar niet zoals je denkt. Geen enterprise platform van tweeduizend euro per maand waar je dan nog eens drie weken opleiding voor nodig hebt. Gewoon <em>één</em> systeem dat doet wat het moet doen. Je opent het 's morgens en je weet wat er vandaag moet gebeuren.</p>
+        <h2>Goh, en wat is <em>rumo</em> nu juist?</h2>
+        <p>Awel, we zijn hotelsoftware. Maar niet zoals je denkt. Geen enterprise platform van tweeduizend euro per maand waar je dan nog eens drie dagen opleiding voor nodig hebt. Gewoon <em>één</em> systeem dat doet wat het moet doen. Je opent het 's morgens en je weet wat er vandaag moet gebeuren. Dat was eigenlijk het hele idee.</p>
       </div>
     </div>
   </div>
@@ -1509,7 +1340,7 @@ footer {
     <div class="logos-list">
       <span>Booking.com</span>
       <span>Airbnb</span>
-
+      <span>Stripe</span>
       <span>Exact Online</span>
       <span>Peppol</span>
     </div>
@@ -1522,6 +1353,7 @@ footer {
     <div class="pijlers-intro fade-up">
       <span class="kicker">Wat doet rumo</span>
       <h2>Drie dingen die je dag <em>beter</em> maken. Meer niet.</h2>
+      <p class="lead" style="margin-top:1.5rem;">rumo probeert niet het 47e hotel-platform te zijn. Het doet drie dingen bijzonder goed. De rest laten we aan iemand anders.</p>
     </div>
 
     <!-- Pijler 1 -->
@@ -1530,7 +1362,7 @@ footer {
         <div class="pijler-num">01 · De PMS</div>
         <h3>Alles in <em>één</em> scherm. Zonder cursus.</h3>
         <p>Reservaties, check-in, check-out, channel manager, booking engine, Peppol-facturatie, rapporten, guest portal. Je opent rumo 's ochtends en je weet meteen wat er vandaag moet gebeuren.</p>
-        <p>Geen drie tabbladen open. Geen half-werkende plug-ins. Alles op z'n plek, alles leesbaar zonder opleiding.</p>
+        <p>Geen drie tabbladen open. Geen half-werkende plug-ins. Alles op z'n plek, alles leesbaar op de eerste dag. (Jup, de eerste dag.)</p>
       </div>
       <div class="pijler-visual">
         <svg class="illus" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1633,9 +1465,9 @@ footer {
       <div class="pijler-copy">
         <div class="pijler-num">03 · Rudy</div>
         <h3>Je slimste medewerker. <em>Altijd</em> beschikbaar.</h3>
-        <p>Rudy kent het handboek, maar ook de PMS zelf. Hij helpt je receptionisten bij het uitleggen van rumo, of doet het werk gewoon zelf. Reservatie opzoeken, kamer toewijzen, vraag beantwoorden. Zonder dat jij ertussen hoeft te komen.</p>
+        <p>Rudy kent het handboek, maar ook de PMS zelf. Hij helpt je receptionisten bij het uitleggen van rumo, of doet het werk gewoon zelf. Reservatie opzoeken, kamer toewijzen, vraag beantwoorden, zonder dat jij ertussen hoeft te komen.</p>
         <p>Geen chatbot-scripts die halverwege vastlopen. Een assistent die doorziet wat je bedoelt, ook om elf uur 's avonds.</p>
-        <div class="pijler-quote">"Er belt iemand voor een groepsreservatie van 8 kamers in juli. Kan dat?" Rudy checkt het, rekent het uit, en maakt de reservatie aan.</div>
+        <div class="pijler-quote">"Welke kamers zijn morgen vrij?", Rudy weet het. Meteen.</div>
       </div>
       <div class="pijler-visual">
         <svg class="illus" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1674,11 +1506,12 @@ footer {
       <div class="fade-up">
         <span class="kicker">Wie zijn we</span>
         <h2>Hmm oké, maar wie zijn die van <em>rumo</em> nu?</h2>
-        <p>We zijn zelf hoteliers. We runnen zelf hotels in België. We weten hoe het voelt als je systeem je dag moeilijker maakt in plaats van makkelijker. Een PMS die vastloopt tijdens check-out, een channel manager die boekingen dubbel laat binnenkomen, een handleiding die niemand leest.</p>
+        <p>We zijn zelf hoteliers. We runnen eigen huizen in België. We weten hoe het voelt als je systeem je dag moeilijker maakt in plaats van makkelijker, een kassablok die crashed om 22u, een channel manager die boekingen dubbel laat binnenkomen, een handleiding die niemand leest.</p>
         <p>Uiteindelijk draait het om <strong>gasten</strong>, niet om schermen. Dus bouwden we wat we zelf al jaren zochten.</p>
-
+        <p class="wie-quote">"We hebben geen software gekocht. We hebben eindelijk iemand gevonden die hetzelfde werk doet als wij."</p>
       </div>
       <div class="wie-illus fade-up" style="transition-delay:0.1s">
+        <span class="wie-illus-tag">lijn-illustratie · hotel</span>
         <!-- Simple line illustration of a hotel/inn -->
         <svg viewBox="0 0 320 400" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <!-- Ground line -->
@@ -1895,7 +1728,7 @@ footer {
       </details>
       <details>
         <summary>Werkt rumo op mobiel en tablet?</summary>
-        <p>Volledig. rumo is een webapp die overal draait. Laptop, tablet, telefoon. Geen app nodig.</p>
+        <p>Volledig. rumo is een webapp die overal draait, laptop, tablet, telefoon. Geen app nodig.</p>
       </details>
       <details>
         <summary>Hoe lang duurt de implementatie?</summary>
@@ -1915,62 +1748,6 @@ footer {
       </details>
     </div>
     <a href="faq.html" class="faq-link">Alle veelgestelde vragen →</a>
-  </div>
-</section>
-
-<!-- ══════════════════ CONTACT ══════════════════ -->
-<section class="contact-section" id="contact">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div class="fade-up">
-        <span class="kicker">Plan een babbelke</span>
-        <h2>Liever even <em>praten?</em></h2>
-        <p>Geen verkoopgesprek van een uur. Gewoon een eerlijk gesprek over wat je nodig hebt en of rumo daar bij past. Duurt meestal een kwartiertje.</p>
-        <p>Liever niet bellen? Stuur gerust een mailtje of een berichtje via WhatsApp. We antwoorden altijd zelf.</p>
-        <ul class="contact-channels">
-          <li>
-            <div class="ch-ic">
-              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <a href="mailto:jeffrey@rumo.eu">jeffrey@rumo.eu</a>
-          </li>
-          <li>
-            <div class="ch-ic">
-              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <a href="https://wa.me/32485382828">WhatsApp</a>
-          </li>
-        </ul>
-      </div>
-      <div class="contact-form fade-up" style="transition-delay:0.1s">
-        <div class="contact-form-title">Stuur een berichtje</div>
-        <p class="contact-form-sub">We antwoorden meestal binnen een paar uur.</p>
-        <form id="contact-form">
-          <div class="form-row">
-            <div class="form-field">
-              <label for="cf-name">Naam</label>
-              <input type="text" id="cf-name" name="name" placeholder="Je naam" required>
-            </div>
-            <div class="form-field">
-              <label for="cf-email">E-mail</label>
-              <input type="email" id="cf-email" name="email" placeholder="je@hotel.be" required>
-            </div>
-          </div>
-          <div class="form-field">
-            <label for="cf-hotel">Hotel <span style="opacity:0.5;text-transform:none;letter-spacing:0">(optioneel)</span></label>
-            <input type="text" id="cf-hotel" name="hotel" placeholder="Naam van je hotel of B&B">
-          </div>
-          <div class="form-field">
-            <label for="cf-message">Bericht</label>
-            <textarea id="cf-message" name="message" rows="4" placeholder="Vertel kort wat je zoekt of vraag gewoon iets." required></textarea>
-          </div>
-          <div class="form-submit">
-            <button type="submit" class="btn-ink">Verstuur bericht <span>→</span></button>
-          </div>
-          <p class="form-fine">Geen spam, geen nieuwsbrief, geen opvolging die je niet wil.</p>
-        </form>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2027,12 +1804,9 @@ footer {
   </div>
   <div class="footer-bottom">
     <span>© 2026 Rumo · Gent, BE</span>
-    <span></span>
+    <span>Direction · Sfeer</span>
   </div>
 </footer>
-
-<link rel="stylesheet" href="rudy-widget.css">
-<script src="rudy-widget.js"></script>
 
 <script>
 // Nav, track when we leave the hero video
@@ -2062,38 +1836,6 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-// Contact form → Formsubmit.co
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const form = this;
-  const btn = form.querySelector('button[type="submit"]');
-  const originalText = btn.innerHTML;
-  btn.innerHTML = 'Versturen… <span>→</span>';
-  btn.disabled = true;
-
-  fetch('https://formsubmit.co/ajax/jeffrey@rumo.eu', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      name: document.getElementById('cf-name').value.trim(),
-      email: document.getElementById('cf-email').value.trim(),
-      hotel: document.getElementById('cf-hotel').value.trim(),
-      message: document.getElementById('cf-message').value.trim(),
-      _subject: 'Contact via rumo.eu'
-    })
-  })
-  .then(r => r.json())
-  .then(data => {
-    var wrapper = form.closest('.contact-form');
-    wrapper.innerHTML = '<div class="form-sent"><h3>Got it.</h3><p>We lezen het en antwoorden snel. Meestal sneller dan je verwacht.</p></div>';
-  })
-  .catch(() => {
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-    alert('Er ging iets mis. Probeer opnieuw of stuur een mailtje naar jeffrey@rumo.eu.');
-  });
-});
 </script>
 
 </body>

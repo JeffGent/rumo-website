@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rudy · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Rudy is de AI-assistent in rumo. Hij kent je hotel, je procedures en je data, en voert taken voor je uit in gewone taal. Geen menu's, geen syntax.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared-sfeer.css">
+<style>
+  /* ─── HERO ─── */
+  .fp-hero {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+    padding: 6rem 0 6rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .fp-hero-inner {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 4.5rem;
+    align-items: center;
+  }
+  .fp-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    background: var(--rose-soft);
+    padding: 0.4rem 0.85rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .fp-hero-tag svg { width: 14px; height: 14px; stroke-width: 1.8; fill: none; }
+  .fp-hero-text h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2.6rem, 5.2vw, 3.8rem);
+    letter-spacing: -0.028em;
+    line-height: 1.04;
+    margin-bottom: 1.4rem;
+  }
+  .fp-hero-text h1 em { color: var(--terra-dark); font-style: italic; }
+  .fp-hero-text .lead {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 52ch;
+    margin-bottom: 2rem;
+  }
+  .fp-hero-bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .fp-hero-bullets li::before {
+    content: '·';
+    color: var(--terra);
+    margin-right: 0.5em;
+  }
+
+  /* ─── SECTIONS ─── */
+  .fp-section {
+    padding: 6rem 0;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .fp-section.alt { background: var(--paper-deep); }
+  .fp-section-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .fp-section.reverse .fp-section-inner > .fp-section-visual { order: -1; }
+  .fp-section-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    margin-bottom: 0.9rem;
+    display: inline-block;
+  }
+  .fp-section-text h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    margin-bottom: 1.3rem;
+  }
+  .fp-section-text h2 em { color: var(--terra-dark); font-style: italic; }
+  .fp-section-text .lead {
+    color: var(--ink-soft);
+    line-height: 1.65;
+    max-width: 52ch;
+    font-size: 1.02rem;
+    margin-bottom: 1.3rem;
+  }
+  .fp-bullets {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+  }
+  .fp-bullets li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .fp-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.65em;
+    width: 8px; height: 1.5px;
+    background: var(--terra);
+  }
+  .fp-bullets li em { color: var(--terra-dark); font-style: italic; }
+
+  /* ─── full-width section (cheatsheet) ─── */
+  .fp-section-full {
+    padding: 6rem 0;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .fp-section-full-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 3rem;
+  }
+  .fp-section-full-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    margin: 0.9rem 0 1rem;
+  }
+  .fp-section-full-head h2 em { color: var(--terra-dark); font-style: italic; }
+  .fp-section-full-head .lead {
+    color: var(--ink-soft);
+    line-height: 1.6;
+    font-size: 1.02rem;
+  }
+
+  /* ─── cheatsheet table ─── */
+  .fp-cheat-wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.6rem 1.8rem;
+    box-shadow: 0 14px 36px rgba(27,25,23,0.07);
+  }
+  .fp-cheat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.93rem;
+  }
+  .fp-cheat-table thead th {
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .fp-cheat-table tbody td {
+    padding: 0.85rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .fp-cheat-table tbody tr:last-child td { border-bottom: none; }
+  .fp-cheat-table td.ask {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.83rem;
+    color: var(--ink);
+    width: 44%;
+  }
+  .fp-cheat-table td.does { color: var(--ink-soft); }
+  .fp-cheat-table td.does em { color: var(--terra-dark); font-style: italic; }
+  .fp-cheat-note {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-top: 2rem;
+    max-width: 50ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ─── mockup wrapper ─── */
+  .mockup {
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.4rem;
+    box-shadow: 0 20px 40px rgba(27,25,23,0.08);
+  }
+  .mockup-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .mockup-head h5 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+  .mockup-head .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 100px;
+    background: var(--sand);
+    color: var(--ink);
+  }
+  .mockup-head .badge.pending { background: var(--butter); color: #8a6b1a; }
+  .mockup-head .badge.refused { background: var(--rose-soft); color: var(--terra-dark); }
+
+  /* Mockup · Rudy chat */
+  .mk-rudy .chat { display: flex; flex-direction: column; gap: 0.55rem; padding-top: 0.5rem; }
+  .mk-rudy .msg {
+    max-width: 84%;
+    padding: 0.7rem 1rem;
+    border-radius: 14px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+  .mk-rudy .msg.u { background: var(--sand); color: var(--ink); margin-left: auto; border-bottom-right-radius: 4px; }
+  .mk-rudy .msg.b { background: var(--ink); color: var(--paper); border-bottom-left-radius: 4px; }
+  .mk-rudy .msg.b strong { color: var(--butter); font-weight: 600; }
+  .mk-rudy .head-avatar {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 0.75rem;
+  }
+  .mk-rudy .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--terra-dark);
+    color: var(--paper);
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mk-rudy .head-avatar strong {
+    font-family: 'Fraunces', serif; font-weight: 400; font-size: 1.05rem;
+    display: block; line-height: 1.1;
+  }
+  .mk-rudy .head-avatar span {
+    font-size: 0.72rem; color: var(--forest);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .mk-rudy.refused .head-avatar span { color: var(--terra-dark); }
+
+  /* Mockup · Approval card */
+  .mk-approval .approval-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+  .mk-approval .approval-desc {
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 1.1rem;
+  }
+  .mk-approval .approval-impact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .mk-approval .approval-impact > div {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.7rem 0.85rem;
+  }
+  .mk-approval .approval-impact span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .mk-approval .approval-impact strong {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+  .mk-approval .approval-impact .new strong { color: var(--terra-dark); }
+  .mk-approval .approval-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .mk-approval .btn {
+    flex: 1;
+    padding: 0.65rem 0.8rem;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: default;
+  }
+  .mk-approval .btn.primary {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .mk-approval .approval-trail {
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--line);
+  }
+  .mk-approval .approval-trail .step {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.35rem;
+  }
+  .mk-approval .approval-trail .check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--forest);
+    color: var(--paper);
+    font-size: 0.7rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ─── sources diagram ─── */
+  .fp-sources {
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(27,25,23,0.06);
+  }
+  .fp-sources-inputs {
+    display: grid;
+    gap: 0.7rem;
+    margin-bottom: 1.3rem;
+  }
+  .fp-sources-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper);
+  }
+  .fp-sources-row .ic {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .fp-sources-row .ic svg { width: 16px; height: 16px; stroke-width: 1.8; fill: none; }
+  .fp-sources-row strong { display: block; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.15rem; }
+  .fp-sources-row span { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+  .fp-sources-arrow {
+    text-align: center;
+    color: var(--terra);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  .fp-sources-out {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 14px;
+    padding: 1.3rem;
+    text-align: center;
+  }
+  .fp-sources-out strong {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .fp-sources-out span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--butter);
+  }
+
+  /* ─── andere features strip ─── */
+  .fp-others {
+    background: var(--paper-deep);
+    padding: 5rem 0 6rem;
+    border-top: 1px solid var(--line);
+  }
+  .fp-others-head {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .fp-others-head h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0.6rem 0 0.8rem;
+  }
+  .fp-others-head h3 em { color: var(--terra-dark); font-style: italic; }
+  .fp-others-head p { color: var(--ink-soft); font-size: 0.98rem; }
+  .fp-others-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  .fp-others-card {
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.3rem;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+  }
+  .fp-others-card:hover {
+    box-shadow: 0 14px 28px rgba(27,25,23,0.08);
+    transform: translateY(-3px);
+    border-color: var(--terra);
+  }
+  .fp-others-ic {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .fp-others-ic svg { width: 16px; height: 16px; stroke-width: 1.8; fill: none; }
+  .fp-others-card h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .fp-others-card h4 em { color: var(--terra-dark); font-style: italic; font-weight: 300; }
+  .fp-others-card .arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+    margin-top: auto;
+  }
+
+  /* ─── responsive ─── */
+  @media (max-width: 880px) {
+    .fp-hero { padding: 4rem 0; }
+    .fp-hero-inner, .fp-section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .fp-section.reverse .fp-section-inner > .fp-section-visual { order: 0; }
+    .fp-section { padding: 4rem 0; }
+    .fp-section-full { padding: 4rem 0; }
+    .fp-others-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .fp-cheat-wrap { padding: 1rem; }
+    .fp-cheat-table, .fp-cheat-table tbody, .fp-cheat-table tr, .fp-cheat-table td { display: block; width: 100%; }
+    .fp-cheat-table thead { display: none; }
+    .fp-cheat-table tr { padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
+    .fp-cheat-table tr:last-child { border-bottom: none; }
+    .fp-cheat-table td { padding: 0.2rem 0; border: none; }
+    .fp-cheat-table td.ask { margin-bottom: 0.35rem; width: 100%; }
+    .fp-others-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index-sfeer.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index-sfeer.html#pijlers">Wat doet rumo?</a></li>
+    <li><a href="features-sfeer.html">Features</a></li>
+    <li><a href="integraties-sfeer.html">Integraties</a></li>
+    <li><a href="prijzen-sfeer.html">En euh, wat kost dat?</a></li>
+    <li><a href="faq-sfeer.html">FAQ</a></li>
+    <li><a href="over-ons-sfeer.html">Over ons</a></li>
+    <li><a href="index-sfeer.html#demo" class="nav-cta">Probeer gratis →</a></li>
+    <li class="nav-lang">
+      <a href="rudy.html" class="active">NL</a>
+      <a href="en/index.html">EN</a>
+      <a href="fr/index.html">FR</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="fp-hero">
+  <div class="wrap">
+    <div class="fp-hero-inner fade-up">
+      <div class="fp-hero-text">
+        <span class="fp-hero-tag">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Rudy · AI-assistent
+        </span>
+        <h1>Een collega die<br><em>nooit</em> vrij neemt.</h1>
+        <p class="lead">Rudy is de AI-assistent die in rumo leeft. Hij kent je hotel, je procedures en je data, en voert taken voor je uit in gewone taal. Geen menu's leren, geen handleidingen lezen. Je stelt een vraag, hij antwoordt. Je vraagt iets te doen, hij stelt voor en wacht op je akkoord.</p>
+        <ul class="fp-hero-bullets">
+          <li>Gewoon Nederlands</li>
+          <li>Vraagt door bij twijfel</li>
+          <li>Eerlijk over zijn grenzen</li>
+        </ul>
+      </div>
+      <div class="fp-hero-visual">
+        <div class="mockup mk-rudy">
+          <div class="head-avatar">
+            <div class="avatar">R</div>
+            <div>
+              <strong>Rudy</strong>
+              <span>Je hotel-assistent</span>
+            </div>
+          </div>
+          <div class="chat">
+            <div class="msg u">Hoeveel kamers zijn er morgen vrij?</div>
+            <div class="msg b">Morgen zijn er <strong>4 kamers</strong> beschikbaar: 2× Comfort Twin, 1× Deluxe Double en 1× Suite. Wil je een reservatie aanmaken?</div>
+            <div class="msg u">Wat als iemand belt voor een late check-in?</div>
+            <div class="msg b">Volgens jullie <strong>receptieprocedure</strong>: noteer het verwachte aankomstuur, stuur de deurcode via de guest portal, en verwittig housekeeping.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 1 · WAT HIJ DOET ═══════════════════════ -->
+<section class="fp-section">
+  <div class="wrap">
+    <div class="fp-section-inner fade-up">
+      <div class="fp-section-text">
+        <span class="fp-section-kicker">Wat hij doet</span>
+        <h2>De dagelijkse <em>handelingen</em>.</h2>
+        <p class="lead">Rudy neemt de routine uit handen: de honderden kleine acties die je dag versnipperen. Voor elke handeling stelt hij voor wat hij gaat doen, jij keurt goed of stuurt bij. Reversibele acties voert hij meteen uit, onomkeerbare wachten op je expliciete OK.</p>
+        <ul class="fp-bullets">
+          <li>Reservaties verplaatsen, verlengen, splitsen of opdelen over kamers</li>
+          <li>Stop-sell en open-sell op specifieke datums of kanalen</li>
+          <li>Min-stay, max-stay, CTA en CTD restricties instellen</li>
+          <li>Bulk prijswijzigingen met percentages of vaste bedragen</li>
+          <li>Betaallinks samenstellen en versturen naar gasten</li>
+          <li>Rapporten draaien over willekeurige periodes en exporten</li>
+          <li>Mails opstellen op basis van templates in de juiste taal</li>
+        </ul>
+      </div>
+      <div class="fp-section-visual">
+        <div class="mockup mk-approval">
+          <div class="mockup-head">
+            <h5>Rudy stelt voor</h5>
+            <span class="badge pending">Wacht op OK</span>
+          </div>
+          <div class="approval-title">Weekendprijs mei verlagen met 10%</div>
+          <div class="approval-desc">4 kamertypes, zaterdagen en zondagen, vanaf 4 mei tot 26 mei. Booking, Airbnb en Expedia worden automatisch gesynchroniseerd.</div>
+          <div class="approval-impact">
+            <div>
+              <span>Voorheen</span>
+              <strong>€140</strong>
+            </div>
+            <div class="new">
+              <span>Nieuw</span>
+              <strong>€126</strong>
+            </div>
+          </div>
+          <div class="approval-buttons">
+            <div class="btn primary">Goedkeuren</div>
+            <div class="btn">Pas aan</div>
+            <div class="btn">Annuleer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 2 · WAT HIJ NIET DOET ═══════════════════════ -->
+<section class="fp-section alt reverse">
+  <div class="wrap">
+    <div class="fp-section-inner fade-up">
+      <div class="fp-section-text">
+        <span class="fp-section-kicker">Wat hij laat liggen</span>
+        <h2>Eerlijk over wat <em>jij beslist</em>.</h2>
+        <p class="lead">Een aantal dingen doet Rudy expliciet niet automatisch. Niet omdat hij het niet kan, maar omdat het verkeerd zou zijn. Beleidsbeslissingen, onomkeerbare keuzes en alles wat een menselijke afweging vraagt blijft bij jou. Hij wijst er actief op wanneer iets buiten zijn bereik valt.</p>
+        <ul class="fp-bullets">
+          <li>Geen automatische credit nota's, refunds of penalty-aanrekeningen, hij meldt het aan jou of je receptionist met een voorstel</li>
+          <li>Geen prijsbeleid (hij voert wijzigingen uit, hij beslist niet of jouw prijs te hoog of te laag is)</li>
+          <li>Geen acties in OTA-extranetten waarvoor manuele keuzes nodig zijn (Genius-promo, Mobile Rate, listing-content)</li>
+          <li>Geen onomkeerbare integratie-keuzes zoals een nieuw boekhoud-grootboek selecteren</li>
+          <li>Geen gegevens van of acties op andere hotels, alleen jouw rumo</li>
+        </ul>
+      </div>
+      <div class="fp-section-visual">
+        <div class="mockup mk-rudy refused">
+          <div class="head-avatar">
+            <div class="avatar">R</div>
+            <div>
+              <strong>Rudy</strong>
+              <span>Escaleert naar mens</span>
+            </div>
+          </div>
+          <div class="chat">
+            <div class="msg u">Geef gast Janssens een refund van €80</div>
+            <div class="msg b">Een refund is een <strong>onomkeerbare actie</strong> die ik niet zelfstandig doe. Ik heb je receptionist verwittigd met dit voorstel. Bevestigen zij, dan voer ik het uit.</div>
+            <div class="msg u">Sluit Booking voor mei en zet alles open op Airbnb</div>
+            <div class="msg b">De close-sale op Booking voer ik meteen uit. Maar Airbnb-tarieven heroriënteren is een <strong>strategische keuze</strong>. Welke prijs precies wil je daar? Ik wacht op je instructie.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 3 · CHEATSHEET ═══════════════════════ -->
+<section class="fp-section-full">
+  <div class="wrap">
+    <div class="fp-section-full-head fade-up">
+      <span class="fp-section-kicker">Hoe je hem vraagt</span>
+      <h2>Gewoon Nederlands.<br><em>Geen syntax.</em></h2>
+      <p class="lead">Schrijf of typ wat je wil dat er gebeurt, in de taal waarin je denkt. Rudy parseert de bedoeling, kijkt naar je context, en stelt een actie voor. Als hij twijfelt vraagt hij door. Als hij iets niet kan, zegt hij het meteen.</p>
+    </div>
+
+    <div class="fp-cheat-wrap fade-up">
+      <table class="fp-cheat-table">
+        <thead>
+          <tr><th>Jij vraagt</th><th>Wat Rudy doet</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="ask">"Sluit kamer 12 voor het weekend van 15 mei"</td><td class="does">Blokkeert kamer 12 op die datums. Wacht op je OK.</td></tr>
+          <tr><td class="ask">"Verlaag mijn weekendprijs voor mei met 10%"</td><td class="does">Past de weekend-modifier aan, toont het effect op de afgeleide tarieven, jij keurt goed.</td></tr>
+          <tr><td class="ask">"Zet min-stay 2 nachten op alle Junior Suites in juli"</td><td class="does">Stelt de restrictie voor, voert pas uit na bevestiging.</td></tr>
+          <tr><td class="ask">"Wat was mijn omzet vorige week per kanaal?"</td><td class="does">Toont een tabel. Geen actie nodig.</td></tr>
+          <tr><td class="ask">"Welke kamers staan leeg dit weekend?"</td><td class="does">Lijst met directe link naar de kalender.</td></tr>
+          <tr><td class="ask">"Verplaats de reservatie van Janssens naar 12 mei"</td><td class="does">Berekent de nieuwe prijs, toont het verschil, jij keurt goed.</td></tr>
+          <tr><td class="ask">"Genereer de politie-export voor april"</td><td class="does">Bestand klaar om te downloaden, in het juiste formaat.</td></tr>
+          <tr><td class="ask">"Welke gastregistraties zijn nog niet compleet?"</td><td class="does">Lijst van reservaties met ontbrekende ID-gegevens.</td></tr>
+          <tr><td class="ask">"Geef gast Janssens een refund van €80"</td><td class="does"><em>Doet hij niet zelf.</em> Stuurt een melding naar je receptionist met het voorstel.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="fp-cheat-note">Bekijk de volledige cheatsheet met 15 voorbeelden in de <a href="kb-sfeer.html#rudy" style="color:var(--terra-dark); text-decoration:underline;">helpdesk</a>.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 4 · KENNIS ═══════════════════════ -->
+<section class="fp-section alt">
+  <div class="wrap">
+    <div class="fp-section-inner fade-up">
+      <div class="fp-section-text">
+        <span class="fp-section-kicker">Zijn kennis</span>
+        <h2>Waar Rudy's <em>antwoorden</em> vandaan komen.</h2>
+        <p class="lead">Rudy is geen losse chatbot die op een aparte database draait. Hij leeft in jouw rumo en kent drie soorten kennis: je live operationele data, je hotelhandboek, en je historiek. Hij kan niets verzinnen, want hij citeert altijd terug naar de bron.</p>
+        <ul class="fp-bullets">
+          <li><em>Live data:</em> reservaties, kamers, prijzen, beschikbaarheid, gastprofielen</li>
+          <li><em>Jouw handboek:</em> procedures, huisregels, noodplannen, F&amp;B-instructies</li>
+          <li><em>Historiek:</em> wat er vorige week, vorige maand, vorig jaar gebeurde</li>
+          <li><em>OTA's via Channex:</em> real-time channel-data voor Booking, Airbnb, Expedia</li>
+          <li>Hij draait op infrastructuur binnen de EU, gebruikt jouw data nooit om publieke modellen te trainen, en elke actie zit in je audit log</li>
+        </ul>
+      </div>
+      <div class="fp-section-visual">
+        <div class="fp-sources">
+          <div class="fp-sources-inputs">
+            <div class="fp-sources-row">
+              <div class="ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div>
+                <strong>Live data</strong>
+                <span>Reservaties, kamers, prijzen, beschikbaarheid</span>
+              </div>
+            </div>
+            <div class="fp-sources-row">
+              <div class="ic" style="background:#DCE4F3; color:#4a7fb5;">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
+              </div>
+              <div>
+                <strong>Jouw handboek</strong>
+                <span>Procedures, huisregels, noodplannen</span>
+              </div>
+            </div>
+            <div class="fp-sources-row">
+              <div class="ic" style="background:var(--forest-soft); color:var(--forest);">
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <strong>Historiek</strong>
+                <span>Vorige maand, vorig jaar, trends</span>
+              </div>
+            </div>
+          </div>
+          <div class="fp-sources-arrow">↓</div>
+          <div class="fp-sources-out">
+            <strong>Rudy</strong>
+            <span>Citeert altijd terug naar de bron</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ANDERE FEATURES ═══════════════════════ -->
+<section class="fp-others">
+  <div class="wrap">
+    <div class="fp-others-head fade-up">
+      <span class="kicker">Andere features</span>
+      <h3>Rudy is één <em>laag</em>.<br>Hieronder ligt de rest.</h3>
+      <p>Het PMS, het handboek, preventie, channel manager, guest portal. Allemaal samen één systeem.</p>
+    </div>
+    <div class="fp-others-grid fade-up">
+
+      <a class="fp-others-card" href="pms.html">
+        <div class="fp-others-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h4>Het <em>PMS</em></h4>
+        <span class="arrow">Lees meer →</span>
+      </a>
+
+      <a class="fp-others-card" href="handbook.html">
+        <div class="fp-others-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
+        </div>
+        <h4>Het <em>handboek</em></h4>
+        <span class="arrow">Lees meer →</span>
+      </a>
+
+      <a class="fp-others-card" href="prevention.html">
+        <div class="fp-others-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h4><em>Preventie</em> &amp; welzijn</h4>
+        <span class="arrow">Lees meer →</span>
+      </a>
+
+      <a class="fp-others-card" href="channel-manager.html">
+        <div class="fp-others-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+        </div>
+        <h4><em>Channel</em> manager</h4>
+        <span class="arrow">Lees meer →</span>
+      </a>
+
+      <a class="fp-others-card" href="guest-portal.html">
+        <div class="fp-others-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h4>Guest <em>portal</em></h4>
+        <span class="arrow">Lees meer →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FINAL ═══════════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Zelf proberen</span>
+    <h2>Geen demo-gesprek.<br>Gewoon <em>14 dagen</em> spelen.</h2>
+    <p>Geen creditcard, geen verplichtingen, geen "account manager" die je elke week opbelt. Een demo-omgeving vol nepreservaties, mét Rudy erin. Bevalt het niet? Dan verdwijnt het stilletjes.</p>
+    <a href="index-sfeer.html#demo" class="btn-paper">Probeer 14 dagen gratis <span>→</span></a>
+    <p class="final-fine">Geen credit card · Na 6 maanden maandelijks opzegbaar · Gratis datamigratie</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Hotelsoftware voor onafhankelijke hoteliers. Zonder gedoe.</p>
+    </div>
+    <div>
+      <div class="footer-label">Product</div>
+      <ul class="footer-links">
+        <li><a href="features-sfeer.html">Features</a></li>
+        <li><a href="integraties-sfeer.html">Integraties</a></li>
+        <li><a href="prijzen-sfeer.html">En euh, wat kost dat?</a></li>
+        <li><a href="kb-sfeer.html">Helpdesk</a></li>
+        <li><a href="faq-sfeer.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Stuur ons een mailtje</a></li>
+        <li><a href="over-ons-sfeer.html">Over ons</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Integraties</div>
+      <ul class="footer-links">
+        <li><a href="integraties-sfeer.html">Booking.com</a></li>
+        <li><a href="integraties-sfeer.html">Airbnb</a></li>
+        <li><a href="integraties-sfeer.html">Exact Online</a></li>
+        <li><a href="integraties-sfeer.html">Peppol</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Gent, BE</span>
+    <span>Direction · Sfeer</span>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -392,38 +392,10 @@
     .compact-grid { grid-template-columns:1fr; }
   }
 
-  /* ─── COMPACT HERO ─── */
-  .features-hero {
-    background: var(--paper-deep);
-    padding: 3.5rem 0 2.75rem;
-    border-bottom: 1px solid var(--line);
-  }
-  .features-hero-inner {
-    max-width: 720px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .features-hero h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 300;
-    font-size: clamp(2rem, 4.5vw, 3rem);
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-    margin: 0.7rem 0 1rem;
-  }
-  .features-hero h1 em { color: var(--terra-dark); font-style: italic; }
-  .features-hero .lead {
-    color: var(--ink-soft);
-    font-size: 1.02rem;
-    line-height: 1.6;
-    max-width: 56ch;
-    margin: 0 auto;
-  }
-
   /* ─── MARQUEE GRID (6 hoofdfeatures) ─── */
   .marquee {
     background: var(--paper);
-    padding: 3rem 0 5.5rem;
+    padding: 5rem 0 5.5rem;
     border-top: 1px solid var(--line);
   }
   .marquee-head {
@@ -532,16 +504,20 @@
   </ul>
 </nav>
 
-<!-- ═══════════════════════ HERO ═══════════════════════ -->
-<section class="features-hero">
-  <div class="wrap">
-    <div class="features-hero-inner fade-up">
+<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
+<div class="page-header">
+  <div class="page-header-inner fade-up">
+    <div>
       <span class="kicker">Features</span>
       <h1>Eén hotel,<br><em>zes lagen</em> rumo.</h1>
       <p class="lead">Het PMS, Rudy, het handboek, preventie, channel manager, guest portal. Klik er eentje open voor het volledige verhaal.</p>
     </div>
+    <div class="page-header-side">
+      6 pijlers<br>
+      <strong>+ 6 modules</strong>
+    </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════ MARQUEE · 6 HOOFDFEATURES ═══════════════════════ -->
 <section class="marquee">
@@ -610,9 +586,9 @@
 <section class="compact" id="alle-features">
   <div class="wrap">
     <div class="compact-head fade-up">
-      <span class="kicker">Extra's</span>
-      <h2>Plus deze <em>handige modules</em>.</h2>
-      <p class="lead" style="margin-top:1.25rem;">Geen pijler op zich, wel onmisbaar in de dagelijkse routine.</p>
+      <span class="kicker">En verder</span>
+      <h2>Alles wat je verwacht van hotel software.<br>En <em>misschien</em> ietsje meer.</h2>
+      <p class="lead" style="margin-top:1.25rem;">De basis zit er ook in. Stuk voor stuk.</p>
     </div>
     <div class="compact-grid">
 

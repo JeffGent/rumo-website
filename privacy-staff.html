@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy voor hotelpersoneel · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Wat rumo bijhoudt van het hotelpersoneel dat de PMS gebruikt. Welke gegevens, waarom, hoe lang, en wat jij ermee kan doen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* ─── LEGAL PROSE ─── (identiek aan privacy.html / cookies.html) */
+  .legal {
+    background:var(--paper);
+    padding:4rem 0 6rem;
+  }
+  .legal-wrap {
+    max-width:740px;
+    margin:0 auto;
+    padding:0 2rem;
+  }
+  .legal h2 {
+    font-size:clamp(1.6rem, 3vw, 2.1rem);
+    margin-top:3rem;
+    margin-bottom:1rem;
+  }
+  .legal h2:first-of-type { margin-top:0; }
+  .legal h3 {
+    font-size:1.15rem;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    letter-spacing:0;
+    color:var(--ink);
+    margin-top:1.75rem;
+    margin-bottom:0.5rem;
+    line-height:1.4;
+  }
+  .legal p {
+    font-size:1rem;
+    color:var(--ink-soft);
+    line-height:1.7;
+    max-width:none;
+    margin-bottom:1rem;
+  }
+  .legal ul {
+    margin:0.5rem 0 1.25rem;
+    padding-left:1.25rem;
+  }
+  .legal li {
+    font-size:1rem;
+    color:var(--ink-soft);
+    line-height:1.7;
+    margin-bottom:0.4rem;
+  }
+  .legal a {
+    color:var(--terra-dark);
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+  .legal a:hover { color:var(--ink); }
+  .legal strong { color:var(--ink); font-weight:600; }
+  .legal-meta {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:2.5rem;
+    padding-bottom:1.5rem;
+    border-bottom:1px solid var(--line);
+  }
+  .legal-callout {
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:1.25rem 1.5rem;
+    margin:1.5rem 0;
+  }
+  .legal-callout p:last-child { margin-bottom:0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html#pijlers">Wat doet rumo?</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="integraties.html">Integraties</a></li>
+    <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="over-ons.html">Over ons</a></li>
+    <li><a href="index.html#demo" class="nav-cta">Probeer gratis →</a></li>
+    <li class="nav-lang">
+      <a href="privacy-staff.html" class="active">NL</a>
+      <a href="en/privacy-staff.html">EN</a>
+      <a href="fr/confidentialite-personnel.html">FR</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
+<div class="page-header">
+  <div class="page-header-inner fade-up">
+    <div>
+      <span class="kicker">Privacy · Hotelpersoneel</span>
+      <h1>Wat wij van <em>jou</em> bijhouden.</h1>
+      <p class="lead">Voor het personeel dat in rumo werkt. Hier is rumo zelf de verantwoordelijke. Geen hotel-tussenstap, geen verwarrende rollen.</p>
+    </div>
+    <div class="page-header-side">
+      Versie<br>
+      <strong>17 mei 2026</strong>
+    </div>
+  </div>
+  <div class="page-header-ribbon">
+    <span>AVG / GDPR</span>
+    <span>Rumo BV als controller</span>
+    <span>Belgisch recht</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ LEGAL CONTENT ═══════════════════════ -->
+<section class="legal">
+  <div class="legal-wrap fade-up">
+
+    <div class="legal-meta">
+      Laatst bijgewerkt · 17 mei 2026
+    </div>
+
+    <h2>1. Eerst even kaderen</h2>
+    <p>
+      Er zijn twee soorten gegevens in rumo. <strong>Gastgegevens</strong> (boekingen, ID-kaarten, facturen) horen bij het hotel — die uitleg staat op de <a href="privacy.html">algemene privacy-pagina</a>. Daar is het hotel verantwoordelijk en rumo verwerker.
+    </p>
+    <p>
+      <strong>Personeelsgegevens</strong> zijn iets anders. Als jij als receptionist, manager of housekeeper inlogt op rumo, dan zijn we jouw account, je inloggeschiedenis en je acties aan het bijhouden. Daar is <strong>rumo zelf verwerkingsverantwoordelijke</strong>. Die rol kunnen we niet bij het hotel leggen, want het is onze software die de logs maakt en bewaart.
+    </p>
+    <p>
+      Dit is de uitleg over dat tweede stuk.
+    </p>
+
+    <h2>2. Wat we van je weten</h2>
+
+    <h3>Je account</h3>
+    <ul>
+      <li>Voornaam, achternaam en e-mailadres — gebruikt om in te loggen en je in de software te tonen</li>
+      <li>Je rol in het hotel (admin, receptie, housekeeping, F&amp;B, ...) — bepaalt wat je in rumo kan zien en doen</li>
+      <li>Je wachtwoord (gehasht, nooit in klare tekst opgeslagen) en eventueel een tweede factor als die staat aan</li>
+      <li>Optioneel: een profielfoto die je zelf hebt geüpload</li>
+    </ul>
+
+    <h3>Hoe en wanneer je inlogt</h3>
+    <p>Voor elke inlog houden we bij:</p>
+    <ul>
+      <li>Tijdstip</li>
+      <li>IP-adres</li>
+      <li>Browser en besturingssysteem (de "user-agent")</li>
+    </ul>
+    <p>
+      Dat staat in de <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;background:var(--sand);padding:0.1em 0.35em;border-radius:4px;">login_log</code> tabel en is nodig om verdachte aanmeldingen te detecteren. Bijvoorbeeld: iemand logt om 3u 's nachts in vanuit een ander land terwijl jij in Gent slaapt.
+    </p>
+
+    <h3>Wat je doet in rumo</h3>
+    <ul>
+      <li><strong>Audit-logs</strong> op gevoelige acties: prijswijzigingen, betalingen valideren of charge'en, refunds, kredietnota's, gastregistratie. We bewaren wie wat wanneer gedaan heeft, plus de oude en de nieuwe waarde.</li>
+      <li><strong>Staff-messaging</strong>: berichten die je stuurt in interne kanalen of DMs, met eventuele bijlages.</li>
+      <li>Een algemene activiteitenlog op het niveau van het hotel: wie heeft welke reservatie geopend, gewijzigd of geannuleerd.</li>
+    </ul>
+
+    <h3>Support-contact</h3>
+    <ul>
+      <li>E-mails die je naar <a href="mailto:hello@rumo.eu">hello@rumo.eu</a> of <a href="mailto:support@rumo.eu">support@rumo.eu</a> stuurt, plus onze antwoorden</li>
+      <li>Eventuele schermafbeeldingen of voorbeelden die je meestuurt om een probleem te illustreren</li>
+    </ul>
+
+    <h3>Wat we <em>niet</em> doen</h3>
+    <ul>
+      <li>Geen toetsenaanslag-tracking, geen muis-heatmaps, geen session-replay</li>
+      <li>Geen profilering op basis van je werkpatroon ("deze receptionist werkt langzaam")</li>
+      <li>Geen verkoop van werknemersdata aan derden</li>
+      <li>Geen tracking-pixels in onze e-mails om te zien of je ze opent</li>
+    </ul>
+
+    <h2>3. Waarom we het hebben</h2>
+    <ul>
+      <li>
+        <strong>Uitvoering van de overeenkomst tussen rumo en jouw hotel.</strong> Je hebt een account omdat het hotel jou toegang geeft als personeelslid. Zonder accountgegevens kunnen we dat niet leveren.
+      </li>
+      <li>
+        <strong>Gerechtvaardigd belang — beveiliging en accountabiliteit.</strong> Login-logs en audit-logs zijn er voor fraudepreventie (bv. iemand voert verdachte refunds in), voor incident-response (er gebeurt iets vreemds, we moeten kunnen reconstrueren), en voor het hotel zelf dat eigen personeel moet kunnen controleren waar nodig.
+      </li>
+      <li>
+        <strong>Wettelijke verplichting.</strong> Audit-trails op financiële handelingen zijn vereist voor de boekhoudwetgeving en fraudebestrijding.
+      </li>
+      <li>
+        <strong>Toestemming.</strong> Productupdates of nieuwsbrieven van rumo zelf — alleen als je daar expliciet ja op zegt, met intrekrecht.
+      </li>
+    </ul>
+
+    <h2>4. Met wie we delen</h2>
+    <p>
+      Wij draaien rumo bij een handvol andere bedrijven. Allemaal binnen de EU of onder een geldig overdrachtsmechanisme. Allemaal met een verwerkersovereenkomst:
+    </p>
+    <ul>
+      <li><strong>Scaleway</strong> (FR) — host de servers en de databank waar je gegevens op staan</li>
+      <li><strong>Brevo</strong> (FR) — verstuurt transactionele e-mails zoals "iemand heeft je uitgenodigd", wachtwoord-reset, login-meldingen</li>
+      <li><strong>Mistral</strong> (FR, via Scaleway) — als jouw hotel Rudy (de AI-assistent) gebruikt, dan kan jouw vraag aan Rudy en de context van je rol naar Mistral. Wordt niet gebruikt om de modellen te trainen.</li>
+    </ul>
+    <p>
+      <strong>Niet</strong> bij Google, niet bij Microsoft, niet bij OpenAI, niet bij Meta. Geen Sentry-koppeling op dit moment, geen externe analytics-leverancier.
+    </p>
+
+    <h2>5. Hoe lang we het bewaren</h2>
+    <ul>
+      <li><strong>Je account</strong> — zolang je een actieve gebruiker bent. Wordt je toegang ingetrokken door je hotel, dan zetten we het account op inactief; volledige verwijdering na 30 dagen tenzij wettelijke bewaarplicht (bv. financiële audit-trails).</li>
+      <li><strong>Login-logs</strong> — 90 dagen, daarna automatisch gewist. Lang genoeg om recente afwijkingen op te sporen, kort genoeg om geen jarenlange surveillance op te bouwen.</li>
+      <li><strong>Audit-logs op financiële handelingen</strong> — 7 jaar (BTW-wetboek). Niet anders dan voor papieren kasboeken.</li>
+      <li><strong>Staff-berichten</strong> — volgens de retentie-policy die het hotel zelf instelt (typisch 30-365 dagen, instelbaar per hotel).</li>
+      <li><strong>Support-correspondentie</strong> — twee jaar, daarna gewist tenzij er nog een lopende kwestie is.</li>
+    </ul>
+
+    <h2>6. Wat jij kan doen</h2>
+    <p>Dezelfde zes rechten als elke EU-burger:</p>
+    <ul>
+      <li><strong>Inzage</strong> — een kopie vragen van wat we van je hebben</li>
+      <li><strong>Correctie</strong> — fouten laten rechtzetten (typo in je naam, verkeerd e-mailadres)</li>
+      <li><strong>Verwijdering</strong> — vragen om alles te wissen, behalve wat we wettelijk moeten bijhouden</li>
+      <li><strong>Beperking</strong> — vragen om verwerking tijdelijk stop te zetten</li>
+      <li><strong>Overdraagbaarheid</strong> — een kopie krijgen in een herbruikbaar formaat (JSON/CSV)</li>
+      <li><strong>Bezwaar</strong> — verzet tegen verwerking op basis van gerechtvaardigd belang</li>
+    </ul>
+    <p>
+      Voor accountzaken in rumo zelf: vraag eerst bij je hotelbeheerder. Die kan in Settings een hoop dingen voor jou aanpassen of jouw account verwijderen.
+    </p>
+    <p>
+      Voor alles wat rumo zelf bewaart (login-logs, support-mails, etc.): stuur een mailtje naar <a href="mailto:privacy@rumo.eu">privacy@rumo.eu</a>. We antwoorden binnen 30 dagen, meestal sneller.
+    </p>
+    <p>
+      Niet tevreden? Klacht kan altijd bij de <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank" rel="noopener noreferrer">Gegevensbeschermingsautoriteit</a> in Brussel.
+    </p>
+
+    <h2>7. Contact</h2>
+    <p>
+      <strong>Rumo BV</strong><br>
+      Gent, België<br>
+      <a href="mailto:privacy@rumo.eu">privacy@rumo.eu</a> · <a href="mailto:hello@rumo.eu">hello@rumo.eu</a>
+    </p>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Hotelsoftware voor onafhankelijke hoteliers. Zonder gedoe.</p>
+    </div>
+    <div>
+      <div class="footer-label">Product</div>
+      <ul class="footer-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="integraties.html">Integraties</a></li>
+        <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Stuur ons een mailtje</a></li>
+        <li><a href="over-ons.html">Over ons</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Integraties</div>
+      <ul class="footer-links">
+        <li><a href="integraties.html">Booking.com</a></li>
+        <li><a href="integraties.html">Airbnb</a></li>
+        <li><a href="integraties.html">Exact Online</a></li>
+        <li><a href="integraties.html">Peppol</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Gent, BE</span>
+    <span><a href="privacy.html">Privacy</a> · <a href="cookies.html">Cookies</a></span>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

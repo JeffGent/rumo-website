@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Drafts / experiments (kept locally, not for production)
+index-a.html
+index-klei.html
+moodboard.html
+opties.html
+referenties.html
+
+# Unreferenced media (kept locally, not tracked)
+img/Automatisering bedrijgsgegevens.mov
+img/Hero afbeelding.png
+img/automatisering.mp4
+img/hero film.mov
+img/hero-pms.mp4
+img/hero-video.mp4
+img/rudy.png

@@ -558,7 +558,7 @@ Stem gebaseerd op **dievandeboekhouding.be** (Vlaamse challenger-toon), aangepas
 ### Vijand-frames (waar rumo *tegen* is)
 
 - Logge enterprise-PMS (niet bij naam)
-- OTA-commissies ("de 15-25% die je anders betaalt")
+- OTA-commissies ("de 12-21% die je anders betaalt")
 - "Consultants met dashboards"
 - Opleidingen van 3 dagen, handleidingen van 200 pagina's
 - Chatbots die halverwege vastlopen

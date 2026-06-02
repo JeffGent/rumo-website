@@ -425,16 +425,41 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 .pijlers-intro h2 { margin-bottom:1rem; }
 .pijlers-intro h2 em { color:var(--terra-dark); }
 
-.pijler {
-  display:grid;
-  grid-template-columns:1fr 1.2fr;
-  gap:5rem;
-  align-items:center;
-  padding:4rem 0;
-  border-top:1px solid var(--line);
+/* Showcase — tabbed productdemo (Mews-stijl), uitleg ernaast */
+.showcase { padding-top:1rem; }
+.showcase-tabs { display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.75rem; }
+.sc-tab {
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
+  padding:0.6rem 1.2rem; border-radius:100px;
+  border:1px solid var(--line); background:transparent; color:var(--ink-soft);
+  cursor:pointer; transition:background 0.2s, color 0.2s, border-color 0.2s;
 }
-.pijler:last-of-type { border-bottom:1px solid var(--line); }
-.pijler:nth-of-type(even) .pijler-visual { order:-1; }
+.sc-tab:hover { border-color:var(--terra); color:var(--ink); }
+.sc-tab.active { background:var(--ink); border-color:var(--ink); color:var(--paper); }
+.showcase-body { display:grid; grid-template-columns:0.9fr 1.1fr; gap:3.5rem; align-items:center; }
+.sc-pane[hidden] { display:none; }
+.sc-pane h3 { font-size:2rem; line-height:1.15; margin-bottom:1rem; }
+.sc-pane h3 em { color:var(--terra-dark); }
+.sc-pane p { font-size:1.08rem; color:var(--ink-soft); max-width:46ch; }
+.sc-pane .pijler-num { margin-bottom:1rem; }
+.sc-stage {
+  position:relative; border-radius:20px; overflow:hidden;
+  background:var(--burg) center/cover no-repeat;
+  background-image:url('../img/persona-georgie.jpg');
+  padding:2.75rem; min-height:360px;
+  display:flex; align-items:center; justify-content:center;
+}
+.sc-stage::after {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(135deg, rgba(27,25,23,0.22), rgba(27,25,23,0.03));
+}
+.sc-media {
+  position:relative; z-index:1; display:none; width:100%; height:auto;
+  border-radius:12px; border:1px solid rgba(255,255,255,0.35);
+  box-shadow:0 30px 70px -22px rgba(27,25,23,0.6);
+}
+.sc-media.active { display:block; }
 
 .pijler-num {
   display:inline-flex; align-items:center; gap:0.5em;
@@ -449,108 +474,6 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
   content:'';
   width:20px; height:1px;
   background:var(--terra);
-}
-.pijler-copy h3 {
-  margin-bottom:1.2rem;
-}
-.pijler-copy h3 em { color:var(--terra-dark); }
-.pijler-copy > p {
-  font-size:1.05rem;
-  margin-bottom:1rem;
-  max-width:50ch;
-  color:var(--ink-soft);
-}
-.pijler-quote {
-  margin-top:2rem;
-  padding:1.25rem 1.5rem;
-  background:var(--paper-panel);
-  border-radius:6px;
-  font-family:'Fraunces', serif;
-  font-style:italic;
-  font-weight:300;
-  font-size:1.1rem;
-  line-height:1.4;
-  max-width:44ch;
-  color:var(--ink);
-  border-left:2px solid var(--terra);
-}
-
-/* Pijler-visual, cream panel met lijn-illustratie (energie.be stijl) */
-.pijler-visual {
-  position:relative;
-  aspect-ratio:5/4;
-  max-width:560px;
-  margin:0 auto;
-  background:var(--paper-panel);
-  border-radius:20px;
-  padding:2rem;
-  overflow:hidden;
-  border:1px solid var(--line);
-  box-shadow:0 20px 40px -15px rgba(27,25,23,0.1);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.pijler-visual::before {
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg, rgba(255,255,255,0.5), transparent 60%);
-  pointer-events:none;
-  border-radius:inherit;
-}
-.pijler-visual > svg.illus {
-  width:86%;
-  height:auto;
-  max-height:86%;
-  color:var(--ink);
-  position:relative;
-  z-index:2;
-  stroke-width:1.5;
-}
-.pijler-chip {
-  position:absolute;
-  bottom:1rem; left:1rem;
-  z-index:3;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:100px;
-  padding:0.38rem 0.85rem;
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.68rem;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-  color:var(--ink-soft);
-  display:inline-flex; align-items:center; gap:0.45em;
-}
-.pijler-chip::before {
-  content:'';
-  width:6px; height:6px; border-radius:50%;
-  background:var(--terra);
-}
-.pijler-chip.live::before { background:var(--forest); animation:pulse 2s infinite; }
-.pijler-note-wrap {
-  position:absolute;
-  right:1.75rem; top:1.5rem;
-  z-index:4;
-  text-align:right;
-}
-.pijler-note {
-  font-family:'Caveat', cursive;
-  font-weight:500;
-  color:var(--terra-dark);
-  font-size:1.15rem;
-  line-height:1.1;
-  transform:rotate(4deg);
-  display:inline-block;
-}
-.pijler-note-arrow {
-  display:block;
-  width:46px;
-  color:var(--terra-dark);
-  transform:rotate(-20deg);
-  margin-left:auto;
-  margin-top:-2px;
 }
 
 /* PMS visual · kalender */
@@ -770,147 +693,48 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 
 /* ─── Hmm oké ─── */
 .wie {
-  background:var(--paper-deep);
-  padding:6rem 0;
+  background:var(--ink);
+  color:var(--paper);
+  padding:7rem 0;
+  position:relative;
+  overflow:hidden;
+}
+.wie::before {
+  content:'';
+  position:absolute;
+  right:-8%; top:-25%;
+  width:42%; height:120%;
+  background:radial-gradient(circle, var(--terra-dark) 0%, transparent 60%);
+  opacity:0.5; filter:blur(15px);
+  pointer-events:none;
+}
+.wie::after {
+  content:'';
+  position:absolute;
+  left:-6%; bottom:-25%;
+  width:34%; height:80%;
+  background:radial-gradient(circle, var(--butter) 0%, transparent 60%);
+  opacity:0.28; filter:blur(16px);
+  pointer-events:none;
 }
 .wie-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:5rem;
-  align-items:center;
+  position:relative; z-index:2;
+  max-width:760px;
 }
-.wie h2 em { color:var(--terra-dark); }
+.wie h2 { color:var(--paper); }
+.wie h2 em { color:var(--terra); }
+.wie .kicker { color:rgba(245,238,226,0.6); }
+.wie .kicker::before { background:var(--terra); }
 .wie p {
   font-size:1.1rem;
   line-height:1.6;
-  color:var(--ink-soft);
+  color:rgba(245,238,226,0.72);
   margin-bottom:1.25rem;
   max-width:54ch;
 }
-.wie p strong { color:var(--ink); font-weight:600; }
-.wie p em { color:var(--terra-dark); font-style:italic; font-weight:400; }
-.wie .wie-quote {
-  font-family:'Fraunces', serif;
-  font-style:italic;
-  font-weight:300;
-  font-size:1.2rem;
-  line-height:1.45;
-  color:var(--ink);
-  padding-top:1.5rem;
-  border-top:1px solid var(--line);
-  margin-top:2rem;
-  max-width:46ch;
-}
-.wie-illus {
-  position:relative;
-  aspect-ratio:4/5;
-  max-width:460px;
-  margin-left:auto;
-  background:var(--paper-panel);
-  border-radius:20px;
-  padding:3rem 2rem;
-  overflow:hidden;
-}
-.wie-illus::before {
-  content:'';
-  position:absolute;
-  right:-20%; bottom:-20%;
-  width:70%; height:70%;
-  border-radius:50%;
-  background:radial-gradient(circle, var(--butter), transparent 65%);
-  opacity:0.7;
-  filter:blur(12px);
-}
-.wie-illus svg {
-  position:relative; z-index:2;
-  width:100%; height:auto;
-  color:var(--ink);
-}
-.wie-illus-tag {
-  position:absolute;
-  bottom:1.25rem; left:1.5rem;
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.66rem;
-  letter-spacing:0.1em;
-  color:var(--muted);
-  text-transform:uppercase;
-  z-index:2;
-}
-
-/* ─── MAKKELIJK ─── */
-.makkelijk {
-  background:var(--paper);
-  padding:7rem 0;
-}
-.makkelijk-grid {
-  display:grid;
-  grid-template-columns:1fr 1.2fr;
-  gap:5rem;
-  align-items:center;
-}
-.makkelijk h2 em { color:var(--terra-dark); }
-.stappen { list-style:none; margin-top:2rem; }
-.stappen li {
-  display:flex; gap:1rem;
-  align-items:baseline;
-  padding:0.7rem 0;
-  border-top:1px solid var(--line);
-  font-size:0.98rem;
-  color:var(--ink-soft);
-  line-height:1.5;
-}
-.stappen li:last-child { border-bottom:1px solid var(--line); }
-.stappen li .n {
-  flex-shrink:0;
-  width:24px; height:24px;
-  border-radius:50%;
-  background:var(--forest-soft);
-  color:var(--forest);
-  font-family:'JetBrains Mono', monospace;
-  font-weight:500;
-  font-size:0.72rem;
-  display:inline-flex; align-items:center; justify-content:center;
-  align-self:center;
-}
-.stappen li:nth-child(2) .n { background:#FCEDBD; color:#8a6b1a; }
-.stappen li:nth-child(3) .n { background:#FBE1D2; color:var(--terra-dark); }
-.stappen li .t strong {
-  color:var(--ink);
-  font-weight:600;
-}
-
-.makkelijk-illus {
-  position:relative;
-  aspect-ratio:4/3;
-  max-width:560px;
-  margin:0 auto;
-  background:var(--paper-panel);
-  border-radius:20px;
-  padding:2rem;
-  overflow:hidden;
-  border:1px solid var(--line);
-  box-shadow:0 20px 40px -15px rgba(27,25,23,0.1);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.makkelijk-illus::before {
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg, rgba(255,255,255,0.5), transparent 60%);
-  pointer-events:none;
-  border-radius:inherit;
-}
-.makkelijk-illus .illus {
-  width:86%;
-  height:auto;
-  max-height:86%;
-  color:var(--ink);
-  position:relative;
-  z-index:2;
-  stroke-width:1.5;
-}
+.wie p strong { color:var(--paper); font-weight:600; }
+.wie p em { color:var(--terra); font-style:italic; font-weight:400; }
+.wie .btn-paper { margin-top:2rem; }
 
 /* ─── PERSONAS ─── */
 .personas { background:var(--paper-deep); padding:7rem 0; }
@@ -1157,7 +981,7 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 .final p { color:rgba(245,238,226,0.82); font-size:1.15rem; max-width:540px; margin:0 auto 2.5rem; line-height:1.55; }
 .final .btn-paper { padding:1rem 2rem; font-size:1rem; }
 .final-fine {
-  margin-top:2.5rem;
+  margin-top:1.5rem;
   font-family:'JetBrains Mono', monospace;
   font-size:0.72rem;
   letter-spacing:0.1em;
@@ -1218,141 +1042,6 @@ footer {
   text-transform:uppercase;
 }
 
-/* ─── CONTACT ─── */
-.contact-section {
-  background:var(--paper-deep);
-  padding:7rem 0;
-}
-.contact-grid {
-  display:grid;
-  grid-template-columns:1fr 1.1fr;
-  gap:5rem;
-  align-items:start;
-}
-.contact-copy h2 em { color:var(--terra-dark); }
-.contact-copy > p {
-  font-size:1.1rem;
-  line-height:1.6;
-  color:var(--ink-soft);
-  margin-bottom:1.5rem;
-  max-width:48ch;
-}
-.contact-channels {
-  list-style:none;
-  margin-top:2rem;
-  border-top:1px solid var(--line);
-  padding-top:1.5rem;
-}
-.contact-channels li {
-  display:flex; align-items:center; gap:0.8rem;
-  padding:0.6rem 0;
-  font-size:0.95rem;
-  color:var(--ink-soft);
-}
-.contact-channels li a {
-  color:var(--terra-dark);
-  text-decoration:none;
-  border-bottom:1px dotted var(--terra-dark);
-}
-.contact-channels .ch-ic {
-  width:28px; height:28px; border-radius:7px;
-  display:flex; align-items:center; justify-content:center;
-  flex-shrink:0;
-  background:var(--paper-panel);
-  color:var(--terra-dark);
-}
-.contact-form {
-  background:var(--paper-panel);
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:2.5rem;
-  box-shadow:0 16px 40px rgba(27,25,23,0.05);
-}
-.contact-form-title {
-  font-family:'Fraunces', serif;
-  font-weight:400;
-  font-size:1.4rem;
-  letter-spacing:-0.02em;
-  margin-bottom:0.3rem;
-}
-.contact-form-sub {
-  font-size:0.88rem;
-  color:var(--muted);
-  margin-bottom:1.75rem;
-}
-.form-field {
-  margin-bottom:1.25rem;
-}
-.form-field label {
-  display:block;
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.72rem;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:0.4rem;
-}
-.form-field input,
-.form-field textarea {
-  width:100%;
-  padding:0.75rem 1rem;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:'Inter', sans-serif;
-  font-size:0.95rem;
-  line-height:1.5;
-  transition:border-color 0.2s, box-shadow 0.2s;
-  outline:none;
-  resize:vertical;
-}
-.form-field input:focus,
-.form-field textarea:focus {
-  border-color:var(--terra-dark);
-  box-shadow:0 0 0 3px rgba(185,107,74,0.12);
-}
-.form-field input::placeholder,
-.form-field textarea::placeholder {
-  color:var(--muted);
-  opacity:0.7;
-}
-.form-row {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1rem;
-}
-.form-submit {
-  margin-top:0.5rem;
-}
-.form-submit .btn-ink {
-  width:100%;
-  justify-content:center;
-  padding:0.85rem 1.6rem;
-}
-.form-fine {
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.68rem;
-  color:var(--muted);
-  text-align:center;
-  margin-top:0.75rem;
-  letter-spacing:0.03em;
-}
-.form-sent {
-  text-align:center;
-  padding:2rem 0;
-}
-.form-sent h3 {
-  font-family:'Fraunces', serif;
-  font-weight:400;
-  font-size:1.6rem;
-  margin-bottom:0.5rem;
-}
-.form-sent p {
-  color:var(--ink-soft);
-  font-size:1rem;
-}
-
 /* ─── Fade ─── */
 .fade-up { opacity:0; transform:translateY(20px); transition:opacity 0.8s, transform 0.8s; }
 .fade-up.visible { opacity:1; transform:translateY(0); }
@@ -1382,64 +1071,28 @@ footer {
   .nav-cta { margin-top:0.75rem; text-align:center; display:block !important; }
 
   .hero { min-height:90vh; }
-  .hero-video { object-position:center 40%; }
   .hero-inner { grid-template-columns:1fr; gap:1.5rem; padding:0 1.5rem 3rem; }
   .hero-meta-right { text-align:left; }
   .hero-scroll { display:none; }
 
   .intro-grid { grid-template-columns:1fr; gap:1.5rem; }
 
-  .pijler { grid-template-columns:1fr; gap:2.5rem; padding:3rem 0; }
-  .pijler:nth-of-type(even) .pijler-visual { order:unset; }
-  .pijler-visual { max-width:460px; }
+  .showcase-body { grid-template-columns:1fr; gap:2rem; }
+  .sc-stage { order:-1; min-height:0; padding:1.5rem; }
 
-  .makkelijk-grid { grid-template-columns:1fr; gap:3rem; }
   .personas-head { margin-bottom:3rem; }
   .persona-grid { grid-template-columns:1fr; }
   .trust-grid { grid-template-columns:1fr; gap:1.5rem; }
-  .wie-grid { grid-template-columns:1fr; gap:3rem; }
-  .wie-illus { max-width:360px; }
   .footer-grid { grid-template-columns:1fr 1fr; gap:2.5rem; }
   .wrap, .logos-inner { padding:0 1.5rem; }
   section { padding:5rem 0; }
-  .logos-list { gap:1.5rem; }
-  .contact-grid { grid-template-columns:1fr; gap:3rem; }
-  .contact-form { padding:2rem 1.75rem; }
 }
 @media (max-width:560px) {
-  .hero { min-height:100svh; }
-  .hero-video { object-position:center 35%; }
-  .hero-overlay {
-    background:
-      linear-gradient(180deg,
-        rgba(27,25,23,0.55) 0%,
-        rgba(27,25,23,0.1) 25%,
-        rgba(27,25,23,0.2) 50%,
-        rgba(27,25,23,0.82) 100%);
-  }
-  .hero h1 { font-size:clamp(2.4rem, 10vw, 3.2rem); }
-  .hero-sub { font-size:1.05rem; max-width:38ch; }
-  .hero-inner { padding:0 1.25rem 2.5rem; }
   .hero-ctas { flex-direction:column; align-items:stretch; }
   .hero-ctas .btn-ink { justify-content:center; }
-  .hero-ctas .btn-ghost-white { justify-content:center; }
   .footer-grid { grid-template-columns:1fr; }
   .footer-bottom { flex-direction:column; gap:0.5rem; text-align:left; }
   .hero-kicker { font-size:0.65rem; }
-  .logos-list { gap:1rem; }
-  .logos-list span { font-size:1rem; }
-  .persona-body { padding:1.25rem; }
-  .form-row { grid-template-columns:1fr; }
-  .contact-form { padding:1.5rem; }
-}
-/* Landscape mobile, hero mag korter, video wordt breder */
-@media (max-height:500px) and (orientation:landscape) {
-  .hero { min-height:100svh; }
-  .hero-video { object-position:center center; }
-  .hero h1 { font-size:clamp(1.8rem, 5vw, 2.6rem); }
-  .hero-sub { font-size:0.95rem; margin-bottom:1rem; }
-  .hero-inner { padding:0 2rem 1.5rem; }
-  .hero-kicker { margin-bottom:0.75rem; }
 }
 </style>
 </head>
@@ -1457,7 +1110,7 @@ footer {
     <li><a href="pricing.html">So, what does it cost?</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="about.html">About us</a></li>
-    <li><a href="#contact" class="nav-cta">Let's have a chat →</a></li>
+    <li><a href="#demo" class="nav-cta">Try for free →</a></li>
     <li class="nav-lang">
       <a href="../index.html">NL</a>
       <a href="index.html" class="active">EN</a>
@@ -1478,25 +1131,25 @@ footer {
     <div class="hero-copy">
       <h1>Running your hotel<br><em>without the hassle.</em></h1>
       <p class="hero-sub">
-        rumo is built for hoteliers who stand in their own hotel every day. PMS, channel manager, invoicing and handbook in one. Plus a smart colleague. Nothing more.
+        rumo is built for hoteliers who still stand behind their own desk every day. PMS, channel manager, invoicing and handbook in one. Plus a smart colleague. Nothing more.
       </p>
       <div class="hero-ctas">
-        <a href="#demo" class="btn-ink">Try 14 days free <span>→</span></a>
-
+        <a href="#demo" class="btn-ink">Try 14 days for free <span>→</span></a>
+        <a href="#pijlers" class="btn-ghost-white btn-ghost">How it works <span class="arr">→</span></a>
       </div>
     </div>
   </div>
   <div class="hero-scroll">scroll</div>
 </section>
 
-<!-- ══════════════════ INTRO · So, what exactly is rumo? ══════════════════ -->
+<!-- ══════════════════ INTRO · So what is rumo, actually? ══════════════════ -->
 <section class="intro">
   <div class="wrap">
     <div class="intro-grid fade-up">
       <div class="intro-label">00 / Intro</div>
       <div class="intro-text">
-        <h2>So, what exactly is <em>rumo?</em></h2>
-        <p>Well, we're hotel software. But not the kind you're thinking of. No enterprise platform at two thousand euros a month where you still need three weeks of training. Just <em>one</em> system that does what it's supposed to do. You open it in the morning and you know what needs to happen today.</p>
+        <h2>So what is <em>rumo</em>, actually?</h2>
+        <p>Well, we're hotel software. But not the kind you're thinking of. Not an enterprise platform that costs two thousand euros a month and then needs three weeks of training on top. Just <em>one</em> system that does what it's supposed to do. You open it in the morning and you know what needs to happen today.</p>
       </div>
     </div>
   </div>
@@ -1509,282 +1162,68 @@ footer {
     <div class="logos-list">
       <span>Booking.com</span>
       <span>Airbnb</span>
-
+      <span>Stripe</span>
       <span>Exact Online</span>
       <span>Peppol</span>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════ PIJLERS ══════════════════ -->
+<!-- ══════════════════ PILLARS ══════════════════ -->
 <section class="pijlers" id="pijlers">
   <div class="wrap">
     <div class="pijlers-intro fade-up">
-      <span class="kicker">What does rumo do</span>
-      <h2>Three things that make your day <em>better.</em> Nothing more.</h2>
+      <span class="kicker">Who rumo works for</span>
+      <h2>For your team.<br>And for <em>you</em>.</h2>
+      <p class="lead" style="margin-top:1.5rem;">Running a hotel is a lot of things at once. There's a guest waiting at the desk. Someone in the breakfast room is asking about gluten-free. Housekeeping wants to know which rooms are leaving early. And tonight you still need to review those rates, check that report, hope the new hire is ready for tomorrow.</p>
+      <p class="lead" style="margin-top:1.5rem;">That's why rumo is three parts: <em>the PMS</em> that runs your day, <em>the handbook</em> your team can search themselves, and <em>Rudy</em> who keeps going when you step away.</p>
     </div>
 
-    <!-- Pijler 1 -->
-    <div class="pijler fade-up">
-      <div class="pijler-copy">
-        <div class="pijler-num">01 · The PMS</div>
-        <h3>Everything in <em>one</em> screen. No training needed.</h3>
-        <p>Reservations, check-in, check-out, channel manager, booking engine, Peppol invoicing, reports, guest portal. You open rumo in the morning and you instantly know what needs to happen today.</p>
-        <p>No three tabs open. No half-working plug-ins. Everything in its place, everything readable without training.</p>
+    <div class="showcase fade-up">
+      <div class="showcase-tabs" role="tablist" aria-label="What does rumo do">
+        <button class="sc-tab active" data-tab="pms" role="tab" aria-selected="true">The PMS</button>
+        <button class="sc-tab" data-tab="handboek" role="tab" aria-selected="false">The handbook</button>
+        <button class="sc-tab" data-tab="rudy" role="tab" aria-selected="false">Rudy</button>
       </div>
-      <div class="pijler-visual">
-        <svg class="illus" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <!-- Agenda open -->
-          <path d="M60,70 L60,270 L200,275 L200,75 Z"/>
-          <path d="M200,75 L200,275 L340,270 L340,70 Z"/>
-          <line x1="200" y1="75" x2="200" y2="275"/>
-          <!-- Spiral binding dots -->
-          <circle cx="200" cy="100" r="3"/>
-          <circle cx="200" cy="130" r="3"/>
-          <circle cx="200" cy="160" r="3"/>
-          <circle cx="200" cy="190" r="3"/>
-          <circle cx="200" cy="220" r="3"/>
-          <circle cx="200" cy="250" r="3"/>
-          <!-- Left page lines (text) -->
-          <line x1="75" y1="105" x2="130" y2="105"/>
-          <line x1="75" y1="120" x2="180" y2="120"/>
-          <line x1="75" y1="150" x2="160" y2="150"/>
-          <line x1="75" y1="165" x2="180" y2="165"/>
-          <line x1="75" y1="195" x2="145" y2="195"/>
-          <line x1="75" y1="210" x2="180" y2="210"/>
-          <line x1="75" y1="240" x2="170" y2="240"/>
-          <line x1="75" y1="255" x2="150" y2="255"/>
-          <!-- Right page, mini calendar grid -->
-          <rect x="220" y="100" width="24" height="20" rx="2"/>
-          <rect x="248" y="100" width="24" height="20" rx="2" fill="#D68F6F" stroke="none"/>
-          <rect x="276" y="100" width="24" height="20" rx="2"/>
-          <rect x="304" y="100" width="24" height="20" rx="2" fill="#5F7A55" stroke="none"/>
-          <rect x="220" y="124" width="24" height="20" rx="2" fill="#F4D98F" stroke="none"/>
-          <rect x="248" y="124" width="24" height="20" rx="2"/>
-          <rect x="276" y="124" width="24" height="20" rx="2" fill="#D68F6F" stroke="none"/>
-          <rect x="304" y="124" width="24" height="20" rx="2" fill="#D68F6F" stroke="none"/>
-          <rect x="220" y="148" width="24" height="20" rx="2"/>
-          <rect x="248" y="148" width="24" height="20" rx="2" fill="#5F7A55" stroke="none"/>
-          <rect x="276" y="148" width="24" height="20" rx="2" fill="#5F7A55" stroke="none"/>
-          <rect x="304" y="148" width="24" height="20" rx="2"/>
-          <rect x="220" y="172" width="24" height="20" rx="2" fill="#D68F6F" stroke="none"/>
-          <rect x="248" y="172" width="24" height="20" rx="2"/>
-          <rect x="276" y="172" width="24" height="20" rx="2" fill="#F4D98F" stroke="none"/>
-          <rect x="304" y="172" width="24" height="20" rx="2"/>
-          <rect x="220" y="196" width="24" height="20" rx="2"/>
-          <rect x="248" y="196" width="24" height="20" rx="2" fill="#D68F6F" stroke="none"/>
-          <rect x="276" y="196" width="24" height="20" rx="2"/>
-          <rect x="304" y="196" width="24" height="20" rx="2" fill="#5F7A55" stroke="none"/>
-          <!-- Pencil accent -->
-          <line x1="340" y1="295" x2="380" y2="258" stroke-width="2.5"/>
-          <line x1="380" y1="258" x2="385" y2="253" stroke="#D68F6F" stroke-width="2.5"/>
-        </svg>
-        <div class="pijler-chip live">Week 16 · 47% occupied</div>
-      </div>
-    </div>
-
-    <!-- Pijler 2 -->
-    <div class="pijler fade-up">
-      <div class="pijler-copy">
-        <div class="pijler-num">02 · The handbook</div>
-        <h3>All your procedures. Nobody calls you <em>on Sunday</em> anymore.</h3>
-        <p>How does check-in work? What do you do with a complaint? Where's the spare key? Your team looks it up in the handbook. New employees work independently after two days.</p>
-        <p>No word document on a network drive. No verbal handover that evaporates halfway. Just: question, answer, done.</p>
-        <div class="pijler-quote">My receptionist doesn't call me on Sunday anymore. She checks the handbook.</div>
-      </div>
-      <div class="pijler-visual">
-        <svg class="illus" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <!-- Book pages -->
-          <path d="M70,90 L70,260 L200,270 L200,95 Z"/>
-          <path d="M200,95 L200,270 L330,260 L330,90 Z"/>
-          <line x1="200" y1="95" x2="200" y2="270"/>
-          <!-- Ribbon bookmark -->
-          <path d="M232,90 L232,130 L242,120 L252,130 L252,90" fill="#D68F6F" stroke="#D68F6F" stroke-linejoin="miter"/>
-          <!-- Left page, lines of text -->
-          <line x1="85" y1="120" x2="180" y2="120"/>
-          <line x1="85" y1="135" x2="160" y2="135"/>
-          <line x1="85" y1="150" x2="185" y2="150"/>
-          <line x1="85" y1="175" x2="175" y2="175"/>
-          <line x1="85" y1="190" x2="160" y2="190"/>
-          <line x1="85" y1="205" x2="180" y2="205"/>
-          <line x1="85" y1="230" x2="170" y2="230"/>
-          <line x1="85" y1="245" x2="155" y2="245"/>
-          <!-- Right page, headings + lines -->
-          <rect x="215" y="150" width="90" height="12" rx="2" fill="currentColor" stroke="none" opacity="0.92"/>
-          <line x1="215" y1="175" x2="315" y2="175"/>
-          <line x1="215" y1="190" x2="300" y2="190"/>
-          <line x1="215" y1="205" x2="310" y2="205"/>
-          <rect x="215" y="228" width="60" height="10" rx="2" fill="currentColor" stroke="none" opacity="0.92"/>
-          <line x1="215" y1="250" x2="310" y2="250"/>
-        </svg>
-        <div class="pijler-note-wrap">
-          <span class="pijler-note">answer<br>within 20 sec</span>
-          <svg class="pijler-note-arrow" viewBox="0 0 50 30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-            <path d="M5,5 Q25,25 45,20"/>
-            <path d="M38,13 L45,20 L40,27"/>
-          </svg>
+      <div class="showcase-body">
+        <div class="showcase-copy">
+          <div class="sc-pane" data-pane="pms">
+            <div class="pijler-num">The PMS</div>
+            <h3>For receptionists. Not for <em>IT people.</em></h3>
+            <p>You open rumo in the morning. Who's arriving, who's leaving, who hasn't paid yet, which room hasn't been cleaned. One screen. No three tabs, no "hang on, I need to open that other site first".</p>
+          </div>
+          <div class="sc-pane" data-pane="handboek" hidden>
+            <div class="pijler-num">The handbook</div>
+            <h3>For your team. Without them calling <em>you</em>.</h3>
+            <p>How does the espresso machine work? Where's the vacuum? What about gluten-free? How do I silence that alarm after a false trigger? Your team looks it up. Not in a fifty-person group chat. Not with a phone call on Sunday night.</p>
+          </div>
+          <div class="sc-pane" data-pane="rudy" hidden>
+            <div class="pijler-num">Rudy</div>
+            <h3>Works at night. Works Sundays. Works <em>for nothing.</em></h3>
+            <p>An AI assistant that knows both the PMS and the handbook. Ask him to look up a reservation, summarise a procedure, reply to a guest in German, run a report. And he never asks for a raise.</p>
+          </div>
         </div>
-        <div class="pijler-chip">36 articles · searchable</div>
-      </div>
-    </div>
-
-    <!-- Pijler 3 -->
-    <div class="pijler fade-up">
-      <div class="pijler-copy">
-        <div class="pijler-num">03 · Rudy</div>
-        <h3>Your smartest employee. <em>Always</em> available.</h3>
-        <p>Rudy knows the handbook, but also the PMS itself. He helps your receptionists explain rumo, or just does the work himself. Look up a reservation, assign a room, answer a question. Without you having to step in.</p>
-        <p>No chatbot scripts that get stuck halfway. An assistant who understands what you mean, even at eleven at night.</p>
-        <div class="pijler-quote">"Someone's calling about a group reservation of 8 rooms in July. Is that possible?" Rudy checks it, calculates it, and creates the reservation.</div>
-      </div>
-      <div class="pijler-visual">
-        <svg class="illus" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <!-- User bubble (top-left) -->
-          <path d="M40,80 L40,140 Q40,155 55,155 L130,155 L135,172 L150,155 L170,155 Q185,155 185,140 L185,80 Q185,65 170,65 L55,65 Q40,65 40,80 Z"/>
-          <line x1="62" y1="95" x2="160" y2="95"/>
-          <line x1="62" y1="115" x2="145" y2="115"/>
-          <line x1="62" y1="135" x2="165" y2="135"/>
-          <!-- Rudy avatar (right) -->
-          <circle cx="320" cy="90" r="26" fill="#D68F6F" stroke="none"/>
-          <text x="320" y="100" font-family="Fraunces, serif" font-size="24" font-weight="400" fill="#F5EEE2" stroke="none" text-anchor="middle">R</text>
-          <!-- Pulse ring around avatar -->
-          <circle cx="320" cy="90" r="32" stroke-dasharray="2 3" opacity="0.4"/>
-          <!-- Rudy bubble (bottom-right, dark) -->
-          <path d="M210,200 L210,275 Q210,290 225,290 L325,290 L340,305 L340,290 L345,290 Q360,290 360,275 L360,200 Q360,185 345,185 L225,185 Q210,185 210,200 Z" fill="#1B1917" stroke="#1B1917" stroke-linejoin="round"/>
-          <line x1="232" y1="215" x2="325" y2="215" stroke="#F4D98F" stroke-width="2.5"/>
-          <line x1="232" y1="240" x2="340" y2="240" stroke="#F5EEE2" opacity="0.7"/>
-          <line x1="232" y1="258" x2="320" y2="258" stroke="#F5EEE2" opacity="0.7"/>
-          <!-- Action chip inside bubble -->
-          <rect x="232" y="270" width="85" height="14" rx="7" stroke="#F5EEE2" opacity="0.5"/>
-          <!-- Typing dots in user bubble -->
-          <circle cx="248" cy="175" r="3" fill="#D68F6F" stroke="none"/>
-          <circle cx="260" cy="175" r="3" fill="#D68F6F" stroke="none" opacity="0.7"/>
-          <circle cx="272" cy="175" r="3" fill="#D68F6F" stroke="none" opacity="0.4"/>
-        </svg>
-        <div class="pijler-chip live">Rudy · online</div>
+        <div class="sc-stage">
+          <!-- screenshots for now; short clips later: <video autoplay muted loop playsinline> -->
+          <img class="sc-media active" data-media="pms" src="../img/shot-agenda.png" alt="The rumo calendar: every reservation on one screen" loading="lazy">
+          <img class="sc-media" data-media="handboek" src="../img/shot-handboek.png" alt="The rumo handbook: searchable categories for your team" loading="lazy">
+          <img class="sc-media" data-media="rudy" src="../img/shot-rudy.png" alt="Rudy, the rumo AI assistant, in the chat" loading="lazy">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ HMM OKÉ ══════════════════ -->
+<!-- ══════════════════ HMM OKAY ══════════════════ -->
 <section class="wie" id="wie">
   <div class="wrap">
     <div class="wie-grid">
       <div class="fade-up">
         <span class="kicker">Who we are</span>
-        <h2>Okay, but who are the people behind <em>rumo?</em></h2>
-        <p>We're hoteliers ourselves. We run our own hotels in Belgium. We know what it feels like when your system makes your day harder instead of easier. A PMS that crashes during check-out, a channel manager that lets bookings come in twice, a manual that nobody reads.</p>
-        <p>In the end, it's about <strong>guests</strong>, not screens. So we built what we'd been looking for ourselves for years.</p>
-
-      </div>
-      <div class="wie-illus fade-up" style="transition-delay:0.1s">
-        <!-- Simple line illustration of a hotel/inn -->
-        <svg viewBox="0 0 320 400" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <!-- Ground line -->
-          <line x1="10" y1="360" x2="310" y2="360" />
-          <!-- Hotel facade -->
-          <path d="M60,360 L60,140 L160,80 L260,140 L260,360 Z" />
-          <!-- Roof line detail -->
-          <line x1="60" y1="150" x2="260" y2="150" />
-          <!-- Door -->
-          <path d="M140,360 L140,290 Q160,272 180,290 L180,360" />
-          <line x1="160" y1="290" x2="160" y2="360" />
-          <circle cx="172" cy="325" r="1.5" fill="currentColor"/>
-          <!-- Windows row 1 -->
-          <rect x="80" y="180" width="28" height="38" rx="2" />
-          <rect x="212" y="180" width="28" height="38" rx="2" />
-          <line x1="94" y1="180" x2="94" y2="218"/>
-          <line x1="226" y1="180" x2="226" y2="218"/>
-          <!-- Windows row 2 -->
-          <rect x="80" y="240" width="28" height="38" rx="2" />
-          <rect x="212" y="240" width="28" height="38" rx="2" />
-          <line x1="94" y1="240" x2="94" y2="278"/>
-          <line x1="226" y1="240" x2="226" y2="278"/>
-          <!-- Windows row 3 (ground) -->
-          <rect x="80" y="300" width="28" height="48" rx="2" />
-          <rect x="212" y="300" width="28" height="48" rx="2" />
-          <line x1="94" y1="300" x2="94" y2="348"/>
-          <line x1="226" y1="300" x2="226" y2="348"/>
-          <!-- Sign -->
-          <line x1="155" y1="175" x2="155" y2="195"/>
-          <line x1="165" y1="175" x2="165" y2="195"/>
-          <path d="M148,200 L172,200 L172,215 L148,215 Z"/>
-          <!-- Chimney -->
-          <path d="M215,108 L215,85 L230,85 L230,117"/>
-          <!-- Little cloud -->
-          <path d="M50,55 Q45,45 55,43 Q60,30 75,35 Q90,30 95,42 Q105,45 100,55 Z" />
-          <!-- Sun tiny -->
-          <circle cx="275" cy="48" r="10"/>
-          <line x1="275" y1="25" x2="275" y2="32"/>
-          <line x1="275" y1="64" x2="275" y2="71"/>
-          <line x1="252" y1="48" x2="259" y2="48"/>
-          <line x1="291" y1="48" x2="298" y2="48"/>
-          <!-- Coffee cup on doorstep -->
-          <path d="M125,360 L125,370 L135,370 L135,360" />
-          <path d="M135,363 Q140,363 140,366 Q140,369 135,369"/>
-          <!-- Tiny figure -->
-          <circle cx="40" cy="335" r="4"/>
-          <path d="M40,339 L40,350 M40,350 L35,360 M40,350 L45,360 M36,343 L40,347 M44,343 L40,347"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ MAKKELIJK ══════════════════ -->
-<section class="makkelijk">
-  <div class="wrap">
-    <div class="makkelijk-grid">
-      <div class="fade-up">
-        <span class="kicker">No training needed</span>
-        <h2>You get it.<br><em>It's that</em> simple.</h2>
-        <p class="lead" style="margin-top:1.25rem;">Most PMS systems require three days of training and a 200-page manual. rumo doesn't.</p>
-        <ol class="stappen stappen-compact">
-          <li><span class="n">1</span><span class="t"><strong>Open rumo.</strong> The dashboard shows what needs to happen today.</span></li>
-          <li><span class="n">2</span><span class="t"><strong>Something unclear?</strong> Ask Rudy. He explains it in your own words.</span></li>
-          <li><span class="n">3</span><span class="t"><strong>New employee?</strong> The handbook is ready. No shadowing needed.</span></li>
-        </ol>
-      </div>
-      <div class="makkelijk-illus fade-up" style="transition-delay:0.15s">
-        <svg class="illus" viewBox="0 0 400 340" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <!-- Desk line -->
-          <line x1="30" y1="275" x2="370" y2="275"/>
-          <!-- Laptop base -->
-          <path d="M90,275 L100,225 L290,225 L300,275 Z"/>
-          <line x1="165" y1="275" x2="225" y2="275" stroke-width="3"/>
-          <!-- Laptop screen -->
-          <rect x="105" y="115" width="180" height="110" rx="4"/>
-          <!-- Screen content -->
-          <line x1="115" y1="128" x2="155" y2="128"/>
-          <circle cx="270" cy="128" r="3" fill="#5F7A55" stroke="none"/>
-          <line x1="115" y1="148" x2="260" y2="148"/>
-          <rect x="115" y="158" width="50" height="8" rx="2" fill="#D68F6F" stroke="none"/>
-          <rect x="170" y="158" width="40" height="8" rx="2" fill="#F4D98F" stroke="none"/>
-          <rect x="215" y="158" width="60" height="8" rx="2" fill="#5F7A55" stroke="none"/>
-          <line x1="115" y1="178" x2="275" y2="178"/>
-          <rect x="115" y="188" width="35" height="8" rx="2"/>
-          <rect x="155" y="188" width="75" height="8" rx="2" fill="#D68F6F" stroke="none"/>
-          <rect x="235" y="188" width="40" height="8" rx="2"/>
-          <line x1="115" y1="208" x2="200" y2="208"/>
-          <!-- Person -->
-          <circle cx="200" cy="60" r="20"/>
-          <path d="M175,115 L175,90 Q175,78 200,78 Q225,78 225,90 L225,115"/>
-          <!-- Arms reaching toward laptop -->
-          <path d="M178,100 Q160,115 145,135"/>
-          <path d="M222,100 Q240,115 255,135"/>
-          <!-- Coffee cup -->
-          <path d="M330,250 L330,275 L355,275 L355,250 Z"/>
-          <path d="M355,255 Q365,255 365,262 Q365,270 355,270"/>
-          <!-- Steam from coffee -->
-          <path d="M337,240 Q337,235 341,235 Q341,230 345,230" opacity="0.5"/>
-          <path d="M346,240 Q346,235 350,235" opacity="0.5"/>
-          <!-- Small plant -->
-          <path d="M45,275 L45,255 Q55,245 60,255 Q55,240 48,245 Q45,235 42,245 Q35,240 40,255 Q45,245 45,255"/>
-          <rect x="38" y="275" width="20" height="5" rx="1"/>
-          <!-- Small notebook on desk -->
-          <rect x="310" y="268" width="35" height="7" rx="1" fill="#D68F6F" stroke="none"/>
-        </svg>
+        <h2>Hmm okay, but who's behind <em>rumo</em>?</h2>
+        <p>We're hoteliers ourselves. We run our own hotels in Belgium. We know how it feels when your system doesn't work the way it works in your head. A PMS where one simple action, the one you repeat day in day out, takes way too long. We know the challenge of running a team and still being only half sure that everyone knows how, when and what.</p>
+        <p>In the end it's not just about your <strong>guests</strong>' comfort, but also about <strong>your own and your team's</strong>. So we built what we'd been looking for for years.</p>
+        <a href="about.html" class="btn-paper">More about us <span>→</span></a>
       </div>
     </div>
   </div>
@@ -1794,8 +1233,8 @@ footer {
 <section class="personas" id="voor-wie">
   <div class="wrap">
     <div class="personas-head fade-up">
-      <span class="kicker">For whom</span>
-      <h2>Recognize <em>yourself?</em></h2>
+      <span class="kicker">Who it's for</span>
+      <h2>Sound like <em>you?</em></h2>
       <p class="lead" style="margin-top:1.25rem;">rumo is for independent hotels. No chains. No resorts in Dubai. Just hotels like yours.</p>
     </div>
     <div class="persona-grid">
@@ -1804,8 +1243,8 @@ footer {
         <div class="persona-body">
           <div class="persona-meta"><span>Hotel</span><span class="count">51 rooms</span></div>
           <h4>Hotel Chamade</h4>
-          <p>Four permanent receptionists, backed up by temps and students. They were looking for a PMS that everyone gets right away, so training isn't their second job.</p>
-          <div class="persona-quote">"Rudy answers the questions that used to end up on my plate."</div>
+          <p>Four full-time receptionists, backed up by flexi staff and students. They wanted a PMS everyone gets right away, so training new people doesn't become a second job.</p>
+          <div class="persona-quote">"Rudy answers the questions that used to land on my plate."</div>
         </div>
       </article>
 
@@ -1814,7 +1253,7 @@ footer {
         <div class="persona-body">
           <div class="persona-meta"><span>City hotel</span><span class="count">22 rooms</span></div>
           <h4>Carlton Hotel</h4>
-          <p>City hotel in Ghent with two receptionists. Wants Peppol invoicing, guest profiles and reports. But not the price tag of an enterprise system.</p>
+          <p>City hotel in Ghent with two receptionists. Wants Peppol invoicing, guest profiles and reports. But not at the price of an enterprise system.</p>
           <div class="persona-quote">"Finally a system that does what I need. Nothing more, nothing less."</div>
         </div>
       </article>
@@ -1825,7 +1264,7 @@ footer {
           <div class="persona-meta"><span>B&amp;B</span><span class="count">5 rooms</span></div>
           <h4>Georgie B&amp;B</h4>
           <p>Guest house in a townhouse in Ghent. The owners don't live on-site and run everything remotely thanks to automation.</p>
-          <div class="persona-quote">"We don't live in the hotel. Without rumo that wouldn't be possible."</div>
+          <div class="persona-quote">"We don't live at the B&B. Without rumo we couldn't pull that off."</div>
         </div>
       </article>
     </div>
@@ -1843,7 +1282,7 @@ footer {
             <polyline points="14 2 14 8 20 8"/>
           </svg>
         </div>
-        <p><strong>Peppol e-invoicing</strong>Built in as standard. UBL 2.1 via the official network.</p>
+        <p><strong>Peppol e-invoicing</strong>Built in by default. UBL 2.1 via the official network.</p>
       </div>
       <div class="trust-item fade-up" style="transition-delay:0.1s">
         <div class="ic">
@@ -1851,7 +1290,7 @@ footer {
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
           </svg>
         </div>
-        <p><strong>Belgian product</strong>Made in Ghent. Support in NL, FR and EN.</p>
+        <p><strong>Belgian product</strong>Built in Ghent. Support in EN, NL and FR.</p>
       </div>
       <div class="trust-item fade-up" style="transition-delay:0.2s">
         <div class="ic">
@@ -1860,26 +1299,26 @@ footer {
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
         </div>
-        <p><strong>GDPR &amp; EU-hosting</strong>Data stays within Europe. No compromises.</p>
+        <p><strong>GDPR &amp; EU hosting</strong>Data stays inside Europe. No compromises.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════ PRIJS ══════════════════ -->
+<!-- ══════════════════ PRICE ══════════════════ -->
 <section class="prijs">
   <div class="prijs-inner fade-up">
     <span class="kicker">So, what does it cost?</span>
     <div class="prijs-bedrag">From <em>€12</em></div>
     <div class="prijs-unit">per room · per month</div>
-    <p class="prijs-copy">PMS, channel manager, booking engine, Rudy and the handbook. Everything included. (That's a lot of checkmarks. So... is really everything included? Yep, really.)</p>
+    <p class="prijs-copy">PMS, channel manager, booking engine, Rudy and the handbook. One price.</p>
     <ul class="prijs-checklist">
-      <li>All-in-one price</li>
       <li>Cancel monthly</li>
-      <li>No setup fees</li>
-      <li>14 days free</li>
+      <li>No setup costs</li>
+      <li>No yearly contract</li>
+      <li>No sales pitch</li>
     </ul>
-    <a href="pricing.html" class="btn-ink">View pricing <span>→</span></a>
+    <a href="pricing.html" class="btn-ink">See pricing <span>→</span></a>
   </div>
 </section>
 
@@ -1887,19 +1326,19 @@ footer {
 <section class="faq">
   <div class="faq-inner fade-up">
     <span class="kicker">Question or doubt?</span>
-    <h2>The six questions<br>that <em>everyone</em> asks.</h2>
+    <h2>The six questions<br>we <em>often</em> get.</h2>
     <div class="faq-list">
       <details>
         <summary>Can I migrate my Booking.com reservations?</summary>
-        <p>Yes. Booking.com, Airbnb, Expedia and most other OTAs can be imported directly. Including guest data and payment status.</p>
+        <p>Yes. Booking.com, Airbnb, Expedia and most other OTAs can be imported directly. Including guest details and payment status.</p>
       </details>
       <details>
         <summary>Does rumo work on mobile and tablet?</summary>
-        <p>Fully. rumo is a web app that runs everywhere. Laptop, tablet, phone. No app needed.</p>
+        <p>Fully. rumo is a web app that runs anywhere — laptop, tablet, phone. No app to install.</p>
       </details>
       <details>
         <summary>How long does implementation take?</summary>
-        <p>Most hotels are live within a week. Smaller hotels often the same day.</p>
+        <p>Most hotels are live within a week. Small hotels often the same day.</p>
       </details>
       <details>
         <summary>What if I'm still in a contract with my current PMS?</summary>
@@ -1907,70 +1346,14 @@ footer {
       </details>
       <details>
         <summary>Is Peppol included?</summary>
-        <p>Peppol is available in rumo as an upgrade. With the upgrade, your invoices are automatically sent via the Peppol network (UBL 2.1). Without the upgrade, you simply create your invoices in rumo and download them as PDF or UBL files.</p>
+        <p>Peppol is an upgrade in rumo. With the upgrade, your invoices are sent automatically via the Peppol network (UBL 2.1). Without the upgrade, you just create invoices in rumo and download them as PDF or UBL file.</p>
       </details>
       <details>
         <summary>Can I cancel monthly?</summary>
-        <p>You start with an initial period of six months. After that, month by month, cancelable whenever you want. No fine print, no notice period.</p>
+        <p>You start with an initial six-month period. After that, month to month, cancel whenever you want. No fine print, no notice period.</p>
       </details>
     </div>
     <a href="faq.html" class="faq-link">All frequently asked questions →</a>
-  </div>
-</section>
-
-<!-- ══════════════════ CONTACT ══════════════════ -->
-<section class="contact-section" id="contact">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div class="fade-up">
-        <span class="kicker">Let's have a chat</span>
-        <h2>Rather <em>talk?</em></h2>
-        <p>No hour-long sales pitch. Just an honest conversation about what you need and whether rumo is the right fit. Usually takes about fifteen minutes.</p>
-        <p>Don't feel like calling? Send us an email or a message on WhatsApp. We always reply ourselves.</p>
-        <ul class="contact-channels">
-          <li>
-            <div class="ch-ic">
-              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <a href="mailto:jeffrey@rumo.eu">jeffrey@rumo.eu</a>
-          </li>
-          <li>
-            <div class="ch-ic">
-              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <a href="https://wa.me/32485382828">WhatsApp</a>
-          </li>
-        </ul>
-      </div>
-      <div class="contact-form fade-up" style="transition-delay:0.1s">
-        <div class="contact-form-title">Send a message</div>
-        <p class="contact-form-sub">We usually reply within a few hours.</p>
-        <form id="contact-form">
-          <div class="form-row">
-            <div class="form-field">
-              <label for="cf-name">Name</label>
-              <input type="text" id="cf-name" name="name" placeholder="Your name" required>
-            </div>
-            <div class="form-field">
-              <label for="cf-email">Email</label>
-              <input type="email" id="cf-email" name="email" placeholder="you@hotel.com" required>
-            </div>
-          </div>
-          <div class="form-field">
-            <label for="cf-hotel">Hotel <span style="opacity:0.5;text-transform:none;letter-spacing:0">(optional)</span></label>
-            <input type="text" id="cf-hotel" name="hotel" placeholder="Name of your hotel or B&B">
-          </div>
-          <div class="form-field">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" rows="4" placeholder="Tell us briefly what you're looking for, or just ask something." required></textarea>
-          </div>
-          <div class="form-submit">
-            <button type="submit" class="btn-ink">Send message <span>→</span></button>
-          </div>
-          <p class="form-fine">No spam, no newsletter, no follow-up you didn't ask for.</p>
-        </form>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1978,9 +1361,9 @@ footer {
 <section class="final" id="demo">
   <div class="final-inner fade-up">
     <span class="kicker">Not much of a talker?</span>
-    <h2>No demo call.<br>Just <em>14 days</em> to play.</h2>
-    <p>No credit card, no obligations, no "account manager" calling you every week. A demo environment full of fake reservations. Don't like it? It quietly disappears. No hard feelings.</p>
-    <a href="#" class="btn-paper">Try 14 days free <span>→</span></a>
+    <h2>No demo call.<br>Just <em>14 days</em> to play around.</h2>
+    <p>No credit card, no obligations, no "account manager" calling you every week. A demo environment full of fake reservations. Don't like it? It quietly goes away. No hard feelings.</p>
+    <a href="#" class="btn-paper">Try 14 days for free <span>→</span></a>
     <p class="final-fine">No credit card · Cancel monthly after 6 months · Free data migration</p>
   </div>
 </section>
@@ -2011,7 +1394,7 @@ footer {
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
         <li><a href="mailto:hello@rumo.eu">Send us an email</a></li>
-        <li><a href="about.html">Who are the people behind rumo?</a></li>
+        <li><a href="about.html">Who's behind rumo?</a></li>
       </ul>
     </div>
     <div>
@@ -2027,12 +1410,9 @@ footer {
   </div>
   <div class="footer-bottom">
     <span>© 2026 Rumo · Ghent, BE</span>
-    <span></span>
+    <span><a href="../privacy.html">Privacy</a> · <a href="../cookies.html">Cookies</a></span>
   </div>
 </footer>
-
-<link rel="stylesheet" href="../rudy-widget.css">
-<script src="../rudy-widget.js"></script>
 
 <script>
 // Nav, track when we leave the hero video
@@ -2063,35 +1443,17 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Contact form → Formsubmit.co
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const form = this;
-  const btn = form.querySelector('button[type="submit"]');
-  const originalText = btn.innerHTML;
-  btn.innerHTML = 'Sending… <span>→</span>';
-  btn.disabled = true;
-
-  fetch('https://formsubmit.co/ajax/jeffrey@rumo.eu', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({
-      name: document.getElementById('cf-name').value.trim(),
-      email: document.getElementById('cf-email').value.trim(),
-      hotel: document.getElementById('cf-hotel').value.trim(),
-      message: document.getElementById('cf-message').value.trim(),
-      _subject: 'Contact via rumo.eu'
-    })
-  })
-  .then(r => r.json())
-  .then(data => {
-    var wrapper = form.closest('.contact-form');
-    wrapper.innerHTML = '<div class="form-sent"><h3>Got it.</h3><p>We\'ll read it and get back to you. Usually faster than you\'d expect.</p></div>';
-  })
-  .catch(() => {
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-    alert('Something went wrong. Try again or send an email to jeffrey@rumo.eu.');
+// Showcase tabs — switch copy + media together
+document.querySelectorAll('.sc-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const key = tab.dataset.tab;
+    document.querySelectorAll('.sc-tab').forEach(t => {
+      const on = t === tab;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('.sc-pane').forEach(p => { p.hidden = p.dataset.pane !== key; });
+    document.querySelectorAll('.sc-media').forEach(m => m.classList.toggle('active', m.dataset.media === key));
   });
 });
 </script>

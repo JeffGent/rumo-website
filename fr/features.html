@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fonctionnalités · rumo</title>
+<title>Features · rumo</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<meta name="description" content="rumo fait tout ce que tu attends d'un PMS, plus un assistant IA, un manuel et une automatisation puissante.">
+<meta name="description" content="rumo fait tout ce qu'on attend d'un PMS, plus un assistant IA, un manuel et une automatisation sérieuse.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../shared.css">
+<link rel="stylesheet" href="shared.css">
 <style>
   /* ─── FEATURE MODULE ─── */
   .feature {
@@ -391,6 +391,94 @@
     .feature { padding:3.5rem 0; }
     .compact-grid { grid-template-columns:1fr; }
   }
+
+  /* ─── MARQUEE GRID (6 hoofdfeatures) ─── */
+  .marquee {
+    background: var(--paper);
+    padding: 5rem 0 5.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .marquee-head {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3.5rem;
+  }
+  .marquee-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    margin: 0.9rem 0 1rem;
+  }
+  .marquee-head h2 em { color: var(--terra-dark); font-style: italic; }
+  .marquee-head .lead {
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-size: 1.02rem;
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+  .marquee-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .marquee-card {
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1.7rem 1.55rem;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
+  }
+  .marquee-card:hover {
+    box-shadow: 0 16px 34px rgba(27,25,23,0.09);
+    transform: translateY(-3px);
+    border-color: var(--terra);
+  }
+  .marquee-ic {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .marquee-ic svg { width: 18px; height: 18px; stroke-width: 1.8; fill: none; }
+  .marquee-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .marquee-card h3 em { color: var(--terra-dark); font-style: italic; font-weight: 300; }
+  .marquee-card p {
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .marquee-card .arrow {
+    margin-top: auto;
+    padding-top: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+  }
+  .marquee-card .arrow::after { content: ' →'; }
+  @media (max-width: 880px) {
+    .marquee-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .marquee-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -401,8 +489,8 @@
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="index.html#piliers">Que fait rumo ?</a></li>
-    <li><a href="features.html" class="active">Fonctionnalités</a></li>
+    <li><a href="index.html#pijlers">Que fait rumo ?</a></li>
+    <li><a href="features.html" class="active">Features</a></li>
     <li><a href="integrations.html">Intégrations</a></li>
     <li><a href="tarifs.html">Et euh, ça coûte combien ?</a></li>
     <li><a href="faq.html">FAQ</a></li>
@@ -420,478 +508,162 @@
 <div class="page-header">
   <div class="page-header-inner fade-up">
     <div>
-      <span class="kicker">Fonctionnalités</span>
-      <h1>Conçu pour les hôtels<br>qui <em>veulent bien travailler.</em></h1>
-      <p class="lead">rumo fait tout ce que tu attends d'un PMS, plus un assistant IA, un manuel et une automatisation puissante. Six highlights d'abord, ensuite tout le reste.</p>
+      <span class="kicker">Features</span>
+      <h1>Un hôtel,<br><em>six couches</em> de rumo.</h1>
+      <p class="lead">Le PMS, Rudy, le manuel, la prévention, le channel manager, le guest portal. Clique sur l'un d'eux pour l'histoire complète.</p>
     </div>
     <div class="page-header-side">
-      6 highlights<br>
-      <strong>+ 12 modules</strong>
+      6 piliers<br>
+      <strong>+ 6 modules</strong>
     </div>
-  </div>
-  <div class="page-header-ribbon">
-    <span>Assistant IA</span>
-    <span>Manuel</span>
-    <span>Dashboard</span>
-    <span>Calendrier</span>
-    <span>Automatisation</span>
-    <span>Prévention &amp; Bien-être</span>
   </div>
 </div>
 
-<!-- ═══════════════════════ FEATURE · RUDY ═══════════════════════ -->
-<section class="feature" id="rudy">
+<!-- ═══════════════════════ MARQUEE · 6 HOOFDFEATURES ═══════════════════════ -->
+<section class="marquee">
   <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:var(--rose-soft); color:var(--terra-dark);">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <span class="lbl">Rudy</span>
+    <div class="marquee-grid">
+
+      <a class="marquee-card fade-up" href="../pms.html">
+        <div class="marquee-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-        <h2>Un collègue qui<br>ne prend <em>jamais</em> congé.</h2>
-        <p>Rudy est l'assistant IA qui vit dans rumo. Il connaît ton hôtel, tes procédures et tes données. Pose une question en langage courant et Rudy te donne la réponse. Pas besoin de manuel, pas de recherche. Juste demander.</p>
-        <ul class="feature-bullets">
-          <li>"Quelles chambres sont libres demain ?"</li>
-          <li>"Combien de chiffre d'affaires ce mois-ci ?"</li>
-          <li>"Quelle est notre procédure d'annulation ?"</li>
-          <li>Connaît tes réservations, tes chiffres et tes articles du manuel</li>
-          <li>Toujours disponible, toujours patient</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-rudy">
-          <div class="head-avatar">
-            <div class="avatar">R</div>
-            <div>
-              <strong>Rudy</strong>
-              <span>Ton assistant hôtelier</span>
-            </div>
-          </div>
-          <div class="chat">
-            <div class="msg u">Combien de chambres sont libres demain ?</div>
-            <div class="msg b">Demain, il y a <strong>4 chambres</strong> disponibles : 2× Comfort Twin, 1× Deluxe Double et 1× Suite. Tu veux créer une réservation ?</div>
-            <div class="msg u">Et si quelqu'un appelle pour un late check-in ?</div>
-            <div class="msg b">Selon votre <strong>procédure de réception</strong> : note l'heure d'arrivée prévue, envoie le code de porte via le guest portal et préviens le housekeeping.</div>
-          </div>
+        <h3>Le <em>PMS</em></h3>
+        <p>Agenda, check-out en un clic, facturation Peppol, dashboard. Le cœur de rumo, sans 47 niveaux de menus.</p>
+        <span class="arrow">En savoir plus</span>
+      </a>
+
+      <a class="marquee-card fade-up" href="../rudy.html">
+        <div class="marquee-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-      </div>
+        <h3><em>Rudy</em>, ton assistant IA</h3>
+        <p>Pose une question en langage courant sur ton hôtel, tes procédures ou tes chiffres. Rudy répond. Honnête sur ce qu'il ne sait pas.</p>
+        <span class="arrow">En savoir plus</span>
+      </a>
+
+      <a class="marquee-card fade-up" href="../handbook.html">
+        <div class="marquee-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
+        </div>
+        <h3>Le <em>manuel</em></h3>
+        <p>Procédures d'accueil, règlement intérieur, plans d'urgence. Un seul endroit cherchable pour tout ce que ton équipe doit savoir.</p>
+        <span class="arrow">En savoir plus</span>
+      </a>
+
+      <a class="marquee-card fade-up" href="../prevention.html">
+        <div class="marquee-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3><em>Prévention</em> &amp; sécurité</h3>
+        <p>Prévention incendie, légionellose, premiers secours, checklists, incidents. Enfin dans un dossier vivant.</p>
+        <span class="arrow">En savoir plus</span>
+      </a>
+
+      <a class="marquee-card fade-up" href="../channel-manager.html">
+        <div class="marquee-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+        </div>
+        <h3><em>Channel</em> manager</h3>
+        <p>Un changement dans rumo, en quelques secondes sur Booking, Airbnb, Expedia et les autres. Via Channex, en temps réel.</p>
+        <span class="arrow">En savoir plus</span>
+      </a>
+
+      <a class="marquee-card fade-up" href="../guest-portal.html">
+        <div class="marquee-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3>Guest <em>portal &amp; moteur de réservation</em></h3>
+        <p>Réserver via ton propre site sans commission. Pré-check-in, paiement en ligne, export police. Sur le téléphone de ton client.</p>
+        <span class="arrow">En savoir plus</span>
+      </a>
+
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ FEATURE · MANUEL ═══════════════════════ -->
-<section class="feature" id="handbook">
-  <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:#DCE4F3; color:#4a7fb5;">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
-          </div>
-          <span class="lbl">Manuel</span>
-        </div>
-        <h2>Ton manuel hôtelier.<br><em>Toujours</em> à portée de main.</h2>
-        <p>Procédures de réception, règlement intérieur, plans d'urgence, documents d'onboarding. Tout ce que ton équipe doit savoir, à un seul endroit qu'ils retrouvent vraiment. Fini les documents Word éparpillés ou les messages WhatsApp.</p>
-        <ul class="feature-bullets">
-          <li>Articles par catégorie : réception, housekeeping, F&amp;B, procédures d'urgence…</li>
-          <li>Recherche dans tous les articles</li>
-          <li>Rédige et gère le contenu directement dans rumo</li>
-          <li>Les nouveaux collaborateurs sont opérationnels plus vite</li>
-          <li>Tout le monde travaille de la même manière</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-handbook">
-          <div class="mockup-head">
-            <h5>Manuel</h5>
-            <span class="badge">36 articles</span>
-          </div>
-          <div class="cats">
-            <div class="cat a">
-              <div class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-              <strong>Réception</strong>
-              <span>4 articles</span>
-            </div>
-            <div class="cat b">
-              <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
-              <strong>Housekeeping</strong>
-              <span>3 articles</span>
-            </div>
-            <div class="cat c">
-              <div class="ic"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg></div>
-              <strong>F&amp;B</strong>
-              <span>2 articles</span>
-            </div>
-            <div class="cat d">
-              <div class="ic"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg></div>
-              <strong>Procédures d'urgence</strong>
-              <span>2 articles</span>
-            </div>
-          </div>
-          <div class="recent">
-            <div class="lbl">Dernière mise à jour</div>
-            <strong>Procédure de check-in en cas d'arrivée tardive</strong>
-            <span>Réception · il y a 2 jours</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ FEATURE · UX ═══════════════════════ -->
-<section class="feature" id="ux">
-  <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:var(--rose-soft); color:var(--terra-dark);">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="4"/><rect x="14" y="10" width="7" height="7"/><rect x="3" y="13" width="7" height="4"/></svg>
-          </div>
-          <span class="lbl">Design intuitif</span>
-        </div>
-        <h2>Conçu pour<br>être <em>simple.</em></h2>
-        <p>rumo est fait pour les gens qui préfèrent s'occuper des clients plutôt que du logiciel. Tout est visible, logique et rapide. Pas de menus cachés, pas d'options superflues.</p>
-        <ul class="feature-bullets">
-          <li>Dashboard avec arrivées, départs et statistiques en temps réel</li>
-          <li>Calendrier visuel avec drag-and-drop</li>
-          <li>Housekeeping que ton équipe utilise sur le téléphone</li>
-          <li>Recherche avec ⌘+K, tout en deux clics</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-dashboard">
-          <div class="mockup-head">
-            <h5>Dashboard</h5>
-            <span class="badge live">Live</span>
-          </div>
-          <div class="stats">
-            <div>
-              <div class="lbl">Revenue</div>
-              <div class="big">€10.771</div>
-            </div>
-            <div class="mini">
-              <div class="lbl">Occ</div>
-              <div class="big">47%</div>
-            </div>
-            <div class="mini">
-              <div class="lbl">ADR</div>
-              <div class="big">€449</div>
-            </div>
-            <div class="mini">
-              <div class="lbl">Check-ins</div>
-              <div class="big t">2 →</div>
-            </div>
-            <div class="mini">
-              <div class="lbl">Check-outs</div>
-              <div class="big g">4 ←</div>
-            </div>
-          </div>
-          <div class="rooms">Statut des chambres</div>
-          <div class="room-grid">
-            <div class="room">
-              <div class="num">103</div>
-              <div class="guest">Van de Kasseien</div>
-              <div class="tag">← out</div>
-            </div>
-            <div class="room">
-              <div class="num">109</div>
-              <div class="guest">De Boer</div>
-              <div class="tag">← out</div>
-            </div>
-            <div class="room">
-              <div class="num">206</div>
-              <div class="guest">Lindqvist</div>
-              <div class="tag">← out</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ FEATURE · CALENDRIER ═══════════════════════ -->
-<section class="feature" id="kalender">
-  <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:#FCEDBD; color:#8a6b1a;">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <span class="lbl">Calendrier</span>
-        </div>
-        <h2>Tout d'un coup d'œil.<br><em>Glisse</em> et c'est fait.</h2>
-        <p>Un calendrier visuel où tu glisses, déplaces et ajustes les réservations. Par chambre, par jour, par semaine. Filtre sur les arrivées, les départs et les clients en séjour.</p>
-        <ul class="feature-bullets">
-          <li>Drag-and-drop pour déplacer ou prolonger les réservations</li>
-          <li>Filtre sur arrivées, départs et en séjour</li>
-          <li>Vue semaine et vue personnalisée avec navigation par date</li>
-          <li>Statut et types de chambres en un coup d'œil</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-calendar">
-          <div class="mockup-head">
-            <h5>Calendrier</h5>
-            <span class="meta">9 – 15 Mar 2026</span>
-          </div>
-          <div class="hd">
-            <div></div>
-            <div>Lu 9</div>
-            <div>Ma 10</div>
-            <div class="active">Me 11</div>
-            <div>Je 12</div>
-            <div>Ve 13</div>
-          </div>
-          <div class="rows">
-            <!-- 101 -->
-            <div class="lbl">101 <small>twin</small></div>
-            <div class="cell tentative" style="grid-column:2 / 4;">—</div>
-            <div class="cell booked" style="grid-column:4 / 7;">Kiekeboe</div>
-            <!-- 102 -->
-            <div class="lbl">102 <small>twin</small></div>
-            <div class="cell empty" style="grid-column:2 / 7;"></div>
-            <!-- 103 -->
-            <div class="lbl">103 <small>twin</small></div>
-            <div class="cell empty" style="grid-column:2 / 3;"></div>
-            <div class="cell booked2" style="grid-column:3 / 6;">Van de Kasseien</div>
-            <div class="cell empty" style="grid-column:6 / 7;"></div>
-            <!-- 104 -->
-            <div class="lbl">104 <small>dbl</small></div>
-            <div class="cell booked3" style="grid-column:2 / 5;">Müller</div>
-            <div class="cell empty" style="grid-column:5 / 7;"></div>
-            <!-- 105 -->
-            <div class="lbl">105 <small>suite</small></div>
-            <div class="cell empty" style="grid-column:2 / 7;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ FEATURE · AUTOMATISATION ═══════════════════════ -->
-<section class="feature" id="automatisering">
-  <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:var(--forest-soft); color:var(--forest);">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <span class="lbl">Automatisation</span>
-        </div>
-        <h2>Moins de clics.<br><em>Plus de temps</em> pour les clients.</h2>
-        <p>Le check-out prend un seul clic : facturer, lier le paiement, mettre à jour le statut, prévenir le housekeeping. Les e-mails partent automatiquement dans la bonne langue. La disponibilité est transmise en temps réel à tous les canaux.</p>
-        <ul class="feature-bullets">
-          <li>Quick check-out : facture + paiement + changement de statut en un clic</li>
-          <li>E-mails envoyés automatiquement selon les déclencheurs</li>
-          <li>Channel manager synchronise prix et disponibilité</li>
-          <li>Liste d'attente : en cas d'annulation, la chambre est automatiquement bloquée</li>
-          <li>E-facturation Peppol et export UBL intégrés</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-auto">
-          <div class="mockup-head">
-            <h5>Quick check-out</h5>
-            <span class="badge">Chambre 103</span>
-          </div>
-          <div class="step">
-            <div class="check">✓</div>
-            <div>
-              <strong>Facture créée</strong>
-              <span>INV-2026-0047 · €1.347,00</span>
-            </div>
-          </div>
-          <div class="step">
-            <div class="check">✓</div>
-            <div>
-              <strong>Paiement lié</strong>
-              <span>Visa · €1.347,00</span>
-            </div>
-          </div>
-          <div class="step">
-            <div class="check">✓</div>
-            <div>
-              <strong>Statut : checked out</strong>
-              <span>Housekeeping prévenu</span>
-            </div>
-          </div>
-          <div class="step">
-            <div class="check">✓</div>
-            <div>
-              <strong>E-mail envoyé</strong>
-              <span>Confirmation de check-out · FR</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ FEATURE · PRÉVENTION ═══════════════════════ -->
-<section class="feature" id="property">
-  <div class="wrap">
-    <div class="feature-inner fade-up">
-      <div class="feature-text">
-        <div class="feature-tag">
-          <div class="ic" style="background:#FCEDBD; color:#8a6b1a;">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <span class="lbl">Prévention &amp; Bien-être</span>
-        </div>
-        <h2>Prévention incendie, légionelle, premiers secours.<br>Enfin <em>sous contrôle.</em></h2>
-        <p>Chaque hôtelier connaît ce sentiment : quelque part dans une armoire se trouve un classeur avec des contrôles, des checklists et des plans de sécurité. Personne ne sait si tout est encore valide. Jusqu'à ce qu'une inspection arrive. rumo remplace cette armoire par un système vivant qui réfléchit, rappelle et documente.</p>
-        <ul class="feature-bullets">
-          <li>Dossier prévention incendie : extincteurs, détection, éclairage de secours. Avec dates d'expiration et rappels automatiques</li>
-          <li>Plan de gestion légionelle : mesures de température, rinçages et journal. Toujours prêt pour l'inspection</li>
-          <li>Exercices d'évacuation : planifier, enregistrer et évaluer avec ton équipe</li>
-          <li>Matériel de premiers secours et DEA : qui est formé, qu'est-ce qui expire quand</li>
-          <li>Produits chimiques : fiches de sécurité et emplacements de stockage</li>
-          <li>Checklists quotidiennes et périodiques que ton équipe remplit sur le terrain, avec photos et export PDF</li>
-          <li>Déclarations d'incidents et presque-accidents : tout le monde signale, les managers suivent</li>
-          <li>Enregistrement des sous-traitants : les parties externes s'inscrivent, signent les règles de sécurité</li>
-        </ul>
-      </div>
-      <div class="feature-visual">
-        <div class="mockup mk-property">
-          <div class="mockup-head">
-            <h5>Prévention &amp; Bien-être</h5>
-            <span class="badge">Notifications</span>
-          </div>
-          <div class="notif warn">
-            <div class="ic">!</div>
-            <div>
-              <strong>2 installations expirent bientôt</strong>
-              <span>Extincteur hall · Filtre HVAC</span>
-            </div>
-          </div>
-          <div class="notif ok">
-            <div class="ic">✓</div>
-            <div>
-              <strong>Checklist cuisine complétée</strong>
-              <span>7/7 items OK · aujourd'hui 09:15</span>
-            </div>
-          </div>
-          <div class="notif red">
-            <div class="ic">△</div>
-            <div>
-              <strong>Nouvel incident signalé</strong>
-              <span>Presque-accident · cuisine · ouvert</span>
-            </div>
-          </div>
-          <div class="notif info">
-            <div class="ic">💡</div>
-            <div>
-              <strong>3 nouvelles suggestions</strong>
-              <span>Feedback anonyme de l'équipe</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ COMPACT GRID ═══════════════════════ -->
+<!-- ═══════════════════════ EN PLUS ═══════════════════════ -->
 <section class="compact" id="alle-features">
   <div class="wrap">
     <div class="compact-head fade-up">
-      <span class="kicker">Et aussi</span>
-      <h2>Tout ce que tu attends d'un PMS.<br>Et <em>peut-être</em> un peu plus.</h2>
-      <p class="lead" style="margin-top:1.25rem;">Les bases sont là aussi. Une par une.</p>
+      <span class="kicker">Et en plus</span>
+      <h2>Tout ce qu'on attend d'un logiciel hôtelier.<br>Et <em>peut-être</em> un peu plus.</h2>
+      <p class="lead" style="margin-top:1.25rem;">Les bases y sont aussi. Une par une.</p>
     </div>
     <div class="compact-grid">
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
-          <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/></svg>
-        </div>
-        <h4>Réservations &amp; Calendrier</h4>
-        <p>Calendrier visuel avec drag-and-drop. Réservations multi-chambres, statut par chambre, devis et historique complet des réservations.</p>
-      </div>
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
-          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
-        </div>
-        <h4>Channel Manager</h4>
-        <p>Booking.com, Airbnb, Expedia et plus. Prix et disponibilité synchronisés automatiquement via Channex.</p>
-      </div>
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <h4>Booking Engine</h4>
-        <p>Réservations directes via ton propre site web, sans commission. Avec suivi de référents et allotments pour partenaires.</p>
-      </div>
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <h4>Facturation &amp; Peppol</h4>
-        <p>Factures, notes de crédit et proformas avec TVA correcte. E-facturation Peppol et export UBL 2.1 XML intégrés.</p>
-      </div>
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
-          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        </div>
-        <h4>Paiements</h4>
-        <p>Liens de paiement en ligne, chargement VCC, pré-autorisations. Bancontact, Visa, Mastercard. Automatiquement liés aux factures.</p>
-      </div>
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <h4>Guest Portal</h4>
-        <p>Les clients font leur check-in en ligne, confirment les devis, paient et remplissent leurs données d'identité. Sur leur propre téléphone.</p>
-      </div>
+
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
           <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
         </div>
         <h4>Housekeeping</h4>
-        <p>Statut des chambres en temps réel. Le personnel de nettoyage travaille via son téléphone, les mises à jour apparaissent directement dans le calendrier.</p>
+        <p>Statut des chambres en temps réel. Le personnel de nettoyage travaille sur son téléphone, les mises à jour apparaissent directement dans l'agenda.</p>
       </div>
+
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
           <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
         </div>
         <h4>F&amp;B</h4>
-        <p>Listes petit-déjeuner, minibar et charges restaurant. Automatiquement sur la note de chambre, lié au plan tarifaire.</p>
+        <p>Listes des petits-déjeuners, minibar et extras restaurant. Automatiquement sur la note, liés au plan tarifaire.</p>
       </div>
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
-          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <h4>Communication</h4>
-        <p>Templates d'e-mail par événement, envoyés automatiquement dans la langue du client. Multilingue : NL, FR, DE, EN.</p>
-      </div>
+
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg>
         </div>
-        <h4>Tarifs &amp; Allotment</h4>
-        <p>Types de chambres, plans tarifaires, politique d'annulation et allotments pour partenaires. Transmis à tous les canaux.</p>
+        <h4>Messaging</h4>
+        <p>Messages directs entre ton équipe. Réception vers housekeeping, propriétaire vers restaurant. Fini les groupes WhatsApp où personne ne retrouve rien.</p>
       </div>
+
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h4>rumo pay</h4>
+        <p>Liens de paiement en ligne, prélèvement de carte, préautorisations. Bancontact, Visa, Mastercard, Apple Pay. Liés automatiquement aux factures.</p>
+      </div>
+
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h4>Facturation &amp; Peppol</h4>
+        <p>Factures, notes de crédit et proformas avec TVA correcte. Facturation électronique Peppol et export UBL 2.1 XML intégrés.</p>
+      </div>
+
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
           <svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
         </div>
         <h4>Rapports</h4>
-        <p>Taux d'occupation, ADR, RevPAR, chiffre d'affaires par canal. Aperçu centralisé des factures. Export CSV, Excel ou PDF.</p>
+        <p>Occupation, ADR, RevPAR, chiffre d'affaires par canal. Vue centrale des factures. Export en CSV, Excel ou PDF.</p>
       </div>
+
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h4>Compliance belge</h4>
+        <p>Taxe de séjour par commune, déclaration police, reporting Statbel, XML Intervat. Tout automatique sur base de ce que ton client a rempli. Configure une fois, ensuite ça tourne tout seul.</p>
+      </div>
+
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
           <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h4>Profils clients</h4>
-        <p>Créés automatiquement à partir des réservations. Profils clients, bookers et entreprises avec validation TVA VIES.</p>
+        <h4>Allotments</h4>
+        <p>Blocs de chambres fixes pour tour-opérateurs, corporate ou partenaires. Avec suivi du pickup et facturation centralisée. Vendu ou pas, tu as la vue d'ensemble.</p>
       </div>
+
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h4>Maintenance</h4>
+        <p>Serrure cassée à la chambre 12 ? Robinet qui fuit en cuisine ? N'importe qui signale un problème avec photo. Toi, tu vois ce qui traîne, ce qui avance, ce qui arrive. Fini les post-its à la réception.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -899,11 +671,11 @@
 <!-- ═══════════════════════ FINAL ═══════════════════════ -->
 <section class="final" id="demo">
   <div class="final-inner fade-up">
-    <span class="kicker">Essaie toi-même</span>
-    <h2>Pas de démo-call.<br>Juste <em>14 jours</em> pour tester.</h2>
-    <p>Pas de carte de crédit, pas d'obligations, pas de "account manager" qui t'appelle chaque semaine. Un environnement démo plein de fausses réservations. Ça ne te plaît pas ? Ça disparaît en silence.</p>
+    <span class="kicker">Essayer par toi-même</span>
+    <h2>Pas de démo téléphonique.<br>Juste <em>14 jours</em> pour jouer.</h2>
+    <p>Pas de carte de crédit, pas d'engagement, pas d'« account manager » qui t'appelle chaque semaine. Un environnement de démo rempli de fausses réservations. Ça ne te plaît pas ? Ça disparaît tout doucement.</p>
     <a href="index.html#demo" class="btn-paper">Essaie 14 jours gratuitement <span>→</span></a>
-    <p class="final-fine">Pas de carte de crédit · Résiliable mensuellement après 6 mois · Migration de données gratuite</p>
+    <p class="final-fine">Pas de carte de crédit · Résiliable au mois après 6 mois · Migration des données gratuite</p>
   </div>
 </section>
 
@@ -916,7 +688,7 @@
     <div>
       <div class="footer-label">Produit</div>
       <ul class="footer-links">
-        <li><a href="features.html">Fonctionnalités</a></li>
+        <li><a href="features.html">Features</a></li>
         <li><a href="integrations.html">Intégrations</a></li>
         <li><a href="tarifs.html">Et euh, ça coûte combien ?</a></li>
         <li><a href="faq.html">FAQ</a></li>
@@ -933,8 +705,8 @@
     <div>
       <div class="footer-label">Intégrations</div>
       <ul class="footer-links">
-        <li><a href="integrations.html#canaux-de-reservation">Canaux de réservation</a></li>
-        <li><a href="integrations.html#comptabilite">Comptabilité</a></li>
+        <li><a href="integrations.html#boekingskanalen">Canaux de réservation</a></li>
+        <li><a href="integrations.html#boekhouding">Comptabilité</a></li>
         <li><a href="integrations.html#revenue">Revenue management</a></li>
         <li><a href="integrations.html#hardware">Gestion des clés</a></li>
       </ul>
@@ -942,7 +714,7 @@
   </div>
   <div class="footer-bottom">
     <span>© 2026 Rumo · Gand, BE</span>
-    <span>Direction · Sfeer</span>
+    <span><a href="../privacy.html">Confidentialité</a> · <a href="../cookies.html">Cookies</a></span>
   </div>
 </footer>
 

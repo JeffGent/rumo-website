@@ -1204,8 +1204,10 @@ footer {
           </div>
         </div>
         <div class="sc-stage">
-          <!-- nu screenshots; later korte filmpjes: <video autoplay muted loop playsinline> -->
-          <img class="sc-media active" data-media="pms" src="img/shot-agenda.png" alt="De agenda van rumo: alle reservaties op één scherm" loading="lazy">
+          <video class="sc-media active" data-media="pms" autoplay loop muted playsinline preload="auto" poster="img/shot-agenda.png" aria-label="De agenda van rumo: alle reservaties op één scherm">
+            <source src="img/pms-kalender.webm" type="video/webm">
+            <source src="img/pms-kalender.mp4" type="video/mp4">
+          </video>
           <img class="sc-media" data-media="handboek" src="img/shot-handboek.png" alt="Het handboek van rumo: doorzoekbare categorieën voor je team" loading="lazy">
           <img class="sc-media" data-media="rudy" src="img/shot-rudy.png" alt="Rudy, de AI-assistent van rumo, in de chat" loading="lazy">
         </div>
@@ -1453,7 +1455,14 @@ document.querySelectorAll('.sc-tab').forEach(tab => {
       t.setAttribute('aria-selected', on ? 'true' : 'false');
     });
     document.querySelectorAll('.sc-pane').forEach(p => { p.hidden = p.dataset.pane !== key; });
-    document.querySelectorAll('.sc-media').forEach(m => m.classList.toggle('active', m.dataset.media === key));
+    document.querySelectorAll('.sc-media').forEach(m => {
+      const on = m.dataset.media === key;
+      m.classList.toggle('active', on);
+      // Resume video playback when its tab becomes active. Browsers
+      // pause hidden <video> elements; autoplay alone doesn't always
+      // restart them when display flips back to block.
+      if (on && m.tagName === 'VIDEO') m.play().catch(() => {});
+    });
   });
 });
 </script>

@@ -1,0 +1,19 @@
+{
+  "name": "rumo-website-demo-recorder",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Playwright-driven screencast recorder for the marketing-site hero videos.",
+  "scripts": {
+    "auth": "tsx scripts/save-auth.ts",
+    "record": "playwright test",
+    "install-browsers": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^22.0.0",
+    "dotenv": "^16.4.5",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.3"
+  }
+}

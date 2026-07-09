@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contract ondertekenen · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .sign-wrap { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .sign-brand { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em; color: var(--burg, #7b2d3b); margin-bottom: 0.4rem; }
+  .sign-brand em { color: var(--ink, #1a1a1a); font-style: normal; }
+  .sign-intro { color: var(--muted, #8a8578); font-size: 0.95rem; margin-bottom: 2rem; }
+  .sign-doc { background: #fff; border: 1px solid var(--border, #e5e0d8); border-radius: 14px; padding: 1.75rem 2rem; max-height: 55vh; overflow-y: auto; margin-bottom: 1.5rem; }
+  .sign-doc h2 { font-size: 1.25rem; margin: 1.75rem 0 0.75rem; }
+  .sign-doc h2:first-child { margin-top: 0; }
+  .sign-doc h3 { font-size: 1rem; font-family: 'Inter', sans-serif; font-weight: 600; margin: 1.25rem 0 0.4rem; }
+  .sign-doc p { line-height: 1.6; margin-bottom: 0.9rem; font-size: 0.92rem; color: #3a3a3a; }
+  .sign-doc ul { margin: 0 0 0.9rem 1.2rem; line-height: 1.6; font-size: 0.92rem; }
+  .sign-doc hr { border: none; border-top: 1px solid var(--border, #e5e0d8); margin: 1.5rem 0; }
+  .sign-form { display: flex; flex-direction: column; gap: 0.9rem; }
+  .sign-form label { font-size: 0.85rem; font-weight: 600; color: var(--ink, #1a1a1a); display: flex; flex-direction: column; gap: 0.35rem; }
+  .sign-form input[type=text], .sign-form input[type=email] { font: inherit; font-size: 0.95rem; font-weight: 400; padding: 0.6rem 0.8rem; border: 1px solid var(--border, #e5e0d8); border-radius: 10px; }
+  .sign-check { flex-direction: row !important; align-items: flex-start; gap: 0.6rem !important; font-weight: 400 !important; font-size: 0.9rem; line-height: 1.5; }
+  .sign-check input { margin-top: 0.2rem; }
+  #sign-btn { align-self: flex-start; background: var(--burg, #7b2d3b); color: #fff; border: none; border-radius: 10px; padding: 0.7rem 1.6rem; font: inherit; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+  #sign-btn:disabled { opacity: 0.5; cursor: default; }
+  .sign-err { color: #b91c1c; font-size: 0.85rem; }
+  .sign-notice { background: #fff; border: 1px solid var(--border, #e5e0d8); border-radius: 14px; padding: 2rem; text-align: center; }
+  .sign-notice.ok h2 { color: #15803d; }
+  .sign-notice.err { color: #b91c1c; }
+  .sign-loading { color: var(--muted, #8a8578); }
+  .sign-foot { margin-top: 2.5rem; font-size: 0.75rem; color: var(--muted, #8a8578); }
+</style>
+</head>
+<body>
+<div class="sign-wrap">
+  <div class="sign-brand">rumo<em>.</em></div>
+  <p class="sign-intro">Lees het contract na en teken digitaal. Uw ondertekening wordt geregistreerd (tijdstip en versie).</p>
+  <div id="sign-app"></div>
+  <p class="sign-foot">Rumo Works BV · Koningin Elisabethlaan 3, 9000 Gent · <a href="mailto:hello@rumo.eu">hello@rumo.eu</a></p>
+</div>
+<script src="sign.js"></script>
+</body>
+</html>

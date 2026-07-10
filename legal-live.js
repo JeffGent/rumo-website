@@ -17,7 +17,10 @@
   var el = document.getElementById('legal-live');
   if (!el) return;
   var doc = el.getAttribute('data-doc') || 'terms';
-  var locale = localStorage.getItem('legalLocale') || (document.documentElement.lang || 'nl').slice(0, 2);
+  // A page can pin a language via data-locale (e.g. the English /generalterms
+  // page). Otherwise fall back to the visitor's last choice, then the page lang.
+  var forced = el.getAttribute('data-locale');
+  var locale = forced || localStorage.getItem('legalLocale') || (document.documentElement.lang || 'nl').slice(0, 2);
   if (!LOCALES[locale]) locale = 'nl';
 
   function esc(s) {

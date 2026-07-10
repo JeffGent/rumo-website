@@ -1,0 +1,11 @@
+# rumo.eu — serve extensionless URLs from their .html file.
+# The PMS links to /privacy, /cookies, /voorwaarden, /dpa, /generalterms,
+# /privacy-staff and /sign without a ".html" suffix; this maps those requests
+# to the matching file. Existing files and directories are served untouched,
+# so the coming-soon index.html stays the homepage.
+Options -MultiViews
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]

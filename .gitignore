@@ -2,6 +2,10 @@
 .DS_Store
 **/.DS_Store
 
+# Basic Auth wachtwoordbestand — nooit in git
+.htpasswd
+_preview-pijlers.html
+
 # Drafts / experiments (kept locally, not for production)
 index-a.html
 index-klei.html

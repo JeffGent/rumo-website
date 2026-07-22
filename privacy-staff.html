@@ -135,7 +135,7 @@
 
     <h2>1. Eerst even kaderen</h2>
     <p>
-      Er zijn twee soorten gegevens in rumo. <strong>Gastgegevens</strong> (boekingen, ID-kaarten, facturen) horen bij het hotel — die uitleg staat op de <a href="privacy.html">algemene privacy-pagina</a>. Daar is het hotel verantwoordelijk en rumo verwerker.
+      Er zijn twee soorten gegevens in rumo. <strong>Gastgegevens</strong> (boekingen, ID-kaarten, facturen) horen bij het hotel, die uitleg staat op de <a href="privacy.html">algemene privacy-pagina</a>. Daar is het hotel verantwoordelijk en rumo verwerker.
     </p>
     <p>
       <strong>Personeelsgegevens</strong> zijn iets anders. Als jij als receptionist, manager of housekeeper inlogt op rumo, dan zijn we jouw account, je inloggeschiedenis en je acties aan het bijhouden. Daar is <strong>rumo zelf verwerkingsverantwoordelijke</strong>. Die rol kunnen we niet bij het hotel leggen, want het is onze software die de logs maakt en bewaart.
@@ -148,8 +148,8 @@
 
     <h3>Je account</h3>
     <ul>
-      <li>Voornaam, achternaam en e-mailadres — gebruikt om in te loggen en je in de software te tonen</li>
-      <li>Je rol in het hotel (admin, receptie, housekeeping, F&amp;B, ...) — bepaalt wat je in rumo kan zien en doen</li>
+      <li>Voornaam, achternaam en e-mailadres, gebruikt om in te loggen en je in de software te tonen</li>
+      <li>Je rol in het hotel (admin, receptie, housekeeping, F&amp;B, ...), bepaalt wat je in rumo kan zien en doen</li>
       <li>Je wachtwoord (gehasht, nooit in klare tekst opgeslagen) en eventueel een tweede factor als die staat aan</li>
       <li>Optioneel: een profielfoto die je zelf hebt geüpload</li>
     </ul>
@@ -192,13 +192,13 @@
         <strong>Uitvoering van de overeenkomst tussen rumo en jouw hotel.</strong> Je hebt een account omdat het hotel jou toegang geeft als personeelslid. Zonder accountgegevens kunnen we dat niet leveren.
       </li>
       <li>
-        <strong>Gerechtvaardigd belang — beveiliging en accountabiliteit.</strong> Login-logs en audit-logs zijn er voor fraudepreventie (bv. iemand voert verdachte refunds in), voor incident-response (er gebeurt iets vreemds, we moeten kunnen reconstrueren), en voor het hotel zelf dat eigen personeel moet kunnen controleren waar nodig.
+        <strong>Gerechtvaardigd belang, beveiliging en accountabiliteit.</strong> Login-logs en audit-logs zijn er voor fraudepreventie (bv. iemand voert verdachte refunds in), voor incident-response (er gebeurt iets vreemds, we moeten kunnen reconstrueren), en voor het hotel zelf dat eigen personeel moet kunnen controleren waar nodig.
       </li>
       <li>
         <strong>Wettelijke verplichting.</strong> Audit-trails op financiële handelingen zijn vereist voor de boekhoudwetgeving en fraudebestrijding.
       </li>
       <li>
-        <strong>Toestemming.</strong> Productupdates of nieuwsbrieven van rumo zelf — alleen als je daar expliciet ja op zegt, met intrekrecht.
+        <strong>Toestemming.</strong> Productupdates of nieuwsbrieven van rumo zelf, alleen als je daar expliciet ja op zegt, met intrekrecht.
       </li>
     </ul>
 
@@ -207,9 +207,9 @@
       Wij draaien rumo bij een handvol andere bedrijven. Allemaal binnen de EU of onder een geldig overdrachtsmechanisme. Allemaal met een verwerkersovereenkomst:
     </p>
     <ul>
-      <li><strong>Scaleway</strong> (FR) — host de servers en de databank waar je gegevens op staan</li>
-      <li><strong>Brevo</strong> (FR) — verstuurt transactionele e-mails zoals "iemand heeft je uitgenodigd", wachtwoord-reset, login-meldingen</li>
-      <li><strong>Mistral</strong> (FR, via Scaleway) — als jouw hotel Rudy (de AI-assistent) gebruikt, dan kan jouw vraag aan Rudy en de context van je rol naar Mistral. Wordt niet gebruikt om de modellen te trainen.</li>
+      <li><strong>Scaleway</strong> (FR), host de servers en de databank waar je gegevens op staan</li>
+      <li><strong>Brevo</strong> (FR), verstuurt transactionele e-mails zoals "iemand heeft je uitgenodigd", wachtwoord-reset, login-meldingen</li>
+      <li><strong>Mistral</strong> (FR, via Scaleway), als jouw hotel Rudy (de AI-assistent) gebruikt, dan kan jouw vraag aan Rudy en de context van je rol naar Mistral. Wordt niet gebruikt om de modellen te trainen.</li>
     </ul>
     <p>
       <strong>Niet</strong> bij Google, niet bij Microsoft, niet bij OpenAI, niet bij Meta. Geen Sentry-koppeling op dit moment, geen externe analytics-leverancier.
@@ -217,22 +217,22 @@
 
     <h2>5. Hoe lang we het bewaren</h2>
     <ul>
-      <li><strong>Je account</strong> — zolang je een actieve gebruiker bent. Wordt je toegang ingetrokken door je hotel, dan zetten we het account op inactief; volledige verwijdering na 30 dagen tenzij wettelijke bewaarplicht (bv. financiële audit-trails).</li>
-      <li><strong>Login-logs</strong> — 90 dagen, daarna automatisch gewist. Lang genoeg om recente afwijkingen op te sporen, kort genoeg om geen jarenlange surveillance op te bouwen.</li>
-      <li><strong>Audit-logs op financiële handelingen</strong> — 7 jaar (BTW-wetboek). Niet anders dan voor papieren kasboeken.</li>
-      <li><strong>Staff-berichten</strong> — volgens de retentie-policy die het hotel zelf instelt (typisch 30-365 dagen, instelbaar per hotel).</li>
-      <li><strong>Support-correspondentie</strong> — twee jaar, daarna gewist tenzij er nog een lopende kwestie is.</li>
+      <li><strong>Je account</strong>: zolang je een actieve gebruiker bent. Wordt je toegang ingetrokken door je hotel, dan zetten we het account op inactief; volledige verwijdering na 30 dagen tenzij wettelijke bewaarplicht (bv. financiële audit-trails).</li>
+      <li><strong>Login-logs</strong>: 90 dagen, daarna automatisch gewist. Lang genoeg om recente afwijkingen op te sporen, kort genoeg om geen jarenlange surveillance op te bouwen.</li>
+      <li><strong>Audit-logs op financiële handelingen</strong>: 7 jaar (BTW-wetboek). Niet anders dan voor papieren kasboeken.</li>
+      <li><strong>Staff-berichten</strong>: volgens de retentie-policy die het hotel zelf instelt (typisch 30-365 dagen, instelbaar per hotel).</li>
+      <li><strong>Support-correspondentie</strong>: twee jaar, daarna gewist tenzij er nog een lopende kwestie is.</li>
     </ul>
 
     <h2>6. Wat jij kan doen</h2>
     <p>Dezelfde zes rechten als elke EU-burger:</p>
     <ul>
-      <li><strong>Inzage</strong> — een kopie vragen van wat we van je hebben</li>
-      <li><strong>Correctie</strong> — fouten laten rechtzetten (typo in je naam, verkeerd e-mailadres)</li>
-      <li><strong>Verwijdering</strong> — vragen om alles te wissen, behalve wat we wettelijk moeten bijhouden</li>
-      <li><strong>Beperking</strong> — vragen om verwerking tijdelijk stop te zetten</li>
-      <li><strong>Overdraagbaarheid</strong> — een kopie krijgen in een herbruikbaar formaat (JSON/CSV)</li>
-      <li><strong>Bezwaar</strong> — verzet tegen verwerking op basis van gerechtvaardigd belang</li>
+      <li><strong>Inzage</strong>: een kopie vragen van wat we van je hebben</li>
+      <li><strong>Correctie</strong>: fouten laten rechtzetten (typo in je naam, verkeerd e-mailadres)</li>
+      <li><strong>Verwijdering</strong>: vragen om alles te wissen, behalve wat we wettelijk moeten bijhouden</li>
+      <li><strong>Beperking</strong>: vragen om verwerking tijdelijk stop te zetten</li>
+      <li><strong>Overdraagbaarheid</strong>: een kopie krijgen in een herbruikbaar formaat (JSON/CSV)</li>
+      <li><strong>Bezwaar</strong>: verzet tegen verwerking op basis van gerechtvaardigd belang</li>
     </ul>
     <p>
       Voor accountzaken in rumo zelf: vraag eerst bij je hotelbeheerder. Die kan in Settings een hoop dingen voor jou aanpassen of jouw account verwijderen.

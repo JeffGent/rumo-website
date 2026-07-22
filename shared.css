@@ -238,7 +238,7 @@ nav {
   text-transform:uppercase;
 }
 .page-header-ribbon span::before {
-  content:'—'; color:var(--terra); margin-right:0.4em;
+  content:'–'; color:var(--terra); margin-right:0.4em;
 }
 
 /* ─── TRUST ─── */

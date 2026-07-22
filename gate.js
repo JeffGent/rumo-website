@@ -16,18 +16,23 @@
     'html.rumo-locked{background:#F5EEE2}' +
     'html.rumo-locked body{display:none!important}' +
     '#rumo-gate{position:fixed;inset:0;z-index:2147483647;display:flex;flex-direction:column;' +
-    'align-items:center;justify-content:center;gap:1.4rem;padding:2rem;text-align:center;' +
-    'background:#F5EEE2;color:#1B1917;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif}' +
-    '#rumo-gate h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:2.6rem;color:#b96b4a;letter-spacing:-.02em;margin:0}' +
-    '#rumo-gate p{max-width:32rem;line-height:1.6;color:#3a3531;margin:0}' +
-    '#rumo-gate form{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:.3rem}' +
-    '#rumo-gate input{padding:.7rem 1.1rem;border:1px solid #1B191720;border-radius:100px;font-size:1rem;' +
-    'font-family:inherit;background:#FAF5EA;color:#1B1917;min-width:230px;outline:none}' +
-    '#rumo-gate input:focus{border-color:#D68F6F}' +
-    '#rumo-gate button{padding:.7rem 1.5rem;border:none;border-radius:100px;background:#1B1917;color:#F5EEE2;' +
-    'font-size:1rem;font-family:inherit;cursor:pointer}' +
-    '#rumo-gate .err{color:#b96b4a;font-size:.85rem;min-height:1.1em;margin:0}' +
-    '#rumo-gate .note{font-size:.8rem;color:#8d8378;font-style:italic}';
+    'align-items:center;justify-content:center;padding:3rem 1.5rem 6.5rem;text-align:center;' +
+    'background:#F5EEE2;color:#1B1917;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;overflow-y:auto}' +
+    '#rumo-gate .rg-main{display:flex;flex-direction:column;align-items:center;gap:1.15rem;max-width:34rem}' +
+    '#rumo-gate .rg-logo{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:3rem;letter-spacing:-.03em;line-height:1;color:#1B1917}' +
+    '#rumo-gate .rg-logo em{font-style:italic;color:#b96b4a;font-weight:300}' +
+    '#rumo-gate .rg-tag{font-family:Fraunces,Georgia,serif;font-size:1.55rem;color:#1B1917;letter-spacing:-.02em;line-height:1.1;margin:0}' +
+    '#rumo-gate .rg-tag em{font-style:italic;color:#b96b4a;font-weight:300}' +
+    '#rumo-gate .rg-body{display:flex;flex-direction:column;gap:.85rem;margin-top:.5rem}' +
+    '#rumo-gate .rg-body p{font-size:1.02rem;line-height:1.62;color:#3a3531;margin:0}' +
+    '#rumo-gate .rg-foot{position:absolute;left:0;right:0;bottom:2.2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem}' +
+    '#rumo-gate .rg-hint{font-family:"JetBrains Mono",monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#8d8378}' +
+    '#rumo-gate .rg-field{display:flex;align-items:center;gap:.3rem;border-bottom:1px solid #1B191725;padding:.25rem .3rem;transition:border-color .2s}' +
+    '#rumo-gate .rg-field:focus-within{border-color:#D68F6F}' +
+    '#rumo-gate .rg-field input{border:none;background:transparent;font-family:inherit;font-size:.95rem;color:#1B1917;padding:.15rem .1rem;min-width:150px;outline:none;text-align:center}' +
+    '#rumo-gate .rg-field input::placeholder{color:#a89d90}' +
+    '#rumo-gate .rg-field button{border:none;background:transparent;color:#b96b4a;font-size:1.15rem;cursor:pointer;padding:0 .15rem;line-height:1}' +
+    '#rumo-gate .rg-err{color:#b96b4a;font-size:.78rem;min-height:1em;margin:0}';
   document.head.appendChild(s);
 
   async function sha256(str) {
@@ -39,13 +44,21 @@
     var g = document.createElement('div');
     g.id = 'rumo-gate';
     g.innerHTML =
-      '<h1>rumo</h1>' +
-      '<p>Deze site is nog volop in ontwikkeling. Ben je van het team of uitgenodigd om mee te kijken? Vul even het wachtwoord in.</p>' +
-      '<form><input type="password" autocomplete="off" placeholder="Wachtwoord" aria-label="Wachtwoord"><button type="submit">Binnen &rarr;</button></form>' +
-      '<p class="err"></p>' +
-      '<p class="note">Momenteel in ontwikkeling. We houden je op de hoogte.</p>';
+      '<div class="rg-main">' +
+        '<div class="rg-logo">rumo<em>.</em></div>' +
+        '<p class="rg-tag">Hotelsoftware <em>zonder gedoe.</em></p>' +
+        '<div class="rg-body">' +
+          '<p>Awel, rumo is hotelsoftware voor mensen die liever met hun gasten bezig zijn dan met hun software. Reservaties, channel manager, facturatie en een handboek, alles in één. Plus Rudy, je slimme collega die \'s nachts gewoon doorwerkt.</p>' +
+          '<p>Deze site is nog volop in aanbouw. Binnenkort zetten we \'m open voor iedereen; tot dan houden we \'m nog even onder ons. <em>(Geen geheimen hoor, gewoon nog niet af.)</em></p>' +
+        '</div>' +
+      '</div>' +
+      '<form class="rg-foot">' +
+        '<span class="rg-hint">Van \'t team of stiekem uitgenodigd?</span>' +
+        '<div class="rg-field"><input type="password" autocomplete="off" placeholder="wachtwoord" aria-label="Wachtwoord"><button type="submit" aria-label="Binnen">&rarr;</button></div>' +
+        '<p class="rg-err"></p>' +
+      '</form>';
     document.documentElement.appendChild(g);
-    var form = g.querySelector('form'), input = g.querySelector('input'), err = g.querySelector('.err');
+    var form = g.querySelector('form'), input = g.querySelector('input'), err = g.querySelector('.rg-err');
     input.focus();
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -56,7 +69,7 @@
         g.remove();
         document.documentElement.classList.remove('rumo-locked');
       } else {
-        err.textContent = 'Hmm, dat klopt niet. Probeer opnieuw.';
+        err.textContent = 'Hmm, dat klopt niet. Probeer nog eens.';
         input.value = ''; input.focus();
       }
     });

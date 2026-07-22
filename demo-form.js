@@ -10,7 +10,7 @@
  * Zolang de placeholder blijft staan, wordt er niets verstuurd.
  */
 (function () {
-  var ACCESS_KEY = 'VERVANG_MET_WEB3FORMS_ACCESS_KEY';
+  var ACCESS_KEY = '89ef2ee7-c622-4825-aaa2-caf9d2672327';
 
   var built = false, modal;
 

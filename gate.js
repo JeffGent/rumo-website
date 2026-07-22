@@ -48,7 +48,7 @@
         '<div class="rg-logo">rumo<em>.</em></div>' +
         '<p class="rg-tag">Hotelsoftware <em>zonder gedoe.</em></p>' +
         '<div class="rg-body">' +
-          '<p>Awel, rumo is hotelsoftware voor mensen die liever met hun gasten bezig zijn dan met hun software. Reservaties, channel manager, facturatie en een handboek, alles in één. Plus Rudy, je slimme collega die \'s nachts gewoon doorwerkt.</p>' +
+          '<p>Voor mensen die liever met hun gasten bezig zijn dan met hun software. Reservaties, channel manager, facturatie en een handboek, alles in één. Plus Rudy, je slimme collega die \'s nachts gewoon doorwerkt.</p>' +
           '<p>Deze site is nog volop in aanbouw. Binnenkort zetten we \'m open voor iedereen; tot dan houden we \'m nog even onder ons. <em>(Geen geheimen hoor, gewoon nog niet af.)</em></p>' +
         '</div>' +
       '</div>' +

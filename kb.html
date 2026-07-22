@@ -583,7 +583,7 @@
               <h3 class="kb-article-title">Een kamer blokkeren voor <em>onderhoud</em></h3>
               <div class="kb-article-body">
                 <p>Sleep een blok op de kalender, kies <em>blokkeer</em>, en geef een reden mee (lekkage, renovatie, eigen gebruik). De kamer wordt uit de pool gehaald voor OTA-verkoop tijdens die periode. Je ziet de blokkade als gestreepte zone op de kalender.</p>
-                <p>Rudy kan dit ook in jouw plaats: <em>"blokkeer kamer 4 voor heel mei wegens schilderen"</em>. Hij stelt voor, jij bevestigt, klaar.</p>
+                <p>Een kamer blokkeren doe je zelf op de kalender. Rudy zet dit niet voor je klaar, maar hij kan je wel in gewone taal uitleggen waar je moet zijn en wat er dan gebeurt.</p>
               </div>
             </article>
 
@@ -711,7 +711,7 @@
         <!-- ─────────────── FACTURATIE ─────────────── -->
         <div class="kb-group" id="facturatie">
           <h2 class="kb-group-title">Facturatie &amp; <em>Peppol</em></h2>
-          <p class="kb-group-intro">Boekhoud-correcte facturatie zonder dat jij erover moet nadenken. BTW-splitsing per regel, automatische Peppol voor B2B, doorzending naar je boekhouder.</p>
+          <p class="kb-group-intro">Boekhoud-correcte facturatie zonder dat jij erover moet nadenken. BTW-splitsing per regel, elke factuur als UBL of PDF, en Peppol-verzending voor B2B via de Peppol add-on.</p>
 
           <div class="kb-articles">
 
@@ -719,7 +719,7 @@
               <div class="kb-article-kicker">Peppol</div>
               <h3 class="kb-article-title">Hoe Peppol werkt in rumo</h3>
               <div class="kb-article-body">
-                <p>Voor B2B-facturen verplicht in België vanaf 2026. rumo regelt het automatisch: factuur in UBL 2.1 formaat, via het Peppol-netwerk, naar de Peppol-ID van je klant. Geen aparte tool, geen handmatige verzending.</p>
+                <p>Voor B2B-facturen verplicht in België vanaf 2026. In de basis maakt rumo van elke factuur een UBL-bestand of een PDF die je kan downloaden en doorsturen. Het automatisch <em>versturen</em> over het Peppol-netwerk, naar de Peppol-ID van je klant, zit in de <strong>Peppol add-on</strong>. Met die add-on aan gebeurt het zonder aparte tool en zonder handmatige verzending.</p>
                 <p>Particulieren krijgen gewoon een PDF per mail. rumo herkent het verschil en doet het juiste.</p>
               </div>
             </article>
@@ -754,9 +754,9 @@
               <h3 class="kb-article-title">Welke <em>betaalmethoden</em> rumo ondersteunt</h3>
               <div class="kb-article-body">
                 <ul>
-                  <li><strong>Stripe</strong> voor kaart, Bancontact, Apple Pay en Google Pay, zowel online als op je payment terminal</li>
-                  <li><strong>Payconiq</strong> via QR op de factuur of als knop in de betaallink</li>
-                  <li><strong>Contant</strong> registreer je in het kassaboek, rumo houdt het bij voor je dagafsluiting</li>
+                  <li><strong>Stripe</strong> voor kaart en Bancontact, zowel online (via een betaallink) als op een aangesloten kaartterminal. Onder Stripe valt ook een kaart op naam bewaren en later belasten.</li>
+                  <li><strong>Contant</strong> registreer je manueel als contante betaling op de boeking</li>
+                  <li><strong>Overschrijving</strong> registreer je manueel, en je bevestigt ze zodra het geld effectief op je rekening staat</li>
                   <li><strong>Pre-authorization</strong> (kaartgarantie zonder direct te debiteren) via Stripe, voor late aankomsten of OTA-boekingen zonder voorschot</li>
                 </ul>
                 <p>Elke betaling komt onmiddellijk binnen op de boeking en wordt automatisch met de juiste factuurregel verrekend. Geen handmatig afpunten meer.</p>
@@ -767,7 +767,7 @@
               <div class="kb-article-kicker">Voorschotten</div>
               <h3 class="kb-article-title">Voorschotten en <em>deelfacturen</em></h3>
               <div class="kb-article-body">
-                <p>Een voorschot inn je via een betaallink (Stripe, Payconiq) of registreer je manueel na overschrijving. rumo zet het op de boeking als <em>"ontvangen, nog te verrekenen"</em>. Bij uitcheck wordt het automatisch afgetrokken van het eindbedrag.</p>
+                <p>Een voorschot inn je via een betaallink (Stripe) of registreer je manueel na overschrijving. rumo zet het op de boeking als <em>"ontvangen, nog te verrekenen"</em>. Bij uitcheck wordt het automatisch afgetrokken van het eindbedrag.</p>
                 <p>Voor langere verblijven, arrangementen of groepen kan je deelfacturen sturen (bv. 50% bij boeking, 50% bij aankomst). Elke deelfactuur is een echte factuur, met eigen nummer en eigen Peppol-verzending. Bij uitcheck wordt de slotfactuur opgemaakt voor het resterende saldo.</p>
               </div>
             </article>
@@ -853,10 +853,10 @@
 
             <article class="kb-article">
               <div class="kb-article-kicker">BTW-aangifte</div>
-              <h3 class="kb-article-title">Het Intervat-bestand voor je <em>BTW-aangifte</em></h3>
+              <h3 class="kb-article-title">Wat rumo doet voor je <em>BTW-aangifte</em></h3>
               <div class="kb-article-body">
-                <p>rumo genereert het aangiftebestand in het officiële Intervat XML-formaat. Importeren in Intervat, controleren, indienen. Werkt voor maandelijkse én kwartaalaangiftes, met de juiste splitsing tussen 6% logies-tarief en 21% voor de rest.</p>
-                <p>Je boekhouder krijgt het bestand mee in de maandelijkse export, samen met het BTW-rapport en de gekoppelde facturen. Als er niets ongewoons is, een handeling van vijf minuten.</p>
+                <p>Eerlijk: rumo dient je BTW-aangifte niet zelf in en maakt daar ook geen kant-en-klaar aangiftebestand voor. Dat blijft het werk van jou of je boekhouder. Wat rumo wél doet, is de basis kloppend houden: elke factuurregel krijgt het juiste tarief (6% logies, 21% voor de rest), en de cijfers en facturen staan klaar om door te geven.</p>
+                <p>Werk je met de Scrada add-on, dan komen je facturen en betalingen automatisch in je boekhouding terecht, waar de aangifte vertrekt. Zonder die koppeling geef je de PDF's of de UBL-facturen door aan je boekhouder. In beide gevallen zijn de tarieven al correct gesplitst, dus er valt niets meer uit te pluizen.</p>
               </div>
             </article>
 
@@ -1022,7 +1022,7 @@
         <!-- ─────────────── RUDY ─────────────── -->
         <div class="kb-group" id="rudy">
           <h2 class="kb-group-title">Rudy, je <em>AI-assistent</em></h2>
-          <p class="kb-group-intro">Geen chatbot. Geen FAQ-zoeker. Een echte assistent die taken voor je uitvoert in rumo en in de gekoppelde systemen, en eerlijk zegt wanneer hij iets niet zelf mag doen.</p>
+          <p class="kb-group-intro">Geen chatbot. Geen FAQ-zoeker. Een echte assistent die een aantal concrete taken voor je uitvoert in rumo, uitlegt hoe de rest werkt, en eerlijk zegt wat je zelf moet doen. Rudy werkt naast de receptionist, niet met de gast: hij praat nooit rechtstreeks met je gasten.</p>
 
           <div class="kb-articles">
 
@@ -1030,39 +1030,47 @@
               <div class="kb-article-kicker">Wat is Rudy?</div>
               <h3 class="kb-article-title">Wat <em>Rudy</em> kan, in één paragraaf</h3>
               <div class="kb-article-body">
-                <p>Rudy leest deze artikels (en de rest van rumo) en kan op basis daarvan acties uitvoeren: een prijs aanpassen, een datum blokkeren, een minimum-stay zetten, een betaallink versturen, een rapport genereren. Je vraagt het in gewone taal ("verlaag mijn weekendprijs voor mei met 10%"), hij stelt een actie voor, jij bevestigt, hij voert uit.</p>
+                <p>Rudy leest deze artikels, je handboek en je documenten, en kent rumo van binnenuit. Concreet neemt hij een handvol tijdrovende dingen van je over: een reservatie aanmaken, een prijsofferte maken uit een aanvraagmail van een gast, een groepslijst met namen in de juiste kamers zetten, en een lijst gasten of boekingen importeren uit een Excel of PDF. Daarnaast zoekt hij dingen op (je cijfers, een procedure in het handboek), legt hij uit hoe iets in rumo werkt, en schrijft hij een antwoord op een gastbericht dat jij daarna verstuurt.</p>
+                <p>Je vraagt het gewoon in het Nederlands. Hij stelt voor, jij kijkt na en bevestigt. Wat hij niet zelf kan, zegt hij eerlijk.</p>
               </div>
             </article>
 
             <article class="kb-article">
               <div class="kb-article-kicker">Wat hij doet</div>
-              <h3 class="kb-article-title">Wat Rudy automatisch <em>uitvoert</em></h3>
+              <h3 class="kb-article-title">Wat Rudy concreet <em>voor je doet</em></h3>
               <div class="kb-article-body">
-                <p>De dagelijkse channel-manager- en kalendertaken. Concreet:</p>
+                <p>Een afgebakend lijstje, geen toverstok. Concreet:</p>
                 <ul>
-                  <li>Stop-sell of open-sell op specifieke datums</li>
-                  <li>Bulk inventory aanpassen ("sluit kamer 3 volgend weekend")</li>
-                  <li>Min-stay, max-stay, CTA, CTD instellen</li>
-                  <li>Datums of kamer wijzigen op een reservatie</li>
-                  <li>Een betaallink samenstellen en versturen</li>
-                  <li>Een rapport draaien over een periode</li>
+                  <li>Een reservatie aanmaken (gast, kamer, datums)</li>
+                  <li>Een offerte maken uit een aanvraagmail: hij zet ze als optie klaar met een bevestig-link voor de gast, en schrijft er een antwoordmail bij</li>
+                  <li>Een geplakte groeps- of roominglijst in de juiste kamers invullen (eerst een voorbeeld, pas na jouw OK schrijft hij)</li>
+                  <li>Gasten, boekers, bedrijven of boekingen importeren uit een Excel of PDF</li>
+                  <li>Keuringsattesten en preventie-documenten inlezen en klaarzetten in een wachtrij, zodat jij ze enkel nog moet bevestigen</li>
+                  <li>Je cijfers opzoeken (omzet, bezetting, stadstaks, openstaande bedragen) en er een vraag over beantwoorden</li>
+                  <li>Een antwoord op een gastbericht schrijven in de Inbox; jij verstuurt het</li>
                 </ul>
-                <p>Voor elke actie krijgt hij eerst een bevestigings-stap van jou. Reversibel? Hij doet het meteen. Onomkeerbaar (bv. een charge)? Hij wacht op je expliciete OK.</p>
+                <p>Bij alles wat hij wegschrijft laat hij je eerst een voorbeeld zien en wacht hij op je bevestiging. Hij verzint nooit cijfers of feiten: weet hij iets niet, dan zegt hij dat.</p>
               </div>
             </article>
 
             <article class="kb-article">
               <div class="kb-article-kicker">Wat hij <em>niet</em> doet</div>
-              <h3 class="kb-article-title">Wat Rudy bewust <em>laat liggen</em></h3>
+              <h3 class="kb-article-title">Wat Rudy <em>niet</em> doet</h3>
               <div class="kb-article-body">
-                <p>Een aantal dingen doet Rudy expliciet <strong>niet</strong> automatisch, niet omdat hij het niet kan, maar omdat het verkeerd zou zijn:</p>
+                <p>Twee soorten. Ten eerste dingen die hij <strong>wél zou kunnen maar bewust laat liggen</strong>, omdat het geen werk voor een assistent is:</p>
                 <ul>
                   <li>Geen automatische credit nota's, refunds of penalty-aanrekeningen, die meldt hij aan jou (of je receptionist), met een voorstel</li>
-                  <li>Geen prijsbeleid (hij voert wijzigingen uit, hij beslist niet of jouw prijs te hoog of te laag is)</li>
-                  <li>Geen acties in OTA-extranetten waarvoor manuele keuzes nodig zijn (Genius-promo, Mobile Rate, listing-content)</li>
-                  <li>Geen onomkeerbare integratie-keuzes (een nieuw boekhoud-grootboek kiezen)</li>
+                  <li>Geen prijsbeleid: hij beslist niet of jouw prijs te hoog of te laag is</li>
                 </ul>
-                <p>Het idee: Rudy doet de tijdrovende dingen, jij houdt de beleidsbeslissingen.</p>
+                <p>Ten tweede dingen die hij simpelweg <strong>niet kan</strong>, en die je dus zelf doet:</p>
+                <ul>
+                  <li>Geen stop-sell of open-sell, geen min-stay, max-stay, CTA of CTD. Restricties naar de OTA's zet je zelf in de channel manager.</li>
+                  <li>Geen prijzen aanpassen of doorduwen naar de OTA's, en geen bulk-prijswijzigingen</li>
+                  <li>Geen betaallinks versturen naar gasten, dat doe je vanaf de betaalscherm van de boeking</li>
+                  <li>Niet rechtstreeks met de gast praten: hij schrijft een antwoord voor, jij drukt op verzenden</li>
+                  <li>Geen acties in de OTA-extranetten (Genius-promo, Mobile Rate, listing-content)</li>
+                </ul>
+                <p>Het idee: Rudy doet de tijdrovende voorbereidingen, jij houdt de knoppen die ertoe doen.</p>
               </div>
             </article>
 
@@ -1070,7 +1078,7 @@
               <div class="kb-article-kicker">Hoe vraag je</div>
               <h3 class="kb-article-title">Hoe je iets aan Rudy vraagt</h3>
               <div class="kb-article-body">
-                <p>Gewoon Nederlands. "Sluit alle kamers voor 14 mei", "stuur een betaallink naar de reservatie van Janssens", "wat was mijn omzet vorige week per kanaal". Geen commando-syntaxis. Geen menu's onthouden.</p>
+                <p>Gewoon Nederlands. "Maak een offerte voor deze aanvraag" (met de mail erbij geplakt), "zet deze groepslijst in de juiste kamers", "wat was mijn omzet vorige week per kanaal", "wat is onze procedure bij een late aankomst". Geen commando-syntaxis. Geen menu's onthouden.</p>
                 <p>Als hij twijfelt of de vraag dubbelzinnig is, vraagt hij door. Als hij iets niet kan, zegt hij het.</p>
               </div>
             </article>
@@ -1079,26 +1087,24 @@
               <div class="kb-article-kicker">Cheatsheet</div>
               <h3 class="kb-article-title">Vraag <em>Rudy</em> dit eens</h3>
               <div class="kb-article-body">
-                <p>Vijftien voorbeelden waar Rudy mee uit de voeten kan. Gewoon Nederlands, geen syntax. Hij stelt de actie voor, jij keurt goed.</p>
+                <p>Een reeks voorbeelden waar Rudy mee uit de voeten kan. Gewoon Nederlands, geen syntax. Bij alles wat hij wegschrijft stelt hij eerst voor, jij keurt goed.</p>
                 <table class="kb-cheat-table">
                   <thead>
                     <tr><th>Jij vraagt</th><th>Wat Rudy doet</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td class="ask">"Sluit kamer 12 voor het weekend van 15 mei"</td><td class="does">Blokkeert kamer 12 op die datums. Wacht op je OK.</td></tr>
-                    <tr><td class="ask">"Verlaag mijn weekendprijs voor mei met 10%"</td><td class="does">Past de weekend-modifier aan, toont het effect op de afgeleide tarieven, jij keurt goed.</td></tr>
-                    <tr><td class="ask">"Zet min-stay 2 nachten op alle Junior Suites in juli"</td><td class="does">Stelt de restrictie voor, voert pas uit na bevestiging.</td></tr>
-                    <tr><td class="ask">"Sluit Booking.com op 24 december"</td><td class="does">Stop-sell op dat ene kanaal. Andere OTA's blijven open.</td></tr>
-                    <tr><td class="ask">"Open de verkoop voor 1 juni opnieuw"</td><td class="does">Open-sell, meteen want reversibel.</td></tr>
+                    <tr><td class="ask">"Boek kamer 12 voor Janssens van 3 tot 5 mei"</td><td class="does">Maakt de reservatie aan met de juiste prijs. Jij kijkt na.</td></tr>
+                    <tr><td class="ask">"Maak een offerte voor deze aanvraag" (mail erbij geplakt)</td><td class="does">Zet een optie klaar met een bevestig-link, en schrijft de antwoordmail in de taal van de gast.</td></tr>
+                    <tr><td class="ask">"Zet deze roominglijst in de juiste kamers"</td><td class="does">Toont eerst een voorbeeld: wie in welke kamer. Pas na je OK schrijft hij het weg.</td></tr>
+                    <tr><td class="ask">"Importeer deze Excel met gasten"</td><td class="does">Leest het bestand, toont wat hij herkent, importeert na bevestiging.</td></tr>
+                    <tr><td class="ask">"Hier zijn 10 keuringsattesten"</td><td class="does">Leest ze in en zet ze klaar in de wachtrij; jij bevestigt.</td></tr>
                     <tr><td class="ask">"Wat was mijn omzet vorige week per kanaal?"</td><td class="does">Toont een tabel. Geen actie nodig.</td></tr>
-                    <tr><td class="ask">"Vergelijk mijn bezetting deze maand met vorig jaar"</td><td class="does">Twee percentages plus het verschil, klikbaar naar het rapport.</td></tr>
-                    <tr><td class="ask">"Welke kamers staan leeg dit weekend?"</td><td class="does">Lijst met directe link naar de kalender.</td></tr>
-                    <tr><td class="ask">"Verplaats de reservatie van Janssens naar 12 mei"</td><td class="does">Berekent de nieuwe prijs, toont het verschil, jij keurt goed.</td></tr>
-                    <tr><td class="ask">"Stuur een betaallink naar boeking BR-1234"</td><td class="does">Stelt de mail samen, jij OK't voor verzending.</td></tr>
-                    <tr><td class="ask">"Markeer de boeking van Peeters als no-show"</td><td class="does">Markeert de status en stelt voor de no-show fee aan te rekenen.</td></tr>
-                    <tr><td class="ask">"Genereer de politie-export voor april"</td><td class="does">Bestand klaar om te downloaden, in het juiste formaat.</td></tr>
-                    <tr><td class="ask">"Maak een BTW-rapport voor Q1 2026"</td><td class="does">Splitsing 6% / 21%, met grondslag en totalen per tarief.</td></tr>
-                    <tr><td class="ask">"Welke gastregistraties zijn nog niet compleet?"</td><td class="does">Lijst van reservaties met ontbrekende ID-gegevens.</td></tr>
+                    <tr><td class="ask">"Vergelijk mijn bezetting deze maand met vorig jaar"</td><td class="does">Twee percentages plus het verschil.</td></tr>
+                    <tr><td class="ask">"Wat was mijn stadstaks in maart?"</td><td class="does">Het bedrag, opgehaald uit het rapport.</td></tr>
+                    <tr><td class="ask">"Welke facturen staan nog open?"</td><td class="does">De lijst openstaande bedragen uit het debiteuren-rapport.</td></tr>
+                    <tr><td class="ask">"Wat is onze procedure bij een late aankomst?"</td><td class="does">Zoekt het op in je handboek en citeert het juiste artikel.</td></tr>
+                    <tr><td class="ask">"Schrijf een antwoord op dit Booking.com-bericht"</td><td class="does">Stelt een antwoord voor in de taal van de gast. Jij verstuurt.</td></tr>
+                    <tr><td class="ask">"Stuur een betaallink naar boeking BR-1234"</td><td class="does"><em>Doet hij niet zelf.</em> Legt uit waar jij dat op de boeking doet.</td></tr>
                     <tr><td class="ask">"Geef gast Janssens een refund van €80"</td><td class="does"><em>Doet hij niet zelf.</em> Stuurt een melding naar je receptionist met het voorstel.</td></tr>
                   </tbody>
                 </table>

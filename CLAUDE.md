@@ -36,43 +36,54 @@ Marketingwebsite voor **Rumo** — hotelsoftware voor onafhankelijke hotels en B
 
 ## 2. File-inventaris
 
-### Actieve pagina's — "-sfeer" versie (canoniek)
+> **Let op:** de vroegere "-sfeer"-varianten zijn samengevoegd tot de gewone bestanden hieronder. Er bestaan géén `*-sfeer.html` of `shared-sfeer.css` meer. De `.html` in de root zijn de canonieke, live pagina's.
 
-| Pagina | File | Nav-label | Url-pad |
-|---|---|---|---|
-| Home | `index-sfeer.html` | (logo) | `/` |
-| Features | `features-sfeer.html` | Features | `/features-sfeer.html` |
-| Integraties | `integraties-sfeer.html` | Integraties | `/integraties-sfeer.html` |
-| Prijzen | `prijzen-sfeer.html` | En euh, wat kost dat? | `/prijzen-sfeer.html` |
-| FAQ | `faq-sfeer.html` | FAQ | `/faq-sfeer.html` |
-| Over ons | `over-ons-sfeer.html` | Over ons | `/over-ons-sfeer.html` |
+### Actieve pagina's (canoniek, NL)
+
+| Pagina | File |
+|---|---|
+| Home | `index.html` |
+| Features (overzicht) | `features.html`, `features-preview.html` |
+| PMS | `pms.html` |
+| Channel manager | `channel-manager.html` |
+| Guest portal | `guest-portal.html` |
+| Rudy (AI-assistent) | `rudy.html` |
+| Preventie (add-on) | `prevention.html` |
+| Handboek | `handbook.html` |
+| Kennisbank | `kb.html` |
+| Integraties | `integraties.html` |
+| Prijzen | `prijzen.html` |
+| FAQ | `faq.html` |
+| Over ons | `over-ons.html` |
+| Pre-launch splash | `coming-soon.html` (+ `gate.js`, `legal-live.js` sturen de gate) |
+
+### Vertalingen
+
+- `en/` — Engelse versie (index, features, integrations, pricing, about, faq). Gelinkt via de taalswitcher.
+- `fr/` — Franse versie (index, features, integrations, tarifs, a-propos, faq). Idem.
+- De diepe feature-pagina's (pms, channel-manager, guest-portal, rudy, prevention, kb, handbook) bestaan **alleen in het NL**. Vertaalslag = openstaande follow-up (zie `.claude/handovers/website-translations.md`).
+
+### Juridisch
+
+`privacy.html`, `privacy-staff.html`, `cookies.html`, `voorwaarden.html`, `generalterms.html`, `dpa.html`, `sign.html` (+ `sign.js`).
 
 ### Gedeelde assets
 
 | File | Doel |
 |---|---|
-| `shared-sfeer.css` | Kleuren, typografie, nav, buttons, page-header, trust, final-CTA, footer, fade-up, responsive base |
-| `img/sfeer.mp4` (2.9MB) | Full-bleed hero-video op `index-sfeer.html` |
-| `img/persona-resort.jpg` | "Hotel Chamade" persona (51 kamers) |
-| `img/persona-carlton.jpg` | "Carlton Hotel" persona (22 kamers) |
-| `img/persona-georgie.jpg` | "Georgie B&B" persona (5 kamers) |
-| `img/automatisering.mp4` | **Niet meer in gebruik** in -sfeer (was in makkelijk-sectie, vervangen door SVG-illustratie) |
+| `shared.css` | Kleuren, typografie, nav, buttons, footer, fade-up, responsive base |
+| `favicon.svg` | Favicon |
+| `demo-form.js` | Aanvraagformulier ("Probeer gratis" → mail naar jeffrey@rumo.eu via Web3Forms) |
+| `img/` | Persona-foto's en illustraties |
+| `tools/demo-recorder/` | Playwright-scriptje om product-demo's op te nemen (dev-tool, niet gedeployed) |
 
-### Oude site (nog niet verwijderd, mag zodra user OK geeft)
+### Nog niet ingebouwd
 
-`index.html`, `features.html`, `faq.html`, `prijzen.html`, `integraties.html`, `over-ons.html` + `shared.css` + `rudy-widget.css` / `.js` + `en/` folder (6 pages) + `fr/` folder (6 pages).
+`rudy-widget.css`, `rudy-widget.js` — de Rudy-chatwidget. Staat klaar maar is nog op geen enkele pagina geladen (wacht op een publieke API-route van Seba, zie de openstaande punten).
 
-### Research / experimenteel (mag weg)
+### Dev-docs (niet gedeployed)
 
-- `moodboard.html` — visueel moodboard met 7 referentiesites
-- `opties.html` — 3 hero-varianten naast elkaar
-- `referenties.html` — 50 referentiesites + dvdb analyse
-- `index-a.html` — verlaten "stilleven"-experiment
-- `index-klei.html` — verlaten "klei"-experiment
-
-### Extern (shared.css oude site)
-
-`rudy-widget.css`, `rudy-widget.js` — AI-widget voor oude site, **nog niet geïntegreerd in -sfeer**.
+`briefing-chatgpt-website.md`, `briefing-rudy-avatar.md` — werkbriefings, geen site-inhoud.
 
 ### Git
 

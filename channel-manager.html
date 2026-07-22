@@ -370,6 +370,56 @@
     text-transform: uppercase;
   }
 
+  /* ─── OTA-superkrachten kaarten ─── */
+  .fp-power {
+    padding: 6rem 0;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .fp-power-head { max-width: 620px; margin-bottom: 3rem; }
+  .fp-power-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    margin: 0.7rem 0 1rem;
+  }
+  .fp-power-head h2 em { color: var(--terra-dark); font-style: italic; }
+  .fp-power-head p { color: var(--ink-soft); line-height: 1.65; font-size: 1.02rem; }
+  .fp-power-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.1rem;
+  }
+  .fp-power-card {
+    background: var(--paper-panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .fp-power-card .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terra-dark);
+  }
+  .fp-power-card h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.15rem;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .fp-power-card h4 em { color: var(--terra-dark); font-style: italic; font-weight: 300; }
+  .fp-power-card p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.55; margin: 0; }
+  @media (max-width: 880px) { .fp-power-grid { grid-template-columns: 1fr; } }
+
   /* ─── andere features strip ─── */
   .fp-others {
     background: var(--paper-deep);
@@ -487,8 +537,8 @@
         <p class="lead">rumo praat met de OTA's via Channex, een gespecialiseerde tussenlaag die de taal van elke OTA spreekt. Jij verandert een prijs in rumo, binnen seconden staat hij op Booking, Airbnb, Expedia, en de rest. Komt er een boeking binnen, dan staat ze meteen op je kalender. (Geen XML-mailtjes meer naar Booking. Awel ja, dat is toch al iets.)</p>
         <ul class="fp-hero-bullets">
           <li>Realtime sync</li>
-          <li>~100 kanalen</li>
-          <li>Conflict-bewaking</li>
+          <li>Een honderdtal kanalen</li>
+          <li>Overboekingen voorkomen</li>
         </ul>
       </div>
       <div class="fp-hero-visual">
@@ -529,7 +579,7 @@
         <ul class="fp-bullets">
           <li><em>rumo:</em> jij wijzigt prijzen, beschikbaarheid, restricties</li>
           <li><em>Channex:</em> vertaalt naar het OTA-protocol en stuurt door</li>
-          <li><em>OTA's:</em> Booking, Airbnb, Expedia, en zo'n 100 anderen</li>
+          <li><em>OTA's:</em> Booking, Airbnb, Expedia, en een honderdtal via Channex</li>
           <li>Eén abonnement bij ons. Geen aparte Channex-rekening</li>
           <li>Eerste OTA-koppeling doen we samen, vanaf de tweede gaat het meestal vanzelf</li>
         </ul>
@@ -621,44 +671,95 @@
   </div>
 </section>
 
+<!-- ═══════════════════════ OTA-SUPERKRACHTEN ═══════════════════════ -->
+<section class="fp-power">
+  <div class="wrap">
+    <div class="fp-power-head fade-up">
+      <span class="fp-section-kicker">Meer dan sync</span>
+      <h2>Wat rumo nog met de OTA's <em>doet</em>.</h2>
+      <p>Prijzen en beschikbaarheid doorsturen is het begin. Achter de schermen regelt rumo via Channex nog een pak dingen die je anders manueel bij Booking of Airbnb zou moeten uitzoeken.</p>
+    </div>
+    <div class="fp-power-grid fade-up">
+
+      <div class="fp-power-card">
+        <span class="tag">Booking.com</span>
+        <h4>Ongeldige kaart? <em>Booking</em> lost het op.</h4>
+        <p>Blijkt een gastkaart dood, dan meldt rumo dat via Channex terug aan Booking.com. Booking vraagt de gast om een nieuwe kaart en geeft jou annuleringsrecht als het niet lukt. Minder no-shows met een kaart die toch niet werkte.</p>
+      </div>
+
+      <div class="fp-power-card">
+        <span class="tag">Inbox + Rudy</span>
+        <h4>Gastberichten van de OTA's, <em>op één plek</em>.</h4>
+        <p>Berichten van Booking.com en Airbnb komen binnen in rumo. Rudy stelt meteen een antwoord op, de receptie verstuurt. Je kan zelfs als eerste een bericht sturen. (Expedia doet hier niet aan mee, dat zeggen we er eerlijk bij.)</p>
+      </div>
+
+      <div class="fp-power-card">
+        <span class="tag">Virtuele kaarten</span>
+        <h4>Kaartafhandeling <em>per kanaal</em>, automatisch.</h4>
+        <p>Kaart verifiëren zodra ze binnenkomt, pre-autoriseren rond een week voor aankomst, of de virtuele kaart automatisch afboeken bij check-in of check-out. Booking-VCC's worden vaak pas vlak voor aankomst geldig, dus rumo probeert niet te vroeg en herprobeert vanzelf.</p>
+      </div>
+
+      <div class="fp-power-card">
+        <span class="tag">Netto-omzet</span>
+        <h4>De <em>echte</em> commissie, per boeking.</h4>
+        <p>rumo leest het commissiebedrag dat Booking.com en Airbnb meesturen bij elke boeking. Zo klopt je netto-omzet per reservatie, in plaats van giswerk met een gemiddeld percentage.</p>
+      </div>
+
+      <div class="fp-power-card">
+        <span class="tag">Optionele add-on</span>
+        <h4><em>Smart Pricing</em>, ingebouwd.</h4>
+        <p>Prijzen die meebewegen met je bezetting: laag als het rustig is, hoog als het vol loopt, in tiers die je zelf instelt. Automatisch naar de OTA's geduwd. Geen externe tool nodig, het zit in rumo zelf.</p>
+      </div>
+
+      <div class="fp-power-card">
+        <span class="tag">Ontdubbeling</span>
+        <h4>Geen <em>dubbele</em> imports.</h4>
+        <p>OTA's sturen soms dezelfde boeking twee keer door. rumo herkent dat en houdt de dubbel tegen, zodat je kalender niet vervuilt.</p>
+      </div>
+
+      <div class="fp-power-card">
+        <span class="tag">Statuspaneel</span>
+        <h4>Zie in één oogopslag of de <em>sync loopt</em>.</h4>
+        <p>Laatste boeking ontvangen, laatste push verstuurd, mislukte pushes. Staat er iets vast, dan zijn er handmatige noodknoppen om opnieuw te duwen.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════ SECTIE 3 · CONFLICTEN ═══════════════════════ -->
 <section class="fp-section">
   <div class="wrap">
     <div class="fp-section-inner fade-up">
       <div class="fp-section-text">
-        <span class="fp-section-kicker">Wanneer het misgaat</span>
-        <h2>Een <em>dubbele</em> boeking. Wat dan?</h2>
-        <p class="lead">Theoretisch onmogelijk dankzij realtime sync, maar in de praktijk gebeurt het ooit (twee OTA's verkopen tegelijk de laatste kamer). rumo waarschuwt je meteen met een rode banner, met de twee betrokken boekingen naast elkaar. Jij beslist welke gast je upgrade en welke je verplaatst. Niet een algoritme.</p>
+        <span class="fp-section-kicker">Overboekingen voorkomen</span>
+        <h2>Een <em>dubbele</em> boeking? Liever niet.</h2>
+        <p class="lead">De realtime sync is er net om dit te vermijden. Zodra je laatste kamer verkoopt, duwt rumo de beschikbaarheid binnen seconden naar nul op alle kanalen. Zo houden we de kans dat twee OTA's tegelijk diezelfde kamer verkopen zo klein mogelijk. Boek je zelf nog een kamer in die eigenlijk al bezet is, dan weigert rumo dat of markeert het duidelijk. Je ziet het meteen, niet pas bij de check-in.</p>
         <ul class="fp-bullets">
-          <li>Realtime detectie op basis van Channex-feeds</li>
-          <li>Banner met de twee conflicterende boekingen naast elkaar</li>
-          <li>Klik op een actie: upgrade, verplaats, of contacteer de gast</li>
-          <li>Logging van wat er gebeurde voor later beoordelen</li>
-          <li>Statistiek over de tijd: hoe vaak gebeurt het, op welke kanalen</li>
+          <li>Verkocht is verkocht: beschikbaarheid gaat meteen naar nul op alle kanalen</li>
+          <li>Realtime sync houdt het risico op een dubbele verkoop zo klein mogelijk</li>
+          <li>Een handmatige boeking die botst met een bestaande wordt geweigerd of gemarkeerd</li>
+          <li>Geen verrassingen die pas bij de check-in bovenkomen</li>
         </ul>
       </div>
       <div class="fp-section-visual">
         <div class="mockup mk-conflict">
           <div class="mockup-head">
-            <h5>Dubbele boeking</h5>
-            <span class="badge">Wacht op beslissing</span>
+            <h5>Handmatige boeking</h5>
+            <span class="badge">Geweigerd</span>
           </div>
-          <div class="conflict-head">Kamer 104 · 12-15 mei</div>
+          <div class="conflict-head">Kamer 104 · 12-15 mei is al bezet</div>
           <div class="conflict-rooms">
             <div class="conflict-room">
-              <div class="src">Booking · 14:21</div>
+              <div class="src">Bestaand · Booking</div>
               <strong>Familie Müller</strong>
-              <span>3 nachten · €420 · prepaid</span>
+              <span>12-15 mei · bevestigd</span>
             </div>
             <div class="conflict-room">
-              <div class="src">Airbnb · 14:21</div>
-              <strong>Anna Janssens</strong>
-              <span>2 nachten · €280 · niet betaald</span>
+              <div class="src">Nieuw · handmatig</div>
+              <strong>Geblokkeerd</strong>
+              <span>botst met een bestaande boeking</span>
             </div>
-          </div>
-          <div class="conflict-actions">
-            <div class="conflict-btn primary">Upgrade Müller</div>
-            <div class="conflict-btn">Contacteer Janssens</div>
           </div>
         </div>
       </div>
@@ -672,7 +773,7 @@
     <div class="fp-section-inner fade-up">
       <div class="fp-section-text">
         <span class="fp-section-kicker">De lijst</span>
-        <h2>Booking, Airbnb, Expedia, <em>en zo'n 100 anderen</em>.</h2>
+        <h2>Booking, Airbnb, Expedia, <em>en een honderdtal anderen</em>.</h2>
         <p class="lead">Via Channex zijn ongeveer honderd kanalen bereikbaar. De grote drie zijn out-of-the-box, voor exotischere kanalen (HotelsCombined, Agoda, lokale OTA's) helpen we met de eerste connectie. (Hou je het bij de grote drie? Helemaal prima. De meeste hotels doen dat.)</p>
         <ul class="fp-bullets">
           <li>Out-of-the-box: Booking, Airbnb, Expedia, Hotelbeds, Agoda</li>
@@ -713,7 +814,7 @@
               <strong>Eigen website</strong>
               <span class="status">Verbonden</span>
             </div>
-            <div class="ota-more">+ ~95 andere kanalen via Channex</div>
+            <div class="ota-more">+ een honderdtal kanalen via Channex</div>
           </div>
         </div>
       </div>

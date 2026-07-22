@@ -543,6 +543,9 @@
             <label class="calc-addon"><input type="checkbox" id="addon-smartpricing" data-price="45"><span class="label">Smart Pricing</span><span class="cost">+€45/m</span></label>
             <label class="calc-addon"><input type="checkbox" id="addon-salto" data-price="45"><span class="label">Sleutelbeheer</span><span class="cost">+€45/m</span></label>
             <label class="calc-addon"><input type="checkbox" id="addon-peppol" data-price="9"><span class="label">Peppol Automatisch</span><span class="cost">+€9/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-upsell" data-price="45"><span class="label">Upsell</span><span class="cost">+€45/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-housekeeping" data-price="45"><span class="label">Advanced Housekeeping</span><span class="cost">+€45/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-scrada" data-price="45"><span class="label">Full Scrada</span><span class="cost">+€45/m</span></label>
           </div>
           <div class="calc-result">
             <div class="calc-row"><span><span id="calc-rooms">20</span> kamers × €12</span><span id="calc-base">€240</span></div>
@@ -586,7 +589,7 @@
       <div class="addon fade-up" style="transition-delay:0.21s">
         <span class="addon-badge">Add-on</span>
         <h4>Sleutelbeheer</h4>
-        <p>Digitale sleutels gekoppeld aan je reservaties. Gast checkt in via de app, krijgt direct toegang tot zijn kamer.</p>
+        <p>Digitale sleutels (Salto) gekoppeld aan je reservaties. Gast checkt in via de app, krijgt direct toegang tot zijn kamer. Werkt vandaag.</p>
         <div class="addon-price">€45 <small>/ maand</small></div>
       </div>
       <div class="addon fade-up" style="transition-delay:0.28s">
@@ -594,6 +597,24 @@
         <h4>Peppol Automatisch</h4>
         <p>Facturen automatisch verzonden via het Peppol-netwerk. Geen XML-bestanden downloaden, geen portalen. Eén klik en klaar.</p>
         <div class="addon-price">€9 <small>/ maand</small></div>
+      </div>
+      <div class="addon fade-up" style="transition-delay:0.35s">
+        <span class="addon-badge">Add-on</span>
+        <h4>Upsell</h4>
+        <p>Bied gasten extra's en kamerupgrades aan in het guest portal, vóór aankomst. Met een rapport dat toont wat het opbrengt.</p>
+        <div class="addon-price">€45 <small>/ maand</small></div>
+      </div>
+      <div class="addon fade-up" style="transition-delay:0.42s">
+        <span class="addon-badge">Add-on</span>
+        <h4>Advanced Housekeeping</h4>
+        <p>Schoonmaakchecklists, een timer per kamer en een tijdrapport. Zie hoe lang een kamer echt kost om klaar te maken.</p>
+        <div class="addon-price">€45 <small>/ maand</small></div>
+      </div>
+      <div class="addon fade-up" style="transition-delay:0.49s">
+        <span class="addon-badge">Add-on</span>
+        <h4>Full Scrada</h4>
+        <p>Volledige koppeling met je boekhouding en kassa. Verkopen en correcties belanden automatisch in Scrada.</p>
+        <div class="addon-price">€45 <small>/ maand</small></div>
       </div>
     </div>
     <p style="text-align:center;margin-top:2.5rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);letter-spacing:0.03em;">Alle prijzen excl. 21% btw</p>
@@ -714,13 +735,7 @@ const calcTotal = document.getElementById('calc-total');
 const calcAddonsRow = document.getElementById('calc-addons-row');
 const calcAddonCount = document.getElementById('calc-addon-count');
 const calcAddonsTotal = document.getElementById('calc-addons-total');
-const addonCheckboxes = [
-  document.getElementById('addon-whitelabel'),
-  document.getElementById('addon-property'),
-  document.getElementById('addon-smartpricing'),
-  document.getElementById('addon-salto'),
-  document.getElementById('addon-peppol')
-];
+const addonCheckboxes = Array.from(document.querySelectorAll('.calc-addon input[type="checkbox"]'));
 const PRICE_PER_ROOM = 12, MINIMUM = 99;
 
 function updateCalc() {

@@ -532,6 +532,8 @@
           <li>Per dag, per week, of een custom datumrange</li>
           <li>Kleurcodes voor in-house, schoon, te kuisen, geblokkeerd</li>
           <li>Klik op een gast en je zit direct in z'n dossier</li>
+          <li>ID of paspoort scannen bij check-in, gegevens meteen in het dossier</li>
+          <li>Wachtlijst voor als alles vol zit maar je de vraag niet wil verliezen</li>
         </ul>
       </div>
       <div class="fp-section-visual">
@@ -574,12 +576,12 @@
       <div class="fp-section-text">
         <span class="fp-section-kicker">Quick check-out</span>
         <h2>Eén klik en alles <em>klikt</em>.</h2>
-        <p class="lead">Bij de meeste PMS'en is een uitcheck zes schermen ver. Bij rumo is het één knop. Factuur, betaling, status, housekeeping-melding, mail naar de gast. Allemaal samen, in de juiste volgorde, met audit trail. (Da's geen verkooptruc, je telt het zelf uit als je er een week mee werkt.)</p>
+        <p class="lead">Bij de meeste PMS'en is een uitcheck zes schermen ver. Bij rumo maak je met één knop de factuur op en staat de gast uitgecheckt. Kamer naar vuil, housekeeping weet het. Een openstaand saldo blokkeert niets, dat reken je nadien af. De bevestigingsmail stuur je zelf, wanneer het jou past. (Da's geen verkooptruc, je telt het zelf uit als je er een week mee werkt.)</p>
         <ul class="fp-bullets">
           <li>Factuur opgemaakt met juiste BTW-splitsing en jouw nummer-volgorde</li>
-          <li>Betaling gekoppeld aan de boeking, of openstaand markeren</li>
-          <li>Status springt naar checked-out, kamer naar vuil</li>
-          <li>Mail naar de gast in zijn taal</li>
+          <li>Gast staat uitgecheckt, kamer springt naar vuil</li>
+          <li>Een openstaand saldo blokkeert niets, dat reken je nadien af</li>
+          <li>Bevestigingsmail verstuur je zelf, in de taal van de gast</li>
           <li>Audit log: wie deed wat wanneer</li>
         </ul>
       </div>
@@ -599,22 +601,15 @@
           <div class="step">
             <div class="check">✓</div>
             <div>
-              <strong>Betaling gekoppeld</strong>
-              <span>Visa · €1.347,00</span>
+              <strong>Gast uitgecheckt</strong>
+              <span>Kamer op vuil · housekeeping verwittigd</span>
             </div>
           </div>
           <div class="step">
-            <div class="check">✓</div>
+            <div class="check">✉</div>
             <div>
-              <strong>Status: checked out</strong>
-              <span>Housekeeping verwittigd</span>
-            </div>
-          </div>
-          <div class="step">
-            <div class="check">✓</div>
-            <div>
-              <strong>E-mail verstuurd</strong>
-              <span>Bevestiging · NL</span>
+              <strong>Bevestigingsmail klaar</strong>
+              <span>Jij stuurt, wanneer het past</span>
             </div>
           </div>
         </div>
@@ -633,10 +628,12 @@
         <p class="lead">Vanaf 2026 verplicht voor B2B in België. rumo bouwt de factuur in UBL 2.1, stuurt ze via Peppol naar je klant, klaar. Particulieren krijgen gewoon een PDF. Jij hoeft niet eens te weten welk type het is, rumo herkent het en doet het juiste.</p>
         <ul class="fp-bullets">
           <li>6% / 21% BTW-splitsing per regel, automatisch bij arrangementen</li>
-          <li>Credit nota's met automatische link naar de oorspronkelijke factuur</li>
-          <li>Voorschotten en deelfacturen, allemaal Peppol-klaar</li>
+          <li>Factuur, proforma, creditnota en ontvangstbewijs voor particulieren, rumo kiest het juiste type</li>
+          <li>Creditnota's met automatische link naar de oorspronkelijke factuur</li>
+          <li>Deelfacturen om een verblijf op te splitsen. Een voorschot vraag je met een betaallink, een percentage vooraf</li>
+          <li>Stadstaks automatisch berekend, met vrijstelling voor kinderen</li>
+          <li>Items overzetten naar een andere reservatie, handig voor groepsfacturatie</li>
           <li>Directe koppeling met Octopus, Exact Online, Yuki</li>
-          <li>Intervat XML-export voor je BTW-aangifte</li>
         </ul>
       </div>
       <div class="fp-section-visual">
@@ -693,7 +690,7 @@
         <h2>Geen menu's <em>onthouden</em>.</h2>
         <p class="lead">rumo is gebouwd voor mensen die liever met gasten bezig zijn dan met software. Alles wat je elke dag doet ligt op één of twee klikken. Wat je zelden doet zit erop, maar niet ervoor. (Awel ja, zo simpel kan het.)</p>
         <ul class="fp-bullets">
-          <li>Zoeken met ⌘+K: boeking, gast, kamer, factuur, factuurnummer</li>
+          <li>Zoeken met Ctrl+K (Alt+K op Windows): gast, boekingsref, OTA-ref, factuurnummer</li>
           <li>Dashboard met live arrivals, departures, omzet, bezetting</li>
           <li>Bruikbaar op tablet zonder aparte app</li>
           <li>Sneltoetsen voor power-users, klikken voor de rest</li>
@@ -744,6 +741,150 @@
               <div class="num">202</div>
               <div class="guest">Janssens</div>
               <div class="tag">→ in</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 5 · HOUSEKEEPING ═══════════════════════ -->
+<section class="fp-section">
+  <div class="wrap">
+    <div class="fp-section-inner fade-up">
+      <div class="fp-section-text">
+        <span class="fp-section-kicker">Housekeeping</span>
+        <h2>Van vuil naar <em>geïnspecteerd</em>.</h2>
+        <p class="lead">De meeste PMS'en kennen maar twee kleuren: schoon en vuil. De Advanced Housekeeping add-on gaat verder. Een kamer loopt van vuil naar schoon naar geïnspecteerd, zodat niemand incheckt op een kamer die nog niet nagekeken is. Dag-specifieke checklists, losse extra taken, een notitie per kamer. En een timer die meet hoe lang een kamer echt duurt.</p>
+        <ul class="fp-bullets">
+          <li>Drie statussen: vuil, schoon, geïnspecteerd</li>
+          <li>Schoonmaakchecklists die per dag verschillen</li>
+          <li>Losse extra taken en een notitie per kamer</li>
+          <li>Timer met tijdrapport per kamermeisje en per kamer</li>
+        </ul>
+      </div>
+      <div class="fp-section-visual">
+        <div class="mockup mk-steps">
+          <div class="mockup-head">
+            <h5>Kamer 104</h5>
+            <span class="badge">Add-on</span>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>Vuil → schoon</strong>
+              <span>Afgevinkt door An</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>Checklist compleet</strong>
+              <span>8 van 8 taken · dagchecklist</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="check">⏱</div>
+            <div>
+              <strong>Wacht op inspectie</strong>
+              <span>14 min · in tijdrapport</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 6 · F&B ═══════════════════════ -->
+<section class="fp-section alt reverse">
+  <div class="wrap">
+    <div class="fp-section-inner fade-up">
+      <div class="fp-section-text">
+        <span class="fp-section-kicker">F&amp;B</span>
+        <h2>De keuken weet <em>'s ochtends</em> al hoe laat het is.</h2>
+        <p class="lead">Geen kassa, wel het overzicht dat de keuken en de zaal nodig hebben. Een coverpagina per dag telt ontbijt, lunch en diner, en die tellingen volgen de nacht mee. Allergieën en tags per gast, walk-ins, aanwezigheid afvinken, printlijsten voor wie liever papier heeft. Plus een F&amp;B-omzetrapport voor de cijfers achteraf.</p>
+        <ul class="fp-bullets">
+          <li>Coverpagina per dag: ontbijt, lunch en diner-tellingen die de nacht volgen</li>
+          <li>Allergieën en tags per gast, meteen zichtbaar</li>
+          <li>Walk-ins, aanwezigheid afvinken, printlijsten voor de keuken</li>
+          <li>F&amp;B-omzetrapport voor achteraf</li>
+        </ul>
+      </div>
+      <div class="fp-section-visual">
+        <div class="mockup mk-steps">
+          <div class="mockup-head">
+            <h5>Covers vandaag</h5>
+            <span class="badge">Keuken</span>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>Ontbijt</strong>
+              <span>34 covers · 6 kamers volgen morgen</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="check">!</div>
+            <div>
+              <strong>Allergieën</strong>
+              <span>2 gemarkeerd · lactose, noten</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>Printlijst</strong>
+              <span>Klaar voor de keuken</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SECTIE 7 · RAPPORTEN ═══════════════════════ -->
+<section class="fp-section">
+  <div class="wrap">
+    <div class="fp-section-inner fade-up">
+      <div class="fp-section-text">
+        <span class="fp-section-kicker">Rapporten</span>
+        <h2>Twaalf tabs. <em>Nul</em> exports met de hand.</h2>
+        <p class="lead">Het rapportenscherm is meer dan een dashboard. Een tab of twaalf: Pace die je boekingscurve tegen vorig jaar legt, debiteuren, nationaliteit. En de wettelijke exports die je toch moet indienen: politieregister, stadstaks, en de overheidsstatistiek. Statbel in België, de logiesenquête in Nederland. Eén klik, klaar om in te dienen.</p>
+        <ul class="fp-bullets">
+          <li>Pace: je boekingscurve vergeleken met vorig jaar</li>
+          <li>Debiteuren en nationaliteit, kant en klaar</li>
+          <li>Politieregister en stadstaks-aangifte</li>
+          <li>Overheidsstatistiek: Statbel (BE) en logiesenquête (NL)</li>
+        </ul>
+      </div>
+      <div class="fp-section-visual">
+        <div class="mockup mk-steps">
+          <div class="mockup-head">
+            <h5>Rapporten</h5>
+            <span class="badge">12 tabs</span>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>Pace</strong>
+              <span>+8% vs vorig jaar</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>Politieregister</strong>
+              <span>Export klaar om in te dienen</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="check">✓</div>
+            <div>
+              <strong>Overheidsstatistiek</strong>
+              <span>Statbel (BE) · logiesenquête (NL)</span>
             </div>
           </div>
         </div>

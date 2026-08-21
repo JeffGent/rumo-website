@@ -73,6 +73,9 @@
         try { sessionStorage.setItem(KEY, '1'); } catch (e3) {}
         g.remove();
         document.documentElement.classList.remove('rumo-locked');
+        // De pagina was verborgen zolang het slot erop stond; alles wat zich op
+        // scrollpositie baseert (o.a. de nav boven de hero-video) moet nu opnieuw meten.
+        window.dispatchEvent(new Event('scroll'));
       } else {
         err.textContent = 'Hmm, dat klopt niet. Probeer nog eens.';
         input.value = ''; input.focus();

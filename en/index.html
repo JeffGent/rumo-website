@@ -1420,7 +1420,11 @@ const nav = document.querySelector('nav');
 const hero = document.querySelector('.hero');
 
 function updateNav() {
-  const heroBottom = hero.getBoundingClientRect().bottom;
+  const rect = hero.getBoundingClientRect();
+  // Hero nog niet zichtbaar (bv. achter het wachtwoordscherm): niets beslissen,
+  // anders blijft de nav in de verkeerde stand hangen tot je scrollt.
+  if (rect.height === 0) return;
+  const heroBottom = rect.bottom;
   if (heroBottom > 60) {
     nav.classList.add('on-video');
     nav.classList.remove('scrolled');
@@ -1430,6 +1434,8 @@ function updateNav() {
   }
 }
 window.addEventListener('scroll', updateNav, { passive: true });
+window.addEventListener('resize', updateNav, { passive: true });
+window.addEventListener('load', updateNav);
 updateNav();
 
 // Fade-up

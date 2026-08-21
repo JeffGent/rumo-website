@@ -354,6 +354,8 @@
     grid-template-columns:repeat(3, 1fr);
     gap:1.25rem;
   }
+  /* Doel van de footerlink "Housekeeping": onder de vaste navbalk uitkomen. */
+  .compact-card[id] { scroll-margin-top:7rem; }
   .compact-card {
     background:var(--paper-panel);
     border:1px solid var(--line);
@@ -526,7 +528,7 @@
     <div>
       <span class="kicker">Features</span>
       <h1>De kern,<br><em>en alles</em> eromheen.</h1>
-      <p class="lead">Het PMS, het handboek en Rudy vormen de kern. Preventie, channel manager en guest portal maken het compleet. Klik er eentje open voor het volledige verhaal.</p>
+      <p class="lead">Het PMS, het handboek en Rudy vormen de kern. Veiligheid, channel manager en guest portal maken het compleet. Klik er eentje open voor het volledige verhaal.</p>
     </div>
   </div>
 </div>
@@ -563,12 +565,12 @@
         <span class="arrow">Lees meer</span>
       </a>
 
-      <a class="marquee-card fade-up" href="prevention.html">
-        <div class="marquee-ic" style="background:#FCEDBD; color:#8a6b1a;">
-          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <a class="marquee-card fade-up" href="veiligheid.html">
+        <div class="marquee-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
         </div>
-        <h3><em>Preventie</em> &amp; welzijn</h3>
-        <p>Brandpreventie, legionella, EHBO, checklists, incidenten. Eindelijk in één levend dossier.</p>
+        <h3><em>Veiligheid</em> &amp; privacy</h3>
+        <p>Inloggen met je vinger in plaats van met een wachtwoord, gastgegevens standaard afgeschermd, alarm als iemand ongewoon veel opent, en een melding aan de overheid die klaarligt voor je begint te zoeken.</p>
         <span class="arrow">Lees meer</span>
       </a>
 
@@ -590,16 +592,6 @@
         <span class="arrow">Lees meer</span>
       </a>
 
-      <a class="marquee-card wide fade-up" href="veiligheid.html">
-        <div class="marquee-ic" style="background:var(--forest-soft); color:var(--forest);">
-          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-        </div>
-        <div class="wide-text">
-          <h3><em>Veiligheid</em> &amp; privacy</h3>
-          <p>Inloggen met je vinger in plaats van met een wachtwoord, gastgegevens standaard afgeschermd, alarm als iemand ongewoon veel opent, en een melding aan de overheid die klaarligt voor je begint te zoeken.</p>
-        </div>
-        <span class="arrow">Lees meer</span>
-      </a>
 
     </div>
   </div>
@@ -616,11 +608,11 @@
     <div class="compact-grid">
 
       <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
-          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h4>Housekeeping</h4>
-        <p>Realtime kamerstatus. Schoonmaakpersoneel werkt via hun telefoon, updates verschijnen direct in de kalender.</p>
+        <h4>Preventie &amp; welzijn</h4>
+        <p>Brandpreventie, legionella, EHBO, checklists, incidenten. Eindelijk in één levend dossier.</p>
       </div>
 
       <div class="compact-card fade-up">
@@ -703,7 +695,7 @@
         <p>Laat gasten voor aankomst upgraden naar een betere kamer of extra's bijboeken via de portal. Meer per boeking, zonder werk aan de balie. Als aparte module.</p>
       </div>
 
-      <div class="compact-card fade-up">
+      <div class="compact-card fade-up" id="housekeeping">
         <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>

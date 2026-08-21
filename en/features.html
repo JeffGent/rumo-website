@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="../shared.css">
 <style>
   /* ─── FEATURE MODULE ─── */
   .feature {
@@ -352,6 +352,8 @@
     grid-template-columns:repeat(3, 1fr);
     gap:1.25rem;
   }
+  /* Doel van de footerlink "Housekeeping": onder de vaste navbalk uitkomen. */
+  .compact-card[id] { scroll-margin-top:7rem; }
   .compact-card {
     background:var(--paper-panel);
     border:1px solid var(--line);
@@ -510,7 +512,7 @@
     <div>
       <span class="kicker">Features</span>
       <h1>One hotel,<br><em>six layers</em> of rumo.</h1>
-      <p class="lead">The PMS, Rudy, the handbook, prevention, channel manager, guest portal. Click one open for the full story.</p>
+      <p class="lead">The PMS, Rudy, the handbook, security, channel manager, guest portal. Click one open for the full story.</p>
     </div>
     <div class="page-header-side">
       6 pillars<br>
@@ -551,12 +553,12 @@
         <span class="arrow">Read more</span>
       </a>
 
-      <a class="marquee-card fade-up" href="../prevention.html">
-        <div class="marquee-ic" style="background:#FCEDBD; color:#8a6b1a;">
-          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <a class="marquee-card fade-up" href="../veiligheid.html">
+        <div class="marquee-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
         </div>
-        <h3><em>Prevention</em> &amp; safety</h3>
-        <p>Fire safety, legionella, first aid, checklists, incidents. Finally in one living record.</p>
+        <h3><em>Security</em> &amp; privacy</h3>
+        <p>Log in with your finger instead of a password, guest data shielded by default, an alert when someone opens unusually many records, and a report to the authorities ready before you start looking.</p>
         <span class="arrow">Read more</span>
       </a>
 
@@ -593,11 +595,11 @@
     <div class="compact-grid">
 
       <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
-          <svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h4>Housekeeping</h4>
-        <p>Real-time room status. Cleaning staff works from their phone, updates show up immediately on the calendar.</p>
+        <h4>Prevention &amp; safety</h4>
+        <p>Fire safety, legionella, first aid, checklists, incidents. Finally in one living record.</p>
       </div>
 
       <div class="compact-card fade-up">
@@ -662,6 +664,14 @@
         </div>
         <h4>Maintenance</h4>
         <p>Broken lock on room 12? Leaking tap in the kitchen? Anyone logs an issue with a photo. You see what's pending, in progress, coming up. No more post-its at the front desk.</p>
+      </div>
+
+      <div class="compact-card fade-up" id="housekeeping">
+        <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h4>Advanced Housekeeping</h4>
+        <p>Cleaning checklists per room and a timer that measures how long a clean takes. For anyone who wants to follow housekeeping closely. As a separate module.</p>
       </div>
 
     </div>

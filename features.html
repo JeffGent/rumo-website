@@ -475,11 +475,25 @@
     color: var(--terra-dark);
   }
   .marquee-card .arrow::after { content: ' →'; }
+  /* Volle-breedte kaart onderaan het raster (veiligheid). */
+  .marquee-card.wide {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.4rem;
+    padding: 1.5rem 1.7rem;
+  }
+  .marquee-card.wide .marquee-ic { flex-shrink: 0; }
+  .marquee-card.wide .wide-text { display: flex; flex-direction: column; gap: 0.35rem; }
+  .marquee-card.wide p { max-width: 68ch; }
+  .marquee-card.wide .arrow { margin-top: 0; margin-left: auto; padding-top: 0; white-space: nowrap; }
   @media (max-width: 880px) {
     .marquee-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
     .marquee-grid { grid-template-columns: 1fr; }
+    .marquee-card.wide { flex-direction: column; align-items: flex-start; }
+    .marquee-card.wide .arrow { margin-left: 0; padding-top: 0.4rem; }
   }
 </style>
 </head>
@@ -573,6 +587,17 @@
         </div>
         <h3>Guest <em>portal &amp; booking engine</em></h3>
         <p>Boeken via je eigen site zonder commissie. Pre-checkin, online betalen, politie-export. Op de telefoon van je gast.</p>
+        <span class="arrow">Lees meer</span>
+      </a>
+
+      <a class="marquee-card wide fade-up" href="veiligheid.html">
+        <div class="marquee-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="wide-text">
+          <h3><em>Veiligheid</em> &amp; privacy</h3>
+          <p>Inloggen zonder wachtwoord, gastgegevens standaard afgeschermd, alarm als iemand ongewoon veel opent, en een melding aan de overheid die klaarligt voor je begint te zoeken.</p>
+        </div>
         <span class="arrow">Lees meer</span>
       </a>
 
@@ -712,6 +737,7 @@
       <ul class="footer-links">
         <li><a href="features.html">Features</a></li>
         <li><a href="integraties.html">Integraties</a></li>
+        <li><a href="veiligheid.html">Veiligheid</a></li>
         <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
         <li><a href="faq.html">FAQ</a></li>
       </ul>

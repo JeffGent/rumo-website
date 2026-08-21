@@ -860,6 +860,13 @@ a.pk { text-decoration:none; color:inherit; }
 .trust-item:nth-child(2) .ic { color:var(--forest); background:var(--forest-soft); }
 .trust-item:nth-child(3) .ic { color:#8a6b1a; background:#FCEDBD; }
 .trust-item p { margin:0; font-size:0.95rem; line-height:1.5; max-width:32ch; }
+a.trust-item { text-decoration:none; color:inherit; }
+a.trust-item p strong .arr {
+  font-family:'JetBrains Mono', monospace; font-size:0.78em; color:var(--terra-dark);
+  margin-left:0.45em; opacity:0.55; display:inline-block; transition:opacity 0.2s, transform 0.2s;
+}
+a.trust-item:hover p strong { color:var(--terra-dark); }
+a.trust-item:hover p strong .arr { opacity:1; transform:translateX(3px); }
 .trust-item p strong {
   display:block;
   font-family:'Fraunces', serif;
@@ -1340,15 +1347,15 @@ footer {
         </div>
         <p><strong>Belgisch product</strong>Gemaakt in Gent. Support in NL, FR en EN.</p>
       </div>
-      <div class="trust-item fade-up" style="transition-delay:0.2s">
+      <a class="trust-item fade-up" href="veiligheid.html" style="transition-delay:0.2s">
         <div class="ic">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <rect x="3" y="11" width="18" height="11" rx="2"/>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
         </div>
-        <p><strong>GDPR &amp; EU-hosting</strong>Data blijft binnen Europa. Geen compromissen.</p>
-      </div>
+        <p><strong>GDPR &amp; EU-hosting<span class="arr">→</span></strong>Data blijft binnen Europa, en je ziet zelf wie er aan je gastgegevens kan.</p>
+      </a>
     </div>
   </div>
 </div>
@@ -1433,6 +1440,7 @@ footer {
         <li><a href="features.html#facturatie">Facturatie &amp; Peppol</a></li>
         <li><a href="features.html#housekeeping">Housekeeping</a></li>
         <li><a href="features.html#rapporten">Rapporten</a></li>
+        <li><a href="veiligheid.html">Veiligheid</a></li>
       </ul>
     </div>
     <div>

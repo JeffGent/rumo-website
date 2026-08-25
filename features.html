@@ -5,10 +5,16 @@
 <script src="gate.js"></script>
 <script src="demo-form.js" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Features · rumo</title>
+<title>Wat kunnen we? · rumo</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta name="description" content="rumo doet alles wat je van een PMS verwacht, plus AI-assistent, handboek en sterke automatisering.">
+<!-- Plausible: cookieloze, EU-gehoste statistieken. Geen persoonsgegevens, geen cross-site profiel. Zie cookies.html. -->
+<script async src="https://plausible.io/js/pa-qrWo4zr4eI0-tnEew9x4u.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+<meta name="description" content="Alles wat rumo kan: het PMS, het handboek, Rudy, de channel manager, het guest portal en veiligheid. Plus de kleinere onderdelen en waar rumo mee koppelt.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -349,46 +355,114 @@
   }
   .compact-head { max-width:680px; margin-bottom:3rem; }
   .compact-head h2 em { color:var(--terra-dark); }
+  /* De zes kernfeatures hierboven zijn <a>'s met een eigen pagina. Deze
+     bijkomende features hebben er géén, dus mogen ze er ook niet uitzien als
+     iets waarop je klikt. Vandaar: geen kaartrand, geen achtergrond, geen
+     hover die optilt, en een titel in Inter in plaats van Fraunces. Wat
+     overblijft leest als een opsomming, niet als een raster knoppen. */
   .compact-grid {
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:1.25rem;
+    grid-template-columns:repeat(4, 1fr);
+    gap:2rem 2.25rem;
   }
   /* Doel van de footerlink "Housekeeping": onder de vaste navbalk uitkomen. */
   .compact-card[id] { scroll-margin-top:7rem; }
   .compact-card {
-    background:var(--paper-panel);
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:1.5rem 1.5rem 1.75rem;
-    transition:transform 0.25s, box-shadow 0.25s;
-  }
-  .compact-card:hover {
-    transform:translateY(-3px);
-    box-shadow:0 16px 36px rgba(27,25,23,0.08);
+    border-top:1px solid var(--line);
+    padding-top:1rem;
   }
   .compact-ic {
-    width:32px; height:32px;
-    border-radius:8px;
-    display:flex; align-items:center; justify-content:center;
-    margin-bottom:0.9rem;
+    width:22px; height:22px;
+    border-radius:6px;
+    display:inline-flex; align-items:center; justify-content:center;
+    vertical-align:-5px;
+    margin-right:0.5rem;
   }
-  .compact-ic svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+  .compact-ic svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
   .compact-card h4 {
-    font-family:'Fraunces', serif;
-    font-weight:400;
-    font-size:1.2rem;
-    letter-spacing:-0.02em;
-    margin-bottom:0.4rem;
-    line-height:1.15;
+    display:inline;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:0;
+    line-height:1.3;
+    color:var(--ink);
   }
   .compact-card p {
-    font-size:0.9rem;
+    font-size:0.86rem;
     color:var(--ink-soft);
-    line-height:1.55;
+    line-height:1.5;
+    margin-top:0.45rem;
   }
 
+
+  /* Snelkoppeling naar de koppelingen: de diskwalificatievraag mag niet
+     achter drie schermen scrollen zitten. */
+  .ph-sprong { margin-top:1.4rem; }
+  .ph-sprong a {
+    display:inline-flex; align-items:center; gap:0.4em;
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--terra-dark); text-decoration:none;
+    border-bottom:1px solid rgba(185,107,74,0.35); padding-bottom:2px;
+  }
+  .ph-sprong a:hover { border-bottom-color:var(--terra-dark); }
+
+  /* ─── KOPPELINGEN (laag 3) ─────────────────────────────────────────────
+     Stond op een eigen pagina als 27 kaarten met elk een alinea. Dat is een
+     leesontwerp voor wat in werkelijkheid een zoekopdracht is: de bezoeker
+     scant naar één naam. Vandaar per categorie één regel met alle namen
+     erin, uitklapbaar voor wie de uitleg wil. Native <details>, geen JS. */
+  .koppelingen { background:var(--paper-deep); padding:7rem 0; }
+  .koppelingen-head { max-width:680px; margin-bottom:3rem; }
+  .koppelingen-head h2 em { color:var(--terra-dark); }
+  .ig-lijst { display:grid; gap:0.75rem; }
+  .ig {
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+  }
+  .ig summary {
+    list-style:none; cursor:pointer;
+    padding:1.35rem 1.6rem;
+    display:grid; gap:0.4rem;
+  }
+  .ig summary::-webkit-details-marker { display:none; }
+  .ig-kop {
+    font-family:'Fraunces', serif; font-size:1.15rem; letter-spacing:-0.02em;
+    color:var(--ink); display:flex; align-items:center; gap:0.6em;
+  }
+  .ig-aantal {
+    font-family:'JetBrains Mono', monospace; font-size:0.6rem; letter-spacing:0.08em;
+    color:var(--muted); border:1px solid var(--line); border-radius:100px;
+    padding:0.15rem 0.5rem; margin-left:auto;
+  }
+  .ig[open] .ig-aantal::after { content:' \2212'; }
+  .ig:not([open]) .ig-aantal::after { content:' +'; }
+  .ig-namen { font-size:0.95rem; line-height:1.55; color:var(--ink-soft); }
+  .ig-sub {
+    font-family:'JetBrains Mono', monospace; font-size:0.6rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .ig-soon {
+    font-family:'JetBrains Mono', monospace; font-size:0.55rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--terra-dark);
+    background:var(--rose-soft); border-radius:100px; padding:0.2rem 0.55rem;
+  }
+  .ig-body {
+    padding:0 1.6rem 1.5rem;
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:1rem 1.75rem;
+  }
+  .ig-item { border-top:1px solid var(--line); padding-top:0.7rem; }
+  .ig-item strong { display:inline-block; font-size:0.92rem; font-weight:600; margin-bottom:0.2rem; }
+  .ig-item span { display:block; font-size:0.84rem; line-height:1.5; color:var(--ink-soft); }
+  .ig-slot { margin-top:2rem; font-size:0.98rem; color:var(--ink-soft); max-width:52ch; }
+  @media (max-width:800px) { .ig-body { grid-template-columns:1fr; } }
+
   /* Responsive */
+  @media (max-width:1100px) {
+    .compact-grid { grid-template-columns:repeat(2, 1fr); }
+  }
   @media (max-width:900px) {
     .feature-inner { grid-template-columns:1fr; gap:2.5rem; }
     .feature:nth-of-type(even) .feature-inner > .feature-visual { order:unset; }
@@ -507,9 +581,8 @@
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="index.html#pijlers">Wat doet rumo?</a></li>
-    <li><a href="features.html" class="active">Features</a></li>
-    <li><a href="integraties.html">Integraties</a></li>
+    <li><a href="features.html" class="active">Wat kunnen we?</a></li>
+    <li><a href="uitgelegd/index.html">Wat weten we?</a></li>
     <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="over-ons.html">Over ons</a></li>
@@ -526,9 +599,10 @@
 <div class="page-header">
   <div class="page-header-inner fade-up">
     <div>
-      <span class="kicker">Features</span>
-      <h1>De kern,<br><em>en alles</em> eromheen.</h1>
-      <p class="lead">Het PMS, het handboek en Rudy vormen de kern. Veiligheid, channel manager en guest portal maken het compleet. Klik er eentje open voor het volledige verhaal.</p>
+      <span class="kicker">Wat kunnen we?</span>
+      <h1>De kern, alles eromheen,<br>en <em>waar het aan vasthangt.</em></h1>
+      <p class="lead">Het PMS, het handboek en Rudy vormen de kern. Veiligheid, channel manager en guest portal maken het compleet. Daaronder staan de kleinere onderdelen, en helemaal onderaan waar rumo mee koppelt.</p>
+      <p class="ph-sprong"><a href="#integraties">Werkt het met mijn kanaal of mijn boekhouder? &rarr;</a></p>
     </div>
   </div>
 </div>
@@ -707,6 +781,98 @@
   </div>
 </section>
 
+<!-- ═══════════════════════ KOPPELINGEN ═══════════════════════ -->
+<section class="koppelingen" id="integraties">
+  <div class="wrap">
+    <div class="koppelingen-head fade-up">
+      <span class="kicker">Past het bij wat je al gebruikt?</span>
+      <h2>Waar rumo <em>aan vasthangt.</em></h2>
+      <p class="lead" style="margin-top:1.25rem;">Zoek gewoon je eigen kanaal of je eigen boekhoudpakket in de lijst. Klap een categorie open als je wil weten wat de koppeling precies doet.</p>
+    </div>
+
+    <div class="ig-lijst fade-up">
+      <details class="ig">
+        <summary>
+          <span class="ig-kop">OTA's en boekingsplatformen<span class="ig-aantal">12</span></span>
+          <span class="ig-namen">Booking.com &middot; Airbnb &middot; Expedia &middot; Google Hotel Ads &middot; Agoda &middot; Trip.com &middot; HRS &middot; Check24 &middot; eDreams &middot; Hopper &middot; VRBO &middot; Getaroom</span>
+          <span class="ig-sub">Waar je kamers online verkocht worden.</span>
+        </summary>
+        <div class="ig-body">
+        <div class="ig-item"><strong>Booking.com</strong><span>Het grootste boekingsplatform ter wereld. Prijzen, beschikbaarheid en reservaties in realtime gesynchroniseerd.</span></div>
+        <div class="ig-item"><strong>Airbnb</strong><span>Bereik reizigers die op zoek zijn naar unieke verblijven. Perfecte sync voor korte en langere stays.</span></div>
+        <div class="ig-item"><strong>Expedia</strong><span>Expedia, Hotels.com en Vrbo in een koppeling. Internationaal bereik voor zakelijke en leisure reizigers.</span></div>
+        <div class="ig-item"><strong>Google Hotel Ads</strong><span>Directe boekingen via Google Zoeken en Maps. Gasten boeken rechtstreeks bij jou.</span></div>
+        <div class="ig-item"><strong>Agoda</strong><span>Populair bij Aziatische reizigers. Sterk groeiend in Europa, vooral voor stedentrips en budgethotels.</span></div>
+        <div class="ig-item"><strong>Trip.com</strong><span>Groot bereik in Azië en groeiend in Europa. Ideaal als je internationale gasten wil aantrekken.</span></div>
+        <div class="ig-item"><strong>HRS</strong><span>Gericht op zakelijke reizigers en corporate klanten. Sterk in Duitsland, Benelux en Centraal-Europa.</span></div>
+        <div class="ig-item"><strong>Check24</strong><span>Populaire vergelijkingssite in Duitsland. Bereik Duitse reizigers die prijsbewust boeken.</span></div>
+        <div class="ig-item"><strong>eDreams</strong><span>Europese OTA met sterk bereik in Spanje, Frankrijk en Italië. Combineert vluchten met hotels.</span></div>
+        <div class="ig-item"><strong>Hopper</strong><span>Mobile-first platform, populair bij jongere reizigers. Groeiend kanaal voor last-minute boekingen.</span></div>
+        <div class="ig-item"><strong>VRBO</strong><span>Vacation rentals via het Expedia-netwerk. Ideaal voor appartementen en familiekamers.</span></div>
+        <div class="ig-item"><strong>Getaroom</strong><span>Globale distributie via diverse boekingskanalen. Extra zichtbaarheid zonder extra werk.</span></div>
+        </div>
+      </details>
+
+      <details class="ig">
+        <summary>
+          <span class="ig-kop">Tour operators en wholesalers<span class="ig-aantal">4</span></span>
+          <span class="ig-namen">Hotelbeds &middot; Travelgate &middot; Reconline (GDS) &middot; Hyperguest</span>
+          <span class="ig-sub">Het zakelijke circuit: reisbureaus, groepen, GDS.</span>
+        </summary>
+        <div class="ig-body">
+        <div class="ig-item"><strong>Hotelbeds</strong><span>Wereldwijd B2B-netwerk voor reisbureaus en tour operators. Groot volume, breed bereik.</span></div>
+        <div class="ig-item"><strong>Travelgate</strong><span>Marketplace die je verbindt met honderden distributeurs en online reisbureaus wereldwijd.</span></div>
+        <div class="ig-item"><strong>Reconline (GDS)</strong><span>Toegang tot Amadeus, Sabre en Travelport. Bereik zakelijke reizigers en traditionele reisbureaus.</span></div>
+        <div class="ig-item"><strong>Hyperguest</strong><span>Direct, commissievrij B2B-netwerk. Optimaliseer marges door rechtstreeks met reisagenten te werken.</span></div>
+        </div>
+      </details>
+
+      <details class="ig">
+        <summary>
+          <span class="ig-kop">Boekhouding en betalingen<span class="ig-aantal">6</span></span>
+          <span class="ig-namen">Exact Online &middot; Yuki &middot; Octopus &middot; Scrada &middot; Peppol e-facturatie &middot; rumo Pay</span>
+          <span class="ig-sub">Waar je facturen en je geld naartoe gaan.</span>
+        </summary>
+        <div class="ig-body">
+        <div class="ig-item"><strong>Exact Online</strong><span>Facturen automatisch doorgestuurd. BTW-uitsplitsing, creditnotes en proforma's inbegrepen.</span></div>
+        <div class="ig-item"><strong>Yuki</strong><span>Directe koppeling met Yuki. Facturen en betalingen verschijnen automatisch in je administratie.</span></div>
+        <div class="ig-item"><strong>Octopus</strong><span>Populair bij Belgische boekhouders. Factuurexport en BTW-aangifte zonder extra werk.</span></div>
+        <div class="ig-item"><strong>Scrada</strong><span>De brug naar je boekhouding en kassa. Scrada boekt je facturen en correcties automatisch door naar Exact Online, Yuki, Octopus en co.</span></div>
+        <div class="ig-item"><strong>Peppol e-facturatie</strong><span>Verplicht voor B2B in België. rumo verstuurt automatisch UBL 2.1-facturen via het Peppol-netwerk.</span></div>
+        <div class="ig-item"><strong>rumo Pay</strong><span>Betalingen ingebouwd. Bancontact, Visa, Mastercard, iDEAL. Betaallinks, VCC's en pre-autorisaties.</span></div>
+        </div>
+      </details>
+
+      <details class="ig">
+        <summary>
+          <span class="ig-kop">Revenue management<span class="ig-aantal">3</span></span>
+          <span class="ig-namen">RoomPriceGenie &middot; Pricelabs &middot; Ratedock</span>
+          <span class="ig-sub">Externe prijstools, als je die al gebruikt.</span>
+        </summary>
+        <div class="ig-body">
+        <div class="ig-item"><strong>RoomPriceGenie</strong><span>Automatische prijsoptimalisatie, speciaal ontworpen voor kleine en middelgrote hotels. Stel het in en laat het werken.</span></div>
+        <div class="ig-item"><strong>Pricelabs</strong><span>Data-gedreven dynamic pricing. Analyseert marktdata, events en concurrenten om je tarieven te optimaliseren.</span></div>
+        <div class="ig-item"><strong>Ratedock</strong><span>Gecentraliseerd rate- en inventory-beheer over al je kanalen. Overzichtelijk en efficiënt.</span></div>
+        </div>
+      </details>
+
+      <details class="ig">
+        <summary>
+          <span class="ig-kop">Sleutelbeheer<span class="ig-soon">Binnenkort</span><span class="ig-aantal">2</span></span>
+          <span class="ig-namen">Salto &middot; Dormakaba Ambiance</span>
+          <span class="ig-sub">Digitale sloten, gekoppeld aan de reservatie.</span>
+        </summary>
+        <div class="ig-body">
+        <div class="ig-item"><strong>Salto</strong><span>Digitale sleutels gekoppeld aan je reservaties. Check-in via de app, directe kamertoegang. Geen kaartjes meer.</span></div>
+        <div class="ig-item"><strong>Dormakaba Ambiance</strong><span>Sleutelbeheer via het Ambiance-platform. Kamertoegang automatisch gekoppeld aan check-in en check-out.</span></div>
+        </div>
+      </details>
+    </div>
+
+    <p class="ig-slot fade-up">Staat de jouwe er niet bij? We zijn via de channel manager verbonden met een honderdtal kanalen en platformen, dus de kans is groot dat het toch kan. <a href="mailto:hello@rumo.eu">Vraag het even</a>.</p>
+  </div>
+</section>
+
 <!-- ═══════════════════════ FINAL ═══════════════════════ -->
 <section class="final" id="demo">
   <div class="final-inner fade-up">
@@ -714,7 +880,7 @@
     <h2>Geen demo-gesprek.<br>Gewoon <em>14 dagen</em> spelen.</h2>
     <p>Geen creditcard, geen verplichtingen, geen "account manager" die je elke week opbelt. Een demo-omgeving vol nepreservaties. Bevalt het niet? Dan verdwijnt het stilletjes.</p>
     <a href="index.html#demo" class="btn-paper">Probeer 14 dagen gratis <span>→</span></a>
-    <p class="final-fine">Geen credit card · Na 6 maanden maandelijks opzegbaar · Gratis datamigratie</p>
+    <p class="final-fine">Geen credit card · Na 6 maanden maandelijks opzegbaar · <a href="overstappen.html">Gratis datamigratie</a></p>
   </div>
 </section>
 
@@ -728,15 +894,18 @@
       <div class="footer-label">Product</div>
       <ul class="footer-links">
         <li><a href="features.html">Features</a></li>
-        <li><a href="integraties.html">Integraties</a></li>
+        <li><a href="features.html#integraties">Integraties</a></li>
         <li><a href="veiligheid.html">Veiligheid</a></li>
         <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
+        <li><a href="kb.html">Helpdesk</a></li>
         <li><a href="faq.html">FAQ</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-label">Rumo</div>
       <ul class="footer-links">
+        <li><a href="uitgelegd/index.html">Wat weten we?</a></li>
+        <li><a href="overstappen.html">Overstappen</a></li>
         <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
         <li><a href="mailto:hello@rumo.eu">Stuur ons een mailtje</a></li>
         <li><a href="over-ons.html">Over ons</a></li>

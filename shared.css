@@ -318,6 +318,13 @@ nav {
   color:rgba(245,238,226,0.45);
   text-transform:uppercase;
 }
+.final-fine a {
+  color:var(--butter);
+  text-decoration:none;
+  border-bottom:1px solid rgba(244,217,143,0.45);
+  transition:color 0.2s, border-color 0.2s;
+}
+.final-fine a:hover { color:var(--paper); border-bottom-color:var(--paper); }
 
 /* ─── FOOTER ─── */
 footer {

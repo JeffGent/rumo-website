@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<script src="gate.js"></script>
+<script src="demo-form.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overstappen · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- Plausible: cookieloze, EU-gehoste statistieken. Geen persoonsgegevens, geen cross-site profiel. Zie cookies.html. -->
+<script async src="https://plausible.io/js/pa-qrWo4zr4eI0-tnEew9x4u.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+<meta name="description" content="Overstappen van je huidige PMS naar rumo. Wat er met je reservaties gebeurt, wat er met je Booking.com-koppeling gebeurt, hoe lang het duurt en wat het kost.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* Zij-illustratie in de paginakop; zelfde maatvoering als over-ons.html. */
+  .ph-side-illus { width:140px; height:140px; position:relative; }
+  .ph-side-illus svg { width:100%; height:100%; color:var(--terra-dark); opacity:0.85; }
+
+  /* ─── DE DRIE VRAGEN ─── */
+  .vragen { background:var(--paper-deep); padding:6rem 0; }
+  .vragen-head { max-width:640px; margin-bottom:3.5rem; }
+  .vragen-head h2 {
+    font-family:'Fraunces', Georgia, serif; font-weight:400;
+    font-size:clamp(1.9rem, 3.6vw, 2.8rem); letter-spacing:-0.03em;
+    line-height:1.05; color:var(--ink); margin-bottom:1rem;
+  }
+  .vragen-head h2 em { font-style:italic; color:var(--terra); font-weight:300; }
+  .vragen-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem; }
+  .vraag-kaart {
+    background:var(--paper-panel); border:1px solid var(--line);
+    border-radius:20px; padding:2rem 1.8rem;
+  }
+  .vraag-tekst {
+    font-family:'Fraunces', Georgia, serif; font-size:1.15rem; line-height:1.25;
+    color:var(--ink); margin-bottom:0.9rem;
+  }
+  .vraag-nr {
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--terra); display:block; margin-bottom:0.7rem;
+  }
+  .vraag-kaart p { font-size:0.95rem; line-height:1.65; color:var(--ink-soft); margin:0; }
+
+  /* ─── STAPPEN ─── */
+  .stappen { background:var(--paper); padding:6rem 0; }
+  .stappen-head { max-width:640px; margin-bottom:3.5rem; }
+  .stappen-head h2 {
+    font-family:'Fraunces', Georgia, serif; font-weight:400;
+    font-size:clamp(1.9rem, 3.6vw, 2.8rem); letter-spacing:-0.03em;
+    line-height:1.05; color:var(--ink); margin-bottom:1rem;
+  }
+  .stappen-head h2 em { font-style:italic; color:var(--terra); font-weight:300; }
+  .stappen-lijst { max-width:760px; border-left:1px solid var(--line); }
+  .stap { position:relative; padding:0 0 2.8rem 2.5rem; }
+  .stap:last-child { padding-bottom:0; }
+  .stap::before {
+    content:''; position:absolute; left:-4.5px; top:0.55rem;
+    width:9px; height:9px; border-radius:50%; background:var(--terra);
+  }
+  .stap-nr {
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--muted); display:block; margin-bottom:0.4rem;
+  }
+  .stap h3 {
+    font-family:'Fraunces', Georgia, serif; font-weight:400; font-size:1.4rem;
+    letter-spacing:-0.02em; line-height:1.2; color:var(--ink); margin-bottom:0.6rem;
+  }
+  .stap h3 em { font-style:italic; color:var(--terra); font-weight:300; }
+  .stap p { font-size:1rem; line-height:1.7; color:var(--ink-soft); margin:0 0 0.7rem; }
+  .stap p:last-child { margin-bottom:0; }
+
+  /* ─── EERLIJK ─── */
+  .eerlijk { background:var(--ink); color:var(--paper); padding:6rem 0; }
+  .eerlijk-head { max-width:640px; margin-bottom:3rem; }
+  .eerlijk-head h2 {
+    font-family:'Fraunces', Georgia, serif; font-weight:400;
+    font-size:clamp(1.9rem, 3.6vw, 2.8rem); letter-spacing:-0.03em;
+    line-height:1.05; color:var(--paper); margin-bottom:1rem;
+  }
+  .eerlijk-head h2 em { font-style:italic; color:var(--butter); font-weight:300; }
+  .eerlijk-head p { color:rgba(245,238,226,0.72); font-size:1.1rem; line-height:1.6; margin:0; }
+  .eerlijk-lijst { display:grid; gap:1.2rem; max-width:760px; }
+  .eerlijk-item {
+    border:1px solid rgba(245,238,226,0.14); border-radius:18px; padding:1.6rem 1.8rem;
+  }
+  .eerlijk-item h3 {
+    font-family:'Fraunces', Georgia, serif; font-weight:400; font-size:1.2rem;
+    color:var(--paper); margin-bottom:0.5rem; letter-spacing:-0.02em;
+  }
+  .eerlijk-item p { color:rgba(245,238,226,0.72); font-size:0.97rem; line-height:1.65; margin:0; }
+
+  /* ─── KOSTPRIJS ─── */
+  .kostprijs { background:var(--paper-deep); padding:6rem 0; }
+  .kostprijs-inner { max-width:680px; }
+  .kostprijs h2 {
+    font-family:'Fraunces', Georgia, serif; font-weight:400;
+    font-size:clamp(2.2rem, 4.5vw, 3.4rem); letter-spacing:-0.03em;
+    line-height:1.02; color:var(--ink); margin-bottom:1.2rem;
+  }
+  .kostprijs h2 em { font-style:italic; color:var(--terra); font-weight:300; }
+  .kostprijs p { font-size:1.1rem; line-height:1.7; color:var(--ink-soft); margin:0 0 1rem; }
+  .kostprijs p:last-of-type { margin-bottom:2rem; }
+
+  @media (max-width:900px) {
+    .vragen-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="features.html">Wat kunnen we?</a></li>
+    <li><a href="uitgelegd/index.html">Wat weten we?</a></li>
+    <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="over-ons.html">Over ons</a></li>
+    <li><a href="index.html#demo" class="nav-cta">Probeer gratis →</a></li>
+    <li class="nav-lang">
+      <a href="overstappen.html" class="active">NL</a>
+      <a href="en/index.html">EN</a>
+      <a href="fr/index.html">FR</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
+<div class="page-header">
+  <div class="page-header-inner fade-up">
+    <div>
+      <span class="kicker">Overstappen</span>
+      <h1>Wat er met je <em>reservaties</em> gebeurt als je overstapt.</h1>
+      <p class="lead">En met je kanaalkoppelingen, je tarieven en je gastprofielen. Een overstap tussen twee PMS'en verloopt in zes stappen waarbij je oude systeem tot de laatste stap gewoon blijft draaien. Hieronder staat elke stap, wat er per stap van jou verwacht wordt, en welke drie stukken in de praktijk trager gaan dan gepland.</p>
+    </div>
+    <div class="ph-side-illus">
+      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- Twee huizen, een brug ertussen: het oude systeem blijft staan tot je over bent -->
+        <path d="M12,72 L12,50 L28,38 L44,50 L44,72 Z"/>
+        <rect x="22" y="58" width="12" height="14"/>
+        <path d="M76,72 L76,50 L92,38 L108,50 L108,72 Z"/>
+        <rect x="86" y="58" width="12" height="14"/>
+        <line x1="44" y1="72" x2="76" y2="72"/>
+        <path d="M52,66 L60,72 L52,78"/>
+        <line x1="6" y1="88" x2="114" y2="88"/>
+      </svg>
+    </div>
+  </div>
+  <div class="page-header-ribbon">
+    <span>Je oude systeem blijft draaien</span>
+    <span>Je historiek gaat mee</span>
+    <span>Niets wordt stil geïmporteerd</span>
+    <span>Jij kiest het moment</span>
+    <span>Kost niets</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ DE DRIE VRAGEN ═══════════════════════ -->
+<section class="vragen">
+  <div class="wrap">
+    <div class="vragen-head fade-up">
+      <h2>Eerst de drie <em>praktische</em> vragen.</h2>
+    </div>
+    <div class="vragen-grid fade-up">
+
+      <div class="vraag-kaart">
+        <span class="vraag-nr">Vraag één</span>
+        <div class="vraag-tekst">"Ben ik mijn reservaties kwijt?"</div>
+        <p>Nee, en je moet ze ook niet overtypen. Je haalt een export uit je huidige systeem en die lees je in. En niet alleen wat er nog komt: ook je oude boekingen gaan mee, met wie er geslapen heeft en wat er betaald is. Je oude systeem blijft ondertussen gewoon draaien, dus je zet niets af om rumo te kunnen opzetten.</p>
+      </div>
+
+      <div class="vraag-kaart">
+        <span class="vraag-nr">Vraag twee</span>
+        <div class="vraag-tekst">"Ligt mijn Booking.com twee dagen plat?"</div>
+        <p>Je listing wordt niet opnieuw gebouwd. Bij het koppelen van een kanaal kies je tussen een nieuwe listing en het account dat je al hebt. Kies je het tweede, dan blijven je pagina, je reviews en je geschiedenis staan. Wat verhuist is wie je kalender bijhoudt.</p>
+      </div>
+
+      <div class="vraag-kaart">
+        <span class="vraag-nr">Vraag drie</span>
+        <div class="vraag-tekst">"Wanneer sta ik er alleen voor?"</div>
+        <p>Op het moment dat jij het zegt, niet op een datum die in een projectplan staat. Zolang je de kanaalkoppeling niet omzet, verkoopt je oude systeem door. De overstap is een knop die jij omdraait als je er klaar voor bent.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ STAPPEN ═══════════════════════ -->
+<section class="stappen">
+  <div class="wrap">
+    <div class="stappen-head fade-up">
+      <h2>Goh, en hoe gaat dat dan <em>concreet?</em></h2>
+      <p class="lead">Zes stappen. Je kan er op elk moment mee stoppen zonder dat er iets stuk is, want tot de laatste stap draait je oude systeem nog.</p>
+    </div>
+
+    <div class="stappen-lijst fade-up">
+
+      <div class="stap">
+        <span class="stap-nr">Stap 1</span>
+        <h3>Je krijgt een lege rumo <em>naast</em> je huidige systeem.</h3>
+        <p>Niet in de plaats van. Ernaast. Je logt in, je klikt rond, en aan je hotel verandert er nog niets. Dit is ook meteen je proefperiode: als het je niet bevalt stop je hier, en er is nooit iets gewijzigd aan wat je vandaag draait.</p>
+      </div>
+
+      <div class="stap">
+        <span class="stap-nr">Stap 2</span>
+        <h3>Je gooit je export in het gesprek met Rudy.</h3>
+        <p>Een CSV of Excel uit je huidige PMS. Rudy leest daar je kamers en je tarieven uit en legt je voor wat hij gevonden heeft. Jij bevestigt of corrigeert, vraag per vraag.</p>
+        <p>Er wordt niets stil geïmporteerd. Elke stap toont hij eerst en jij zegt ja of nee. Dat is traag als je haast hebt, maar het is wel de reden dat je achteraf niet zit te zoeken waar die dertig rare kamertypes vandaan komen.</p>
+      </div>
+
+      <div class="stap">
+        <span class="stap-nr">Stap 3</span>
+        <h3>Wat niet in de export staat, wordt gevraagd.</h3>
+        <p>En dat is meer dan je denkt. Kamernummers, kamertypes en prijzen zitten er meestal in. Je annulatievoorwaarden, je BTW-tarieven en wat je ontbijt kost bijna nooit. Dat is geen tekortkoming van jouw systeem, dat is gewoon hoe exports eruitzien.</p>
+        <p>Die stukken worden er dus bijgevraagd, met een voorstel in plaats van een leeg veld. Een voorstel corrigeren gaat sneller dan alles van nul beschrijven. Weet je iets niet? Dan sla je het over en blijft het leeg tot je het wel weet.</p>
+      </div>
+
+      <div class="stap">
+        <span class="stap-nr">Stap 4</span>
+        <h3>Je reservaties komen als <em>laatste</em>, en enkel als je wil.</h3>
+        <p>Eerst moet je huis kloppen: kamers, types, tarieven. Pas daarna komen de boekingen erin, want een reservatie zonder kamer om in te leggen is een rij in een spreadsheet.</p>
+        <p>Je ziet eerst wat er ingelezen gaat worden. Dan pas gebeurt het. Zeg je nee, dan gebeurt het niet en begin je met een lege kalender. Ook een geldig antwoord, zeker als je in een rustig seizoen overstapt.</p>
+        <p><strong>En je verleden gaat mee.</strong> Niet alleen de boekingen die nog moeten komen. Je afgelopen jaren komen er ook in: wie er geslapen heeft, hoe lang, en wat er betaald is. Uitgecheckte verblijven blijven uitgecheckt, en je gastenbestand komt apart mee, zodat een terugkerende gast bij zijn eerste boeking in rumo zijn geschiedenis al achter zich heeft staan.</p>
+        <p>Eén ding om te weten op het moment dat het net ingelezen is: je kalender opent op een venster rond vandaag, ongeveer een week terug en een paar maanden vooruit. Een import van oude verblijven valt daar volledig buiten, en dan lijkt het alsof er niets gebeurd is. Scroll terug naar de juiste maand en ze staan er gewoon.</p>
+      </div>
+
+      <div class="stap">
+        <span class="stap-nr">Stap 5</span>
+        <h3>Je kanalen verhuizen, ze worden niet <em>heropgebouwd.</em></h3>
+        <p>Bij het toevoegen van een kanaal kies je: een gloednieuwe listing, of het OTA-account dat je al hebt overzetten. In dat tweede geval blijft alles wat je op Booking.com hebt opgebouwd staan. Je pagina, je foto's, je reviews, je ranking.</p>
+        <p>Daarna komt het stukje waar het meestal misloopt bij een overstap: de mapping. Jouw "Standard Double" heet op Booking.com misschien "Classic Double Room", en het systeem moet weten dat dat hetzelfde is. Dat controleer je voor je omschakelt, niet erna.</p>
+      </div>
+
+      <div class="stap">
+        <span class="stap-nr">Stap 6</span>
+        <h3>Jij zegt wanneer.</h3>
+        <p>Tot dat moment verkoopt je oude systeem gewoon door. Vanaf dat moment doet rumo het. Er is geen tussenperiode waarin niemand je kalender bijhoudt, want je zet de ene pas af als de andere aan staat.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ EERLIJK ═══════════════════════ -->
+<section class="eerlijk">
+  <div class="wrap">
+    <div class="eerlijk-head fade-up">
+      <h2>En wat we <em>niet</em> gaan beweren.</h2>
+      <p>Deze drie dingen bepalen hoe lang je overstap in werkelijkheid duurt. Ze staan hier omdat je ze beter vooraf in je agenda zet dan dat je ze onderweg tegenkomt.</p>
+    </div>
+    <div class="eerlijk-lijst fade-up">
+
+      <div class="eerlijk-item">
+        <h3>Dat het op één avond klaar is.</h3>
+        <p>Dat hangt af van je setup. Een B&amp;B met vier kamers, één tarief en één kanaal is een namiddag. Een hotel met veertig kamers, zes tarieven, arrangementen en vijf OTA's is eerder een week met tussenpozen. Niet omdat het zwaar werk is, maar omdat er beslissingen in zitten waar je even over moet nadenken.</p>
+      </div>
+
+      <div class="eerlijk-item">
+        <h3>Dat een export alles bevat.</h3>
+        <p>Doet hij nooit. Zie stap 3. Reken erop dat je je annulatievoorwaarden, je BTW-tarieven en je ontbijtprijs zelf eens moet doorgeven. Wie belooft dat een import alles overneemt, heeft nog nooit een PMS-export opengedaan.</p>
+      </div>
+
+      <div class="eerlijk-item">
+        <h3>Dat de OTA's op ons tempo werken.</h3>
+        <p>Een nieuwe kanaalkoppeling staat op "in aanvraag" tot de OTA hem goedkeurt. Dat is hun klok. rumo blijft ondertussen kijken en zet de koppeling op actief zodra het antwoord binnen is, maar hoe lang dat duurt beslissen wij niet. Plan je overstap dus niet op de vrijdag voor een volgeboekt weekend.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ KOSTPRIJS ═══════════════════════ -->
+<section class="kostprijs">
+  <div class="wrap kostprijs-inner fade-up">
+    <span class="kicker">En euh, wat kost die overstap?</span>
+    <h2>Niets. <em>Nul.</em></h2>
+    <p>Geen setupkost, geen migratiepakket, geen onboarding-consultant die drie dagen aanrekent om je kamertypes over te typen.</p>
+    <p>En het is geen tijdelijke actie. Het meeste werk in een migratie is je kamertypes, je tarieven en je koppelingen opzetten, en dat gebeurt in het gesprek met Rudy terwijl jij toch al aan het rondklikken bent. De begeleiding die daarbij komt kijken zit in je abonnement, zoals alle ondersteuning. (Jup, écht.)</p>
+    <a href="index.html#demo" class="btn-ink">Probeer 14 dagen gratis <span>→</span></a>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FINAL ═══════════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Klaar om het te proberen?</span>
+    <h2>Begin gewoon <em>naast</em><br>je huidige systeem.</h2>
+    <p>Je export blijft bij jou. Het inlezen gebeurt in je eigen proefomgeving, met je eigen bestand, dus je hoeft ons geen gastgegevens door te sturen om te zien of het werkt. Twijfel je of jouw pakket meekan? Zet de naam ervan bij je aanvraag, in het vakje voor opmerkingen, dan zeggen we er meteen iets over.</p>
+    <a href="index.html#demo" class="btn-paper">Probeer 14 dagen gratis <span>→</span></a>
+    <p class="final-fine">Geen credit card · Na 6 maanden maandelijks opzegbaar · Gratis datamigratie</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Hotelsoftware voor onafhankelijke hoteliers. Zonder gedoe.</p>
+    </div>
+    <div>
+      <div class="footer-label">Product</div>
+      <ul class="footer-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="features.html#integraties">Integraties</a></li>
+        <li><a href="veiligheid.html">Veiligheid</a></li>
+        <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
+        <li><a href="kb.html">Helpdesk</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="uitgelegd/index.html">Wat weten we?</a></li>
+        <li><a href="overstappen.html">Overstappen</a></li>
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Stuur ons een mailtje</a></li>
+        <li><a href="over-ons.html">Over ons</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Integraties</div>
+      <ul class="footer-links">
+        <li><a href="features.html#integraties">Booking.com</a></li>
+        <li><a href="features.html#integraties">Airbnb</a></li>
+        <li><a href="features.html#integraties">Exact Online</a></li>
+        <li><a href="features.html#integraties">Peppol</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Gent, BE</span>
+    <span><a href="privacy.html">Privacy</a> · <a href="cookies.html">Cookies</a></span>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

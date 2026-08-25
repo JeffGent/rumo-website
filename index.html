@@ -8,6 +8,12 @@
 <title>rumo · hotelsoftware zonder gedoe</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- Plausible: cookieloze, EU-gehoste statistieken. Geen persoonsgegevens, geen cross-site profiel. Zie cookies.html. -->
+<script async src="https://plausible.io/js/pa-qrWo4zr4eI0-tnEew9x4u.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
 <meta name="description" content="rumo is hotelsoftware voor onafhankelijke hotels en B&B's. PMS, channel manager, facturatie, handboek en een AI-assistent. Zonder gedoe.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -419,81 +425,96 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 .logos-list span:hover { opacity:1; }
 
 /* ─── PIJLERS (Granola-style: clean UI, cream background) ─── */
-.pijlers { background:var(--paper); padding:7rem 0 4rem; }
+.pijlers { background:var(--paper); padding:7rem 0; }
 .pijlers-intro {
   max-width:680px;
-  margin-bottom:5rem;
+  margin-bottom:3.5rem;
 }
 .pijlers-intro h2 { margin-bottom:1rem; }
 .pijlers-intro h2 em { color:var(--terra-dark); }
 
-/* Pijler-kaarten: drie delen naast elkaar, elk met een levende mini-UI */
-.pijler-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; align-items:stretch; }
-.pk {
-  position:relative; display:flex; flex-direction:column;
-  background:var(--paper-panel); border:1px solid var(--line); border-radius:22px;
-  padding:1.6rem 1.6rem 1.9rem; overflow:hidden;
-  box-shadow:0 16px 40px rgba(27,25,23,0.05);
-  transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+/* Eén scène met drie bijschriften.
+   Stond hier eerst als drie losse kaarten naast elkaar, elk met een eigen
+   mockup en een eigen pijltje. Dat leest als 1+1+1, terwijl de belofte "één
+   systeem" is: de drie delen kennen elkaar. Drie kaders kunnen dat niet
+   tonen, één scherm wel. Vandaar dat de mockups zijn samengevoegd tot één
+   gebeurtenis, met de drie namen als bijschrift ernaast. */
+.scene {
+  background:var(--ink);
+  border-radius:26px;
+  padding:2.75rem;
+  display:grid;
+  grid-template-columns:1.35fr 1fr;
+  gap:3rem;
+  position:relative;
+  overflow:hidden;
 }
-.pk:hover { transform:translateY(-6px); box-shadow:0 26px 55px -18px rgba(27,25,23,0.16); }
-.pk-num { font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:0.6em; margin-bottom:1.1rem; }
-.pk-num b { color:var(--terra-dark); font-weight:500; }
-.pk h3 { font-size:1.5rem; line-height:1.08; margin:1.5rem 0 0.6rem; }
-.pk p { font-size:0.95rem; color:var(--ink-soft); flex:1; max-width:none; }
-.pk-chip { font-family:'JetBrains Mono', monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; padding:0.45rem 0.85rem; border-radius:100px; display:inline-flex; align-items:center; gap:0.5em; }
-.pk-chip::before { content:''; width:6px; height:6px; border-radius:50%; }
+.scene::after {
+  content:''; position:absolute; top:-30%; right:-15%; width:55%; height:90%;
+  background:radial-gradient(circle, rgba(244,217,143,0.13), transparent 70%);
+  pointer-events:none;
+}
+.scene-stage { position:relative; z-index:1; display:flex; flex-direction:column; gap:1rem; justify-content:center; }
 
-a.pk { text-decoration:none; color:inherit; }
-.pk-foot { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1.4rem; }
-.pk-go { flex-shrink:0; width:34px; height:34px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:0.95rem; color:var(--ink); transition:transform .3s cubic-bezier(.2,.7,.2,1), background .3s, color .3s, border-color .3s; }
-.pk:hover .pk-go { transform:translateX(3px); background:var(--ink); color:var(--paper); border-color:var(--ink); }
-.pk-rudy .pk-go { border-color:rgba(245,238,226,0.22); color:var(--paper); }
-.pk-rudy:hover .pk-go { transform:translateX(3px); background:var(--butter); color:var(--ink); border-color:var(--butter); }
+/* De reservatie: wat de PMS weet */
+.res { background:#2a2623; border:1px solid rgba(245,238,226,0.1); border-radius:14px; padding:0.9rem 1.1rem; }
+.res-top {
+  font-family:'JetBrains Mono', monospace; font-size:0.6rem; letter-spacing:0.12em;
+  text-transform:uppercase; color:#a89a89; margin-bottom:0.35rem;
+}
+.res-top b { color:var(--butter); font-weight:500; }
+.res-naam { color:var(--paper); font-family:'Fraunces', serif; font-size:1.05rem; letter-spacing:-0.01em; }
+.res-meta { font-size:0.78rem; color:#a89a89; margin-top:0.15rem; }
 
-.pk .stage { height:186px; border-radius:14px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:16px; }
-.pk .app { width:100%; background:#fff; border-radius:10px; box-shadow:0 14px 30px -12px rgba(27,25,23,0.28), 0 0 0 1px rgba(27,25,23,0.04); padding:12px 13px; }
-.pk .app-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
-.pk .app-head .t { font-family:'Fraunces', serif; font-size:0.9rem; letter-spacing:-0.01em; }
-.pk .app-head .m { font-family:'JetBrains Mono', monospace; font-size:0.58rem; letter-spacing:0.06em; color:var(--muted); text-transform:uppercase; }
+/* Het gesprek: wat Rudy ermee doet */
+.chat { display:flex; flex-direction:column; gap:0.55rem; }
+.chat .msg { max-width:88%; padding:0.7rem 0.9rem; border-radius:14px; font-size:0.86rem; line-height:1.45; }
+.chat .msg.u { background:#3a3531; color:var(--paper); margin-left:auto; border-bottom-right-radius:4px; }
+.chat .msg.b { background:var(--butter); color:var(--ink); border-bottom-left-radius:4px; }
+.chat .msg.b small {
+  display:block; font-family:'JetBrains Mono', monospace; font-size:0.56rem;
+  letter-spacing:0.08em; text-transform:uppercase; color:var(--terra-dark); margin-bottom:0.2rem;
+}
+/* De bronvermelding is het bewijs dat het antwoord uit het handboek komt */
+.bron {
+  align-self:flex-start; display:inline-flex; align-items:center; gap:0.45em;
+  font-family:'JetBrains Mono', monospace; font-size:0.58rem; letter-spacing:0.08em;
+  text-transform:uppercase; color:#a89a89;
+  border:1px solid rgba(245,238,226,0.16); border-radius:100px; padding:0.35rem 0.75rem;
+}
+.bron::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--butter); }
 
-/* PMS · mini-kalender */
-.pk-pms .stage { background:linear-gradient(160deg,#FBEDE4,#F6DFD1); }
-.pk-pms .cal { display:grid; grid-template-columns:26px repeat(5,1fr); gap:4px; }
-.pk-pms .cal .rl { font-family:'JetBrains Mono', monospace; font-size:0.55rem; color:var(--muted); display:flex; align-items:center; }
-.pk-pms .cal .cell { height:16px; border-radius:3px; background:#F1E7D8; }
-.pk-pms .cal .b { position:relative; }
-.pk-pms .cal .bar { position:absolute; top:0; left:0; height:16px; border-radius:3px; }
+/* De drie bijschriften naast de scène */
+/* Verdeeld in plaats van gecentreerd, zodat elk bijschrift ongeveer op de
+   hoogte staat van het stuk waar het over gaat: de reservatie, de vraag,
+   het antwoord. */
+.scene-rail { position:relative; z-index:1; display:flex; flex-direction:column; justify-content:space-between; gap:1.75rem; padding:0.5rem 0; }
+.rail-item {
+  display:block; text-decoration:none;
+  padding-left:1.5rem; border-left:1px solid rgba(245,238,226,0.16);
+  transition:border-color 0.25s;
+}
+.rail-item:hover { border-left-color:var(--butter); }
+.rail-nr {
+  font-family:'JetBrains Mono', monospace; font-size:0.62rem; letter-spacing:0.14em;
+  text-transform:uppercase; color:#a89a89; display:block; margin-bottom:0.35rem;
+}
+.rail-nr b { color:var(--butter); font-weight:500; }
+.rail-item p { font-size:0.9rem; line-height:1.5; color:#d9cfc0; margin:0; max-width:none; }
+.rail-go {
+  font-family:'JetBrains Mono', monospace; font-size:0.58rem; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--butter); white-space:nowrap;
+  opacity:0; transition:opacity 0.25s;
+}
+.rail-item:hover .rail-go { opacity:1; }
 
-/* Handboek · zoek */
-.pk-hb .stage { background:linear-gradient(160deg,#EDF2E9,#E1EADB); }
-.pk-hb .hb-search { display:flex; align-items:center; gap:7px; background:var(--sand); border-radius:100px; padding:6px 11px; font-size:0.72rem; color:var(--ink-soft); margin-bottom:10px; }
-.pk-hb .hb-search::before { content:'\2315'; opacity:0.6; font-size:0.85rem; }
-.pk-hb .hb-entry { display:flex; gap:9px; align-items:center; padding:6px 0; border-top:1px solid var(--line); }
-.pk-hb .hb-entry .ic { width:26px; height:26px; border-radius:7px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
-.pk-hb .hb-entry .ic svg { width:15px; height:15px; }
-.pk-hb .hb-entry .ic.a { background:#FBE1D2; color:var(--terra-dark); }
-.pk-hb .hb-entry .ic.b { background:var(--forest-soft); color:var(--forest); }
-.pk-hb .hb-entry strong { font-size:0.76rem; font-weight:600; display:block; }
-.pk-hb .hb-entry .meta { font-size:0.6rem; color:var(--muted); font-family:'JetBrains Mono', monospace; }
+.scene-slot { max-width:640px; margin:2.25rem 0 0; font-size:1rem; line-height:1.6; color:var(--ink-soft); }
 
-/* Rudy · chat (donkere kaart, focal) */
-.pk-rudy { background:var(--ink); border-color:transparent; }
-.pk-rudy h3, .pk-rudy p { color:var(--paper); }
-.pk-rudy p { color:#d9cfc0; }
-.pk-rudy .pk-num { color:#a89a89; }
-.pk-rudy .pk-num b { color:var(--butter); }
-.pk-rudy h3 em { color:var(--butter); }
-.pk-rudy .pk-chip { background:rgba(244,217,143,0.14); color:var(--butter); }
-.pk-rudy .pk-chip::before { background:var(--butter); }
-.pk-rudy::after { content:''; position:absolute; top:-35%; right:-30%; width:70%; height:70%; background:radial-gradient(circle, rgba(244,217,143,0.16), transparent 70%); pointer-events:none; }
-.pk-rudy .stage { background:linear-gradient(160deg,#2a2623,#1f1c1a); align-items:stretch; flex-direction:column; justify-content:center; gap:8px; padding:18px 16px; }
-.pk-rudy .msg { max-width:86%; padding:8px 11px; border-radius:13px; font-size:0.76rem; line-height:1.4; }
-.pk-rudy .msg.u { background:#3a3531; color:var(--paper); margin-left:auto; border-bottom-right-radius:4px; }
-.pk-rudy .msg.b { background:var(--butter); color:var(--ink); border-bottom-left-radius:4px; }
-.pk-rudy .msg.b small { display:block; font-size:0.55rem; font-family:'JetBrains Mono', monospace; letter-spacing:0.06em; text-transform:uppercase; color:var(--terra-dark); margin-bottom:2px; }
-
-@media (max-width:900px) { .pijler-grid { grid-template-columns:1fr; } }
+@media (max-width:900px) {
+  .scene { grid-template-columns:1fr; gap:2rem; padding:1.75rem; }
+  .scene-rail { justify-content:flex-start; padding:0; }
+  .rail-go { opacity:1; }
+}
 
 .pijler-num {
   display:inline-flex; align-items:center; gap:0.5em;
@@ -771,72 +792,6 @@ a.pk { text-decoration:none; color:inherit; }
 .wie .btn-paper { margin-top:2rem; }
 
 /* ─── PERSONAS ─── */
-.personas { background:var(--paper-deep); padding:7rem 0; }
-.personas-head { max-width:640px; margin-bottom:4rem; }
-.personas h2 em { color:var(--terra-dark); }
-.persona-grid {
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:2rem;
-}
-.persona {
-  background:var(--paper-panel);
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  transition:transform 0.3s, box-shadow 0.3s;
-}
-.persona:hover {
-  transform:translateY(-4px);
-  box-shadow:0 20px 40px rgba(27,25,23,0.08);
-}
-.persona-img {
-  aspect-ratio:4/3;
-  background-size:cover;
-  background-position:center;
-  filter:contrast(1.04) saturate(0.92);
-  position:relative;
-}
-.persona-img::after {
-  content:'';
-  position:absolute; inset:0;
-  background:linear-gradient(180deg, transparent 55%, rgba(27,25,23,0.18));
-}
-.persona-body { padding:1.5rem 1.5rem 1.75rem; }
-.persona-meta {
-  display:flex; justify-content:space-between;
-  align-items:center;
-  margin-bottom:0.8rem;
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.68rem;
-  letter-spacing:0.1em;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-.persona-meta .count { color:var(--terra-dark); }
-.persona-body h4 {
-  font-family:'Fraunces', serif;
-  font-weight:400;
-  font-size:1.4rem;
-  letter-spacing:-0.02em;
-  margin-bottom:0.5rem;
-  line-height:1.1;
-}
-.persona-body p {
-  font-size:0.92rem; color:var(--ink-soft);
-  margin-bottom:1.25rem; line-height:1.55;
-}
-.persona-quote {
-  padding-top:1rem;
-  border-top:1px solid var(--line);
-  font-family:'Fraunces', serif;
-  font-style:italic;
-  font-weight:300;
-  font-size:0.98rem;
-  color:var(--ink);
-  line-height:1.4;
-}
-
 /* ─── TRUST ─── */
 .trust {
   background:var(--paper);
@@ -877,61 +832,38 @@ a.trust-item:hover p strong .arr { opacity:1; transform:translateX(3px); }
   margin-bottom:0.1rem;
 }
 
-/* ─── PRIJS ─── */
-.prijs {
-  background:var(--paper);
+/* ─── OVERSTAP ─── */
+.overstap {
+  background:var(--paper-panel);
   padding:7rem 0;
-  text-align:center;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
 }
-.prijs-inner { max-width:780px; margin:0 auto; padding:0 2rem; position:relative; }
-.prijs h2 em { color:var(--terra-dark); }
-.prijs-bedrag {
-  font-family:'Fraunces', serif;
-  font-weight:400;
-  font-size:clamp(3.2rem, 7vw, 5.4rem);
-  letter-spacing:-0.045em;
-  line-height:1;
-  margin:1.5rem 0 0.5rem;
-  color:var(--ink);
+.overstap-inner {
+  max-width:1000px; margin:0 auto; padding:0 2rem;
+  display:grid; grid-template-columns:1.1fr 0.9fr; gap:3.5rem; align-items:center;
 }
-.prijs-bedrag em {
-  font-style:italic;
-  color:var(--terra-dark);
-  font-weight:300;
+.overstap h2 {
+  font-family:'Fraunces', Georgia, serif; font-weight:400;
+  font-size:clamp(1.9rem, 3.6vw, 2.7rem); letter-spacing:-0.03em;
+  line-height:1.05; color:var(--ink); margin-bottom:1.1rem;
 }
-.prijs-unit {
-  display:block;
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.82rem;
-  font-weight:500;
-  letter-spacing:0.1em;
-  color:var(--muted);
-  text-transform:uppercase;
-  margin-bottom:1.75rem;
+.overstap h2 em { font-style:italic; color:var(--terra-dark); font-weight:300; }
+.overstap-copy { font-size:1.05rem; line-height:1.7; color:var(--ink-soft); margin-bottom:1.8rem; }
+.overstap-punten { list-style:none; padding:0; margin:0 0 2rem; }
+.overstap-punten li {
+  position:relative; padding-left:1.6rem; margin-bottom:0.9rem;
+  font-size:0.98rem; line-height:1.6; color:var(--ink-soft);
 }
-.prijs-copy {
-  max-width:52ch;
-  margin:0 auto 2rem;
-  color:var(--ink-soft);
-  font-size:1.05rem;
-  line-height:1.55;
+.overstap-punten li::before {
+  content:''; position:absolute; left:0; top:0.6em;
+  width:7px; height:7px; border-radius:50%; background:var(--terra);
 }
-.prijs-checklist {
-  display:flex; flex-wrap:wrap; justify-content:center;
-  gap:1rem 2.5rem;
-  margin-bottom:2.5rem;
-  list-style:none;
-  font-size:0.95rem;
-  color:var(--ink);
-}
-.prijs-checklist li { display:flex; align-items:center; gap:0.5em; }
-.prijs-checklist li::before {
-  content:'✓';
-  color:var(--forest);
-  font-weight:700;
+.overstap-punten strong { color:var(--ink); font-weight:500; }
+@media (max-width:900px) {
+  .overstap-inner { grid-template-columns:1fr; gap:2rem; }
 }
 
-/* ─── FAQ ─── */
 .faq {
   background:var(--paper-deep);
   padding:7rem 0;
@@ -1029,6 +961,13 @@ a.trust-item:hover p strong .arr { opacity:1; transform:translateX(3px); }
   color:rgba(245,238,226,0.45);
   text-transform:uppercase;
 }
+.final-fine a {
+  color:var(--butter);
+  text-decoration:none;
+  border-bottom:1px solid rgba(244,217,143,0.45);
+  transition:color 0.2s, border-color 0.2s;
+}
+.final-fine a:hover { color:var(--paper); border-bottom-color:var(--paper); }
 
 /* ─── FOOTER ─── */
 footer {
@@ -1121,8 +1060,6 @@ footer {
   .showcase-body { grid-template-columns:1fr; gap:2rem; }
   .sc-stage { order:-1; min-height:0; padding:1.5rem; }
 
-  .personas-head { margin-bottom:3rem; }
-  .persona-grid { grid-template-columns:1fr; }
   .trust-grid { grid-template-columns:1fr; gap:1.5rem; }
   .footer-grid { grid-template-columns:1fr 1fr; gap:2.5rem; }
   .wrap, .logos-inner { padding:0 1.5rem; }
@@ -1145,9 +1082,8 @@ footer {
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="#pijlers">Wat doet rumo?</a></li>
-    <li><a href="features.html">Features</a></li>
-    <li><a href="integraties.html">Integraties</a></li>
+    <li><a href="features.html">Wat kunnen we?</a></li>
+    <li><a href="uitgelegd/index.html">Wat weten we?</a></li>
     <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="over-ons.html">Over ons</a></li>
@@ -1201,71 +1137,41 @@ footer {
   <div class="wrap">
     <div class="pijlers-intro fade-up">
       <span class="kicker">De kern van rumo</span>
-      <h2>Drie delen. <em>Eén systeem.</em></h2>
-      <p class="lead" style="margin-top:1.25rem;">De PMS stuurt je dag. Het handboek maakt je team zelfstandig. En Rudy werkt door als jij er even niet bent. Samen: je hotel runnen zonder gedoe.</p>
+      <h2>Eén gebeurtenis.<br><em>Drie delen</em> die het van elkaar weten.</h2>
+      <p class="lead" style="margin-top:1.25rem;">Kamer 12 vraagt een glutenvrij ontbijt. Je PMS weet wie daar ligt en hoelang. Je handboek weet wat jouw keuken kan. Rudy legt de twee bij elkaar en stelt iets voor. Dat is het verschil met drie programma's die naast elkaar draaien.</p>
     </div>
 
-    <div class="pijler-grid fade-up">
-      <!-- PMS -->
-      <a class="pk pk-pms" href="pms.html">
-        <div class="pk-num"><span>01</span><b>De PMS</b></div>
-        <div class="stage">
-          <div class="app">
-            <div class="app-head"><span class="t">Kalender</span><span class="m">Week 24</span></div>
-            <div class="cal">
-              <span class="rl">101</span>
-              <span class="cell b"><span class="bar" style="width:190%;background:var(--terra);"></span></span><span class="cell"></span><span class="cell"></span>
-              <span class="cell b"><span class="bar" style="width:90%;background:var(--forest);"></span></span><span class="cell"></span>
-              <span class="rl">102</span>
-              <span class="cell"></span><span class="cell b"><span class="bar" style="width:290%;background:var(--terra-dark);"></span></span><span class="cell"></span><span class="cell"></span><span class="cell"></span>
-              <span class="rl">103</span>
-              <span class="cell b"><span class="bar" style="width:90%;background:var(--butter);"></span></span><span class="cell"></span><span class="cell b"><span class="bar" style="width:190%;background:var(--forest);"></span></span><span class="cell"></span><span class="cell"></span>
-              <span class="rl">104</span>
-              <span class="cell"></span><span class="cell"></span><span class="cell b"><span class="bar" style="width:290%;background:var(--terra);"></span></span><span class="cell"></span><span class="cell"></span>
-            </div>
-          </div>
+    <div class="scene fade-up">
+      <div class="scene-stage">
+        <div class="res">
+          <div class="res-top">Kamer <b>12</b> &middot; aangekomen vandaag</div>
+          <div class="res-naam">K. Peeters</div>
+          <div class="res-meta">Nog 2 nachten &middot; bed &amp; breakfast &middot; rechtstreeks geboekt</div>
         </div>
-        <h3>Je dag op <em>één scherm.</em></h3>
-        <p>Wie komt, wie gaat, wie moet nog betalen, welke kamer is nog niet gepoetst. Geen drie tabbladen.</p>
-        <div class="pk-foot">
-          <span class="pk-chip">Reservaties · facturatie · housekeeping</span>
-          <span class="pk-go" aria-hidden="true">→</span>
+        <div class="chat">
+          <div class="msg u">Kamer 12 vraagt een glutenvrij ontbijt. Kan dat?</div>
+          <div class="msg b"><small>Rudy</small>Ja. Havermout, vers fruit en glutenvrij brood staan in jullie ontbijtprocedure. Peeters blijft nog twee nachten. Zal ik "glutenvrij" als keukennoot op de reservatie zetten? Dan staat het morgen en overmorgen bij kamer 12 op de ontbijtlijst.</div>
+          <span class="bron">Uit je handboek &middot; Ontbijt &amp; allergenen</span>
         </div>
-      </a>
+      </div>
 
-      <!-- Handboek -->
-      <a class="pk pk-hb" href="handbook.html">
-        <div class="pk-num"><span>02</span><b>Het handboek</b></div>
-        <div class="stage">
-          <div class="app">
-            <div class="hb-search">espressomachine</div>
-            <div class="hb-entry"><span class="ic a"><svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span><span><strong>Espressomachine ontkalken</strong><span class="meta">Ontbijt · 2 min</span></span></div>
-            <div class="hb-entry"><span class="ic b"><svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span><span><strong>Vals brandalarm stoppen</strong><span class="meta">Veiligheid · 1 min</span></span></div>
-          </div>
-        </div>
-        <h3>Je team zoekt het <em>zelf</em> op.</h3>
-        <p>Hoe werkt de espressomachine, wat met glutenvrij, hoe stop ik dat alarm. Geen telefoontje op zondag.</p>
-        <div class="pk-foot">
-          <span class="pk-chip">Procedures · zonder jou te bellen</span>
-          <span class="pk-go" aria-hidden="true">→</span>
-        </div>
-      </a>
-
-      <!-- Rudy -->
-      <a class="pk pk-rudy" href="rudy.html">
-        <div class="pk-num"><span>03</span><b>Rudy</b></div>
-        <div class="stage">
-          <div class="msg u">Kamer 12 vraagt glutenvrij ontbijt. Hebben we dat?</div>
-          <div class="msg b"><small>Rudy</small>Ja: havermout, vers fruit en glutenvrij brood. Zal ik 't doorgeven aan de keuken?</div>
-        </div>
-        <h3>Werkt 's nachts en <em>zondag.</em></h3>
-        <p>De AI-collega die de PMS én het handboek kent. Zoekt op en voert uit, antwoordt in 't Duits en maakt offertes op. Vraagt nooit om opslag.</p>
-        <div class="pk-foot">
-          <span class="pk-chip">Kent alles · altijd wakker</span>
-          <span class="pk-go" aria-hidden="true">→</span>
-        </div>
-      </a>
+      <div class="scene-rail">
+        <a class="rail-item" href="pms.html">
+          <span class="rail-nr">01 &middot; <b>De PMS</b></span>
+          <p>Weet wie er ligt, in welke kamer en hoelang nog. <span class="rail-go">Lees meer &rarr;</span></p>
+        </a>
+        <a class="rail-item" href="handbook.html">
+          <span class="rail-nr">02 &middot; <b>Het handboek</b></span>
+          <p>Weet wat jouw keuken kan. Jouw procedures, niet die van een ander hotel. <span class="rail-go">Lees meer &rarr;</span></p>
+        </a>
+        <a class="rail-item" href="rudy.html">
+          <span class="rail-nr">03 &middot; <b>Rudy</b></span>
+          <p>Legt de twee bij elkaar en stelt iets voor, ook om kwart voor elf 's avonds. Uitvoeren doet hij pas als jij bevestigt. <span class="rail-go">Lees meer &rarr;</span></p>
+        </a>
+      </div>
     </div>
+
+    <p class="scene-slot fade-up">Drie losse programma's kunnen dit antwoord niet geven. Niet omdat ze slechter zijn, maar omdat ze elkaars gegevens niet zien.</p>
   </div>
 </section>
 
@@ -1280,48 +1186,6 @@ footer {
         <p>Uiteindelijk draait het niet alleen om het comfort van je <strong>gasten</strong>, maar ook om dat van <strong>jou en je team</strong>. Dus bouwden we wat we zelf al jaren zochten.</p>
         <a href="over-ons.html" class="btn-paper">Meer over ons <span>→</span></a>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ PERSONAS ══════════════════ -->
-<section class="personas" id="voor-wie">
-  <div class="wrap">
-    <div class="personas-head fade-up">
-      <span class="kicker">Voor wie</span>
-      <h2>Herken je <em>jezelf?</em></h2>
-      <p class="lead" style="margin-top:1.25rem;">rumo is er voor onafhankelijke hotels. Geen ketens. Geen resorts in Dubai. Gewoon hotels zoals het jouwe.</p>
-    </div>
-    <div class="persona-grid">
-      <article class="persona fade-up">
-        <div class="persona-img" style="background-image:url('img/persona-resort.jpg')"></div>
-        <div class="persona-body">
-          <div class="persona-meta"><span>Hotel</span><span class="count">51 kamers</span></div>
-          <h4>Hotel Chamade</h4>
-          <p>Vier vaste receptionisten, bijgesprongen door flexi's en studenten. Ze zochten een PMS die iedereen meteen snapt, zodat opleiden niet hun tweede job is.</p>
-          <div class="persona-quote">"Rudy beantwoordt de vragen die vroeger op mijn bord kwamen."</div>
-        </div>
-      </article>
-
-      <article class="persona fade-up" style="transition-delay:0.1s">
-        <div class="persona-img" style="background-image:url('img/persona-carlton.jpg')"></div>
-        <div class="persona-body">
-          <div class="persona-meta"><span>Stadshotel</span><span class="count">22 kamers</span></div>
-          <h4>Carlton Hotel</h4>
-          <p>Stadshotel in Gent met twee receptionisten. Wil Peppol-facturatie, gastprofielen en rapporten. Maar niet de prijs van een enterprise systeem.</p>
-          <div class="persona-quote">"Eindelijk een systeem dat doet wat ik nodig heb. Meer niet, minder niet."</div>
-        </div>
-      </article>
-
-      <article class="persona fade-up" style="transition-delay:0.2s">
-        <div class="persona-img" style="background-image:url('img/persona-georgie.jpg');background-size:140%;background-position:center 45%"></div>
-        <div class="persona-body">
-          <div class="persona-meta"><span>B&amp;B</span><span class="count">5 kamers</span></div>
-          <h4>Georgie B&amp;B</h4>
-          <p>Gastenverblijf in een herenhuis in Gent. De eigenaars wonen niet ter plaatse en draaien alles op afstand dankzij automatisering.</p>
-          <div class="persona-quote">"We wonen niet in de b&b. Zonder rumo zou dat niet kunnen."</div>
-        </div>
-      </article>
     </div>
   </div>
 </section>
@@ -1360,20 +1224,24 @@ footer {
   </div>
 </div>
 
-<!-- ══════════════════ PRIJS ══════════════════ -->
-<section class="prijs">
-  <div class="prijs-inner fade-up">
-    <span class="kicker">En euh, wat kost dat?</span>
-    <div class="prijs-bedrag">Vanaf <em>€12</em></div>
-    <div class="prijs-unit">per kamer · per maand</div>
-    <p class="prijs-copy">PMS, channel manager, booking engine, Rudy en het handboek. Voor één prijs. Wil je meer, dan zet je Smart Pricing, Upsell of Advanced Housekeeping erbij als aparte module.</p>
-    <ul class="prijs-checklist">
-      <li>Maandelijks opzegbaar</li>
-      <li>Geen setup-kosten</li>
-      <li>Geen jaarcontract</li>
-      <li>Geen verkooppraatje</li>
-    </ul>
-    <a href="prijzen.html" class="btn-ink">Bekijk de prijzen <span>→</span></a>
+<!-- ══════════════════ OVERSTAP ══════════════════ -->
+<section class="overstap">
+  <div class="overstap-inner fade-up">
+    <div>
+      <span class="kicker">Ja maar, en mijn huidige systeem dan?</span>
+      <h2>Je zet rumo op <em>naast</em> je huidige systeem.</h2>
+      <p class="overstap-copy">Niet in de plaats van. Je oude PMS blijft verkopen terwijl je rumo inricht, en je schakelt pas om als alles klopt. Wat er ondertussen met je reservaties en je Booking.com-koppeling gebeurt, en hoe lang elk stuk duurt, staat uitgeschreven op een eigen pagina.</p>
+      <a href="overstappen.html" class="btn-ink">Zo gaat de overstap <span>&rarr;</span></a>
+    </div>
+    <div>
+      <ul class="overstap-punten">
+        <li><strong>Je oude systeem blijft draaien</strong> terwijl je rumo opzet. Je zet niets af om te kunnen beginnen.</li>
+        <li><strong>Je historiek gaat mee.</strong> Niet alleen de boekingen die nog moeten komen, ook wie er de voorbije jaren geslapen heeft en wat er betaald is.</li>
+        <li><strong>Je Booking.com-listing verhuist,</strong> hij wordt niet opnieuw gebouwd. Je pagina, je reviews en je geschiedenis blijven staan.</li>
+        <li><strong>Er wordt niets stil geïmporteerd.</strong> Je ziet eerst wat er binnenkomt, dan pas gebeurt het.</li>
+        <li><strong>Het kost niets.</strong> Geen setupkost, geen migratiepakket, ook niet als je veel kamers hebt.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -1381,23 +1249,11 @@ footer {
 <section class="faq">
   <div class="faq-inner fade-up">
     <span class="kicker">Vraag of twijfel?</span>
-    <h2>De zes vragen<br>die we <em>vaak</em> krijgen.</h2>
+    <h2>En dan nog <em>drie</em><br>dingen die je je afvraagt.</h2>
     <div class="faq-list">
-      <details>
-        <summary>Kan ik mijn Booking.com-reservaties migreren?</summary>
-        <p>Ja. Booking.com, Airbnb, Expedia en de meeste andere OTA's kunnen rechtstreeks geïmporteerd worden. Inclusief gastgegevens en betaalstatus.</p>
-      </details>
       <details>
         <summary>Werkt rumo op mobiel en tablet?</summary>
         <p>Volledig. rumo is een webapp die overal draait, laptop, tablet, telefoon. Geen app nodig.</p>
-      </details>
-      <details>
-        <summary>Hoe lang duurt de implementatie?</summary>
-        <p>De meeste hotels zijn binnen een week live. Kleine hotels vaak dezelfde dag nog.</p>
-      </details>
-      <details>
-        <summary>Wat als ik nog in een contract zit bij mijn huidige PMS?</summary>
-        <p>Geen probleem. We plannen de overstap op jouw tempo. Veel hotels starten al met testen terwijl het oude contract uitloopt.</p>
       </details>
       <details>
         <summary>Zit Peppol erin?</summary>
@@ -1417,9 +1273,9 @@ footer {
   <div class="final-inner fade-up">
     <span class="kicker">Ben je niet zo'n babbelaar?</span>
     <h2>Geen demo-gesprek.<br>Gewoon <em>14 dagen</em> spelen.</h2>
-    <p>Geen creditcard, geen verplichtingen, geen "account manager" die je elke week opbelt. Een demo-omgeving vol nepreservaties. Bevalt het niet? Dan verdwijnt het stilletjes. No hard feelings.</p>
-    <a href="#" class="btn-paper">Probeer 14 dagen gratis <span>→</span></a>
-    <p class="final-fine">Geen credit card · Na 6 maanden maandelijks opzegbaar · Gratis datamigratie</p>
+    <p>Geen creditcard, geen verplichtingen, geen "account manager" die je elke week opbelt. Je laat je gegevens achter, wij zetten je omgeving klaar vol nepreservaties en mailen je de sleutels. Meestal binnen de werkdag. Bevalt het niet? Dan verdwijnt het stilletjes. No hard feelings.</p>
+    <a href="#demo" class="btn-paper">Probeer 14 dagen gratis <span>→</span></a>
+    <p class="final-fine">Geen credit card · Na 6 maanden maandelijks opzegbaar · <a href="overstappen.html">Gratis datamigratie</a></p>
   </div>
 </section>
 
@@ -1446,7 +1302,10 @@ footer {
     <div>
       <div class="footer-label">Rumo</div>
       <ul class="footer-links">
+        <li><a href="uitgelegd/index.html">Wat weten we?</a></li>
+        <li><a href="overstappen.html">Overstappen</a></li>
         <li><a href="prijzen.html">En euh, wat kost dat?</a></li>
+        <li><a href="kb.html">Helpdesk</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
         <li><a href="mailto:hello@rumo.eu">Stuur ons een mailtje</a></li>
@@ -1456,11 +1315,11 @@ footer {
     <div>
       <div class="footer-label">Integraties</div>
       <ul class="footer-links">
-        <li><a href="integraties.html">Booking.com</a></li>
-        <li><a href="integraties.html">Airbnb</a></li>
-        <li><a href="integraties.html">Exact Online</a></li>
-        <li><a href="integraties.html">Rumo Pay</a></li>
-        <li><a href="integraties.html">Peppol</a></li>
+        <li><a href="features.html#integraties">Booking.com</a></li>
+        <li><a href="features.html#integraties">Airbnb</a></li>
+        <li><a href="features.html#integraties">Exact Online</a></li>
+        <li><a href="features.html#integraties">Rumo Pay</a></li>
+        <li><a href="features.html#integraties">Peppol</a></li>
       </ul>
     </div>
   </div>

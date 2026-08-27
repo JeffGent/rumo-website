@@ -424,3 +424,36 @@ footer {
   .footer-grid { grid-template-columns:1fr; }
   .footer-bottom { flex-direction:column; gap:0.5rem; text-align:left; }
 }
+
+/* ─── WAT DRIJFT ONS ───────────────────────────────────────────────────────
+   Herkenning, geen uitleg: links wat een hotelier tegenkomt, rechts wat rumo
+   ermee doet. Bewust geen advies, want dat is precies de toon die we hier
+   willen vermijden. */
+.drijft { background:var(--paper); padding:6rem 0; }
+.drijft:nth-of-type(even) { background:var(--paper-deep); }
+.drijft-head { max-width:640px; margin-bottom:3rem; }
+.drijft-head h2 {
+  font-family:'Fraunces', Georgia, serif; font-weight:400;
+  font-size:clamp(1.8rem, 3.4vw, 2.5rem); letter-spacing:-0.03em;
+  line-height:1.08; color:var(--ink); margin-bottom:0.9rem;
+}
+.drijft-head h2 em { font-style:italic; color:var(--terra-dark); font-weight:300; }
+.drijft-head p { font-size:1.05rem; line-height:1.65; color:var(--ink-soft); margin:0; }
+.herken { display:grid; gap:1rem; max-width:900px; }
+.herken-rij {
+  display:grid; grid-template-columns:1fr 1fr; gap:2rem;
+  border-top:1px solid var(--line); padding-top:1.2rem;
+}
+.herken-dit {
+  font-family:'Fraunces', Georgia, serif; font-size:1.08rem; line-height:1.35;
+  color:var(--ink); letter-spacing:-0.015em;
+}
+.herken-dat { font-size:0.95rem; line-height:1.6; color:var(--ink-soft); }
+.herken-dat strong { color:var(--ink); font-weight:500; }
+.herken-label {
+  font-family:'JetBrains Mono', monospace; font-size:0.58rem; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--muted); display:block; margin-bottom:0.35rem;
+}
+@media (max-width:800px) {
+  .herken-rij { grid-template-columns:1fr; gap:0.7rem; }
+}

@@ -2,6 +2,19 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
+<script>
+/* Zet de klasse die de fade-in aanzet. Staat JavaScript uit, dan wordt ze nooit
+   gezet en is de pagina gewoon leesbaar. Loopt er verderop iets mis waardoor
+   het script onderaan niet draait, dan haalt het vangnet de klasse weer weg:
+   dan mis je de animatie in plaats van de hele tekst. */
+(function () {
+  var d = document.documentElement;
+  d.classList.add('js');
+  addEventListener('load', function () {
+    setTimeout(function () { if (!d.dataset.fadeReady) d.classList.remove('js'); }, 1200);
+  });
+})();
+</script>
 <script src="gate.js"></script>
 <script src="demo-form.js" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -850,6 +863,7 @@ const observer = new IntersectionObserver((entries) => {
 // drempel nooit, en bleef onzichtbaar op een telefoon.
 }, { threshold: 0 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+document.documentElement.dataset.fadeReady = '1';
 </script>
 
 </body>

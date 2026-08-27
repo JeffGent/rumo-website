@@ -380,8 +380,13 @@ footer {
 }
 
 /* ─── Fade-up ─── */
-.fade-up { opacity:0; transform:translateY(20px); transition:opacity 0.8s, transform 0.8s; }
-.fade-up.visible { opacity:1; transform:translateY(0); }
+/* De fade-in verbergt tekst tot JavaScript hem toont. Dat is alleen veilig
+   zolang JavaScript ook echt draait: zonder de .js-voorwaarde hieronder levert
+   elke scriptfout een blanco pagina op in plaats van een pagina zonder
+   animatie. De klasse wordt bovenaan in de <head> gezet, en weer weggehaald
+   wanneer het script onderaan de pagina niet gedraaid blijkt. */
+.js .fade-up { opacity:0; transform:translateY(20px); transition:opacity 0.8s, transform 0.8s; }
+.js .fade-up.visible { opacity:1; transform:translateY(0); }
 
 /* ─── Responsive ─── */
 @media (max-width:960px) {

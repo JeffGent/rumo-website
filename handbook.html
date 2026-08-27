@@ -846,7 +846,9 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
   });
-}, { threshold: 0.1 });
+// threshold 0, niet 0.1: een blok hoger dan tien keer het scherm haalde die
+// drempel nooit, en bleef onzichtbaar op een telefoon.
+}, { threshold: 0 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 

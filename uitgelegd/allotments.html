@@ -185,12 +185,21 @@
 </footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+// threshold 0, niet 0.1: die eiste dat een tiende van het blok tegelijk in beeld
+// stond. Een lang artikel is ~9000px hoog, en op een telefoonscherm van 700px
+// haal je die tien procent nooit. Gevolg: het blok bleef op opacity 0 staan en
+// de pagina was leeg tot aan de footer, terwijl je wel kon scrollen.
+const doelen = document.querySelectorAll('.fade-up');
+if (!('IntersectionObserver' in window)) {
+  doelen.forEach(el => el.classList.add('visible'));
+} else {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+  doelen.forEach(el => observer.observe(el));
+}
 </script>
 </body>
 </html>

@@ -8,7 +8,7 @@
   --ink:        #1B1917;
   --ink-soft:   #3a3531;
   --paper:      #F5EEE2;
-  --paper-deep: #ECE3D1;
+  --paper-deep: #E8DCC6;   /* dieper dan voorheen (#ECE3D1): het verschil met --paper was zo klein dat afwisselende secties als één lange lap lazen */
   --paper-panel:#FAF5EA;
   --sand:       #E3D8C3;
   --line:       #1B191712;
@@ -430,7 +430,9 @@ footer {
    ermee doet. Bewust geen advies, want dat is precies de toon die we hier
    willen vermijden. */
 .drijft { background:var(--paper); padding:6rem 0; }
-.drijft:nth-of-type(even) { background:var(--paper-deep); }
+/* Niet met nth-of-type: dat telt de paginakop en de slotsectie mee, waardoor
+   de eerste twee blokken dezelfde kleur kregen. Expliciet is hier duidelijker. */
+.drijft.tint { background:var(--forest-soft); }
 .drijft-head { max-width:640px; margin-bottom:3rem; }
 .drijft-head h2 {
   font-family:'Fraunces', Georgia, serif; font-weight:400;
@@ -457,3 +459,58 @@ footer {
 @media (max-width:800px) {
   .herken-rij { grid-template-columns:1fr; gap:0.7rem; }
 }
+/* ─── UITROEP ──────────────────────────────────────────────────────────────
+   Een lang artikel liep tot 5500 pixels door in één ononderbroken kleur. Dat
+   leest als een muur, hoe goed de tekst ook is. Deze band over de volle
+   breedte hakt het artikel in stukken en herhaalt meteen de zin die je moet
+   onthouden. De tekst staat bewust óók nog in de lopende alinea: dat is wat
+   een citaatblok in een tijdschrift ook doet. */
+.uitroep {
+  background:var(--ink);
+  padding:5rem 0;
+  position:relative;
+  overflow:hidden;
+}
+.uitroep::after {
+  content:''; position:absolute; top:-40%; right:-10%; width:50%; height:120%;
+  background:radial-gradient(circle, rgba(244,217,143,0.14), transparent 65%);
+  pointer-events:none;
+}
+.uitroep-inner {
+  max-width:1200px; margin:0 auto; padding:0 2rem;
+  position:relative; z-index:1;
+}
+.uitroep p {
+  max-width:840px;
+  font-family:'Fraunces', Georgia, serif; font-weight:400;
+  font-size:clamp(1.6rem, 3.2vw, 2.4rem); letter-spacing:-0.03em;
+  line-height:1.18; color:var(--paper); margin:0;
+}
+.uitroep em { font-style:italic; color:var(--butter); font-weight:300; }
+.uitroep .uitroep-bij {
+  font-family:'JetBrains Mono', monospace; font-size:0.62rem; letter-spacing:0.14em;
+  text-transform:uppercase; color:rgba(245,238,226,0.5);
+  display:block; margin-top:1.4rem;
+}
+
+/* Een zachtere variant, voor als een tweede zwarte band te veel wordt. */
+.uitroep.zacht { background:var(--rose-soft); }
+.uitroep.zacht::after { background:radial-gradient(circle, rgba(214,143,111,0.22), transparent 65%); }
+.uitroep.zacht p { color:var(--ink); }
+.uitroep.zacht em { color:var(--terra-dark); }
+.uitroep.zacht .uitroep-bij { color:var(--muted); }
+
+/* Gecentreerde variant: op de gewone pagina's is dit geen citaat maar een
+   uitspraak, en dan mag hij ook eens niet links uitgelijnd staan. Elke pagina
+   is nu op exact dezelfde x begonnen, en dat is een deel van de eentonigheid. */
+.uitroep.midden .uitroep-inner { text-align:center; }
+.uitroep.midden p { margin-left:auto; margin-right:auto; }
+
+/* ─── SECTIETINTEN ─────────────────────────────────────────────────────────
+   Het palet bevat forest-soft en rose-soft, maar die werden alleen in
+   icoontjes gebruikt. Als sectie-achtergrond breken ze de beige reeks zonder
+   dat er een nieuwe kleur bij hoeft. Met section ervoor, zodat ze het van de
+   achtergrond van de sectie zelf winnen. */
+section.tint-groen { background:var(--forest-soft); }
+section.tint-roze  { background:var(--rose-soft); }
+section.tint-zand  { background:var(--sand); }

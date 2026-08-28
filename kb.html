@@ -81,6 +81,28 @@
     margin-bottom:3.5rem;
     scroll-margin-top:7rem;
   }
+  /* De hele kennisbank was één band van 18.000 pixels in dezelfde kleur: 88%
+     van de pagina. Een band over de volle breedte kan hier niet, want dat
+     breekt de vastgezette zijbalk. Vandaar ritme in de groepen zelf: om de
+     twee een eigen vlak, met wisselende tint. Scroll-margin blijft gelijk
+     zodat de ankers uit de zijnavigatie op dezelfde plek uitkomen. */
+  .kb-group:nth-of-type(even) {
+    /* Niet paper-panel: dat is exact de kleur van de kaartjes erin, dus dan
+       zie je het verschil niet. Een echte tint uit het palet wel. */
+    background:var(--paper-deep);
+    border-radius:22px;
+    padding:2.25rem 2.25rem 1.5rem;
+    margin-left:-2.25rem;
+    margin-right:-2.25rem;
+    scroll-margin-top:5rem;
+  }
+  .kb-group:nth-of-type(4n) { background:var(--forest-soft); }
+  .kb-group:nth-of-type(6n) { background:var(--rose-soft); }
+  @media (max-width:900px) {
+    .kb-group:nth-of-type(even) {
+      margin-left:0; margin-right:0; padding:1.5rem 1.5rem 1rem;
+    }
+  }
   .kb-group-title {
     font-family:'Fraunces', serif;
     font-weight:400;

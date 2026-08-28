@@ -11,6 +11,10 @@
   --paper-deep: #E8DCC6;   /* dieper dan voorheen (#ECE3D1): het verschil met --paper was zo klein dat afwisselende secties als één lange lap lazen */
   --paper-panel:#FAF5EA;
   --sand:       #E3D8C3;
+  /* Diepere stap in dezelfde warme familie. sand en paper-deep liggen maar
+     3% helderheid uit elkaar, dus als afwisselende sectiekleuren zie je die
+     twee niet uit elkaar. Deze wel: 10% onder paper-deep. */
+  --klei:       #DCCDB2;
   --line:       #1B191712;
   --muted:      #8d8378;
   --terra:      #D68F6F;
@@ -432,7 +436,7 @@ footer {
 .drijft { background:var(--paper); padding:6rem 0; }
 /* Niet met nth-of-type: dat telt de paginakop en de slotsectie mee, waardoor
    de eerste twee blokken dezelfde kleur kregen. Expliciet is hier duidelijker. */
-.drijft.tint { background:var(--forest-soft); }
+.drijft.tint { background:var(--paper-deep); }
 .drijft-head { max-width:640px; margin-bottom:3rem; }
 .drijft-head h2 {
   font-family:'Fraunces', Georgia, serif; font-weight:400;
@@ -494,8 +498,8 @@ footer {
 }
 
 /* Een zachtere variant, voor als een tweede zwarte band te veel wordt. */
-.uitroep.zacht { background:var(--rose-soft); }
-.uitroep.zacht::after { background:radial-gradient(circle, rgba(214,143,111,0.22), transparent 65%); }
+.uitroep.zacht { background:var(--klei); }
+.uitroep.zacht::after { background:radial-gradient(circle, rgba(185,107,74,0.13), transparent 65%); }
 .uitroep.zacht p { color:var(--ink); }
 .uitroep.zacht em { color:var(--terra-dark); }
 .uitroep.zacht .uitroep-bij { color:var(--muted); }
@@ -507,10 +511,10 @@ footer {
 .uitroep.midden p { margin-left:auto; margin-right:auto; }
 
 /* ─── SECTIETINTEN ─────────────────────────────────────────────────────────
-   Het palet bevat forest-soft en rose-soft, maar die werden alleen in
-   icoontjes gebruikt. Als sectie-achtergrond breken ze de beige reeks zonder
-   dat er een nieuwe kleur bij hoeft. Met section ervoor, zodat ze het van de
-   achtergrond van de sectie zelf winnen. */
-section.tint-groen { background:var(--forest-soft); }
-section.tint-roze  { background:var(--rose-soft); }
-section.tint-zand  { background:var(--sand); }
+   Bewust binnen de warme reeks. Groen en roze zijn hier geprobeerd als
+   sectie-achtergrond en vielen uit de huisstijl: als kleine icoontjes werken
+   ze, over een heel scherm niet. Wat overblijft zijn twee stappen dieper dan
+   paper, plus ink voor het echte contrast. Met section ervoor, zodat ze het
+   winnen van de achtergrond van de sectie zelf. */
+section.tint      { background:var(--paper-deep); }
+section.tint-diep { background:var(--klei); }

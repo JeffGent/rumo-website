@@ -548,6 +548,20 @@ section.tint-diep { background:var(--klei); }
 .toonband-tekst h2 em { font-style:italic; color:var(--butter); font-weight:300; }
 .toonband-tekst p { font-size:1.05rem; line-height:1.65; color:#d9cfc0; margin:0; }
 
+/* Naast-variant: voor een venster dat smal hoort te zijn, zoals een chat.
+   Uitgerekt tot 1500px staan de bubbels verloren in de leegte. */
+.toonband.naast .toonband-inner {
+  display:grid; grid-template-columns:1fr 1.15fr; gap:4rem; align-items:center;
+  padding-bottom:5.5rem;
+}
+.toonband.naast .toonband-inner > * { min-width:0; }
+.toonband.naast .toonband-tekst { margin-bottom:0; max-width:none; }
+.toonband.naast .toonband-beeld { border-radius:16px; }
+.toonband.naast .appvenster { border-radius:16px; }
+@media (max-width:900px) {
+  .toonband.naast .toonband-inner { grid-template-columns:1fr; gap:2.25rem; padding-bottom:3rem; }
+}
+
 /* Het beeld zelf: breder dan zijn kolom en rechts afgesneden. */
 .toonband-beeld {
   position:relative;
@@ -592,6 +606,22 @@ section.tint-diep { background:var(--klei); }
   transform:rotate(-45deg);
   opacity:0.7;
 }
+
+/* In de naast-variant staat het venster rechts, dus wijst de kanttekening die
+   kant op in plaats van naar beneden. */
+.kantnoot.rechts::after {
+  left:auto; right:-3.2rem; top:50%;
+  width:44px; height:20px;
+  border-left:none; border-bottom:2px solid var(--butter);
+  border-top:none; border-radius:0;
+  transform:translateY(-50%);
+}
+.kantnoot.rechts::before {
+  left:auto; right:-3.2rem; top:calc(50% - 5px);
+  transform:rotate(-45deg);
+}
+@media (max-width:900px) { .kantnoot.rechts { display:none; } }
+
 @media (max-width:900px) {
   .toonband-beeld { margin-right:-2rem; }
   .toonband-beeld img { width:150%; }
@@ -721,4 +751,94 @@ section.tint-diep { background:var(--klei); }
   .av-kamer span { display:none; }   /* kamertype en Vuil weglaten: geen plaats */
   .av-balk { gap:0.4rem; }
   .av-status { display:none; }
+}
+
+/* ─── APPVENSTER · GESPREK ─────────────────────────────────────────────────
+   Tweede variant van het nagebouwde venster, voor Rudy. Toont wat er in de
+   documentatie staat: hij zoekt in het handboek, antwoordt met een verwijzing
+   naar het artikel waar hij het uit haalt, en verandert nooit iets zonder
+   eerst te zeggen wat hij gaat doen. */
+.appvenster.gesprek { border-radius:16px 0 0 16px; background:#241F1C; padding:1.4rem 1.6rem 1.8rem; }
+.ag-kop {
+  display:flex; align-items:center; gap:0.6rem;
+  padding-bottom:1rem; margin-bottom:1.2rem;
+  border-bottom:1px solid rgba(245,238,226,0.10);
+}
+.ag-bol { width:26px; height:26px; border-radius:50%; background:var(--butter); flex-shrink:0; }
+.ag-kop b { color:var(--paper); font-weight:500; font-size:0.92rem; }
+.ag-meta { font-family:'JetBrains Mono', monospace; font-size:0.58rem; letter-spacing:0.1em;
+  text-transform:uppercase; color:#8d8378; margin-left:auto; }
+
+.ag-draad { display:flex; flex-direction:column; gap:0.6rem; }
+.ag-bel { max-width:82%; padding:0.7rem 0.95rem; border-radius:14px; font-size:0.88rem; line-height:1.45; }
+.ag-bel.ik { background:#3a3531; color:var(--paper); align-self:flex-end; border-bottom-right-radius:4px; }
+.ag-bel.hij { background:var(--butter); color:var(--ink); align-self:flex-start; border-bottom-left-radius:4px; }
+
+/* De drie puntjes, en daarna het antwoord. */
+.ag-tikt { display:flex; gap:5px; align-self:flex-start;
+  background:var(--butter); padding:0.85rem 0.95rem; border-radius:14px 14px 14px 4px;
+  animation:agTiktWeg 11s linear infinite; }
+.ag-tikt i { width:6px; height:6px; border-radius:50%; background:#7d5a1e; display:block;
+  animation:agStuit 1.1s ease-in-out infinite; }
+.ag-tikt i:nth-child(2) { animation-delay:.15s }
+.ag-tikt i:nth-child(3) { animation-delay:.3s }
+@keyframes agStuit { 0%,60%,100% { transform:translateY(0); opacity:.45 } 30% { transform:translateY(-4px); opacity:1 } }
+@keyframes agTiktWeg { 0%,14% { opacity:1; height:auto } 20%,100% { opacity:0; height:0; padding:0; margin:0; overflow:hidden } }
+
+.ag-antwoord { opacity:0; animation:agKomt 11s ease-out infinite; }
+@keyframes agKomt {
+  0%,18%   { opacity:0; transform:translateY(6px) }
+  26%,100% { opacity:1; transform:translateY(0) }
+}
+.ag-bron {
+  align-self:flex-start; display:inline-flex; align-items:center; gap:0.45em;
+  font-family:'JetBrains Mono', monospace; font-size:0.56rem; letter-spacing:0.08em;
+  text-transform:uppercase; color:#a89a89;
+  border:1px solid rgba(245,238,226,0.16); border-radius:100px; padding:0.32rem 0.7rem;
+  opacity:0; animation:agKomt 11s ease-out infinite; animation-delay:.5s;
+}
+.ag-bron::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--butter); }
+
+/* ─── APPVENSTER · HANDBOEK ────────────────────────────────────────────────
+   Toont het mechanisme uit de documentatie: een leesbevestiging hangt aan de
+   versie, dus een gewijzigd artikel springt terug op ongelezen bij iedereen
+   die de vórige versie bevestigd had. */
+.appvenster.handboek { padding:1.3rem 1.5rem 1.6rem; }
+.ah-kop { display:flex; align-items:baseline; gap:0.6rem; margin-bottom:1rem; }
+.ah-kop h4 { font-family:'Fraunces', Georgia, serif; font-weight:400; font-size:1.2rem;
+  color:#7d2233; margin:0; }
+.ah-kop span { font-family:'JetBrains Mono', monospace; font-size:0.58rem; letter-spacing:0.1em;
+  text-transform:uppercase; color:var(--muted); margin-left:auto; }
+.ah-rij {
+  display:flex; align-items:center; gap:0.75rem;
+  padding:0.7rem 0.9rem; border-radius:10px;
+  background:#fff; border:1px solid rgba(27,25,23,0.07);
+  margin-bottom:0.5rem; font-size:0.86rem;
+}
+.ah-rij b { font-weight:500; }
+.ah-rij .ah-cat { font-family:'JetBrains Mono', monospace; font-size:0.56rem; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--muted); }
+.ah-merk { margin-left:auto; font-size:0.66rem; padding:0.18rem 0.55rem; border-radius:100px;
+  border:1px solid rgba(95,122,85,0.35); color:var(--forest); white-space:nowrap; }
+.ah-merk.open { border-color:rgba(194,118,47,0.45); color:#c2762f; }
+
+/* De rij die wijzigt: kleurt kort op, en de merkstempel wisselt. */
+.ah-rij.wijzigt { animation:ahLicht 10s ease-in-out infinite; }
+@keyframes ahLicht {
+  0%,34%   { background:#fff; box-shadow:none }
+  42%,58%  { background:var(--rose-soft); box-shadow:0 6px 18px rgba(27,25,23,0.10) }
+  70%,100% { background:#fff; box-shadow:none }
+}
+.ah-merk.was  { animation:ahWeg 10s linear infinite; }
+.ah-merk.wordt{ animation:ahKomt 10s linear infinite; position:absolute; }
+@keyframes ahWeg  { 0%,36% { opacity:1 } 44%,100% { opacity:0 } }
+@keyframes ahKomt { 0%,36% { opacity:0 } 44%,100% { opacity:1 } }
+.ah-rij .ah-merken { margin-left:auto; position:relative; display:flex; align-items:center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ag-tikt, .ah-rij.wijzigt, .ah-merk.was, .ah-merk.wordt { animation:none; }
+  .ag-tikt { display:none; }
+  .ag-antwoord, .ag-bron { opacity:1; animation:none; }
+  .ah-merk.was { opacity:0; }
+  .ah-merk.wordt { opacity:1; }
 }

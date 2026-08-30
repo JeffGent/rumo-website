@@ -799,46 +799,64 @@ section.tint-diep { background:var(--klei); }
 }
 .ag-bron::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--butter); }
 
-/* ─── APPVENSTER · HANDBOEK ────────────────────────────────────────────────
-   Toont het mechanisme uit de documentatie: een leesbevestiging hangt aan de
-   versie, dus een gewijzigd artikel springt terug op ongelezen bij iedereen
-   die de vórige versie bevestigd had. */
-.appvenster.handboek { padding:1.3rem 1.5rem 1.6rem; }
-.ah-kop { display:flex; align-items:baseline; gap:0.6rem; margin-bottom:1rem; }
-.ah-kop h4 { font-family:'Fraunces', Georgia, serif; font-weight:400; font-size:1.2rem;
+/* ─── APPVENSTER · LIJST ───────────────────────────────────────────────────
+   Een lijst met statuslabels waarvan er één omslaat. Vier pagina's tonen in
+   wezen hetzelfde: het handboek (gelezen wordt ongelezen), preventie (geldig
+   wordt bijna vervallen), de channel manager (wacht wordt bijgewerkt) en het
+   guest portal (balie wordt ingecheckt). Vandaar één component in plaats van
+   vier keer hetzelfde. */
+.appvenster.lijst { padding:1.3rem 1.5rem 1.6rem; }
+.al-kop { display:flex; align-items:baseline; gap:0.6rem; margin-bottom:1rem; }
+.al-kop h4 { font-family:'Fraunces', Georgia, serif; font-weight:400; font-size:1.2rem;
   color:#7d2233; margin:0; }
-.ah-kop span { font-family:'JetBrains Mono', monospace; font-size:0.58rem; letter-spacing:0.1em;
+.al-kop span { font-family:'JetBrains Mono', monospace; font-size:0.58rem; letter-spacing:0.1em;
   text-transform:uppercase; color:var(--muted); margin-left:auto; }
-.ah-rij {
+.al-rij {
   display:flex; align-items:center; gap:0.75rem;
   padding:0.7rem 0.9rem; border-radius:10px;
   background:#fff; border:1px solid rgba(27,25,23,0.07);
   margin-bottom:0.5rem; font-size:0.86rem;
 }
-.ah-rij b { font-weight:500; }
-.ah-rij .ah-cat { font-family:'JetBrains Mono', monospace; font-size:0.56rem; letter-spacing:0.08em;
+.al-rij b { font-weight:500; }
+.al-rij .al-cat { font-family:'JetBrains Mono', monospace; font-size:0.56rem; letter-spacing:0.08em;
   text-transform:uppercase; color:var(--muted); }
-.ah-merk { margin-left:auto; font-size:0.66rem; padding:0.18rem 0.55rem; border-radius:100px;
+.al-merk { margin-left:auto; font-size:0.66rem; padding:0.18rem 0.55rem; border-radius:100px;
   border:1px solid rgba(95,122,85,0.35); color:var(--forest); white-space:nowrap; }
-.ah-merk.open { border-color:rgba(194,118,47,0.45); color:#c2762f; }
+.al-merk.open { border-color:rgba(194,118,47,0.45); color:#c2762f; }
 
 /* De rij die wijzigt: kleurt kort op, en de merkstempel wisselt. */
-.ah-rij.wijzigt { animation:ahLicht 10s ease-in-out infinite; }
-@keyframes ahLicht {
+.al-rij.wijzigt { animation:alLicht 10s ease-in-out infinite; }
+@keyframes alLicht {
   0%,34%   { background:#fff; box-shadow:none }
   42%,58%  { background:var(--rose-soft); box-shadow:0 6px 18px rgba(27,25,23,0.10) }
   70%,100% { background:#fff; box-shadow:none }
 }
-.ah-merk.was  { animation:ahWeg 10s linear infinite; }
-.ah-merk.wordt{ animation:ahKomt 10s linear infinite; position:absolute; }
-@keyframes ahWeg  { 0%,36% { opacity:1 } 44%,100% { opacity:0 } }
-@keyframes ahKomt { 0%,36% { opacity:0 } 44%,100% { opacity:1 } }
-.ah-rij .ah-merken { margin-left:auto; position:relative; display:flex; align-items:center; }
+.al-merk.was  { animation:alWeg 10s linear infinite; }
+.al-merk.wordt{ animation:alKomt 10s linear infinite; position:absolute; }
+@keyframes alWeg  { 0%,36% { opacity:1 } 44%,100% { opacity:0 } }
+@keyframes alKomt { 0%,36% { opacity:0 } 44%,100% { opacity:1 } }
+.al-rij .al-merken { margin-left:auto; position:relative; display:flex; align-items:center; }
 
 @media (prefers-reduced-motion: reduce) {
-  .ag-tikt, .ah-rij.wijzigt, .ah-merk.was, .ah-merk.wordt { animation:none; }
+  .ag-tikt, .al-rij.wijzigt, .al-merk.was, .al-merk.wordt { animation:none; }
   .ag-tikt { display:none; }
   .ag-antwoord, .ag-bron { opacity:1; animation:none; }
-  .ah-merk.was { opacity:0; }
-  .ah-merk.wordt { opacity:1; }
+  .al-merk.was { opacity:0; }
+  .al-merk.wordt { opacity:1; }
 }
+
+/* Getrapte variant: meerdere rijen slaan één voor één om, met een korte pauze
+   ertussen. Gebruikt op de channel manager, waar één prijswijziging na elkaar
+   naar de kanalen vertrekt. */
+.al-rij .al-merk.traag1 { animation-delay:.35s }
+.al-rij .al-merk.traag2 { animation-delay:.7s }
+.al-rij .al-merk.traag3 { animation-delay:1.05s }
+/* Een prijsveld dat verandert. */
+.al-prijs {
+  display:inline-flex; align-items:center; gap:0.5rem;
+  background:#fff; border:1px solid rgba(27,25,23,0.1); border-radius:8px;
+  padding:0.45rem 0.75rem; margin-bottom:0.9rem; font-size:0.9rem;
+}
+.al-prijs b { font-weight:600; }
+.al-prijs .oud { color:var(--muted); text-decoration:line-through; animation:alWeg 10s linear infinite; }
+.al-prijs .nieuw { color:var(--forest); font-weight:600; opacity:0; animation:alKomt 10s linear infinite; }

@@ -102,6 +102,11 @@
     gap: 5rem;
     align-items: center;
   }
+  /* Een rasterkind krimpt standaard niet onder zijn langste woord. Eén lange
+     term in een opsomming duwde de kolom daardoor breder dan het scherm, en
+     dan schuift de hele pagina zijwaarts. */
+  .fp-section-inner > * { min-width: 0; }
+  .fp-bullets li { overflow-wrap: anywhere; }
   .fp-section.reverse .fp-section-inner > .fp-section-visual { order: -1; }
   .fp-section-kicker {
     font-family: 'JetBrains Mono', monospace;
@@ -346,9 +351,11 @@
   /* Mockup · OTAs grid */
   .mk-otas .ota-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.55rem;
   }
+  .mk-otas .ota-tile { min-width: 0; }
+  .mk-otas .ota-tile .status { overflow: hidden; text-overflow: ellipsis; }
   .mk-otas .ota-tile {
     background: var(--paper);
     border: 1px solid var(--line);

@@ -44,6 +44,9 @@
     gap:4rem;
     align-items:start;
   }
+  /* Zonder min-width:0 krimpt een rasterkind niet onder zijn langste woord, en
+     dan schuift de hele pagina zijwaarts op een telefoon. */
+  .kb-layout > * { min-width:0; }
   .kb-nav {
     position:sticky;
     top:7rem;
@@ -111,6 +114,10 @@
     display:inline-flex;
     align-items:center;
     gap:0.6em;
+    /* Zonder wrap blijft een titel met een lang cursief woord op één regel
+       staan en duwt hij de pagina zijwaarts op een telefoon. */
+    flex-wrap:wrap;
+    max-width:100%;
   }
   .kb-group-title::before {
     content:'';

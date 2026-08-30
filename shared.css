@@ -518,3 +518,207 @@ footer {
    winnen van de achtergrond van de sectie zelf. */
 section.tint      { background:var(--paper-deep); }
 section.tint-diep { background:var(--klei); }
+
+/* ─── PRODUCTBAND ──────────────────────────────────────────────────────────
+   Het probleem met een schermafbeelding in een kaartje van 300px is dat je er
+   niets van ziet. Hier krijgt hij de volle breedte en loopt hij rechts het
+   beeld uit: dan lees je hem als "een stuk van een echt scherm" in plaats van
+   als een plaatje. Op ink, want dat is het enige contrast dat de site heeft. */
+.toonband {
+  background:var(--ink);
+  padding:5.5rem 0 0;
+  position:relative;
+  overflow:hidden;
+}
+.toonband::after {
+  content:''; position:absolute; top:-25%; left:-10%; width:55%; height:100%;
+  background:radial-gradient(circle, rgba(244,217,143,0.10), transparent 65%);
+  pointer-events:none;
+}
+.toonband-inner {
+  max-width:1200px; margin:0 auto; padding:0 2rem;
+  position:relative; z-index:1;
+}
+.toonband-tekst { max-width:520px; margin-bottom:2.5rem; }
+.toonband-tekst h2 {
+  font-family:'Fraunces', Georgia, serif; font-weight:400;
+  font-size:clamp(1.9rem, 3.6vw, 2.7rem); letter-spacing:-0.03em;
+  line-height:1.06; color:var(--paper); margin-bottom:1rem;
+}
+.toonband-tekst h2 em { font-style:italic; color:var(--butter); font-weight:300; }
+.toonband-tekst p { font-size:1.05rem; line-height:1.65; color:#d9cfc0; margin:0; }
+
+/* Het beeld zelf: breder dan zijn kolom en rechts afgesneden. */
+.toonband-beeld {
+  position:relative;
+  margin-right:calc((100vw - min(100vw, 1200px)) / -2 - 2rem);
+  border-radius:16px 0 0 0;
+  overflow:hidden;
+  box-shadow:0 -30px 80px -20px rgba(0,0,0,0.55);
+}
+.toonband-beeld img {
+  display:block;
+  width:min(1520px, 128%);
+  max-width:none;
+  border-radius:16px 0 0 0;
+}
+/* Handgeschreven kanttekening. Caveat wordt op elke pagina ingeladen en werd
+   tot nu toe nergens gebruikt. Staat bewust in het donkere deel bóven het
+   beeld: geel op een lichte schermafbeelding is onleesbaar, en een notitie
+   over de interface heen dekt net het stuk af dat je wil tonen. */
+.kantnoot {
+  position:absolute; z-index:3;
+  font-family:'Caveat', cursive; font-weight:600;
+  font-size:clamp(1.15rem, 1.7vw, 1.6rem);
+  color:var(--butter);
+  transform:rotate(-3deg);
+  max-width:16rem; line-height:1.2;
+  pointer-events:none;
+}
+/* Pijl die naar het beeld eronder wijst. */
+.kantnoot::after {
+  content:''; position:absolute; left:1.2rem; top:calc(100% + 0.3rem);
+  width:34px; height:46px;
+  border-left:2px solid var(--butter);
+  border-bottom:2px solid var(--butter);
+  border-radius:0 0 0 14px;
+  opacity:0.7;
+}
+.kantnoot::before {
+  content:''; position:absolute; left:calc(1.2rem + 30px); top:calc(100% + 42px);
+  width:9px; height:9px;
+  border-right:2px solid var(--butter);
+  border-bottom:2px solid var(--butter);
+  transform:rotate(-45deg);
+  opacity:0.7;
+}
+@media (max-width:900px) {
+  .toonband-beeld { margin-right:-2rem; }
+  .toonband-beeld img { width:150%; }
+  .kantnoot { display:none; }
+}
+
+/* ─── APPVENSTER ───────────────────────────────────────────────────────────
+   Een nagebouwde kalender in plaats van een schermafbeelding. Reden: een PNG
+   veroudert zodra de interface verandert, is onscherp op een retina-scherm en
+   staat stil. Dit is HTML, dus altijd scherp, altijd in de huisstijl, en er
+   kan iets in bewegen. De labels komen uit de Nederlandse taalbestanden van de
+   app zelf (Aankomend, Vertrekkend, Verblijvend, Vuil, Vandaag). */
+.appvenster {
+  /* Twee variabelen: de breedte van de kamerkolom links, en daaruit afgeleid
+     de breedte van één dagkolom. Zo hoeft een balk alleen in kolommen te
+     rekenen, en kan de kamerkolom op een telefoon smaller worden zonder dat
+     er iets verschuift. */
+  --kamerkol:132px;
+  --k:calc((100% - var(--kamerkol)) / 7);
+  background:#F7F2EA;
+  border-radius:16px 0 0 16px;
+  box-shadow:0 -30px 90px -25px rgba(0,0,0,0.6), 0 0 0 1px rgba(27,25,23,0.06);
+  overflow:hidden;
+  font-size:13px;
+  color:var(--ink);
+  user-select:none;
+}
+.av-kop { padding:1.4rem 1.6rem 0.9rem; }
+.av-kop h4 {
+  font-family:'Fraunces', Georgia, serif; font-weight:400;
+  font-size:1.35rem; color:#7d2233; letter-spacing:-0.01em; margin:0 0 0.15rem;
+}
+.av-kop p { font-size:0.82rem; color:var(--muted); margin:0; }
+
+/* Filterbalk */
+.av-balk {
+  display:flex; align-items:center; gap:0.65rem;
+  padding:0 1.6rem 1rem; flex-wrap:nowrap; white-space:nowrap;
+}
+.av-chip {
+  font-size:0.8rem; color:var(--ink-soft);
+  padding:0.3rem 0.75rem; border-radius:100px;
+}
+.av-chip.aan { background:var(--rose-soft); color:#7d2233; }
+.av-balk .av-rek { margin-left:auto; }
+.av-knop {
+  font-size:0.78rem; padding:0.3rem 0.8rem; border-radius:100px;
+  border:1px solid rgba(27,25,23,0.14); background:#fff;
+}
+.av-datum { font-size:0.85rem; font-weight:500; }
+.av-vandaag {
+  font-size:0.78rem; padding:0.3rem 0.85rem; border-radius:100px;
+  background:var(--ink); color:var(--paper);
+}
+
+/* Raster */
+.av-raster { border-top:1px solid rgba(27,25,23,0.08); }
+.av-dagen, .av-rij {
+  display:grid; grid-template-columns:var(--kamerkol) repeat(7, 1fr);
+}
+.av-dagen > span {
+  text-align:center; padding:0.55rem 0 0.6rem;
+  font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);
+  border-left:1px solid rgba(27,25,23,0.05);
+}
+.av-dagen > span b { display:block; font-size:1rem; letter-spacing:0; color:var(--ink); font-weight:500; }
+.av-dagen .nu { background:rgba(214,143,111,0.10); box-shadow:inset 0 2px 0 #7d2233; }
+.av-dagen .nu b { color:#7d2233; }
+
+.av-rij { border-top:1px solid rgba(27,25,23,0.05); position:relative; height:44px; }
+.av-rij > .av-cel { border-left:1px solid rgba(27,25,23,0.05); }
+.av-kamer {
+  display:flex; align-items:baseline; gap:0.4rem;
+  padding-left:1.1rem; font-size:0.78rem;
+  white-space:nowrap; overflow:hidden;
+}
+.av-kamer b { font-weight:600; }
+.av-kamer span { font-size:0.58rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); overflow:hidden; text-overflow:ellipsis; }
+.av-kamer .vuil { color:#c2762f; }
+
+/* Boekingsbalken: absoluut binnen de rij, gepositioneerd in kolombreedtes. */
+.av-boeking {
+  position:absolute; top:6px; height:32px;
+  display:flex; align-items:center; gap:0.5rem;
+  padding:0 0.7rem; border-radius:7px;
+  background:#fff; border:1px solid rgba(27,25,23,0.08);
+  border-left:3px solid var(--forest);
+  font-size:0.8rem; white-space:nowrap; overflow:hidden;
+  box-shadow:0 1px 2px rgba(27,25,23,0.05);
+}
+.av-boeking.blauw { border-left-color:#5b7fb5; }
+.av-boeking.terra { border-left-color:var(--terra-dark); }
+.av-boeking.grijs { background:rgba(27,25,23,0.03); border-style:dashed; color:var(--muted); box-shadow:none; }
+.av-status {
+  margin-left:auto; font-size:0.6rem; letter-spacing:0.05em;
+  padding:0.1rem 0.45rem; border-radius:100px;
+  border:1px solid rgba(194,118,47,0.4); color:#c2762f;
+}
+
+/* ── Beweging ──────────────────────────────────────────────────────────────
+   Eén balk verhuist van kamer 103 naar 105 en terug, met een korte pauze. Dat
+   is de kernhandeling van een PMS-kalender, dus het toont iets in plaats van
+   dat het alleen beweegt. */
+.av-boeking.sleept {
+  animation:avSleep 9s cubic-bezier(.65,0,.35,1) infinite;
+  z-index:3;
+}
+@keyframes avSleep {
+  0%, 18%   { transform:translate(0,0) scale(1); box-shadow:0 1px 2px rgba(27,25,23,0.05); }
+  26%       { transform:translate(0,-3px) scale(1.015); box-shadow:0 10px 22px rgba(27,25,23,0.18); }
+  44%, 62%  { transform:translate(0, 88px) scale(1.015); box-shadow:0 10px 22px rgba(27,25,23,0.18); }
+  70%, 100% { transform:translate(0, 88px) scale(1); box-shadow:0 1px 2px rgba(27,25,23,0.05); }
+}
+/* De plek waar hij vandaan komt, licht op terwijl hij weg is. */
+.av-gat { position:absolute; top:6px; height:32px; border-radius:7px;
+  border:1px dashed rgba(27,25,23,0.18); opacity:0;
+  animation:avGat 9s linear infinite; }
+@keyframes avGat { 0%,26% { opacity:0 } 34%,66% { opacity:1 } 74%,100% { opacity:0 } }
+
+@media (prefers-reduced-motion: reduce) {
+  .av-boeking.sleept, .av-gat { animation:none; }
+  .av-boeking.sleept { transform:translate(0, 88px); }
+}
+@media (max-width:900px) {
+  .appvenster { font-size:11px; --kamerkol:52px; }
+  .av-kamer { padding-left:0.6rem; }
+  .av-kamer span { display:none; }   /* kamertype en Vuil weglaten: geen plaats */
+  .av-balk { gap:0.4rem; }
+  .av-status { display:none; }
+}

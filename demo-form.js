@@ -1,27 +1,26 @@
 /* demo-form.js — "Probeer gratis" opent een aanvraagformulier (modal).
  *
- * WAT ER GEBEURT NA HET VERSTUREN
- * De aanvraag komt als mail bij ons binnen. Wij zetten met de hand een
- * proefomgeving klaar en mailen de inloggegevens terug. Er wordt dus NIETS
- * automatisch aangemaakt; de bezoeker wacht op ons.
+ * WAT ER GEBEURT NA HET VERSTUREN (2026-09-04, was Web3Forms tot hier)
+ * De aanvraag gaat rechtstreeks naar onze eigen PMS — POST /api/v1/public/
+ * trial-signup, via de Cloudflare Worker op rumo.eu/api/* (dezelfde weg als
+ * de juridische pagina's hun tekst ophalen). Ze landt in de wachtrij
+ * "Trial requests" in de console en mailt meteen de supportlijst (#1144).
+ * Wij zetten met de hand een proefomgeving klaar; er wordt dus nog steeds
+ * NIETS automatisch aangemaakt. Web3Forms is niet meer nodig.
  *
- * DE BESTEMMING (het enige stuk dat later verhuist)
- * Vandaag loopt de mail via Web3Forms. Een statische site op GitHub Pages kan
- * zelf geen mail versturen: daarvoor is een server nodig die een SMTP-wachtwoord
- * bewaart, en die hebben we hier niet. Web3Forms is dus geen keuze uit luiheid
- * maar het enige wat werkt zonder backend.
- *
- * Let op: het gratis plan van Web3Forms stopt bij 250 aanvragen per maand.
- * Daarboven verdwijnen aanvragen zonder dat iemand het merkt (issue #1102).
- *
- * Wil je later naar onze eigen mailserver? Dan hoeft alleen ENDPOINT hieronder
- * te wijzigen (plus eventueel de opbouw van `data` in `sendRequest`). Alle
- * andere code, de modal en de teksten blijven zoals ze zijn.
+ * LET OP, NOG TE VERIFIËREN (2026-09-04)
+ * Het endpoint verwacht een Turnstile-token (`x-turnstile-token`) zodra de
+ * server dat vereist (`config.turnstileSecretKey` gezet). Dit formulier
+ * stuurt er vandaag geen. Zolang Turnstile niet verplicht staat op de
+ * omgeving waar rumo.eu/api naartoe wijst, werkt dit gewoon; is het wél
+ * verplicht, dan faalt elke inzending met "Verification required" en valt
+ * de gebruiker terug op de foutmelding onderaan (mailto: hello@rumo.eu).
+ * Zie ook: de Cloudflare Worker moet dit pad al doorsturen — nog te
+ * bevestigen dat de live Worker de laatste versie draait.
  */
 (function () {
   // ── Bestemming ────────────────────────────────────────────────────────────
-  var ENDPOINT   = 'https://api.web3forms.com/submit';
-  var ACCESS_KEY = '89ef2ee7-c622-4825-aaa2-caf9d2672327'; // Web3Forms-sleutel; hangt serverkant aan jeffrey@rumo.eu
+  var ENDPOINT = '/api/v1/public/trial-signup';
 
   /** Kleine hulp: een gebeurtenis naar Plausible, of niets als die geblokkeerd is. */
   function track(name, props) {
@@ -90,10 +89,9 @@
             '<div class="dm-field"><label>Iets dat we moeten weten? <span style="color:#8d8378;font-weight:400">(optioneel)</span></label><textarea name="bericht"></textarea></div>' +
             '<button class="dm-submit" type="submit">Stuur mijn aanvraag <span>&rarr;</span></button>' +
             '<p class="dm-error"></p>' +
-            '<p class="dm-fine">Geen creditcard. We gebruiken je gegevens enkel om je proefomgeving klaar te zetten.</p>' +
-            '<p class="dm-fine">Door dit te versturen ga je akkoord met onze ' +
-              '<a href="/voorwaarden" target="_blank" rel="noopener">algemene voorwaarden</a> en ' +
-              '<a href="/dpa" target="_blank" rel="noopener">verwerkersovereenkomst</a>.</p>' +
+            '<p class="dm-fine">Geen creditcard. We gebruiken je gegevens enkel om je proefomgeving klaar te zetten. ' +
+              'Check gerust al eens onze <a href="/voorwaarden" target="_blank" rel="noopener">algemene voorwaarden</a> en ' +
+              '<a href="/dpa" target="_blank" rel="noopener">verwerkersovereenkomst</a> — kwestie dat je goed kan slapen.</p>' +
           '</form>' +
         '</div>' +
       '</div>';
@@ -129,23 +127,39 @@
     var btn = form.querySelector('.dm-submit');
     err.textContent = '';
 
-    if (ACCESS_KEY === 'VERVANG_MET_WEB3FORMS_ACCESS_KEY') {
-      err.textContent = 'Formulier nog niet geactiveerd (access key ontbreekt).';
+    // Honeypot: een bot vult dit onzichtbare veld wel in, een mens niet.
+    // Stil laten "slagen" i.p.v. een foutmelding tonen — geen aanwijzing
+    // aan de bot dat hij tegen iets aanliep.
+    if (form.querySelector('[name="botcheck"]').checked) {
+      track('Proefaanvraag verstuurd');
+      form.parentNode.innerHTML =
+        '<div class="dm-done">' +
+          '<h3>Top, we hebben je aanvraag! <em>Merci.</em></h3>' +
+          '<p>We zetten je proefomgeving klaar en mailen je de inloggegevens. Meestal binnen de werkdag, in het slechtste geval de volgende. Kijk ook eens in je spam, mails van nieuwe afzenders belanden daar wel vaker.</p>' +
+        '</div>';
       return;
     }
 
-    var data = new FormData(form);
-    data.append('access_key', ACCESS_KEY);
-    data.append('subject', 'Nieuwe rumo demo-aanvraag');
-    data.append('from_name', 'rumo website');
+    var fd = new FormData(form);
+    var kamers = fd.get('kamers');
+    var body = {
+      name: fd.get('naam'),
+      email: fd.get('email'),
+      hotelName: fd.get('hotel') || undefined,
+      approximateRoomCount: kamers ? Number(kamers) : undefined,
+      message: fd.get('bericht') || undefined,
+    };
 
     btn.disabled = true;
     var orig = btn.innerHTML;
     btn.innerHTML = 'Versturen&hellip;';
     try {
-      var res = await fetch(ENDPOINT, { method: 'POST', body: data });
-      var json = await res.json();
-      if (json.success) {
+      var res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (res.ok) {
         track('Proefaanvraag verstuurd');
         form.parentNode.innerHTML =
           '<div class="dm-done">' +
@@ -153,11 +167,11 @@
             '<p>We zetten je proefomgeving klaar en mailen je de inloggegevens. Meestal binnen de werkdag, in het slechtste geval de volgende. Kijk ook eens in je spam, mails van nieuwe afzenders belanden daar wel vaker.</p>' +
           '</div>';
       } else {
-        throw new Error(json.message || 'mislukt');
+        throw new Error('http_' + res.status);
       }
     } catch (ex) {
       // Een mislukte verzending is een verloren aanvraag. Meet hem, anders lijkt
-      // een stille storing (of een volgelopen Web3Forms-quota) op weinig interesse.
+      // een stille storing op weinig interesse.
       track('Proefaanvraag mislukt');
       btn.disabled = false; btn.innerHTML = orig;
       err.innerHTML = 'Oei, er ging iets mis. Probeer opnieuw, of mail ons rechtstreeks op ' +

@@ -91,6 +91,9 @@
             '<button class="dm-submit" type="submit">Stuur mijn aanvraag <span>&rarr;</span></button>' +
             '<p class="dm-error"></p>' +
             '<p class="dm-fine">Geen creditcard. We gebruiken je gegevens enkel om je proefomgeving klaar te zetten.</p>' +
+            '<p class="dm-fine">Door dit te versturen ga je akkoord met onze ' +
+              '<a href="/voorwaarden" target="_blank" rel="noopener">algemene voorwaarden</a> en ' +
+              '<a href="/dpa" target="_blank" rel="noopener">verwerkersovereenkomst</a>.</p>' +
           '</form>' +
         '</div>' +
       '</div>';

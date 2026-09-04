@@ -89,9 +89,9 @@
             '<div class="dm-field"><label>Iets dat we moeten weten? <span style="color:#8d8378;font-weight:400">(optioneel)</span></label><textarea name="bericht"></textarea></div>' +
             '<button class="dm-submit" type="submit">Stuur mijn aanvraag <span>&rarr;</span></button>' +
             '<p class="dm-error"></p>' +
-            '<p class="dm-fine">Geen creditcard. We gebruiken je gegevens enkel om je proefomgeving klaar te zetten. ' +
+            '<p class="dm-fine">We gebruiken je gegevens enkel om je proefomgeving klaar te zetten. ' +
               'Check gerust al eens onze <a href="/voorwaarden" target="_blank" rel="noopener">algemene voorwaarden</a> en ' +
-              '<a href="/dpa" target="_blank" rel="noopener">verwerkersovereenkomst</a> — kwestie dat je goed kan slapen.</p>' +
+              '<a href="/dpa" target="_blank" rel="noopener">verwerkersovereenkomst</a>.</p>' +
           '</form>' +
         '</div>' +
       '</div>';

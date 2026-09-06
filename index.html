@@ -499,6 +499,10 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 .toonband.licht .pms-punten li::before { background:var(--terra); }
 .toonband.licht .pms-door { color:var(--terra-dark); border-bottom-color:rgba(185,107,74,0.35); }
 .toonband.licht .pms-door:hover { border-bottom-color:var(--terra-dark); }
+/* De tekstkolom staat standaard op 520px, wat voor een korte kop werkt maar
+   deze introalinea in acht smalle regels hakt. Hier ruimer: ongeveer zeventig
+   tekens per regel, nog steeds comfortabel om te lezen. */
+.toonband.licht .toonband-tekst { max-width:740px; }
 .toonband.licht .toonband-beeld { box-shadow:0 -24px 60px -24px rgba(27,25,23,0.22); }
 .toonband.licht:not(.naast) .toonband-beeld::after {
   background:linear-gradient(to bottom, rgba(245,238,226,0), var(--paper) 92%);

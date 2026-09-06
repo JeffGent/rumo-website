@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<script>
+/* Zet de klasse die de fade-in aanzet. Staat JavaScript uit, dan wordt ze nooit
+   gezet en is de pagina gewoon leesbaar. Loopt er verderop iets mis waardoor
+   het script onderaan niet draait, dan haalt het vangnet de klasse weer weg:
+   dan mis je de animatie in plaats van de hele tekst. */
+(function () {
+  var d = document.documentElement;
+  d.classList.add('js');
+  addEventListener('load', function () {
+    setTimeout(function () { if (!d.dataset.fadeReady) d.classList.remove('js'); }, 1200);
+  });
+})();
+</script>
+<script src="../gate.js"></script>
+<script src="../demo-form.js?v=2" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waarom duurt inwerken elke keer even lang? · uitgelegd door rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!-- Plausible: cookieloze, EU-gehoste statistieken. Geen persoonsgegevens, geen cross-site profiel. Zie cookies.html. -->
+<script async src="https://plausible.io/js/pa-qrWo4zr4eI0-tnEew9x4u.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+<meta name="description" content="Je hebt het dit jaar al vijf keer uitgelegd en het duurt nog altijd even lang. Over wat een inwerking eigenlijk bevat, welk deel je één keer kan maken, en waarom de helft ervan alleen te leren is door het te doen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
+<link rel="stylesheet" href="artikel.css">
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="../features.html">Wat doen we?</a></li>
+    <li><a href="../wat-drijft-ons.html">Wat drijft ons?</a></li>
+    <li><a href="../prijzen.html">En euh, wat kost dat?</a></li>
+    <li><a href="../faq.html">FAQ</a></li>
+    <li><a href="../over-ons.html">Over ons</a></li>
+    <li><a href="../index.html#demo" class="nav-cta">Probeer gratis →</a></li>
+    <li class="nav-lang">
+      <a href="inwerken.html" class="active">NL</a>
+      <a href="../en/index.html">EN</a>
+      <a href="../fr/index.html">FR</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
+<div class="page-header">
+  <div class="page-header-inner fade-up">
+    <div>
+      <a href="index.html" class="terug">← Uitgelegd</a>
+      <span class="kicker">Opleiden</span>
+      <h1>Waarom duurt inwerken <em>elke keer even lang?</em></h1>
+      <p class="lead">Je hebt dit jaar al vier of vijf keer uitgelegd hoe de balie werkt. Niet omdat je het slecht uitlegt, maar omdat er van de vorige keer niets is blijven staan. Over wat een inwerking eigenlijk bevat, welk deel je één keer kan maken, en waarom de andere helft alleen te leren is door het te doen.</p>
+    </div>
+    <div class="ph-side-illus">
+      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- Een scherm met daarin een gestippelde kopie, en twee mensen ervoor -->
+        <rect x="18" y="20" width="84" height="56" rx="4"/>
+        <rect x="30" y="30" width="60" height="36" rx="3" stroke-dasharray="4 4"/>
+        <line x1="60" y1="76" x2="60" y2="86"/>
+        <line x1="42" y1="86" x2="78" y2="86"/>
+        <circle cx="34" cy="102" r="7"/>
+        <circle cx="86" cy="102" r="7"/>
+        <path d="M46,102 L74,102" stroke-dasharray="3 3"/>
+      </svg>
+    </div>
+  </div>
+  <div class="page-header-ribbon">
+    <span>Leestijd 9 minuten</span>
+    <span>Voor wie mensen inwerkt</span>
+    <span>Geldt ook zonder rumo</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ ARTIKEL ═══════════════════════ -->
+<section class="artikel">
+  <div class="artikel-inner fade-up">
+
+    <h2>Je werkt niet één iemand in, maar een <em>stroom</em></h2>
+    <p>Een vaste medewerker werk je één keer in en daar heb je jaren plezier van. Die persoon leert je huis kennen, pikt vanzelf op hoe jullie het doen, en na een half jaar moet je hem niets meer uitleggen. Dat is de aangename kant.</p>
+    <p>Studenten en flexi's zijn een ander verhaal. Die komen voor de zomer, voor de weekends, voor de drukke maanden. Ze zijn vaak uitstekend, ze werken hard, en dan zijn ze weg. En dan komt er een volgende, die precies dezelfde vragen stelt als degene voor hem.</p>
+    <p>Tel eens hoeveel mensen je dit jaar achter je balie hebt gezet. Reken daar per persoon twee dagen meelopen bij, plus de weken erna waarin er om de tien minuten iets gevraagd wordt. Het is niet de eerste dag die het meeste kost, het zijn die weken erna.</p>
+    <p>En het vervelende is niet dat het tijd kost. Het vervelende is dat het de volgende keer <strong>exact evenveel</strong> tijd kost. Een uitleg die je vijf keer geeft, wordt niet korter door hem vijf keer te geven.</p>
+
+    <h2>Mondelinge uitleg <em>verdampt</em></h2>
+    <p>De reden daarvoor is simpel als je hem eenmaal ziet: bijna alles wat je uitlegt, leg je mondeling uit. Er staat iemand naast je, hij vraagt iets, jij antwoordt. Dat is op dat moment ook echt het snelste wat er is.</p>
+    <p>Alleen laat het niets achter. Niet bij jou, en na drie weken ook niet meer bij degene die het gehoord heeft. Je betaalt de rekening pas bij de volgende nieuwe, en dan zie je het verband niet meer met de vijf keer dat je het al gezegd had.</p>
+    <p>De vuistregel die daaruit volgt is onaangenaam concreet: <strong>alles wat je twee keer hebt uitgelegd, ga je zes keer uitleggen.</strong> Die tweede keer is het signaal dat je iets moet opschrijven, niet de zesde. Tegen de zesde ben je het zat, en dan schrijf je het op in een humeur waarin je het slechter opschrijft dan nodig.</p>
+    <p>Wat je dan opschrijft en hoe je weet of iemand het gelezen heeft, staat in een <a href="draaiboek.html">apart artikel over draaiboeken</a>. Dit artikel gaat over de andere helft.</p>
+
+    <h2>De helft van een inwerking kan je <em>niet</em> opschrijven</h2>
+    <p>Want er zitten twee heel verschillende dingen in zo'n inwerking, en ze vragen allebei iets anders.</p>
+    <ul>
+      <li><strong>Dingen die iemand moet weten.</strong> Waar de reservesleutels liggen. Met welk taxibedrijf jullie werken. Wat de annulatieregel is op een niet-terugbetaalbaar tarief. Wat je doet als het brandalarm afgaat. Dat kan je opschrijven, en dan hoef je het nooit meer te zeggen.</li>
+      <li><strong>Dingen die iemand moet kunnen.</strong> Een groep inchecken. Een creditnota maken. Een no-show afhandelen. Een betaling terugstorten aan iemand die al vertrokken is.</li>
+    </ul>
+    <p>Dat tweede lijstje leest niemand zich eigen. Je kan het perfect opschrijven, met schermafbeeldingen erbij en pijltjes op de juiste knoppen, en dan nog staat die persoon te zweten de eerste keer dat het echt moet. Handelingen leer je door ze te doen. Dat is geen kwestie van motivatie of intelligentie, dat is gewoon hoe het werkt.</p>
+
+    <h2>En oefenen kan alleen in het <em>echte</em> systeem</h2>
+    <p>Daar zit de knoop. De enige plek waar iemand een echte factuur kan maken, is jouw echte hotel. Met een echte gast, echt geld en een boekhouding die alles bijhoudt.</p>
+    <p>Dus gebeurt in bijna elk hotel hetzelfde: nieuwe mensen leren de moeilijke handelingen <strong>op de dag dat het misgaat</strong>. Onder tijdsdruk, met iemand die staat te wachten, en met jou ernaast die het na twee minuten maar overneemt omdat er een rij staat. Dat is de slechtst denkbare leeromgeving, en het is in de meeste huizen de enige die er is.</p>
+    <p>De gebruikelijke uitweg is een testboeking op naam van "Test Test" in het echte systeem. Dat werkt half. Een check-in kan je er prima mee oefenen. Maar zodra het over geld gaat, gaat het mis: die factuur zit nu in je nummering, die creditnota staat in je boekhouding, en die statistiek van vorige maand klopt niet meer. En dan is er nog iets dat mensen consequent vergeten.</p>
+
+    <div class="kader">
+      <p><strong>De mail is het gevaarlijkste stuk.</strong> Een oefencheck-in stuurt een bevestiging. Een oefenannulering stuurt een annulering. Een oefenbetaallink is een echte betaallink, met een echt bedrag erop.</p>
+      <p>Wie een oefenomgeving inricht en de mail laat aanstaan, mailt op dag één echte gasten. Niet de gasten uit de oefening, want die zijn verzonnen, maar de adressen die per ongeluk zijn meegekopieerd of het adres dat iemand uit gewoonte intypt. Het is de eerste vraag die je over elke testomgeving moet stellen: <em>wat kan hier naar buiten?</em></p>
+    </div>
+
+    <h2>De vier draden die je moet <em>doorknippen</em></h2>
+    <p>Richt je een oefenomgeving in, dan zijn dit de verbindingen met de buitenwereld die eruit moeten. Geen van de vier is vanzelfsprekend, en ze zijn geen van de vier zichtbaar in het scherm waar iemand aan het oefenen is.</p>
+    <ul>
+      <li><strong>De mail.</strong> Zie hierboven. Dit is de belangrijkste.</li>
+      <li><strong>De kanalen.</strong> Een oefenomgeving die aan Booking.com hangt, verkoopt je echte kamers of blokkeert ze. In beide gevallen merk je het pas als er een gast voor de deur staat.</li>
+      <li><strong>De betalingen.</strong> Een kaart die effectief afgeboekt wordt bij een oefencheck-out is niet grappig, en het terugdraaien kost je meer tijd dan de hele oefening waard was.</li>
+      <li><strong>De deuren.</strong> Werk je met digitale sleutels, dan opent een oefencheck-in een echte kamerdeur voor iemand die daar niet slaapt.</li>
+    </ul>
+    <p>Wat er wél in moet: jouw kamers, jouw tarieven, jouw annulatieregels. Oefenen op een algemeen demohotel met kamertypes die jij niet hebt en prijzen die niet de jouwe zijn, leert de helft minder. De persoon leert dan het scherm kennen, maar niet jouw huis.</p>
+    <p>Wat er níét in moet: jouw echte gasten. Verzonnen namen, altijd. Persoonsgegevens horen niet in een oefenomgeving waar iedereen aan mag zitten, en twee omgevingen met dezelfde namen erin zijn een uitnodiging om ze te verwarren.</p>
+
+  </div>
+</section>
+
+<section class="uitroep">
+  <div class="uitroep-inner fade-up">
+    <p>Een inwerking is niet geslaagd omdat ze <em>gegeven</em> is.</p>
+    <span class="uitroep-bij">Ze is geslaagd als de handeling erna klopt</span>
+  </div>
+</section>
+
+<section class="artikel" style="padding-top:4rem">
+  <div class="artikel-inner fade-up">
+
+    <h2>Hoe weet je of het <em>goed</em> gedaan is?</h2>
+    <p>Dit is de vraag die de meeste opleidingen overslaan. Iemand heeft geoefend. Kan hij het nu?</p>
+    <p>De verleiding is om naar de weg te kijken: heeft hij op de juiste knoppen geklikt, in de juiste volgorde. Dat is de verkeerde meetlat, en wel om twee redenen. Er is bijna altijd meer dan één juiste route naar hetzelfde resultaat. En je meet zo of iemand jouw route onthouden heeft, niet of hij het probleem kan oplossen.</p>
+    <p>Kijk naar de uitkomst. Staat de boeking ingecheckt. Staat de rekening op nul. Bestaat die creditnota, en staat er het juiste bedrag op. Dat is controleerbaar, daar valt niet over te discussiëren, en het laat de persoon vrij om zijn eigen weg te vinden.</p>
+    <p>En daar hoort één ding bij dat belangrijker is dan het klinkt: <strong>laat het oordeel niet van een mening komen.</strong> "Ja hoor, dat is gelukt" is niet nagekeken. Nakijken betekent dat je zelf gaat kijken of het er staat. Dat geldt evengoed voor jezelf als voor een systeem dat het voor je doet: wie zegt dat iets goedgekeurd is, moet kunnen aanwijzen waar hij dat gezien heeft.</p>
+
+    <h2>Een oefening moet <em>uit je eigen huis</em> komen</h2>
+    <p>Nog een valkuil, en het is een subtiele. Een oefening die zegt "check kamer 204 in" werkt in precies één hotel: dat waar kamer 204 bestaat en waar er vandaag iemand op aankomt. Overal elders klopt de opdracht niet, en dan gaat iemand tien minuten zoeken naar iets dat er niet is.</p>
+    <p>Beter is een opdracht die naar een <em>soort</em> ding wijst in plaats van naar een concreet ding. "De aankomst van vandaag." "Een boeking die al betaald is via het kanaal." "Een groep op meerdere kamers." Dan hangt de oefening niet aan jouw kamernummering en werkt ze ook nog na een verbouwing.</p>
+    <p>En als er vandaag geen aankomst is, hoort de oefening dat te zeggen in plaats van iemand op pad te sturen naar iets dat niet bestaat.</p>
+
+    <h2>Wat een oefenomgeving <em>niet</em> oplost</h2>
+    <p>Eerlijk blijven over de grenzen, want anders bouw je iets waar je te veel van verwacht.</p>
+    <ul>
+      <li><strong>Ze leert niemand jullie afspraken.</strong> Hoe een bed er bij jullie uitziet als het af is, of jullie een laattijdige check-out wel of niet aanrekenen: dat staat in geen enkel systeem. <a href="draaiboek.html">Dat is een ander probleem</a>, en het lost zichzelf ook niet op met tekst.</li>
+      <li><strong>Ze houdt niemand bij de les na drie maanden.</strong> Wie iets twee keer per jaar doet, kan het niet, hoe goed de eerste keer ook ging. Voor dat soort dingen heb je iets nodig om in op te zoeken, geen oefening.</li>
+      <li><strong>Ze vervangt de rondleiding niet.</strong> Waar de reservesleutels liggen en welke lift je niet neemt met een bagagekar, leer je niet op een scherm.</li>
+    </ul>
+
+    <h2>Wat je morgen al kan doen, ook <em>zonder</em> software</h2>
+    <p>Het meeste hiervan is geen kwestie van een systeem hebben. Het is een kwestie van vooraf beslissen.</p>
+    <ul>
+      <li><strong>Schrijf op wat je twee keer hebt gezegd.</strong> Niet aan het eind van het seizoen, maar de tweede keer zelf, in vijf zinnen. Vijf zinnen die er staan zijn meer waard dan een hoofdstuk dat je van plan bent.</li>
+      <li><strong>Maak een lijst van tien handelingen</strong> die een nieuwe receptionist moet kunnen. Tien, geen dertig. Wie dertig dingen moet leren, leert er nul.</li>
+      <li><strong>Spreek per handeling af hoe "goed" eruitziet</strong>, in één zin, vóór je iemand laat oefenen. "De rekening staat op nul en de gast is uitgecheckt." Zonder dat zinnetje beoordeel je achteraf op gevoel.</li>
+      <li><strong>Laat een nieuwe medewerker een dag vóór zijn eerste shift door je procedures scrollen.</strong> Niet om ze te kennen, wel om te weten dát ze bestaan en waar ze staan. Dat scheelt de helft van de vragen in week één, en het kost jou niets.</li>
+      <li><strong>Oefen op een rustige dinsdag</strong>, niet in het weekend. Als de enige oefenplek je echte systeem is, kies dan tenminste het moment waarop een fout het minst kost.</li>
+    </ul>
+
+    <div class="artikel-slot">
+      <p>In rumo bestaat hier een oefenkopie voor, het trainingshotel. Dat is gratis en telt niet mee als een tweede hotel, maar het wordt niet vanzelf aangemaakt: je vraagt het aan en wij zetten het op. Dat is met opzet, want bij het aanmaken wordt ook vastgelegd wat er uit staat, en dat zijn net de dingen die niet van binnenuit bereikbaar mogen zijn.</p>
+      <p>Wat erin zit is de inrichting van je eigen hotel: je kamertypes, je tarieven, je annulatieregels, je extra's, je kamers en je mailsjablonen. De gasten zijn verzonnen, nooit gekopieerd. Daarbovenop wordt er een drukke agenda in gezet: twee weken verleden en vier weken vooruit, met aankomsten en vertrekken op elke dag, boekingen uit alle bronnen, en met opzet ook de lastige gevallen: een no-show, annuleringen, een groep op meerdere kamers, een vooruitbetaling met een saldo dat nog openstaat.</p>
+      <p>De vier draden uit dit artikel zijn doorgeknipt: de mail vertrekt niet, er is geen koppeling met de kanalen, er wordt nooit een kaart afgeboekt en de deursloten zijn niet overgenomen. De mail kan je wel op de adressen van je eigen collega's zetten als je tijdens een opleiding wil zien wat er verstuurd zou worden. "Iedereen" is er geen optie. De publieke boekingspagina staat standaard dicht, de gastenportaal blijft open zodat de hele gastenflow te oefenen valt.</p>
+      <p>Het oefenen zelf is een gesprek met Rudy. Hij geeft één opdracht tegelijk, legt in twee zinnen uit waarom die er toe doet, en jij voert ze uit in de app en niet in de chat. Daarna kijkt hij in de gegevens of het er echt staat. Hij beoordeelt dus niet zelf: de database antwoordt, hij leest terug wat er stond. Hij kan geen vinkje geven voor werk dat er niet is, en hij kan werk dat er wel is niet afkeuren. Een handvol oefeningen laat niets na in de gegevens (de kleurenlegende lezen, door de kalender bewegen). Daarvan zegt hij gewoon dat hij het op je woord aanneemt in plaats van te doen alsof hij het nakeek.</p>
+      <p>De oefeningen noemen nooit een kamernummer of een tarief. Ze wijzen naar "de aankomst van vandaag" en rumo zoekt er bij de start een echte bij uit de oefengegevens. Is er niets geschikts, dan zegt de oefening dat. Ze zijn gegroepeerd in vier hoofdstukken: receptie, gastenportaal, housekeeping en F&amp;B. Je ziet alleen wat bij je rol past en bij wat jouw hotel effectief gebruikt.</p>
+      <p>De voortgang is privé. Geen score, geen attest, geen rapport, ook niet voor de manager. Wat je wél per persoon ziet, is wie welk handboekartikel bevestigd heeft.</p>
+      <p>Eén keer per week wordt alles leeggemaakt en opnieuw gevuld. Je inrichting blijft staan, de boekingen niet. Dat is er ook om te voorkomen dat een gratis oefenhotel stilletjes een tweede echt hotel wordt.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ FINAL ═══════════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Nog zoiets uitgezocht?</span>
+    <h2>We leggen het liever <em>uit</em><br>dan dat we het verkopen.</h2>
+    <p>Administratie die niemand je ooit fatsoenlijk uitgelegd heeft, en waar je toch elke maand je handtekening onder zet. Wij schrijven het op zoals we het zelf hebben moeten uitzoeken.</p>
+    <a href="index.html" class="btn-paper">Alles wat we uitleggen <span>→</span></a>
+    <p class="final-fine">Geen credit card · Na 6 maanden maandelijks opzegbaar · <a href="../overstappen.html">Gratis datamigratie</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Hotelsoftware voor onafhankelijke hoteliers. Zonder gedoe.</p>
+    </div>
+    <div>
+      <div class="footer-label">Product</div>
+      <ul class="footer-links">
+        <li><a href="../features.html">Features</a></li>
+        <li><a href="../features.html#integraties">Integraties</a></li>
+        <li><a href="../veiligheid.html">Veiligheid</a></li>
+        <li><a href="../prijzen.html">En euh, wat kost dat?</a></li>
+        <li><a href="../kb.html">Helpdesk</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="../wat-drijft-ons.html">Wat drijft ons?</a></li>
+        <li><a href="index.html">Uitgelegd</a></li>
+        <li><a href="../overstappen.html">Overstappen</a></li>
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Stuur ons een mailtje</a></li>
+        <li><a href="../over-ons.html">Over ons</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Integraties</div>
+      <ul class="footer-links">
+        <li><a href="../features.html#integraties">Booking.com</a></li>
+        <li><a href="../features.html#integraties">Airbnb</a></li>
+        <li><a href="../features.html#integraties">Exact Online</a></li>
+        <li><a href="../features.html#integraties">Peppol</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Gent, BE</span>
+    <span><a href="../privacy.html">Privacy</a> · <a href="../cookies.html">Cookies</a></span>
+  </div>
+</footer>
+
+<script>
+// threshold 0, niet 0.1: die eiste dat een tiende van het blok tegelijk in beeld
+// stond. Een lang artikel is ~9000px hoog, en op een telefoonscherm van 700px
+// haal je die tien procent nooit. Gevolg: het blok bleef op opacity 0 staan en
+// de pagina was leeg tot aan de footer, terwijl je wel kon scrollen.
+const doelen = document.querySelectorAll('.fade-up');
+if (!('IntersectionObserver' in window)) {
+  doelen.forEach(el => el.classList.add('visible'));
+} else {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+  doelen.forEach(el => observer.observe(el));
+}
+document.documentElement.dataset.fadeReady = '1';
+</script>
+</body>
+</html>

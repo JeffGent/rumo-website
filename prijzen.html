@@ -346,6 +346,13 @@
     line-height:1.55;
     margin-bottom:1rem;
   }
+  .addon p a {
+    color:var(--terra-dark);
+    text-decoration:none;
+    border-bottom:1px solid rgba(185,107,74,0.35);
+    padding-bottom:1px;
+  }
+  .addon p a:hover { border-bottom-color:var(--terra-dark); }
   .addon-price {
     font-family:'Fraunces', serif;
     font-weight:400;
@@ -563,7 +570,7 @@
             <label class="calc-addon"><input type="checkbox" id="addon-peppol" data-price="9"><span class="label">Peppol Automatisch</span><span class="cost">+€9/m</span></label>
             <label class="calc-addon"><input type="checkbox" id="addon-upsell" data-price="45"><span class="label">Upsell</span><span class="cost">+€45/m</span></label>
             <label class="calc-addon"><input type="checkbox" id="addon-housekeeping" data-price="45"><span class="label">Advanced Housekeeping</span><span class="cost">+€45/m</span></label>
-            <label class="calc-addon"><input type="checkbox" id="addon-scrada" data-price="45"><span class="label">Full Scrada</span><span class="cost">+€45/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-scrada" data-price="45"><span class="label">Boekhoudkoppeling</span><span class="cost">+€45/m</span></label>
           </div>
           <div class="calc-result">
             <div class="calc-row"><span><span id="calc-rooms">20</span> kamers × €12</span><span id="calc-base">€240</span></div>
@@ -630,8 +637,8 @@
       </div>
       <div class="addon fade-up" style="transition-delay:0.49s">
         <span class="addon-badge">Add-on</span>
-        <h4>Full Scrada</h4>
-        <p>Volledige koppeling met je boekhouding en kassa. Verkopen en correcties belanden automatisch in Scrada.</p>
+        <h4>Boekhoudkoppeling</h4>
+        <p>Je boekhoudpakket, Peppol en een digitaal kasboek. Verkopen, correcties en kasbewegingen gaan vanzelf naar je boekhouder, via <a href="https://www.scrada.be" target="_blank" rel="noopener">Scrada</a>.</p>
         <div class="addon-price">€45 <small>/ maand</small></div>
       </div>
     </div>

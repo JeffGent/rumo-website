@@ -1,0 +1,246 @@
+{
+ "<h1>Je hotel runnen<br><em>zonder gedoe.</em></h1>": {
+  "en": "<h1>Running your hotel<br><em>without the hassle.</em></h1>",
+  "fr": "<h1>Gérer votre hôtel<br><em>sans complications.</em></h1>"
+ },
+ "Rumo is gemaakt voor hoteliers die elke dag in hun eigen hotel staan. PMS, channel manager, facturatie en handboek in één. Plus een slimme collega. Niets meer.": {
+  "en": "Rumo is built for hoteliers who stand in their own hotel every day. PMS, channel manager, invoicing and handbook in one. Plus a clever colleague. Nothing more.",
+  "fr": "Rumo est conçu pour les hôteliers qui sont chaque jour dans leur propre hôtel. PMS, channel manager, facturation et manuel en un. Plus un collègue malin. Rien de plus."
+ },
+ "Hoe het werkt": {
+  "en": "How it works",
+  "fr": "Comment ça marche"
+ },
+ "scroll": {
+  "en": "scroll",
+  "fr": "défiler"
+ },
+ "00 / Intro": {
+  "en": "00 / Intro",
+  "fr": "00 / Intro"
+ },
+ "<h2>Wat is <em>rumo</em> nu juist?</h2>": {
+  "en": "<h2>So what is <em>rumo</em>, exactly?</h2>",
+  "fr": "<h2>Mais qu'est-ce que <em>rumo</em>, au juste&nbsp;?</h2>"
+ },
+ "Awel, we zijn hotelsoftware. Maar niet zoals je denkt. Geen enterprise platform van tweeduizend euro per maand waar je dan nog eens drie weken opleiding voor nodig hebt. Gewoon <em>&eacute;&eacute;n</em> systeem dat doet wat het moet doen. Je opent het 's morgens en je weet wat er vandaag moet gebeuren.": {
+  "en": "Well, we are hotel software. But not the kind you are thinking of. Not an enterprise platform at two thousand a month that then needs three weeks of training. Just <em>one</em> system that does what it should. You open it in the morning and you know what today looks like.",
+  "fr": "Eh bien, nous sommes un logiciel hôtelier. Mais pas celui que vous imaginez. Pas une plateforme d'entreprise à deux mille euros par mois qui demande ensuite trois semaines de formation. Juste <em>un</em> système qui fait ce qu'il doit faire. Vous l'ouvrez le matin et vous savez ce qui vous attend."
+ },
+ "We vertrekken vanuit de kalender.": {
+  "en": "We start from the calendar.",
+  "fr": "Nous partons du planning."
+ },
+ "Sleep een boeking, en de nieuwe prijs ligt voor je klaar.": {
+  "en": "Drag a booking and the new price is waiting for you.",
+  "fr": "Faites glisser une réservation et le nouveau prix est prêt."
+ },
+ "Check uit, en de factuur volgt.": {
+  "en": "Check someone out and the invoice follows.",
+  "fr": "Faites un départ et la facture suit."
+ },
+ "Pas iets aan, en het staat op je kanalen.": {
+  "en": "Change something and it is on your channels.",
+  "fr": "Modifiez quelque chose et c'est sur vos canaux."
+ },
+ "Alles over de PMS": {
+  "en": "Everything about the PMS",
+  "fr": "Tout sur le PMS"
+ },
+ "<h4>Reservaties</h4>": {
+  "en": "<h4>Reservations</h4>",
+  "fr": "<h4>Réservations</h4>"
+ },
+ "<p>Overzicht van alle kamers en komende boekingen</p>": {
+  "en": "<p>An overview of every room and the bookings ahead</p>",
+  "fr": "<p>Vue d'ensemble des chambres et des réservations à venir</p>"
+ },
+ "            <span>wo<b>1</b></span><span class=\"nu\">do<b>2</b></span><span>vr<b>3</b></span>\n            <span>za<b>4</b></span><span>zo<b>5</b></span><span>ma<b>6</b></span><span>di<b>7</b></span>": {
+  "en": "            <span>Wed<b>1</b></span><span class=\"nu\">Thu<b>2</b></span><span>Fri<b>3</b></span>\n            <span>Sat<b>4</b></span><span>Sun<b>5</b></span><span>Mon<b>6</b></span><span>Tue<b>7</b></span>",
+  "fr": "            <span>mer<b>1</b></span><span class=\"nu\">jeu<b>2</b></span><span>ven<b>3</b></span>\n            <span>sam<b>4</b></span><span>dim<b>5</b></span><span>lun<b>6</b></span><span>mar<b>7</b></span>"
+ },
+ "<span class=\"type\">Dubbel</span>": {
+  "en": "<span class=\"type\">Double</span>",
+  "fr": "<span class=\"type\">Double</span>"
+ },
+ "<span class=\"av-chip aan\">Alle</span>": {
+  "en": "<span class=\"av-chip aan\">All</span>",
+  "fr": "<span class=\"av-chip aan\">Toutes</span>"
+ },
+ "<span class=\"av-chip\">Aankomend (9)</span>": {
+  "en": "<span class=\"av-chip\">Arriving (9)</span>",
+  "fr": "<span class=\"av-chip\">Arrivées (9)</span>"
+ },
+ "<span class=\"av-chip\">Vertrekkend (4)</span>": {
+  "en": "<span class=\"av-chip\">Leaving (4)</span>",
+  "fr": "<span class=\"av-chip\">Départs (4)</span>"
+ },
+ "<span class=\"av-chip\">Verblijvend (21)</span>": {
+  "en": "<span class=\"av-chip\">Staying (21)</span>",
+  "fr": "<span class=\"av-chip\">En séjour (21)</span>"
+ },
+ "<span class=\"av-knop\">Week</span>": {
+  "en": "<span class=\"av-knop\">Week</span>",
+  "fr": "<span class=\"av-knop\">Semaine</span>"
+ },
+ "<span class=\"av-datum\">2 april 2026</span>": {
+  "en": "<span class=\"av-datum\">2 April 2026</span>",
+  "fr": "<span class=\"av-datum\">2 avril 2026</span>"
+ },
+ "<span class=\"av-vandaag\">Vandaag</span>": {
+  "en": "<span class=\"av-vandaag\">Today</span>",
+  "fr": "<span class=\"av-vandaag\">Aujourd'hui</span>"
+ },
+ "<span class=\"av-status\">Ingecheckt</span>": {
+  "en": "<span class=\"av-status\">Checked in</span>",
+  "fr": "<span class=\"av-status\">Arrivé</span>"
+ },
+ "<span class=\"av-status\">Aankomend</span>": {
+  "en": "<span class=\"av-status\">Arriving</span>",
+  "fr": "<span class=\"av-status\">Arrivée</span>"
+ },
+ "<span class=\"av-status\">Uitgecheckt</span>": {
+  "en": "<span class=\"av-status\">Checked out</span>",
+  "fr": "<span class=\"av-status\">Parti</span>"
+ },
+ "aria-label=\"Vuil\"": {
+  "en": "aria-label=\"Dirty\"",
+  "fr": "aria-label=\"Sale\""
+ },
+ "aria-label=\"Verblijf in twee knippen\"": {
+  "en": "aria-label=\"Split a stay in two\"",
+  "fr": "aria-label=\"Diviser un séjour en deux\""
+ },
+ "Downloaden als PDF of UBL 2.1 zit standaard in. Versturen via het Peppol-netwerk is een upgrade.": {
+  "en": "Downloading as PDF or UBL 2.1 is included. Sending over the Peppol network is an add-on.",
+  "fr": "Le téléchargement en PDF ou UBL 2.1 est inclus. L'envoi via le réseau Peppol est un module."
+ },
+ "Gemaakt in Gent. Support in NL, FR en EN.": {
+  "en": "Built in Ghent. Support in Dutch, French and English.",
+  "fr": "Conçu à Gand. Assistance en néerlandais, français et anglais."
+ },
+ "Data blijft binnen Europa, en je ziet zelf wie er aan je gastgegevens kan.": {
+  "en": "Data stays inside Europe, and you can see for yourself who can reach your guest data.",
+  "fr": "Les données restent en Europe, et vous voyez vous-même qui peut accéder aux données de vos clients."
+ },
+ "<span class=\"kicker\">Wie zijn we</span>": {
+  "en": "<span class=\"kicker\">Who we are</span>",
+  "fr": "<span class=\"kicker\">Qui nous sommes</span>"
+ },
+ "<h2>Hmm oké, maar wie zijn die van <em>rumo</em> nu?</h2>": {
+  "en": "<h2>Hmm okay, but who are these <em>rumo</em> people?</h2>",
+  "fr": "<h2>Bon, mais qui sont ces gens de <em>rumo</em>&nbsp;?</h2>"
+ },
+ "We zijn zelf hoteliers. We runnen onze eigen hotels in België. We weten hoe het voelt als je systeem niet werkt zoals het in jouw hoofd werkt. Een PMS waar één simpele handeling, die je dag in dag uit herhaalt, veel te veel tijd kost. We kennen de uitdaging om een team aan te sturen en toch maar half zeker te zijn dat iedereen weet hoe, wanneer en wat.": {
+  "en": "We are hoteliers ourselves. We run our own hotels in Belgium. We know how it feels when your system does not work the way your head works. A PMS where one simple thing, repeated day in day out, costs far too much time. We know what it is to run a team and still only be half sure that everyone knows how, when and what.",
+  "fr": "Nous sommes nous-mêmes hôteliers. Nous exploitons nos propres hôtels en Belgique. Nous savons ce que c'est quand le système ne fonctionne pas comme votre tête. Un PMS où une simple manipulation, répétée jour après jour, coûte beaucoup trop de temps. Nous connaissons la difficulté de diriger une équipe sans être vraiment sûr que chacun sait comment, quand et quoi."
+ },
+ "Uiteindelijk draait het niet alleen om het comfort van je <strong>gasten</strong>, maar ook om dat van <strong>jou en je team</strong>. Dus bouwden we wat we zelf al jaren zochten.": {
+  "en": "In the end it is not only about the comfort of your <strong>guests</strong>, but also about yours and <strong>your team's</strong>. So we built what we had been looking for ourselves for years.",
+  "fr": "Au fond, il ne s'agit pas seulement du confort de vos <strong>clients</strong>, mais aussi du vôtre et de celui de <strong>votre équipe</strong>. Nous avons donc construit ce que nous cherchions depuis des années."
+ },
+ "Meer over ons": {
+  "en": "More about us",
+  "fr": "En savoir plus sur nous"
+ },
+ "<span class=\"kicker\">Ja maar, en mijn huidige systeem dan?</span>": {
+  "en": "<span class=\"kicker\">Yes, but what about my current system?</span>",
+  "fr": "<span class=\"kicker\">Oui, mais mon système actuel&nbsp;?</span>"
+ },
+ "<h2>Je leert rumo kennen en stelt het in, terwijl je oude systeem <em>gewoon doorloopt.</em></h2>": {
+  "en": "<h2>You get to know rumo and set it up while your old system <em>simply keeps running.</em></h2>",
+  "fr": "<h2>Vous découvrez rumo et le configurez pendant que votre ancien système <em>continue de tourner.</em></h2>"
+ },
+ "Je oude PMS blijft werken terwijl je rumo inricht, en Booking.com schakel je pas over als alles klopt. Al je historische data en je toekomstige reservaties importeer je ondertussen mee.": {
+  "en": "Your old PMS keeps working while you set rumo up, and you only switch Booking.com over once everything is right. All your history and your future reservations come across in the meantime.",
+  "fr": "Votre ancien PMS continue de fonctionner pendant que vous configurez rumo, et vous ne basculez Booking.com que lorsque tout est correct. Tout votre historique et vos réservations à venir sont importés entre-temps."
+ },
+ "Zo gaat de overstap": {
+  "en": "How the switch works",
+  "fr": "Comment se passe la migration"
+ },
+ "<strong>Je oude systeem blijft draaien</strong> terwijl je rumo opzet. Je zet niets af om te kunnen beginnen.": {
+  "en": "<strong>Your old system keeps running</strong> while you set rumo up. You switch nothing off to get started.",
+  "fr": "<strong>Votre ancien système continue de tourner</strong> pendant que vous installez rumo. Vous ne coupez rien pour commencer."
+ },
+ "<strong>Je historiek gaat mee.</strong> Niet alleen de boekingen die nog moeten komen, ook wie er de voorbije jaren geslapen heeft en wat er betaald is.": {
+  "en": "<strong>Your history comes along.</strong> Not only the bookings still ahead, but also who slept there over the past years and what was paid.",
+  "fr": "<strong>Votre historique suit.</strong> Pas seulement les réservations à venir, mais aussi qui a dormi chez vous ces dernières années et ce qui a été payé."
+ },
+ "<strong>Je Booking.com-listing verhuist,</strong> hij wordt niet opnieuw gebouwd. Je pagina, je reviews en je geschiedenis blijven staan.": {
+  "en": "<strong>Your Booking.com listing moves,</strong> it is not rebuilt. Your page, your reviews and your history stay put.",
+  "fr": "<strong>Votre annonce Booking.com déménage,</strong> elle n'est pas reconstruite. Votre page, vos avis et votre historique restent."
+ },
+ "<strong>Het kost niets.</strong> Geen setupkost, geen migratiepakket, ook niet als je veel kamers hebt.": {
+  "en": "<strong>It costs nothing.</strong> No setup fee, no migration package, not even if you have a lot of rooms.",
+  "fr": "<strong>Ça ne coûte rien.</strong> Pas de frais d'installation, pas de forfait de migration, même avec beaucoup de chambres."
+ },
+ "<span class=\"kicker\">Vraag of twijfel?</span>": {
+  "en": "<span class=\"kicker\">Question or doubt?</span>",
+  "fr": "<span class=\"kicker\">Une question, un doute&nbsp;?</span>"
+ },
+ "Moet ik iets installeren?": {
+  "en": "Do I have to install anything?",
+  "fr": "Dois-je installer quelque chose&nbsp;?"
+ },
+ "Nee. Gewoon je browser openen en gaan. Geen installatie, geen IT-afdeling nodig. Werkt op je computer, tablet en telefoon. Als je browser niet uit 2003 komt, zit je goed.": {
+  "en": "No. Just open your browser and go. No install, no IT department. Works on your computer, tablet and phone. As long as your browser is not from 2003, you are fine.",
+  "fr": "Non. Ouvrez votre navigateur et c'est parti. Aucune installation, aucun service informatique. Fonctionne sur ordinateur, tablette et téléphone. Tant que votre navigateur ne date pas de 2003, tout va bien."
+ },
+ "Ik heb maar 6 kamers. Is rumo niet overkill?": {
+  "en": "I only have 6 rooms. Is rumo not overkill?",
+  "fr": "Je n'ai que 6 chambres. rumo n'est-il pas surdimensionné&nbsp;?"
+ },
+ "Integendeel. rumo is precies gebouwd voor hotels van 5 tot 55 kamers. De grote systemen kunnen overkill voor jou zijn. rumo geeft je wat je nodig hebt, zonder al die dingen die je <em>niet</em> nodig hebt.": {
+  "en": "On the contrary. rumo is built precisely for hotels of 5 to 55 rooms. The big systems may well be overkill for you. rumo gives you what you need, without all the things you do <em>not</em> need.",
+  "fr": "Au contraire. rumo est conçu précisément pour les hôtels de 5 à 55 chambres. Ce sont les grands systèmes qui risquent d'être surdimensionnés. rumo vous donne ce dont vous avez besoin, sans tout ce dont vous n'avez <em>pas</em> besoin."
+ },
+ "Werkt rumo enkel voor hotels, of ook voor B&amp;B's?": {
+  "en": "Does rumo only work for hotels, or for B&amp;Bs too?",
+  "fr": "rumo fonctionne-t-il seulement pour les hôtels, ou aussi pour les chambres d'hôtes&nbsp;?"
+ },
+ "Voor beide. Of je nu een B&amp;B van 6 kamers hebt of een boutique hotel van 35 kamers, rumo schaalt mee. De interface is zo opgezet dat ook een eigenaar die alles zelf doet er vlot mee kan werken.": {
+  "en": "Both. Whether you have a 6-room B&amp;B or a 35-room boutique hotel, rumo scales with you. The interface is set up so an owner who does everything themselves gets along with it fine.",
+  "fr": "Les deux. Que vous ayez une maison d'hôtes de 6 chambres ou un hôtel de charme de 35 chambres, rumo suit. L'interface est pensée pour qu'un propriétaire qui fait tout lui-même s'y retrouve sans peine."
+ },
+ "Alle veelgestelde vragen →": {
+  "en": "All frequently asked questions →",
+  "fr": "Toutes les questions fréquentes →"
+ },
+ "<span class=\"kicker\">Ben je niet zo'n babbelaar?</span>": {
+  "en": "<span class=\"kicker\">Not much of a talker?</span>",
+  "fr": "<span class=\"kicker\">Pas très bavard&nbsp;?</span>"
+ },
+ "<h2>Geen demo-gesprek.<br>Gewoon <em>14 dagen</em> spelen.</h2>": {
+  "en": "<h2>No demo call.<br>Just <em>14 days</em> to play.</h2>",
+  "fr": "<h2>Pas de démo au téléphone.<br>Juste <em>14 jours</em> pour essayer.</h2>"
+ },
+ "Geen creditcard, geen verplichtingen, geen \"account manager\" die je elke week opbelt. Je laat je gegevens achter, wij zetten je omgeving klaar vol nepreservaties en mailen je de sleutels. Meestal binnen de werkdag. Bevalt het niet? Dan verdwijnt het stilletjes. No hard feelings.": {
+  "en": "No credit card, no obligations, no \"account manager\" ringing you every week. You leave your details, we set up your environment full of made-up reservations and email you the keys. Usually within the working day. Not for you? Then it quietly disappears. No hard feelings.",
+  "fr": "Pas de carte de crédit, pas d'engagement, pas d'«&nbsp;account manager&nbsp;» qui vous appelle chaque semaine. Vous laissez vos coordonnées, nous préparons votre environnement rempli de fausses réservations et nous vous envoyons les clés. Généralement dans la journée. Ça ne vous convient pas&nbsp;? Ça disparaît sans bruit. Sans rancune."
+ },
+ "<strong>Peppol e-facturatie</strong>": {
+  "en": "<strong>Peppol e-invoicing</strong>",
+  "fr": "<strong>Facturation électronique Peppol</strong>"
+ },
+ "<strong>Belgisch product</strong>": {
+  "en": "<strong>Belgian product</strong>",
+  "fr": "<strong>Produit belge</strong>"
+ },
+ "<strong>GDPR &amp; EU-hosting<span class=\"arr\">→</span></strong>": {
+  "en": "<strong>GDPR &amp; EU hosting<span class=\"arr\">→</span></strong>",
+  "fr": "<strong>RGPD et hébergement européen<span class=\"arr\">→</span></strong>"
+ },
+ "<h2>En dan nog <em>drie</em><br>dingen die je je afvraagt.</h2>": {
+  "en": "<h2>And then <em>three</em><br>things you are wondering.</h2>",
+  "fr": "<h2>Et puis <em>trois</em><br>choses que vous vous demandez.</h2>"
+ },
+ "<title>rumo · hotelsoftware zonder gedoe</title>": {
+  "en": "<title>rumo · hotel software without the hassle</title>",
+  "fr": "<title>rumo · un logiciel hôtelier sans complications</title>"
+ },
+ "<meta name=\"description\" content=\"rumo is hotelsoftware voor onafhankelijke hotels en B&B's. PMS, channel manager, facturatie, handboek en een AI-assistent. Zonder gedoe.\">": {
+  "en": "<meta name=\"description\" content=\"rumo is hotel software for independent hotels and B&Bs. PMS, channel manager, invoicing, handbook and an AI assistant. Without the hassle.\">",
+  "fr": "<meta name=\"description\" content=\"rumo est un logiciel hôtelier pour hôtels et maisons d'hôtes indépendants. PMS, channel manager, facturation, manuel et un assistant IA. Sans complications.\">"
+ }
+}

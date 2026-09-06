@@ -451,13 +451,12 @@
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="index.html#pijlers">Que fait rumo ?</a></li>
-    <li><a href="features.html">Features</a></li>
-    <li><a href="integrations.html">Intégrations</a></li>
-    <li><a href="tarifs.html" class="active">Et euh, ça coûte combien ?</a></li>
+    <li><a href="features.html">Que faisons-nous&nbsp;?</a></li>
+    <li><a href="ce-qui-nous-anime.html">Ce qui nous anime</a></li>
+    <li><a href="tarifs.html" class="active">Et euh, ça coûte combien&nbsp;?</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="a-propos.html">À propos</a></li>
-    <li><a href="index.html#demo" class="nav-cta">Essaie gratuitement →</a></li>
+    <li><a href="index.html#demo" class="nav-cta">Essai gratuit →</a></li>
     <li class="nav-lang">
       <a href="../prijzen.html">NL</a>
       <a href="../en/pricing.html">EN</a>
@@ -548,6 +547,9 @@
             <label class="calc-addon"><input type="checkbox" id="addon-smartpricing" data-price="45"><span class="label">Smart Pricing</span><span class="cost">+€45/m</span></label>
             <label class="calc-addon"><input type="checkbox" id="addon-salto" data-price="45"><span class="label">Gestion des clés</span><span class="cost">+€45/m</span></label>
             <label class="calc-addon"><input type="checkbox" id="addon-peppol" data-price="9"><span class="label">Peppol Automatique</span><span class="cost">+€9/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-upsell" data-price="45"><span class="label">Vente additionnelle</span><span class="cost">+€45/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-housekeeping" data-price="45"><span class="label">Advanced Housekeeping</span><span class="cost">+€45/m</span></label>
+            <label class="calc-addon"><input type="checkbox" id="addon-scrada" data-price="45"><span class="label">Lien comptable</span><span class="cost">+€45/m</span></label>
           </div>
           <div class="calc-result">
             <div class="calc-row"><span><span id="calc-rooms">20</span> chambres × €12</span><span id="calc-base">€240</span></div>
@@ -562,7 +564,7 @@
 </section>
 
 <!-- ═══════════════════════ ADDONS ═══════════════════════ -->
-<section class="addons">
+<section class="addons" id="addons">
   <div class="wrap">
     <div class="addons-head fade-up">
       <span class="kicker">Add-ons</span>
@@ -571,34 +573,52 @@
     </div>
     <div class="addons-grid">
       <div class="addon fade-up">
-        <span class="addon-badge">Add-on</span>
-        <h4>White Label</h4>
-        <p>Ton logo et ton identité visuelle sur le portail client, le moteur de réservation et tous les e-mails. Tout a l'air d'avoir été conçu par toi.</p>
+        <span class="addon-badge">Module</span>
+        <h4>Marque blanche</h4>
+        <p>Votre logo et votre charte sur le portail client, le moteur de réservation et chaque e-mail. Tout a l'air d'avoir été construit par vous.</p>
         <div class="addon-price">€45 <small>/ mois</small></div>
       </div>
       <div class="addon fade-up" style="transition-delay:0.07s">
-        <span class="addon-badge">Add-on</span>
-        <h4>Prévention &amp; Bien-être</h4>
-        <p>Prévention incendie, légionelle, premiers secours, évacuations, checklists, déclarations d'incidents et enregistrement des prestataires. Toujours prêt pour l'inspection.</p>
+        <span class="addon-badge">Module</span>
+        <h4>Prévention et bien-être</h4>
+        <p>Sécurité incendie, légionelle, premiers secours, évacuations, listes de contrôle, incidents et enregistrement des sous-traitants. Toujours prêt pour un contrôle.</p>
         <div class="addon-price">€29 <small>/ mois</small></div>
       </div>
       <div class="addon fade-up" style="transition-delay:0.14s">
-        <span class="addon-badge">Add-on</span>
+        <span class="addon-badge">Module</span>
         <h4>Smart Pricing</h4>
-        <p>Ajustements tarifaires automatiques basés sur le taux d'occupation, la saison et la demande. Plus de revenus avec moins d'efforts.</p>
+        <p>Ajustement automatique des prix selon l'occupation, la saison et la demande. Plus de revenus, moins d'efforts.</p>
         <div class="addon-price">€45 <small>/ mois</small></div>
       </div>
       <div class="addon fade-up" style="transition-delay:0.21s">
-        <span class="addon-badge">Add-on</span>
+        <span class="addon-badge">Module</span>
         <h4>Gestion des clés</h4>
-        <p>Clés numériques liées à tes réservations. Le client fait son check-in via l'app et obtient directement accès à sa chambre.</p>
+        <p>Des clés numériques Salto, liées à vos réservations. Le client s'enregistre et la porte s'ouvre. Disponible aujourd'hui.</p>
         <div class="addon-price">€45 <small>/ mois</small></div>
       </div>
       <div class="addon fade-up" style="transition-delay:0.28s">
-        <span class="addon-badge">Add-on</span>
-        <h4>Peppol Automatique</h4>
-        <p>Factures envoyées automatiquement via le réseau Peppol. Pas de fichiers XML à télécharger, pas de portails. Un clic et c'est fait.</p>
+        <span class="addon-badge">Module</span>
+        <h4>Peppol automatique</h4>
+        <p>Vos factures partent d'elles-mêmes sur le réseau Peppol. Aucun XML à télécharger, aucun portail. Un clic et c'est fait.</p>
         <div class="addon-price">€9 <small>/ mois</small></div>
+      </div>
+      <div class="addon fade-up" style="transition-delay:0.35s">
+        <span class="addon-badge">Module</span>
+        <h4>Vente additionnelle</h4>
+        <p>Proposez des extras et des surclassements dans le portail client, avant l'arrivée. Avec un rapport de ce que cela rapporte.</p>
+        <div class="addon-price">€45 <small>/ mois</small></div>
+      </div>
+      <div class="addon fade-up" style="transition-delay:0.42s">
+        <span class="addon-badge">Module</span>
+        <h4>Advanced Housekeeping</h4>
+        <p>Listes de contrôle, un chronomètre par chambre et un rapport de temps. Voyez combien de temps une chambre demande vraiment.</p>
+        <div class="addon-price">€45 <small>/ mois</small></div>
+      </div>
+      <div class="addon fade-up" style="transition-delay:0.49s">
+        <span class="addon-badge">Module</span>
+        <h4>Lien comptable</h4>
+        <p>Votre logiciel comptable, Peppol et un livre de caisse numérique. Tout part chez votre comptable tout seul, via <a href="https://www.scrada.be" target="_blank" rel="noopener">Scrada</a>.</p>
+        <div class="addon-price">€45 <small>/ mois</small></div>
       </div>
     </div>
     <p style="text-align:center;margin-top:2.5rem;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);letter-spacing:0.03em;">Tous les prix HTVA (21 %)</p>
@@ -719,13 +739,10 @@ const calcTotal = document.getElementById('calc-total');
 const calcAddonsRow = document.getElementById('calc-addons-row');
 const calcAddonCount = document.getElementById('calc-addon-count');
 const calcAddonsTotal = document.getElementById('calc-addons-total');
-const addonCheckboxes = [
-  document.getElementById('addon-whitelabel'),
-  document.getElementById('addon-property'),
-  document.getElementById('addon-smartpricing'),
-  document.getElementById('addon-salto'),
-  document.getElementById('addon-peppol')
-];
+// De lijst met vinkjes stond hier met de hand, met vijf id's erin, terwijl er
+// acht modules op de pagina staan. Een handgeschreven lijst naast iets dat al
+// gezaghebbend is, loopt altijd uit de pas: nu komt ze uit de pagina zelf.
+const addonCheckboxes = Array.from(document.querySelectorAll('.calc-addon input[type="checkbox"]'));
 const PRICE_PER_ROOM = 12, MINIMUM = 99;
 
 function updateCalc() {

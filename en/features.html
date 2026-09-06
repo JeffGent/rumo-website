@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+/* Zet de klasse die de fade-in aanzet. Staat JavaScript uit, dan wordt ze nooit
+   gezet en is de pagina gewoon leesbaar. Loopt er verderop iets mis waardoor
+   het script onderaan niet draait, dan haalt het vangnet de klasse weer weg:
+   dan mis je de animatie in plaats van de hele tekst. */
+(function () {
+  var d = document.documentElement;
+  d.classList.add('js');
+  addEventListener('load', function () {
+    setTimeout(function () { if (!d.dataset.fadeReady) d.classList.remove('js'); }, 1200);
+  });
+})();
+</script>
+<script src="../gate.js"></script>
 <script src="../demo-form.js?v=2" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Features · rumo</title>
+<title>What do we do? · rumo</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <!-- Plausible: cookieloze, EU-gehoste statistieken. Geen persoonsgegevens, geen cross-site profiel. Zie cookies.html. -->
@@ -13,7 +27,7 @@
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script>
-<meta name="description" content="rumo does everything you'd expect from a PMS, plus an AI assistant, handbook and serious automation.">
+<meta name="description" content="Everything rumo does: the PMS, the handbook, Rudy, the channel manager, the guest portal and security. Plus the smaller parts and what rumo connects to.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -352,48 +366,150 @@
     background:var(--paper);
     padding:6rem 0;
   }
-  .compact-head { max-width:680px; margin-bottom:3rem; }
+  .compact-head { max-width:940px; margin-bottom:3rem; }
   .compact-head h2 em { color:var(--terra-dark); }
+  /* De zes kernfeatures hierboven zijn <a>'s met een eigen pagina. Deze
+     bijkomende features hebben er géén, dus mogen ze er ook niet uitzien als
+     iets waarop je klikt. Vandaar: geen kaartrand, geen achtergrond, geen
+     hover die optilt, en een titel in Inter in plaats van Fraunces. Wat
+     overblijft leest als een opsomming, niet als een raster knoppen. */
   .compact-grid {
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:1.25rem;
+    grid-template-columns:repeat(4, 1fr);
+    gap:2rem 2.25rem;
   }
   /* Doel van de footerlink "Housekeeping": onder de vaste navbalk uitkomen. */
   .compact-card[id] { scroll-margin-top:7rem; }
   .compact-card {
-    background:var(--paper-panel);
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:1.5rem 1.5rem 1.75rem;
-    transition:transform 0.25s, box-shadow 0.25s;
-  }
-  .compact-card:hover {
-    transform:translateY(-3px);
-    box-shadow:0 16px 36px rgba(27,25,23,0.08);
+    border-top:1px solid var(--line);
+    padding-top:1rem;
   }
   .compact-ic {
-    width:32px; height:32px;
-    border-radius:8px;
-    display:flex; align-items:center; justify-content:center;
-    margin-bottom:0.9rem;
+    width:22px; height:22px;
+    border-radius:6px;
+    display:inline-flex; align-items:center; justify-content:center;
+    vertical-align:-5px;
+    margin-right:0.5rem;
   }
-  .compact-ic svg { width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+  .compact-ic svg { width:12px; height:12px; fill:none; stroke:currentColor; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
   .compact-card h4 {
-    font-family:'Fraunces', serif;
-    font-weight:400;
-    font-size:1.2rem;
-    letter-spacing:-0.02em;
-    margin-bottom:0.4rem;
-    line-height:1.15;
+    display:inline;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:0;
+    line-height:1.3;
+    color:var(--ink);
   }
   .compact-card p {
-    font-size:0.9rem;
+    font-size:0.86rem;
     color:var(--ink-soft);
-    line-height:1.55;
+    line-height:1.5;
+    margin-top:0.45rem;
   }
+  .compact-card p a {
+    color:var(--terra-dark);
+    text-decoration:none;
+    border-bottom:1px solid rgba(185,107,74,0.35);
+    padding-bottom:1px;
+  }
+  .compact-card p a:hover { border-bottom-color:var(--terra-dark); }
+  /* Twee tussenkoppen onder "En verder": wat in het pakket zit, en wat je
+     apart bijneemt. Vroeger stond dat als label naast elke titel — dat
+     dwong de lezer om twaalf keer hetzelfde woord te lezen, en er was geen
+     plek voor de add-ons die geen kaartje hadden. Twee blokken zeggen het
+     één keer. De add-onlijst is gezaghebbend: ADDONS in
+     shared/src/types/pricing.ts, min `bill_rudy` (een factureringsknop,
+     geen feature). Zelfde acht als op prijzen.html. */
+  .compact-sub { margin-bottom:1.75rem; }
+  .compact-sub + .compact-grid { margin-bottom:4rem; }
+  .compact-sub h3 {
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:400;
+    font-size:1.55rem;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+  }
+  .compact-sub p {
+    margin-top:0.3rem;
+    font-size:0.9rem;
+    color:var(--muted);
+  }
+  .compact-sub p a {
+    color:var(--terra-dark);
+    text-decoration:none;
+    border-bottom:1px solid rgba(185,107,74,0.35);
+    padding-bottom:1px;
+  }
+  .compact-sub p a:hover { border-bottom-color:var(--terra-dark); }
+
+  /* Snelkoppeling naar de koppelingen: de diskwalificatievraag mag niet
+     achter drie schermen scrollen zitten. */
+  .ph-sprong { margin-top:1.4rem; }
+  .ph-sprong a {
+    display:inline-flex; align-items:center; gap:0.4em;
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--terra-dark); text-decoration:none;
+    border-bottom:1px solid rgba(185,107,74,0.35); padding-bottom:2px;
+  }
+  .ph-sprong a:hover { border-bottom-color:var(--terra-dark); }
+
+  /* ─── KOPPELINGEN (laag 3) ─────────────────────────────────────────────
+     Stond op een eigen pagina als 27 kaarten met elk een alinea. Dat is een
+     leesontwerp voor wat in werkelijkheid een zoekopdracht is: de bezoeker
+     scant naar één naam. Vandaar per categorie één regel met alle namen
+     erin, uitklapbaar voor wie de uitleg wil. Native <details>, geen JS. */
+  .koppelingen { background:var(--paper-deep); padding:7rem 0; }
+  .koppelingen-head { max-width:680px; margin-bottom:3rem; }
+  .koppelingen-head h2 em { color:var(--terra-dark); }
+  .ig-lijst { display:grid; gap:0.75rem; }
+  .ig {
+    background:var(--paper-panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+  }
+  .ig summary {
+    list-style:none; cursor:pointer;
+    padding:1.35rem 1.6rem;
+    display:grid; gap:0.4rem;
+  }
+  .ig summary::-webkit-details-marker { display:none; }
+  .ig-kop {
+    font-family:'Fraunces', serif; font-size:1.15rem; letter-spacing:-0.02em;
+    color:var(--ink); display:flex; align-items:center; gap:0.6em;
+  }
+  .ig-aantal {
+    font-family:'JetBrains Mono', monospace; font-size:0.6rem; letter-spacing:0.08em;
+    color:var(--muted); border:1px solid var(--line); border-radius:100px;
+    padding:0.15rem 0.5rem; margin-left:auto;
+  }
+  .ig[open] .ig-aantal::after { content:' \2212'; }
+  .ig:not([open]) .ig-aantal::after { content:' +'; }
+  .ig-namen { font-size:0.95rem; line-height:1.55; color:var(--ink-soft); }
+  .ig-sub {
+    font-family:'JetBrains Mono', monospace; font-size:0.6rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .ig-soon {
+    font-family:'JetBrains Mono', monospace; font-size:0.55rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--terra-dark);
+    background:var(--rose-soft); border-radius:100px; padding:0.2rem 0.55rem;
+  }
+  .ig-body {
+    padding:0 1.6rem 1.5rem;
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:1rem 1.75rem;
+  }
+  .ig-item { border-top:1px solid var(--line); padding-top:0.7rem; }
+  .ig-item strong { display:inline-block; font-size:0.92rem; font-weight:600; margin-bottom:0.2rem; }
+  .ig-item span { display:block; font-size:0.84rem; line-height:1.5; color:var(--ink-soft); }
+  .ig-slot { margin-top:2rem; font-size:0.98rem; color:var(--ink-soft); max-width:52ch; }
+  @media (max-width:800px) { .ig-body { grid-template-columns:1fr; } }
 
   /* Responsive */
+  @media (max-width:1100px) {
+    .compact-grid { grid-template-columns:repeat(2, 1fr); }
+  }
   @media (max-width:900px) {
     .feature-inner { grid-template-columns:1fr; gap:2.5rem; }
     .feature:nth-of-type(even) .feature-inner > .feature-visual { order:unset; }
@@ -482,11 +598,25 @@
     color: var(--terra-dark);
   }
   .marquee-card .arrow::after { content: ' →'; }
+  /* Volle-breedte kaart onderaan het raster (veiligheid). */
+  .marquee-card.wide {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.4rem;
+    padding: 1.5rem 1.7rem;
+  }
+  .marquee-card.wide .marquee-ic { flex-shrink: 0; }
+  .marquee-card.wide .wide-text { display: flex; flex-direction: column; gap: 0.35rem; }
+  .marquee-card.wide p { max-width: 68ch; }
+  .marquee-card.wide .arrow { margin-top: 0; margin-left: auto; padding-top: 0; white-space: nowrap; }
   @media (max-width: 880px) {
     .marquee-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
     .marquee-grid { grid-template-columns: 1fr; }
+    .marquee-card.wide { flex-direction: column; align-items: flex-start; }
+    .marquee-card.wide .arrow { margin-left: 0; padding-top: 0.4rem; }
   }
 </style>
 </head>
@@ -498,13 +628,12 @@
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="index.html#pijlers">What does rumo do?</a></li>
-    <li><a href="features.html" class="active">Features</a></li>
-    <li><a href="integrations.html">Integrations</a></li>
-    <li><a href="pricing.html">So, what does it cost?</a></li>
+    <li><a href="features.html" class="active">What do we do?</a></li>
+    <li><a href="what-drives-us.html">What drives us?</a></li>
+    <li><a href="pricing.html">And erm, what does it cost?</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="about.html">About us</a></li>
-    <li><a href="index.html#demo" class="nav-cta">Try for free →</a></li>
+    <li><a href="index.html#demo" class="nav-cta">Try it free →</a></li>
     <li class="nav-lang">
       <a href="../features.html">NL</a>
       <a href="features.html" class="active">EN</a>
@@ -517,13 +646,10 @@
 <div class="page-header">
   <div class="page-header-inner fade-up">
     <div>
-      <span class="kicker">Features</span>
-      <h1>One hotel,<br><em>six layers</em> of rumo.</h1>
-      <p class="lead">The PMS, Rudy, the handbook, security, channel manager, guest portal. Click one open for the full story.</p>
-    </div>
-    <div class="page-header-side">
-      6 pillars<br>
-      <strong>+ 6 modules</strong>
+      <span class="kicker">What do we do?</span>
+      <h1>The calendar is only <em>the start.</em></h1>
+      <p class="lead">Five more things hang off it: the handbook, Rudy, your security, your channels and your guest's portal. All six are there from day one, and they know what the others are doing.</p>
+      <p class="ph-sprong"><a href="#integraties">Does it work with my channel or my accountant? &rarr;</a></p>
     </div>
   </div>
 </div>
@@ -538,7 +664,7 @@
           <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
         <h3>The <em>PMS</em></h3>
-        <p>Calendar, one-click check-out, Peppol invoicing, dashboard. The heart of rumo, without 47 menus deep.</p>
+        <p>Calendar, one-click check-out, Peppol invoicing, dashboard. The heart of rumo, without 47 menus to dig through.</p>
         <span class="arrow">Read more</span>
       </a>
 
@@ -547,7 +673,7 @@
           <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
         <h3><em>Rudy</em>, your AI assistant</h3>
-        <p>Ask a question in plain language about your hotel, your procedures or your numbers. Rudy answers. Honest about what he doesn't know.</p>
+        <p>Ask a question in plain language about your hotel, your procedures or your figures. Rudy answers, and is honest about his limits.</p>
         <span class="arrow">Read more</span>
       </a>
 
@@ -556,7 +682,7 @@
           <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
         </div>
         <h3>The <em>handbook</em></h3>
-        <p>Front desk procedures, house rules, emergency plans. One searchable place for everything your team needs to know.</p>
+        <p>Front-desk procedures, house rules, emergency plans. One searchable place for everything your team needs to know.</p>
         <span class="arrow">Read more</span>
       </a>
 
@@ -565,7 +691,7 @@
           <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
         </div>
         <h3><em>Security</em> &amp; privacy</h3>
-        <p>Log in with your finger instead of a password, guest data shielded by default, an alert when someone opens unusually many records, and a report to the authorities ready before you start looking.</p>
+        <p>Log in with your fingerprint, guest data shielded by default, and an alert when somebody opens an unusual amount of it.</p>
         <span class="arrow">Read more</span>
       </a>
 
@@ -574,7 +700,7 @@
           <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
         </div>
         <h3><em>Channel</em> manager</h3>
-        <p>One change in rumo, on Booking, Airbnb, Expedia and the rest within seconds. Via Channex, real-time.</p>
+        <p>One change in rumo, on Booking, Airbnb, Expedia and the rest within seconds. Bookings come back the same way.</p>
         <span class="arrow">Read more</span>
       </a>
 
@@ -583,105 +709,249 @@
           <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
         </div>
         <h3>Guest <em>portal &amp; booking engine</em></h3>
-        <p>Bookings via your own site without commission. Pre-checkin, online payment, police export. On your guest's phone.</p>
+        <p>Bookings through your own site, commission-free. Pre-check-in, online payment, police export. On your guest's phone.</p>
         <span class="arrow">Read more</span>
       </a>
+
 
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════ EXTRAS ═══════════════════════ -->
-<section class="compact" id="alle-features">
+<!-- ═══════════════════════ EXTRA'S ═══════════════════════ -->
+<section class="compact tint" id="alle-features">
   <div class="wrap">
     <div class="compact-head fade-up">
-      <span class="kicker">And more</span>
-      <h2>Everything you'd expect from hotel software.<br>And <em>maybe</em> a bit more.</h2>
-      <p class="lead" style="margin-top:1.25rem;">The basics are all in there too. One by one.</p>
+      <span class="kicker">And beyond that</span>
+      <h2>Everything you expect from hotel software. And <em>maybe</em> a little more.</h2>
+    </div>
+
+    <div class="compact-sub fade-up">
+      <h3>Included in your plan</h3>
+      <p>On from day one, at no extra charge.</p>
     </div>
     <div class="compact-grid">
-
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <h4>Prevention &amp; safety</h4>
-        <p>Fire safety, legionella, first aid, checklists, incidents. Finally in one living record.</p>
-      </div>
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
           <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
         </div>
         <h4>F&amp;B</h4>
-        <p>Breakfast lists, minibar and restaurant charges. Automatically on the room bill, linked to the rate plan.</p>
+        <p>Counts, allergies, walk-ins and printed lists. An overview of your covers, not a till.</p>
       </div>
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
           <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg>
         </div>
-        <h4>Messaging</h4>
-        <p>Direct messages between your team. Front desk to housekeeping, owner to restaurant. No more WhatsApp group where nobody can find anything.</p>
+        <h4>Messages &amp; Inbox</h4>
+        <p>Internal chat between your team and a shared inbox for your guests. Rudy drafts the answer, you send it.</p>
       </div>
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
           <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
         </div>
         <h4>rumo pay</h4>
-        <p>Online payment links, card charging, pre-authorisations. Bancontact, Visa, Mastercard, Apple Pay. Automatically linked to invoices.</p>
+        <p>Payment links, card charging and pre-authorisations. Bancontact, Visa and Apple Pay. Lands on the invoice by itself.</p>
       </div>
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
           <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         </div>
         <h4>Invoicing &amp; Peppol</h4>
-        <p>Invoices, credit notes and proformas with correct VAT. Downloading as PDF or UBL 2.1 is included. Sending over the Peppol network is an upgrade.</p>
+        <p>Invoices, credit notes and proformas with the right VAT. Download as PDF or as UBL 2.1.</p>
       </div>
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
           <svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
         </div>
         <h4>Reports</h4>
-        <p>Occupancy, ADR, RevPAR, revenue per channel. Central invoice overview. Export to CSV, Excel or PDF.</p>
+        <p>Occupancy, ADR, RevPAR and revenue per channel. Export to CSV, Excel or PDF.</p>
       </div>
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
         </div>
         <h4>Belgian compliance</h4>
-        <p>City tax per municipality, police registration and government statistics (Statbel in Belgium, the lodging survey in the Netherlands). All automatic, based on what your guest filled in. Set it up once, then just let it run.</p>
+        <p>City tax, police registration and government statistics, straight from what your guest filled in. Set it up once.</p>
       </div>
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
           <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h4>Allotments</h4>
-        <p>Fixed room blocks for tour operators, corporate or partners. With pickup tracking and central billing. Sold or not, you've got the overview.</p>
+        <p>Fixed room blocks for tour operators or corporate accounts, with pickup tracking and central billing.</p>
       </div>
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
           <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
         </div>
         <h4>Maintenance</h4>
-        <p>Broken lock on room 12? Leaking tap in the kitchen? Anyone logs an issue with a photo. You see what's pending, in progress, coming up. No more post-its at the front desk.</p>
+        <p>Broken lock on room 12? Anyone reports it with a photo. You see what is waiting, what is running and what is coming.</p>
       </div>
+    </div>
 
+    <div class="compact-sub fade-up">
+      <h3>Add on separately</h3>
+      <p>Modules you switch on or off by the month. <a href="pricing.html#addons">What they cost &rarr;</a></p>
+    </div>
+    <div class="compact-grid">
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h4>Prevention &amp; wellbeing</h4>
+        <p>Fire safety, legionella, first aid, inspections and incidents. One file instead of four folders.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h4>Smart Pricing</h4>
+        <p>Prices move with your occupancy and go straight to your channels. You set the limits, and stepping in yourself always wins.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg>
+        </div>
+        <h4>Upsell</h4>
+        <p>Guests upgrade their room or add extras before arrival, through the portal. Without work at the desk.</p>
+      </div>
       <div class="compact-card fade-up" id="housekeeping">
         <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <h4>Advanced Housekeeping</h4>
-        <p>Cleaning checklists per room and a timer that measures how long a clean takes. For anyone who wants to follow housekeeping closely. As a separate module.</p>
+        <p>Cleaning checklists per room and a timer that measures how long a clean really takes.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 2a10 10 0 0 0 0 20c.6 0 1-.4 1-1 0-.5-.2-.9-.5-1.2-.3-.4-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H16a6 6 0 0 0 6-6c0-5-4.5-9-10-9z"/></svg>
+        </div>
+        <h4>White Label</h4>
+        <p>Your logo and house style on the portal, the booking engine and every email. Your guest never sees rumo.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 21 2"/><path d="M17 6l3 3"/><path d="M14 9l3 3"/></svg>
+        </div>
+        <h4>Key management</h4>
+        <p>Digital keys from Salto, tied to the reservation. The guest checks in and the door opens.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+        </div>
+        <h4>Peppol automatic</h4>
+        <p>Your invoices go onto the Peppol network by themselves. No XML to download, no portal to open.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 11h3M8 15h3M14.5 11h1.5M14.5 15h1.5"/></svg>
+        </div>
+        <h4>Accounting link</h4>
+        <p>Your accounting package, Peppol and a digital cash book. Everything goes to your accountant by itself, through <a href="https://www.scrada.be" target="_blank" rel="noopener">Scrada</a>.</p>
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ KOPPELINGEN ═══════════════════════ -->
+<!-- ═══════════════════════ UITSPRAAK ═══════════════════════ -->
+<section class="uitroep midden">
+  <div class="uitroep-inner fade-up">
+    <p>A calendar and an invoice have been around for thirty years. The difference is in <em>how many clicks</em> it takes.</p>
+    <span class="uitroep-bij">And in how much explaining your new colleague needs</span>
+  </div>
+</section>
+
+<section class="koppelingen" id="integraties">
+  <div class="wrap">
+    <div class="koppelingen-head fade-up">
+      <span class="kicker">Does it fit what you already use?</span>
+      <h2>What rumo <em>connects to.</em></h2>
+      <p class="lead" style="margin-top:1.25rem;">Just look for your own channel or your own accounting package in the list. Open a category if you want to know what the connection actually does.</p>
+    </div>
+
+    <div class="ig-lijst fade-up">
+      <details class="ig">
+        <summary>
+          <span class="ig-kop">OTAs and booking platforms<span class="ig-aantal">12</span></span>
+          <span class="ig-namen">Booking.com &middot; Airbnb &middot; Expedia &middot; Google Hotel Ads &middot; Agoda &middot; Trip.com &middot; HRS &middot; Check24 &middot; eDreams &middot; Hopper &middot; VRBO &middot; Getaroom</span>
+          <span class="ig-sub">Where your rooms are sold online.</span>
+        </summary>
+        <div class="ig-body">
+        <div class="ig-item"><strong>Booking.com</strong><span>The world's largest booking platform. Prices, availability and reservations synced in real time.</span></div>
+        <div class="ig-item"><strong>Airbnb</strong><span>Reach travellers looking for unique stays. Perfect sync for short and longer stays.</span></div>
+        <div class="ig-item"><strong>Expedia</strong><span>Expedia, Hotels.com and Vrbo in one connection. International reach for business and leisure travellers.</span></div>
+        <div class="ig-item"><strong>Google Hotel Ads</strong><span>Direct bookings via Google Search and Maps. Guests book directly with you.</span></div>
+        <div class="ig-item"><strong>Agoda</strong><span>Popular with Asian travellers. Growing fast in Europe, especially for city trips and budget hotels.</span></div>
+        <div class="ig-item"><strong>Trip.com</strong><span>Wide reach in Asia and growing in Europe. Ideal if you want to attract international guests.</span></div>
+        <div class="ig-item"><strong>HRS</strong><span>Focused on business travellers and corporate clients. Strong in Germany, Benelux and Central Europe.</span></div>
+        <div class="ig-item"><strong>Check24</strong><span>Popular comparison site in Germany. Reach German travellers who book price-consciously.</span></div>
+        <div class="ig-item"><strong>eDreams</strong><span>European OTA with strong reach in Spain, France and Italy. Combines flights with hotels.</span></div>
+        <div class="ig-item"><strong>Hopper</strong><span>Mobile-first platform, popular with younger travellers. Growing channel for last-minute bookings.</span></div>
+        <div class="ig-item"><strong>VRBO</strong><span>Vacation rentals via the Expedia network. Ideal for apartments and family rooms.</span></div>
+        <div class="ig-item"><strong>Getaroom</strong><span>Global distribution via various booking channels. Extra visibility without extra work.</span></div>
+        </div>
+      </details>
+
+      <details class="ig">
+        <summary>
+          <span class="ig-kop">Tour operators and wholesalers<span class="ig-aantal">4</span></span>
+          <span class="ig-namen">Hotelbeds &middot; Travelgate &middot; Reconline (GDS) &middot; Hyperguest</span>
+          <span class="ig-sub">The business circuit: travel agents, groups, GDS.</span>
+        </summary>
+        <div class="ig-body">
+        <div class="ig-item"><strong>Hotelbeds</strong><span>Global B2B network for travel agencies and tour operators. High volume, wide reach.</span></div>
+        <div class="ig-item"><strong>Travelgate</strong><span>Marketplace connecting you with hundreds of distributors and online travel agencies worldwide.</span></div>
+        <div class="ig-item"><strong>Reconline (GDS)</strong><span>Access to Amadeus, Sabre and Travelport. Reach business travellers and traditional travel agencies.</span></div>
+        <div class="ig-item"><strong>Hyperguest</strong><span>Direct, commission-free B2B network. Improve your margins by working straight with travel agents.</span></div>
+        </div>
+      </details>
+
+      <details class="ig">
+        <summary>
+          <span class="ig-kop">Accounting and payments<span class="ig-aantal">6</span></span>
+          <span class="ig-namen">Exact Online &middot; Yuki &middot; Octopus &middot; Scrada &middot; Peppol e-facturatie &middot; rumo Pay</span>
+          <span class="ig-sub">Where your invoices and your money go.</span>
+        </summary>
+        <div class="ig-body">
+        <div class="ig-item"><strong>Exact Online</strong><span>Invoices sent automatically. VAT breakdown, credit notes and proforma invoices included.</span></div>
+        <div class="ig-item"><strong>Yuki</strong><span>Direct connection with Yuki. Invoices and payments appear automatically in your administration.</span></div>
+        <div class="ig-item"><strong>Octopus</strong><span>Popular with Belgian accountants. Invoice export and VAT filing without extra work.</span></div>
+        <div class="ig-item"><strong>Scrada</strong><span>The bridge to your accounting package and cash book. Scrada passes your invoices and corrections on to Exact Online, Yuki, Octopus and the rest.</span></div>
+        <div class="ig-item"><strong>Peppol e-facturatie</strong><span>Mandatory for B2B in Belgium. Downloading as PDF or UBL 2.1 is included; sending over the Peppol network is an add-on.</span></div>
+        <div class="ig-item"><strong>rumo Pay</strong><span>Payments built in. Bancontact, Visa, Mastercard, iDEAL. Payment links, VCCs and pre-authorisations.</span></div>
+        </div>
+      </details>
+
+      <details class="ig">
+        <summary>
+          <span class="ig-kop">Revenue management<span class="ig-aantal">3</span></span>
+          <span class="ig-namen">RoomPriceGenie &middot; Pricelabs &middot; Ratedock</span>
+          <span class="ig-sub">External pricing tools, if you already use one.</span>
+        </summary>
+        <div class="ig-body">
+        <div class="ig-item"><strong>RoomPriceGenie</strong><span>Automatic price optimisation, designed specifically for small and mid-sized hotels. Set it up and let it work.</span></div>
+        <div class="ig-item"><strong>Pricelabs</strong><span>Data-driven dynamic pricing. Analyses market data, events and competitors to optimise your rates.</span></div>
+        <div class="ig-item"><strong>Ratedock</strong><span>Centralised rate and inventory management across all your channels. Clear and efficient.</span></div>
+        </div>
+      </details>
+
+      <details class="ig">
+        <summary>
+          <span class="ig-kop">Key management<span class="ig-aantal">2</span></span>
+          <span class="ig-namen">Salto &middot; Dormakaba Ambiance</span>
+          <span class="ig-sub">Digital locks, tied to the reservation.</span>
+        </summary>
+        <div class="ig-body">
+        <div class="ig-item"><strong>Salto</strong><span>Digital keys linked to your reservations. Check in via the app, instant room access. No more key cards.</span></div>
+        <div class="ig-item"><strong>Dormakaba Ambiance</strong> <span class="ig-soon">Coming soon</span><span>Key management via the Ambiance platform. Room access automatically linked to check-in and check-out.</span></div>
+        </div>
+      </details>
+    </div>
+
+    <p class="ig-slot fade-up">Not seeing yours? Through the channel manager we reach around a hundred channels and platforms, so chances are it works anyway. <a href="mailto:hello@rumo.eu">Just ask us</a>.</p>
   </div>
 </section>
 
@@ -689,10 +959,10 @@
 <section class="final" id="demo">
   <div class="final-inner fade-up">
     <span class="kicker">Try it yourself</span>
-    <h2>No demo call.<br>Just <em>14 days</em> to play around.</h2>
-    <p>No credit card, no obligations, no "account manager" calling you every week. A demo environment full of fake reservations. Don't like it? It quietly goes away.</p>
-    <a href="index.html#demo" class="btn-paper">Try 14 days for free <span>→</span></a>
-    <p class="final-fine">No credit card · Cancel monthly after 6 months · Free data migration</p>
+    <h2>No demo call.<br>Just <em>14 days</em> to play.</h2>
+    <p>No credit card, no obligations, no "account manager" ringing you every week. A demo environment full of made-up reservations. Not for you? Then it quietly disappears.</p>
+    <a href="index.html#demo" class="btn-paper">Try it free for 14 days <span>→</span></a>
+    <p class="final-fine">No credit card · Cancellable monthly after 6 months · <a href="../overstappen.html">Free data migration</a></p>
   </div>
 </section>
 
@@ -700,20 +970,25 @@
   <div class="footer-grid">
     <div>
       <div class="footer-brand">rumo<em>.</em></div>
-      <p class="footer-tagline">Hotel software for independent hoteliers. Without the hassle.</p>
+      <p class="footer-tagline">Hotel software for independent hoteliers. Without the fuss.</p>
     </div>
     <div>
       <div class="footer-label">Product</div>
       <ul class="footer-links">
         <li><a href="features.html">Features</a></li>
-        <li><a href="integrations.html">Integrations</a></li>
-        <li><a href="pricing.html">So, what does it cost?</a></li>
+        <li><a href="features.html#integraties">Integrations</a></li>
+        <li><a href="../veiligheid.html">Security</a></li>
+        <li><a href="pricing.html">And erm, what does it cost?</a></li>
+        <li><a href="../kb.html">Help centre</a></li>
         <li><a href="faq.html">FAQ</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-label">Rumo</div>
       <ul class="footer-links">
+        <li><a href="what-drives-us.html">What drives us?</a></li>
+        <li><a href="../uitgelegd/index.html">Explained (in Dutch)</a></li>
+        <li><a href="../overstappen.html">Switching over (in Dutch)</a></li>
         <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
         <li><a href="mailto:hello@rumo.eu">Send us an email</a></li>
         <li><a href="about.html">About us</a></li>
@@ -722,26 +997,36 @@
     <div>
       <div class="footer-label">Integrations</div>
       <ul class="footer-links">
-        <li><a href="integrations.html#boekingskanalen">Booking channels</a></li>
-        <li><a href="integrations.html#boekhouding">Accounting</a></li>
-        <li><a href="integrations.html#revenue">Revenue management</a></li>
-        <li><a href="integrations.html#hardware">Key management</a></li>
+        <li><a href="features.html#integraties">Booking channels</a></li>
+        <li><a href="features.html#integraties">Accounting</a></li>
+        <li><a href="features.html#integraties">Revenue management</a></li>
+        <li><a href="features.html#integraties">Key management</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Rumo · Ghent, BE</span>
+    <span>© 2026 Rumo · Gent, BE</span>
     <span><a href="../privacy.html">Privacy</a> · <a href="../cookies.html">Cookies</a></span>
   </div>
 </footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+// threshold 0, niet 0.1: die eiste dat een tiende van het blok tegelijk in beeld
+// stond. Een lang artikel is ~9000px hoog, en op een telefoonscherm van 700px
+// haal je die tien procent nooit. Gevolg: het blok bleef op opacity 0 staan en
+// de pagina was leeg tot aan de footer, terwijl je wel kon scrollen.
+const doelen = document.querySelectorAll('.fade-up');
+if (!('IntersectionObserver' in window)) {
+  doelen.forEach(el => el.classList.add('visible'));
+} else {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+  doelen.forEach(el => observer.observe(el));
+}
+document.documentElement.dataset.fadeReady = '1';
 </script>
 </body>
 </html>

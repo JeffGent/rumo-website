@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<script>
+/* Zet de klasse die de fade-in aanzet. Staat JavaScript uit, dan wordt ze nooit
+   gezet en is de pagina gewoon leesbaar. Loopt er verderop iets mis waardoor
+   het script onderaan niet draait, dan haalt het vangnet de klasse weer weg:
+   dan mis je de animatie in plaats van de hele tekst. */
+(function () {
+  var d = document.documentElement;
+  d.classList.add('js');
+  addEventListener('load', function () {
+    setTimeout(function () { if (!d.dataset.fadeReady) d.classList.remove('js'); }, 1200);
+  });
+})();
+</script>
+<script src="../gate.js"></script>
+<script src="../demo-form.js?v=2" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ce qui nous anime · rumo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!-- Plausible: cookieloze, EU-gehoste statistieken. Geen persoonsgegevens, geen cross-site profiel. Zie cookies.html. -->
+<script async src="https://plausible.io/js/pa-qrWo4zr4eI0-tnEew9x4u.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+<meta name="description" content="Waarom we rumo bouwen: de dingen die in een hotel elke week terugkomen en waar bestaande software geen antwoord op geeft. Geen advies, wel herkenning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">rumo<em>.</em></a>
+  <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="features.html">Que faisons-nous&nbsp;?</a></li>
+    <li><a href="ce-qui-nous-anime.html" class="active">Ce qui nous anime</a></li>
+    <li><a href="tarifs.html">Et euh, ça coûte combien&nbsp;?</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="a-propos.html">À propos</a></li>
+    <li><a href="index.html#demo" class="nav-cta">Essai gratuit →</a></li>
+    <li class="nav-lang">
+      <a href="../wat-drijft-ons.html">NL</a>
+      <a href="../en/what-drives-us.html">EN</a>
+      <a href="ce-qui-nous-anime.html" class="active">FR</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════ PAGE HEADER ═══════════════════════ -->
+<div class="page-header">
+  <div class="page-header-inner fade-up">
+    <div>
+      <span class="kicker">Ce qui nous anime</span>
+      <h1>Nous construisons ceci parce que nous y sommes confrontés <em>nous-mêmes</em>, chaque semaine.</h1>
+      <p class="lead">rumo est construit par un hôtelier et un ingénieur. Cet hôtelier exploite deux hôtels à Gand avec son frère. Tout ce qui suit y a d'abord été un agacement, et seulement ensuite un logiciel.</p>
+    </div>
+    <div class="page-header-side">
+      Hôtels Chamade et Carlton<br>
+      <strong>Gand, 73 chambres</strong>
+    </div>
+  </div>
+  <div class="page-header-ribbon">
+    <span>Pas de conseils sur la façon de gérer votre hôtel</span>
+    <span>Seulement ce qui revient sans cesse</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════ DE ERGERNISSEN ═══════════════════════ -->
+<section class="drijft">
+  <div class="wrap">
+    <div class="drijft-head fade-up">
+      <h2>Quatre choses qui <em>reviennent</em> sans cesse.</h2>
+      <p>Pas les grandes questions stratégiques. Simplement les choses qui coûtent une demi-heure chaque semaine et qui vous font penser&nbsp;: ça ne devrait plus exister.</p>
+    </div>
+
+    <div class="herken fade-up">
+
+      <div class="herken-rij">
+        <div class="herken-dit">«&nbsp;Qui a bloqué cette chambre, et pourquoi&nbsp;?&nbsp;»</div>
+        <div class="herken-dat">
+          <span class="herken-label">Ce que nous y faisons</span>
+          Chaque modification porte un nom et une heure. Pas pour prendre quelqu'un en faute, mais pour que la question trouve sa réponse en un clic plutôt qu'après trois appels.
+        </div>
+      </div>
+
+      <div class="herken-rij">
+        <div class="herken-dit">Un client est à la réception, la réceptionniste ne connaît pas la réponse, alors elle vous appelle.</div>
+        <div class="herken-dat">
+          <span class="herken-label">Ce que nous y faisons</span>
+          Vos propres procédures se trouvent dans rumo, et <strong>Rudy</strong> y cherche avec la question telle qu'elle est posée. Il renvoie à l'article d'où vient la réponse, pour que rien ne soit inventé.
+        </div>
+      </div>
+
+      <div class="herken-rij">
+        <div class="herken-dit">On est le trois du mois et une déclaration doit encore partir, dont personne ne sait exactement ce qu'elle doit contenir.</div>
+        <div class="herken-dat">
+          <span class="herken-label">Ce que nous y faisons</span>
+          La statistique d'hébergement, la taxe de séjour et l'enregistrement police se construisent à partir de ce que vos clients ont déjà rempli. Le dépôt reste votre signature&nbsp;; le comptage, non.
+        </div>
+      </div>
+
+      <div class="herken-rij">
+        <div class="herken-dit">Vous ne remarquez qu'un contrôle est périmé qu'au moment où quelqu'un le demande.</div>
+        <div class="herken-dat">
+          <span class="herken-label">Ce que nous y faisons</span>
+          Vos installations, attestations et dates de contrôle sont réunies, avec un avertissement trente jours à l'avance. De quoi encore prendre rendez-vous.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ WAT WE NIET ZIJN ═══════════════════════ -->
+<section class="drijft tint">
+  <div class="wrap">
+    <div class="drijft-head fade-up">
+      <h2>Et ce que nous ne venons <em>pas</em> faire.</h2>
+      <p>Parce qu'on promet beaucoup dans ce secteur, et que l'essentiel porte sur votre métier plutôt que sur notre logiciel.</p>
+    </div>
+
+    <div class="herken fade-up">
+
+      <div class="herken-rij">
+        <div class="herken-dit">Nous ne venons pas vous dire comment gérer un hôtel.</div>
+        <div class="herken-dat">
+          <span class="herken-label">Pourquoi pas</span>
+          Vous le faites probablement depuis plus longtemps que nous. Ce que nous connaissons, c'est la couche administrative autour&nbsp;: déclarations, contrôles, commissions, connexions. Nous nous y sommes accrochés parce qu'il a fallu la démêler nous-mêmes.
+        </div>
+      </div>
+
+      <div class="herken-rij">
+        <div class="herken-dit">Nous n'avons pas réponse à tout.</div>
+        <div class="herken-dat">
+          <span class="herken-label">Pourquoi pas</span>
+          Nous faisons certaines choses autrement que vous, et parfois c'est vous qui avez raison. Là où rumo ne fait pas quelque chose, nous préférons le dire tout de suite plutôt que vous le laissiez découvrir après deux semaines.
+        </div>
+      </div>
+
+      <div class="herken-rij">
+        <div class="herken-dit">Nous ne réinventons pas la roue.</div>
+        <div class="herken-dat">
+          <span class="herken-label">Pourquoi pas</span>
+          Un planning, une facture et un channel manager existent depuis trente ans. La différence ne tient pas à ce que ça fait, mais au nombre de clics et au temps d'explication que ça coûte.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ DOORVERWIJZING ═══════════════════════ -->
+<section class="drijft">
+  <div class="wrap">
+    <div class="drijft-head fade-up" style="margin-bottom:1.5rem">
+      <h2>Ce que nous avons <em>démêlé</em> en chemin.</h2>
+      <p>Il a fallu démêler une partie de cette couche administrative avant de pouvoir construire rumo. C'est écrit, y compris les passages où aucun de nos boutons n'intervient. En néerlandais, pour l'instant.</p>
+    </div>
+    <p class="fade-up"><a href="../uitgelegd/index.html" class="btn-ink">Lisez ce que nous avons démêlé <span>→</span></a></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FINAL ═══════════════════════ -->
+<section class="final" id="demo">
+  <div class="final-inner fade-up">
+    <span class="kicker">Ça vous parle&nbsp;?</span>
+    <h2>Alors venez <em>voir</em> par vous-même.</h2>
+    <p>Vous recevez un environnement rempli de fausses réservations, à côté de votre système actuel. Pas de carte de crédit, pas d'entretien commercial. Ça ne vous convient pas&nbsp;? Ça disparaît sans bruit.</p>
+    <a href="index.html#demo" class="btn-paper">Essayez 14 jours gratuitement <span>→</span></a>
+    <p class="final-fine">Sans carte de crédit · Résiliable au mois après 6 mois · <a href="../overstappen.html">Migration des données offerte</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">rumo<em>.</em></div>
+      <p class="footer-tagline">Un logiciel hôtelier pour les indépendants. Sans complications.</p>
+    </div>
+    <div>
+      <div class="footer-label">Produit</div>
+      <ul class="footer-links">
+        <li><a href="features.html">Fonctionnalités</a></li>
+        <li><a href="features.html#integraties">Intégrations</a></li>
+        <li><a href="../veiligheid.html">Sécurité</a></li>
+        <li><a href="tarifs.html">Et euh, ça coûte combien&nbsp;?</a></li>
+        <li><a href="../kb.html">Centre d'aide</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Rumo</div>
+      <ul class="footer-links">
+        <li><a href="ce-qui-nous-anime.html">Ce qui nous anime</a></li>
+        <li><a href="../uitgelegd/index.html">Expliqué (en néerlandais)</a></li>
+        <li><a href="../overstappen.html">Migration (en néerlandais)</a></li>
+        <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
+        <li><a href="mailto:hello@rumo.eu">Envoyez-nous un e-mail</a></li>
+        <li><a href="a-propos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-label">Intégrations</div>
+      <ul class="footer-links">
+        <li><a href="features.html#integraties">Booking.com</a></li>
+        <li><a href="features.html#integraties">Airbnb</a></li>
+        <li><a href="features.html#integraties">Exact Online</a></li>
+        <li><a href="features.html#integraties">Peppol</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Rumo · Gent, BE</span>
+    <span><a href="../privacy.html">Confidentialité</a> · <a href="../cookies.html">Cookies</a></span>
+  </div>
+</footer>
+
+<script>
+const doelen = document.querySelectorAll('.fade-up');
+if (!('IntersectionObserver' in window)) {
+  doelen.forEach(el => el.classList.add('visible'));
+} else {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+  doelen.forEach(el => observer.observe(el));
+}
+document.documentElement.dataset.fadeReady = '1';
+</script>
+</body>
+</html>

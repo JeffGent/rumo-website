@@ -2,9 +2,23 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<script>
+/* Zet de klasse die de fade-in aanzet. Staat JavaScript uit, dan wordt ze nooit
+   gezet en is de pagina gewoon leesbaar. Loopt er verderop iets mis waardoor
+   het script onderaan niet draait, dan haalt het vangnet de klasse weer weg:
+   dan mis je de animatie in plaats van de hele tekst. */
+(function () {
+  var d = document.documentElement;
+  d.classList.add('js');
+  addEventListener('load', function () {
+    setTimeout(function () { if (!d.dataset.fadeReady) d.classList.remove('js'); }, 1200);
+  });
+})();
+</script>
+<script src="../gate.js"></script>
 <script src="../demo-form.js?v=2" defer></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>rumo · logiciel hôtelier sans prise de tête</title>
+<title>rumo · un logiciel hôtelier sans complications</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <!-- Plausible: cookieloze, EU-gehoste statistieken. Geen persoonsgegevens, geen cross-site profiel. Zie cookies.html. -->
@@ -13,7 +27,7 @@
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script>
-<meta name="description" content="rumo, c'est un logiciel pour les hôtels et B&B indépendants. PMS, channel manager, facturation, manuel et un assistant IA. Sans prise de tête.">
+<meta name="description" content="rumo est un logiciel hôtelier pour hôtels et maisons d'hôtes indépendants. PMS, channel manager, facturation, manuel et un assistant IA. Sans complications.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -28,9 +42,13 @@
   --ink:        #1B1917;
   --ink-soft:   #3a3531;
   --paper:      #F5EEE2;
-  --paper-deep: #ECE3D1;
+  --paper-deep: #E8DCC6;   /* dieper dan voorheen (#ECE3D1): het verschil met --paper was zo klein dat afwisselende secties als één lange lap lazen */
   --paper-panel:#FAF5EA;
   --sand:       #E3D8C3;
+  /* Diepere stap in dezelfde warme familie. sand en paper-deep liggen maar
+     3% helderheid uit elkaar, dus als afwisselende sectiekleuren zie je die
+     twee niet uit elkaar. Deze wel: 10% onder paper-deep. */
+  --klei:       #DCCDB2;
   --line:       #1B191712;
   --muted:      #8d8378;
   --terra:      #D68F6F;
@@ -40,7 +58,7 @@
   --butter:     #F4D98F;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; font-size:16px; }
+html { défiler-behavior:smooth; font-size:16px; }
 body {
   font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background:var(--paper);
@@ -112,7 +130,7 @@ nav {
   align-items:center;
   transition:background 0.3s;
 }
-nav.scrolled {
+nav.défilered {
   background:rgba(245,238,226,0.88);
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
@@ -326,11 +344,11 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
   text-align:right;
 }
 .hero-meta-right span::before {
-  content:'— ';
+  content:'– ';
   color:var(--butter);
 }
 
-.hero-scroll {
+.hero-défiler {
   position:absolute;
   bottom:2rem; left:50%;
   transform:translateX(-50%);
@@ -344,14 +362,14 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
   align-items:center;
   gap:0.5em;
 }
-.hero-scroll::after {
+.hero-défiler::after {
   content:'';
   display:block;
   width:1px; height:20px;
   background:linear-gradient(180deg, rgba(245,238,226,0.5), transparent);
-  animation:scroll-line 2s infinite;
+  animation:défiler-line 2s infinite;
 }
-@keyframes scroll-line { 0%{transform:scaleY(0.3);} 50%{transform:scaleY(1);} 100%{transform:scaleY(0.3);} }
+@keyframes défiler-line { 0%{transform:scaleY(0.3);} 50%{transform:scaleY(1);} 100%{transform:scaleY(0.3);} }
 
 /* ─── INTRO BELOW HERO ─── */
 .intro {
@@ -424,49 +442,338 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 .logos-list span:hover { opacity:1; }
 
 /* ─── PIJLERS (Granola-style: clean UI, cream background) ─── */
-.pijlers { background:var(--paper); padding:7rem 0 4rem; }
+.pijlers { background:var(--paper); padding:7rem 0; }
 .pijlers-intro {
   max-width:680px;
-  margin-bottom:5rem;
+  margin-bottom:3.5rem;
 }
 .pijlers-intro h2 { margin-bottom:1rem; }
 .pijlers-intro h2 em { color:var(--terra-dark); }
 
-/* Showcase — tabbed productdemo (Mews-stijl), uitleg ernaast */
-.showcase { padding-top:1rem; }
-.showcase-tabs { display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:2.75rem; }
-.sc-tab {
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
-  padding:0.6rem 1.2rem; border-radius:100px;
-  border:1px solid var(--line); background:transparent; color:var(--ink-soft);
-  cursor:pointer; transition:background 0.2s, color 0.2s, border-color 0.2s;
+/* ─────────────────────────────────────────────────────────────────────────
+   OVERGENOMEN UIT shared.css
+   Deze pagina laadt shared.css niet in (alle stijl staat hier inline), dus de
+   componenten voor de productband en het nagebouwde kalendervenster staan
+   hier een tweede keer. Wijzig je er een, wijzig dan allebei.
+   ───────────────────────────────────────────────────────────────────────── */
+/* ─── PRODUCTBAND ──────────────────────────────────────────────────────────
+   Het probleem met een schermafbeelding in een kaartje van 300px is dat je er
+   niets van ziet. Hier krijgt hij de volle breedte en loopt hij rechts het
+   beeld uit: dan lees je hem als "een stuk van een echt scherm" in plaats van
+   als een plaatje. Op ink, want dat is het enige contrast dat de site heeft. */
+.toonband {
+  background:var(--ink);
+  padding:5.5rem 0 0;
+  position:relative;
+  overflow:hidden;
 }
-.sc-tab:hover { border-color:var(--terra); color:var(--ink); }
-.sc-tab.active { background:var(--ink); border-color:var(--ink); color:var(--paper); }
-.showcase-body { display:grid; grid-template-columns:0.9fr 1.1fr; gap:3.5rem; align-items:center; }
-.sc-pane[hidden] { display:none; }
-.sc-pane h3 { font-size:2rem; line-height:1.15; margin-bottom:1rem; }
-.sc-pane h3 em { color:var(--terra-dark); }
-.sc-pane p { font-size:1.08rem; color:var(--ink-soft); max-width:46ch; }
-.sc-pane .pijler-num { margin-bottom:1rem; }
-.sc-stage {
-  position:relative; border-radius:20px; overflow:hidden;
-  background:var(--burg) center/cover no-repeat;
-  background-image:url('../img/persona-georgie.jpg');
-  padding:2.75rem; min-height:360px;
-  display:flex; align-items:center; justify-content:center;
+.toonband::after {
+  content:''; position:absolute; top:-25%; left:-10%; width:55%; height:100%;
+  background:radial-gradient(circle, rgba(244,217,143,0.10), transparent 65%);
+  pointer-events:none;
 }
-.sc-stage::after {
-  content:''; position:absolute; inset:0; pointer-events:none;
-  background:linear-gradient(135deg, rgba(27,25,23,0.22), rgba(27,25,23,0.03));
+.toonband-inner {
+  max-width:1200px; margin:0 auto; padding:0 2rem;
+  position:relative; z-index:1;
 }
-.sc-media {
-  position:relative; z-index:1; display:none; width:100%; height:auto;
-  border-radius:12px; border:1px solid rgba(255,255,255,0.35);
-  box-shadow:0 30px 70px -22px rgba(27,25,23,0.6);
+.toonband-tekst { max-width:520px; margin-bottom:2.5rem; }
+.toonband-tekst h2 {
+  font-family:'Fraunces', Georgia, serif; font-weight:400;
+  font-size:clamp(1.9rem, 3.6vw, 2.7rem); letter-spacing:-0.03em;
+  line-height:1.06; color:var(--paper); margin-bottom:1rem;
 }
-.sc-media.active { display:block; }
+.toonband-tekst h2 em { font-style:italic; color:var(--butter); font-weight:300; }
+.toonband-tekst p { font-size:1.05rem; line-height:1.65; color:#d9cfc0; margin:0; }
+
+/* ─── PRODUCTBAND · LICHTE VARIANT ─────────────────────────────────────────
+   Dezelfde band, maar op papier in plaats van op ink. Gebruikt op de homepage,
+   waar de PMS-uitleg de intro van de pagina is en dus niet als donker blok mag
+   binnenvallen. Alleen de kleuren wisselen; de opbouw blijft gelijk. */
+.toonband.licht { background:var(--paper); }
+.toonband.licht::after { display:none; }
+.toonband.licht .toonband-tekst h2 { color:var(--ink); }
+.toonband.licht .toonband-tekst h2 em { color:var(--terra-dark); }
+/* max-width:none omdat index.html een algemene regel p { max-width:62ch }
+   heeft. Die kapte deze alinea af hoe breed de kolom ook stond. De breedte
+   wordt nu bepaald door .toonband-tekst zelf. */
+.toonband.licht .toonband-tekst p { color:var(--ink-soft); max-width:none; }
+.toonband.licht .kicker { color:var(--muted); }
+.toonband.licht .pms-punten li { color:var(--ink-soft); }
+.toonband.licht .pms-punten li::before { background:var(--terra); }
+.toonband.licht .pms-door { color:var(--terra-dark); border-bottom-color:rgba(185,107,74,0.35); }
+.toonband.licht .pms-door:hover { border-bottom-color:var(--terra-dark); }
+/* De tekstkolom staat standaard op 520px, wat voor een korte kop werkt maar
+   deze introalinea in acht smalle regels hakt. Hier ruimer: ongeveer zeventig
+   tekens per regel, nog steeds comfortabel om te lezen. */
+.toonband.licht .toonband-tekst { max-width:900px; }
+.toonband.licht .toonband-beeld { box-shadow:0 -24px 60px -24px rgba(27,25,23,0.22); }
+.toonband.licht:not(.naast) .toonband-beeld::after {
+  background:linear-gradient(to bottom, rgba(245,238,226,0), var(--paper) 92%);
+}
+.toonband.licht .appvenster { box-shadow:0 -18px 50px -22px rgba(27,25,23,0.20), 0 0 0 1px rgba(27,25,23,0.07); }
+
+/* Naast-variant: voor een venster dat smal hoort te zijn, zoals een chat.
+   Uitgerekt tot 1500px staan de bubbels verloren in de leegte. */
+.toonband.naast .toonband-inner {
+  display:grid; grid-template-columns:1fr 1.15fr; gap:4rem; align-items:center;
+  padding-bottom:5.5rem;
+}
+.toonband.naast .toonband-inner > * { min-width:0; }
+.toonband.naast .toonband-tekst { margin-bottom:0; max-width:none; }
+.toonband.naast .toonband-beeld { border-radius:16px; }
+.toonband.naast .appvenster { border-radius:16px; }
+@media (max-width:900px) {
+  .toonband.naast .toonband-inner { grid-template-columns:1fr; gap:2.25rem; padding-bottom:3rem; }
+}
+
+/* Het beeld zelf: breder dan zijn kolom en rechts afgesneden. */
+.toonband-beeld {
+  position:relative;
+  margin-right:calc((100vw - min(100vw, 1200px)) / -2 - 2rem);
+  border-radius:16px 0 0 0;
+  overflow:hidden;
+  box-shadow:0 -30px 80px -20px rgba(0,0,0,0.55);
+}
+/* De kalender loopt tot de onderrand van de band door, wat een "er is meer"-
+   gevoel geeft. Zonder overgang wordt hij daar hard afgesneden en botst hij
+   tegen de lichte sectie eronder. Deze verloop lost hem op in het donker. */
+.toonband:not(.naast) .toonband-beeld::after {
+  content:''; position:absolute; left:0; right:0; bottom:0; height:150px;
+  background:linear-gradient(to bottom, rgba(27,25,23,0), var(--ink) 92%);
+  pointer-events:none; z-index:2;
+}
+.toonband-beeld img {
+  display:block;
+  width:min(1520px, 128%);
+  max-width:none;
+  border-radius:16px 0 0 0;
+}
+/* Handgeschreven kanttekening. Caveat wordt op elke pagina ingeladen en werd
+   tot nu toe nergens gebruikt. Staat bewust in het donkere deel bóven het
+   beeld: geel op een lichte schermafbeelding is onleesbaar, en een notitie
+   over de interface heen dekt net het stuk af dat je wil tonen. */
+.kantnoot {
+  position:absolute; z-index:3;
+  font-family:'Caveat', cursive; font-weight:600;
+  font-size:clamp(1.15rem, 1.7vw, 1.6rem);
+  color:var(--butter);
+  transform:rotate(-3deg);
+  max-width:16rem; line-height:1.2;
+  pointer-events:none;
+}
+/* Pijl die naar het beeld eronder wijst. */
+.kantnoot::after {
+  content:''; position:absolute; left:1.2rem; top:calc(100% + 0.3rem);
+  width:34px; height:46px;
+  border-left:2px solid var(--butter);
+  border-bottom:2px solid var(--butter);
+  border-radius:0 0 0 14px;
+  opacity:0.7;
+}
+.kantnoot::before {
+  content:''; position:absolute; left:calc(1.2rem + 30px); top:calc(100% + 42px);
+  width:9px; height:9px;
+  border-right:2px solid var(--butter);
+  border-bottom:2px solid var(--butter);
+  transform:rotate(-45deg);
+  opacity:0.7;
+}
+
+/* In de naast-variant staat het venster rechts, dus wijst de kanttekening die
+   kant op in plaats van naar beneden. */
+.kantnoot.rechts::after {
+  left:auto; right:-3.2rem; top:50%;
+  width:44px; height:20px;
+  border-left:none; border-bottom:2px solid var(--butter);
+  border-top:none; border-radius:0;
+  transform:translateY(-50%);
+}
+.kantnoot.rechts::before {
+  left:auto; right:-3.2rem; top:calc(50% - 5px);
+  transform:rotate(-45deg);
+}
+@media (max-width:900px) { .kantnoot.rechts { display:none; } }
+
+@media (max-width:900px) {
+  .toonband-beeld { margin-right:-2rem; }
+  .toonband-beeld img { width:150%; }
+  .kantnoot { display:none; }
+}
+
+/* ─── APPVENSTER ───────────────────────────────────────────────────────────
+   Een nagebouwde kalender in plaats van een schermafbeelding. Reden: een PNG
+   veroudert zodra de interface verandert, is onscherp op een retina-scherm en
+   staat stil. Dit is HTML, dus altijd scherp, altijd in de huisstijl, en er
+   kan iets in bewegen. De labels komen uit de Nederlandse taalbestanden van de
+   app zelf (Aankomend, Vertrekkend, Verblijvend, Vuil, Vandaag). */
+.appvenster {
+  /* Twee variabelen: de breedte van de kamerkolom links, en daaruit afgeleid
+     de breedte van één dagkolom. Zo hoeft een balk alleen in kolommen te
+     rekenen, en kan de kamerkolom op een telefoon smaller worden zonder dat
+     er iets verschuift. */
+  --kamerkol:132px;
+  --k:calc((100% - var(--kamerkol)) / 7);
+  background:#F7F2EA;
+  border-radius:16px 0 0 16px;
+  box-shadow:0 -30px 90px -25px rgba(0,0,0,0.6), 0 0 0 1px rgba(27,25,23,0.06);
+  overflow:hidden;
+  font-size:13px;
+  color:var(--ink);
+  user-select:none;
+}
+.av-kop { padding:1.4rem 1.6rem 0.9rem; }
+.av-kop h4 {
+  font-family:'Fraunces', Georgia, serif; font-weight:400;
+  font-size:1.35rem; color:#7d2233; letter-spacing:-0.01em; margin:0 0 0.15rem;
+}
+.av-kop p { font-size:0.82rem; color:var(--muted); margin:0; }
+
+/* Filterbalk */
+.av-balk {
+  display:flex; align-items:center; gap:0.65rem;
+  padding:0 1.6rem 1rem; flex-wrap:nowrap; white-space:nowrap;
+}
+.av-chip {
+  font-size:0.8rem; color:var(--ink-soft);
+  padding:0.3rem 0.75rem; border-radius:100px;
+}
+.av-chip.aan { background:var(--rose-soft); color:#7d2233; }
+.av-balk .av-rek { margin-left:auto; }
+.av-knop {
+  font-size:0.78rem; padding:0.3rem 0.8rem; border-radius:100px;
+  border:1px solid rgba(27,25,23,0.14); background:#fff;
+}
+/* De schaar uit de echte werkbalk: hiermee knip je een verblijf in tweeën. */
+.av-schaar {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:26px; height:26px; color:var(--muted); flex-shrink:0;
+}
+.av-schaar svg { width:14px; height:14px; fill:none; stroke:currentColor;
+  stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+.av-datum { font-size:0.85rem; font-weight:500; }
+.av-vandaag {
+  font-size:0.78rem; padding:0.3rem 0.85rem; border-radius:100px;
+  background:var(--ink); color:var(--paper);
+}
+
+/* Raster */
+.av-raster { border-top:1px solid rgba(27,25,23,0.08); }
+.av-dagen, .av-rij {
+  display:grid; grid-template-columns:var(--kamerkol) repeat(7, 1fr);
+}
+.av-dagen > span {
+  text-align:center; padding:0.55rem 0 0.6rem;
+  font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);
+  border-left:1px solid rgba(27,25,23,0.05);
+}
+.av-dagen > span b { display:block; font-size:1rem; letter-spacing:0; color:var(--ink); font-weight:500; }
+.av-dagen .nu { background:rgba(214,143,111,0.10); box-shadow:inset 0 2px 0 #7d2233; }
+.av-dagen .nu b { color:#7d2233; }
+
+.av-rij { border-top:1px solid rgba(27,25,23,0.05); position:relative; height:44px; }
+.av-rij > .av-cel { border-left:1px solid rgba(27,25,23,0.05); }
+/* Nummer en type op één regel, het statusbolletje rechts in de kolom. De
+   kamertypes zijn kort gehouden ("Dubbel" in plaats van "Standard double"),
+   want een afgekapt woord in een beeld van je eigen product leest als een
+   fout in dat product. */
+.av-kamer {
+  display:flex; align-items:center; gap:0.45rem;
+  padding:0 0.9rem 0 1.1rem; font-size:0.78rem; overflow:hidden;
+}
+.av-kamer b { font-weight:600; flex-shrink:0; }
+.av-kamer .type {
+  font-size:0.58rem; letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--muted); white-space:nowrap; overflow:hidden;
+}
+/* Vuil is in de app een statusbolletje, geen woord. Rechts uitgelijnd, zodat
+   de bolletjes onder elkaar staan in plaats van te dansen op de naamlengte. */
+.av-kamer .vuil {
+  width:6px; height:6px; border-radius:50%; background:#c2762f;
+  flex-shrink:0; margin-left:auto;
+}
+
+/* Boekingsbalken: absoluut binnen de rij, gepositioneerd in kolombreedtes. */
+.av-boeking {
+  position:absolute; top:6px; height:32px;
+  display:flex; align-items:center; gap:0.5rem;
+  padding:0 0.7rem; border-radius:7px;
+  background:#fff; border:1px solid rgba(27,25,23,0.08);
+  border-left:3px solid var(--forest);
+  font-size:0.8rem; white-space:nowrap; overflow:hidden;
+  box-shadow:0 1px 2px rgba(27,25,23,0.05);
+}
+.av-boeking.blauw { border-left-color:#5b7fb5; }
+.av-boeking.terra { border-left-color:var(--terra-dark); }
+.av-boeking.grijs { background:rgba(27,25,23,0.03); border-style:dashed; color:var(--muted); box-shadow:none; }
+.av-status {
+  margin-left:auto; font-size:0.6rem; letter-spacing:0.05em;
+  padding:0.1rem 0.45rem; border-radius:100px;
+  border:1px solid rgba(194,118,47,0.4); color:#c2762f;
+}
+
+/* ── Beweging ──────────────────────────────────────────────────────────────
+   Eén balk verhuist van kamer 103 naar 105 en terug, met een korte pauze. Dat
+   is de kernhandeling van een PMS-kalender, dus het toont iets in plaats van
+   dat het alleen beweegt. */
+.av-boeking.sleept {
+  animation:avSleep 9s cubic-bezier(.65,0,.35,1) infinite;
+  z-index:3;
+}
+@keyframes avSleep {
+  0%, 18%   { transform:translate(0,0) scale(1); box-shadow:0 1px 2px rgba(27,25,23,0.05); }
+  26%       { transform:translate(0,-3px) scale(1.015); box-shadow:0 10px 22px rgba(27,25,23,0.18); }
+  44%, 62%  { transform:translate(0, 88px) scale(1.015); box-shadow:0 10px 22px rgba(27,25,23,0.18); }
+  70%, 100% { transform:translate(0, 88px) scale(1); box-shadow:0 1px 2px rgba(27,25,23,0.05); }
+}
+/* De plek waar hij vandaan komt, licht op terwijl hij weg is. */
+.av-gat { position:absolute; top:6px; height:32px; border-radius:7px;
+  border:1px dashed rgba(27,25,23,0.18); opacity:0;
+  animation:avGat 9s linear infinite; }
+@keyframes avGat { 0%,26% { opacity:0 } 34%,66% { opacity:1 } 74%,100% { opacity:0 } }
+
+@media (prefers-reduced-motion: reduce) {
+  .av-boeking.sleept, .av-gat { animation:none; }
+  .av-boeking.sleept { transform:translate(0, 88px); }
+}
+@media (max-width:900px) {
+  .appvenster { font-size:11px; --kamerkol:52px; }
+  .av-kamer { padding-left:0.6rem; }
+  .av-kamer .type { display:none; }  /* kamertype weglaten: geen plaats. Het bolletje blijft. */
+  .av-balk { gap:0.4rem; }
+  .av-status { display:none; }
+}
+
+/* Puntenlijst en doorlink in de PMS-band. */
+/* Specifieker dan .toonband-tekst p, anders wint diens margin:0 en plakt deze
+   regel tegen de alinea erboven. */
+.toonband-tekst p.pms-vertrek {
+  font-family:'Fraunces', serif; font-size:1.2rem; letter-spacing:-0.015em;
+  color:var(--ink); margin:1.9rem 0 0;
+}
+.pms-punten { list-style:none; padding:0; margin:0.9rem 0 0; }
+.pms-punten li {
+  position:relative; padding-left:1.4rem; margin-bottom:0.6rem;
+  font-size:0.95rem; line-height:1.55; color:#d9cfc0;
+}
+.pms-punten li::before {
+  content:''; position:absolute; left:0; top:0.6em;
+  width:6px; height:6px; border-radius:50%; background:var(--butter);
+}
+.pms-door {
+  display:inline-flex; align-items:center; gap:0.45em; margin-top:1.5rem;
+  font-family:'JetBrains Mono', monospace; font-size:0.68rem;
+  letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--butter); text-decoration:none;
+  border-bottom:1px solid rgba(244,217,143,0.35); padding-bottom:2px;
+}
+.pms-door:hover { border-bottom-color:var(--butter); }
+
+
+
+@media (max-width:900px) {
+  .scene { grid-template-columns:1fr; gap:2rem; padding:1.75rem; }
+  .rail-go { opacity:1; }
+}
 
 .pijler-num {
   display:inline-flex; align-items:center; gap:0.5em;
@@ -744,95 +1051,43 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 .wie .btn-paper { margin-top:2rem; }
 
 /* ─── PERSONAS ─── */
-.personas { background:var(--paper-deep); padding:7rem 0; }
-.personas-head { max-width:640px; margin-bottom:4rem; }
-.personas h2 em { color:var(--terra-dark); }
-.persona-grid {
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:2rem;
-}
-.persona {
-  background:var(--paper-panel);
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  transition:transform 0.3s, box-shadow 0.3s;
-}
-.persona:hover {
-  transform:translateY(-4px);
-  box-shadow:0 20px 40px rgba(27,25,23,0.08);
-}
-.persona-img {
-  aspect-ratio:4/3;
-  background-size:cover;
-  background-position:center;
-  filter:contrast(1.04) saturate(0.92);
-  position:relative;
-}
-.persona-img::after {
-  content:'';
-  position:absolute; inset:0;
-  background:linear-gradient(180deg, transparent 55%, rgba(27,25,23,0.18));
-}
-.persona-body { padding:1.5rem 1.5rem 1.75rem; }
-.persona-meta {
-  display:flex; justify-content:space-between;
-  align-items:center;
-  margin-bottom:0.8rem;
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.68rem;
-  letter-spacing:0.1em;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-.persona-meta .count { color:var(--terra-dark); }
-.persona-body h4 {
-  font-family:'Fraunces', serif;
-  font-weight:400;
-  font-size:1.4rem;
-  letter-spacing:-0.02em;
-  margin-bottom:0.5rem;
-  line-height:1.1;
-}
-.persona-body p {
-  font-size:0.92rem; color:var(--ink-soft);
-  margin-bottom:1.25rem; line-height:1.55;
-}
-.persona-quote {
-  padding-top:1rem;
-  border-top:1px solid var(--line);
-  font-family:'Fraunces', serif;
-  font-style:italic;
-  font-weight:300;
-  font-size:0.98rem;
-  color:var(--ink);
-  line-height:1.4;
-}
-
 /* ─── TRUST ─── */
 .trust {
-  background:var(--paper);
-  padding:4rem 0;
-  border-top:1px solid var(--line);
+  /* Staat nu direct onder de donkere PMS-band. Met 4rem plakte hij tegen de
+     kalender aan en las het als één rommelig geheel; en de bovenrand voegde
+     daar nog een streep aan toe die er niet meer bij hoort. */
+  background:var(--paper-deep);
+  padding:4.5rem 0;
   border-bottom:1px solid var(--line);
 }
 .trust-grid {
-  display:grid; grid-template-columns:repeat(3, 1fr); gap:3rem;
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:2.5rem;
 }
+/* Was: drie zwevende items met elk een eigen gekleurde icoontegel, in roze,
+   groen en geel. Die drie kleuren stonden nergens anders op de pagina en
+   botsten met de warme reeks. Nu een dunne bovenlijn per kolom, zoals de
+   bijkomende features op de featurepagina, en één rustige kleur voor alle
+   drie de icoontjes. */
 .trust-item {
-  display:flex; gap:1rem; align-items:flex-start;
+  display:flex; gap:0.85rem; align-items:flex-start;
+  border-top:1px solid var(--line);
+  padding-top:1.15rem;
 }
 .trust-item .ic {
   flex-shrink:0;
-  width:32px; height:32px; border-radius:8px;
+  width:26px; height:26px;
   display:flex; align-items:center; justify-content:center;
-  background:var(--paper-panel);
   color:var(--terra-dark);
+  opacity:0.75;
 }
-.trust-item:nth-child(2) .ic { color:var(--forest); background:var(--forest-soft); }
-.trust-item:nth-child(3) .ic { color:#8a6b1a; background:#FCEDBD; }
 .trust-item p { margin:0; font-size:0.95rem; line-height:1.5; max-width:32ch; }
+a.trust-item { text-decoration:none; color:inherit; }
+a.trust-item p strong .arr {
+  font-family:'JetBrains Mono', monospace; font-size:0.78em; color:var(--terra-dark);
+  margin-left:0.45em; opacity:0.55; display:inline-block; transition:opacity 0.2s, transform 0.2s;
+}
+a.trust-item:hover p strong { color:var(--terra-dark); }
+a.trust-item:hover p strong .arr { opacity:1; transform:translateX(3px); }
 .trust-item p strong {
   display:block;
   font-family:'Fraunces', serif;
@@ -843,61 +1098,38 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
   margin-bottom:0.1rem;
 }
 
-/* ─── PRIJS ─── */
-.prijs {
-  background:var(--paper);
+/* ─── OVERSTAP ─── */
+.overstap {
+  background:var(--paper-panel);
   padding:7rem 0;
-  text-align:center;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
 }
-.prijs-inner { max-width:780px; margin:0 auto; padding:0 2rem; position:relative; }
-.prijs h2 em { color:var(--terra-dark); }
-.prijs-bedrag {
-  font-family:'Fraunces', serif;
-  font-weight:400;
-  font-size:clamp(3.2rem, 7vw, 5.4rem);
-  letter-spacing:-0.045em;
-  line-height:1;
-  margin:1.5rem 0 0.5rem;
-  color:var(--ink);
+.overstap-inner {
+  max-width:1000px; margin:0 auto; padding:0 2rem;
+  display:grid; grid-template-columns:1.1fr 0.9fr; gap:3.5rem; align-items:center;
 }
-.prijs-bedrag em {
-  font-style:italic;
-  color:var(--terra-dark);
-  font-weight:300;
+.overstap h2 {
+  font-family:'Fraunces', Georgia, serif; font-weight:400;
+  font-size:clamp(1.9rem, 3.6vw, 2.7rem); letter-spacing:-0.03em;
+  line-height:1.05; color:var(--ink); margin-bottom:1.1rem;
 }
-.prijs-unit {
-  display:block;
-  font-family:'JetBrains Mono', monospace;
-  font-size:0.82rem;
-  font-weight:500;
-  letter-spacing:0.1em;
-  color:var(--muted);
-  text-transform:uppercase;
-  margin-bottom:1.75rem;
+.overstap h2 em { font-style:italic; color:var(--terra-dark); font-weight:300; }
+.overstap-copy { font-size:1.05rem; line-height:1.7; color:var(--ink-soft); margin-bottom:1.8rem; }
+.overstap-punten { list-style:none; padding:0; margin:0 0 2rem; }
+.overstap-punten li {
+  position:relative; padding-left:1.6rem; margin-bottom:0.9rem;
+  font-size:0.98rem; line-height:1.6; color:var(--ink-soft);
 }
-.prijs-copy {
-  max-width:52ch;
-  margin:0 auto 2rem;
-  color:var(--ink-soft);
-  font-size:1.05rem;
-  line-height:1.55;
+.overstap-punten li::before {
+  content:''; position:absolute; left:0; top:0.6em;
+  width:7px; height:7px; border-radius:50%; background:var(--terra);
 }
-.prijs-checklist {
-  display:flex; flex-wrap:wrap; justify-content:center;
-  gap:1rem 2.5rem;
-  margin-bottom:2.5rem;
-  list-style:none;
-  font-size:0.95rem;
-  color:var(--ink);
-}
-.prijs-checklist li { display:flex; align-items:center; gap:0.5em; }
-.prijs-checklist li::before {
-  content:'✓';
-  color:var(--forest);
-  font-weight:700;
+.overstap-punten strong { color:var(--ink); font-weight:500; }
+@media (max-width:900px) {
+  .overstap-inner { grid-template-columns:1fr; gap:2rem; }
 }
 
-/* ─── FAQ ─── */
 .faq {
   background:var(--paper-deep);
   padding:7rem 0;
@@ -986,15 +1218,22 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 }
 .final h2 em { color:var(--butter); font-style:italic; font-weight:300; }
 .final p { color:rgba(245,238,226,0.82); font-size:1.15rem; max-width:540px; margin:0 auto 2.5rem; line-height:1.55; }
-.final .btn-paper { padding:1rem 2rem; font-size:1rem; }
+.final .btn-paper { padding:1rem 2rem; font-size:1rem; margin-bottom:3rem; }
 .final-fine {
-  margin-top:1.5rem;
+  margin-top:2rem;
   font-family:'JetBrains Mono', monospace;
   font-size:0.72rem;
   letter-spacing:0.1em;
   color:rgba(245,238,226,0.45);
   text-transform:uppercase;
 }
+.final-fine a {
+  color:var(--butter);
+  text-decoration:none;
+  border-bottom:1px solid rgba(244,217,143,0.45);
+  transition:color 0.2s, border-color 0.2s;
+}
+.final-fine a:hover { color:var(--paper); border-bottom-color:var(--paper); }
 
 /* ─── FOOTER ─── */
 footer {
@@ -1050,8 +1289,13 @@ footer {
 }
 
 /* ─── Fade ─── */
-.fade-up { opacity:0; transform:translateY(20px); transition:opacity 0.8s, transform 0.8s; }
-.fade-up.visible { opacity:1; transform:translateY(0); }
+/* De fade-in verbergt tekst tot JavaScript hem toont. Dat is alleen veilig
+   zolang JavaScript ook echt draait: zonder de .js-voorwaarde hieronder levert
+   elke scriptfout een blanco pagina op in plaats van een pagina zonder
+   animatie. De klasse wordt bovenaan in de <head> gezet, en weer weggehaald
+   wanneer het script onderaan de pagina niet gedraaid blijkt. */
+.js .fade-up { opacity:0; transform:translateY(20px); transition:opacity 0.8s, transform 0.8s; }
+.js .fade-up.visible { opacity:1; transform:translateY(0); }
 
 /* ─── Responsive ─── */
 @media (max-width:960px) {
@@ -1080,15 +1324,13 @@ footer {
   .hero { min-height:90vh; }
   .hero-inner { grid-template-columns:1fr; gap:1.5rem; padding:0 1.5rem 3rem; }
   .hero-meta-right { text-align:left; }
-  .hero-scroll { display:none; }
+  .hero-défiler { display:none; }
 
   .intro-grid { grid-template-columns:1fr; gap:1.5rem; }
 
   .showcase-body { grid-template-columns:1fr; gap:2rem; }
   .sc-stage { order:-1; min-height:0; padding:1.5rem; }
 
-  .personas-head { margin-bottom:3rem; }
-  .persona-grid { grid-template-columns:1fr; }
   .trust-grid { grid-template-columns:1fr; gap:1.5rem; }
   .footer-grid { grid-template-columns:1fr 1fr; gap:2.5rem; }
   .wrap, .logos-inner { padding:0 1.5rem; }
@@ -1111,13 +1353,12 @@ footer {
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links">
-    <li><a href="#pijlers">Que fait rumo ?</a></li>
-    <li><a href="features.html">Features</a></li>
-    <li><a href="integrations.html">Intégrations</a></li>
-    <li><a href="tarifs.html">Et euh, ça coûte combien ?</a></li>
+    <li><a href="features.html">Que faisons-nous&nbsp;?</a></li>
+    <li><a href="ce-qui-nous-anime.html">Ce qui nous anime</a></li>
+    <li><a href="tarifs.html">Et euh, ça coûte combien&nbsp;?</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="a-propos.html">À propos</a></li>
-    <li><a href="#demo" class="nav-cta">Essaie gratuitement →</a></li>
+    <li><a href="#demo" class="nav-cta">Essai gratuit →</a></li>
     <li class="nav-lang">
       <a href="../index.html">NL</a>
       <a href="../en/index.html">EN</a>
@@ -1129,151 +1370,106 @@ footer {
 <!-- ══════════════════ HERO · FILMIC VIDEO ══════════════════ -->
 <section class="hero">
   <video class="hero-video" autoplay loop muted playsinline preload="auto">
-    <source src="../img/sfeer.mp4" type="video/mp4">
+    <source src="img/sfeer.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-grain"></div>
 
   <div class="hero-inner">
     <div class="hero-copy">
-      <h1>Gérer ton hôtel<br><em>sans prise de tête.</em></h1>
+      <h1>Gérer votre hôtel<br><em>sans complications.</em></h1>
       <p class="hero-sub">
-        rumo est fait pour les hôteliers qui sont encore tous les jours dans leur propre hôtel. PMS, channel manager, facturation et manuel en un. Plus un collègue malin. Et c'est tout.
+        Rumo est conçu pour les hôteliers qui sont chaque jour dans leur propre hôtel. PMS, channel manager, facturation et manuel en un. Plus un collègue malin. Rien de plus.
       </p>
       <div class="hero-ctas">
-        <a href="#demo" class="btn-ink">Essaie 14 jours gratuitement <span>→</span></a>
+        <a href="#demo" class="btn-ink">Essayez 14 jours gratuitement <span>→</span></a>
         <a href="#pijlers" class="btn-ghost-white btn-ghost">Comment ça marche <span class="arr">→</span></a>
       </div>
     </div>
   </div>
-  <div class="hero-scroll">scroll</div>
+  <div class="hero-défiler">défiler</div>
 </section>
 
-<!-- ══════════════════ INTRO · Bon, c'est quoi rumo au juste ? ══════════════════ -->
-<section class="intro">
-  <div class="wrap">
-    <div class="intro-grid fade-up">
-      <div class="intro-label">00 / Intro</div>
-      <div class="intro-text">
-        <h2>C'est quoi <em>rumo</em>, au juste ?</h2>
-        <p>Bon, on est un logiciel hôtelier. Mais pas comme tu l'imagines. Pas une plateforme enterprise à deux mille euros par mois pour laquelle il faut trois semaines de formation. Juste <em>un</em> système qui fait ce qu'il doit faire. Tu l'ouvres le matin et tu sais ce qui doit se passer aujourd'hui.</p>
-      </div>
+<!-- ══════════════════ HET PMS ══════════════════ -->
+<section class="toonband licht" id="pijlers">
+  <div class="toonband-inner fade-up" style="position:relative">
+    <div class="toonband-tekst">
+      <span class="kicker">00 / Intro</span>
+      <h2>Mais qu'est-ce que <em>rumo</em>, au juste&nbsp;?</h2>
+      <p>Eh bien, nous sommes un logiciel hôtelier. Mais pas celui que vous imaginez. Pas une plateforme d'entreprise à deux mille euros par mois qui demande ensuite trois semaines de formation. Juste <em>un</em> système qui fait ce qu'il doit faire. Vous l'ouvrez le matin et vous savez ce qui vous attend.</p>
+      <p class="pms-vertrek">Nous partons du planning.</p>
+      <ul class="pms-punten">
+        <li>Faites glisser une réservation et le nouveau prix est prêt.</li>
+        <li>Faites un départ et la facture suit.</li>
+        <li>Modifiez quelque chose et c'est sur vos canaux.</li>
+      </ul>
+      <a href="../pms.html" class="pms-door">Tout sur le PMS <span>&rarr;</span></a>
     </div>
-  </div>
-</section>
-
-<!-- ══════════════════ LOGOS ══════════════════ -->
-<div class="logos">
-  <div class="logos-inner">
-    <div class="logos-label">Marche avec ce que tu utilises déjà</div>
-    <div class="logos-list">
-      <span>Booking.com</span>
-      <span>Airbnb</span>
-      <span>Stripe</span>
-      <span>Exact Online</span>
-      <span>Peppol</span>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════ PILIERS ══════════════════ -->
-<section class="pijlers" id="pijlers">
-  <div class="wrap">
-    <div class="pijlers-intro fade-up">
-      <span class="kicker">Pour qui rumo fonctionne</span>
-      <h2>Pour ton équipe.<br>Et pour <em>toi</em>.</h2>
-      <p class="lead" style="margin-top:1.5rem;">Gérer un hôtel, c'est faire mille choses en même temps. Un client attend à la réception. Dans la salle du petit-déj, quelqu'un demande du sans gluten. Le housekeeping veut savoir quelles chambres partent tôt. Et toi, le soir, il te reste à revoir les tarifs, regarder ce rapport, espérer que la nouvelle recrue sera prête demain.</p>
-      <p class="lead" style="margin-top:1.5rem;">C'est pour ça que rumo a trois parties : <em>le PMS</em> qui pilote ta journée, <em>le manuel</em> que ton équipe consulte toute seule, et <em>Rudy</em> qui continue de bosser quand tu n'es pas là.</p>
-    </div>
-
-    <div class="showcase fade-up">
-      <div class="showcase-tabs" role="tablist" aria-label="Que fait rumo">
-        <button class="sc-tab active" data-tab="pms" role="tab" aria-selected="true">Le PMS</button>
-        <button class="sc-tab" data-tab="handboek" role="tab" aria-selected="false">Le manuel</button>
-        <button class="sc-tab" data-tab="rudy" role="tab" aria-selected="false">Rudy</button>
-      </div>
-      <div class="showcase-body">
-        <div class="showcase-copy">
-          <div class="sc-pane" data-pane="pms">
-            <div class="pijler-num">Le PMS</div>
-            <h3>Pour les réceptionnistes. Pas pour les <em>informaticiens.</em></h3>
-            <p>Le matin, tu ouvres rumo. Qui arrive, qui part, qui n'a pas encore payé, quelle chambre n'a pas encore été faite. Sur un seul écran. Pas trois onglets, pas de « attends, je dois d'abord ouvrir l'autre site ».</p>
+    <div class="toonband-beeld">
+      <div class="appvenster" role="img" aria-label="De reservatiekalender in rumo: kamers onder elkaar, dagen ernaast, en boekingen als balken die je van kamer naar kamer sleept.">
+        <div class="av-kop">
+          <h4>Réservations</h4>
+          <p>Vue d'ensemble des chambres et des réservations à venir</p>
+        </div>
+        <div class="av-balk">
+          <span class="av-chip aan">Toutes</span>
+          <span class="av-chip">Arrivées (9)</span>
+          <span class="av-chip">Départs (4)</span>
+          <span class="av-chip">En séjour (21)</span>
+          <span class="av-rek"></span>
+          <span class="av-knop">Semaine</span>
+          <span class="av-schaar" aria-label="Diviser un séjour en deux"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span>
+          <span class="av-datum">2 avril 2026</span>
+          <span class="av-vandaag">Aujourd'hui</span>
+        </div>
+        <div class="av-raster">
+          <div class="av-dagen">
+            <span></span>
+            <span>mer<b>1</b></span><span class="nu">jeu<b>2</b></span><span>ven<b>3</b></span>
+            <span>sam<b>4</b></span><span>dim<b>5</b></span><span>lun<b>6</b></span><span>mar<b>7</b></span>
           </div>
-          <div class="sc-pane" data-pane="handboek" hidden>
-            <div class="pijler-num">Le manuel</div>
-            <h3>Pour ton équipe. Sans qu'elle doive <em>t'appeler.</em></h3>
-            <p>Comment marche la machine à espresso ? Où est l'aspirateur ? Et pour le sans gluten ? Comment couper la sirène après une fausse alerte ? Ton équipe trouve la réponse elle-même. Pas dans un groupe WhatsApp à cinquante personnes. Pas par un coup de fil le dimanche soir.</p>
+
+          <div class="av-rij">
+            <div class="av-kamer"><b>101</b><span class="type">Double</span><i class="vuil" aria-label="Sale"></i></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking" style="left:calc(var(--kamerkol) + var(--k) * 1 + 3px); width:calc(var(--k) * 3 - 6px)">Lucas Hermans<span class="av-status">Arrivé</span></span>
+            <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 4 + 3px); width:calc(var(--k) * 2 - 6px)">Maria Wouters</span>
           </div>
-          <div class="sc-pane" data-pane="rudy" hidden>
-            <div class="pijler-num">Rudy</div>
-            <h3>Bosse la nuit. Bosse le dimanche. Bosse <em>pour que dalle.</em></h3>
-            <p>Un assistant IA qui connaît le PMS <em>et</em> le manuel. Demande-lui de retrouver une réservation, de résumer une procédure, de répondre à un client en allemand, de sortir un rapport. Et il ne demande jamais d'augmentation.</p>
+
+          <div class="av-rij">
+            <div class="av-kamer"><b>102</b><span class="type">Double</span><i class="vuil" aria-label="Sale"></i></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 1 + 3px); width:calc(var(--k) * 2 - 6px)">Emily Van Damme<span class="av-status">Arrivée</span></span>
+            <span class="av-boeking terra" style="left:calc(var(--kamerkol) + var(--k) * 3 + 3px); width:calc(var(--k) * 1 - 6px)">Pieter Peeters</span>
           </div>
-        </div>
-        <div class="sc-stage">
-          <!-- captures d'écran pour l'instant ; plus tard de courtes vidéos : <video autoplay muted loop playsinline> -->
-          <img class="sc-media active" data-media="pms" src="../img/shot-agenda.png" alt="L'agenda de rumo : toutes les réservations sur un seul écran" loading="lazy">
-          <img class="sc-media" data-media="handboek" src="../img/shot-handboek.png" alt="Le manuel de rumo : des catégories cherchables pour ton équipe" loading="lazy">
-          <img class="sc-media" data-media="rudy" src="../img/shot-rudy.png" alt="Rudy, l'assistant IA de rumo, dans le chat" loading="lazy">
+
+          <div class="av-rij">
+            <div class="av-kamer"><b>103</b><span class="type">Twin</span></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking grijs" style="left:calc(var(--kamerkol) + var(--k) * 0 + 3px); width:calc(var(--k) * 2 - 6px)">Jan Dubois</span>
+            <span class="av-gat" style="left:calc(var(--kamerkol) + var(--k) * 3 + 3px); width:calc(var(--k) * 2 - 6px)"></span>
+            <span class="av-boeking terra sleept" style="left:calc(var(--kamerkol) + var(--k) * 3 + 3px); width:calc(var(--k) * 2 - 6px)">Marie Sato</span>
+          </div>
+
+          <div class="av-rij">
+            <div class="av-kamer"><b>104</b><span class="type">Twin</span></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 5 + 3px); width:calc(var(--k) * 2 - 6px)">Victor De Smedt</span>
+          </div>
+
+          <div class="av-rij">
+            <div class="av-kamer"><b>105</b><span class="type">Suite</span><i class="vuil" aria-label="Sale"></i></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking" style="left:calc(var(--kamerkol) + var(--k) * 0 + 3px); width:calc(var(--k) * 2 - 6px)">Liam Claes<span class="av-status">Parti</span></span>
+          </div>
+
+          <div class="av-rij">
+            <div class="av-kamer"><b>106</b><span class="type">Suite</span></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 2 + 3px); width:calc(var(--k) * 3 - 6px)">Sarah Jacobs</span>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ HMM OK ══════════════════ -->
-<section class="wie" id="wie">
-  <div class="wrap">
-    <div class="wie-grid">
-      <div class="fade-up">
-        <span class="kicker">Qui on est</span>
-        <h2>Hmm ok, mais qui sont les gens derrière <em>rumo</em> ?</h2>
-        <p>On est hôteliers nous-mêmes. On gère nos propres hôtels en Belgique. On sait ce que ça fait quand ton système ne fonctionne pas comme dans ta tête. Un PMS où une action simple, que tu répètes jour après jour, prend bien trop de temps. On connaît le défi de piloter une équipe en n'étant qu'à moitié sûr que tout le monde sait quoi, quand et comment.</p>
-        <p>Au final, ce n'est pas juste une question du confort de tes <strong>clients</strong>, mais aussi du <strong>tien et de celui de ton équipe</strong>. Alors on a construit ce qu'on cherchait depuis des années.</p>
-        <a href="a-propos.html" class="btn-paper">En savoir plus sur nous <span>→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════ PERSONAS ══════════════════ -->
-<section class="personas" id="voor-wie">
-  <div class="wrap">
-    <div class="personas-head fade-up">
-      <span class="kicker">Pour qui</span>
-      <h2>Tu te <em>reconnais ?</em></h2>
-      <p class="lead" style="margin-top:1.25rem;">rumo, c'est pour les hôtels indépendants. Pas les chaînes. Pas les resorts à Dubaï. Juste des hôtels comme le tien.</p>
-    </div>
-    <div class="persona-grid">
-      <article class="persona fade-up">
-        <div class="persona-img" style="background-image:url('../img/persona-resort.jpg')"></div>
-        <div class="persona-body">
-          <div class="persona-meta"><span>Hôtel</span><span class="count">51 chambres</span></div>
-          <h4>Hotel Chamade</h4>
-          <p>Quatre réceptionnistes fixes, appuyés par des flexis et des étudiants. Ils cherchaient un PMS que tout le monde pige tout de suite, pour que la formation ne devienne pas leur deuxième job.</p>
-          <div class="persona-quote">« Rudy répond aux questions qui atterrissaient avant sur mon bureau. »</div>
-        </div>
-      </article>
-
-      <article class="persona fade-up" style="transition-delay:0.1s">
-        <div class="persona-img" style="background-image:url('../img/persona-carlton.jpg')"></div>
-        <div class="persona-body">
-          <div class="persona-meta"><span>Hôtel de ville</span><span class="count">22 chambres</span></div>
-          <h4>Carlton Hotel</h4>
-          <p>Hôtel de ville à Gand avec deux réceptionnistes. Il leur faut la facturation Peppol, les profils clients et les rapports. Mais pas le prix d'un système enterprise.</p>
-          <div class="persona-quote">« Enfin un système qui fait ce dont j'ai besoin. Ni plus, ni moins. »</div>
-        </div>
-      </article>
-
-      <article class="persona fade-up" style="transition-delay:0.2s">
-        <div class="persona-img" style="background-image:url('../img/persona-georgie.jpg');background-size:140%;background-position:center 45%"></div>
-        <div class="persona-body">
-          <div class="persona-meta"><span>B&amp;B</span><span class="count">5 chambres</span></div>
-          <h4>Georgie B&amp;B</h4>
-          <p>Maison d'hôtes dans un hôtel particulier à Gand. Les propriétaires n'habitent pas sur place et font tourner le tout à distance grâce à l'automatisation.</p>
-          <div class="persona-quote">« On n'habite pas dans le B&B. Sans rumo, ça ne serait pas possible. »</div>
-        </div>
-      </article>
     </div>
   </div>
 </section>
@@ -1289,7 +1485,7 @@ footer {
             <polyline points="14 2 14 8 20 8"/>
           </svg>
         </div>
-        <p><strong>Facturation Peppol</strong>Téléchargement PDF et UBL 2.1 inclus. L'envoi via le réseau Peppol est une option payante.</p>
+        <p><strong>Facturation électronique Peppol</strong>Le téléchargement en PDF ou UBL 2.1 est inclus. L'envoi via le réseau Peppol est un module.</p>
       </div>
       <div class="trust-item fade-up" style="transition-delay:0.1s">
         <div class="ic">
@@ -1297,67 +1493,73 @@ footer {
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
           </svg>
         </div>
-        <p><strong>Produit belge</strong>Construit à Gand. Support en FR, NL et EN.</p>
+        <p><strong>Produit belge</strong>Conçu à Gand. Assistance en néerlandais, français et anglais.</p>
       </div>
-      <div class="trust-item fade-up" style="transition-delay:0.2s">
+      <a class="trust-item fade-up" href="../veiligheid.html" style="transition-delay:0.2s">
         <div class="ic">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <rect x="3" y="11" width="18" height="11" rx="2"/>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
         </div>
-        <p><strong>RGPD &amp; hébergement UE</strong>Tes données restent en Europe. Sans compromis.</p>
-      </div>
+        <p><strong>RGPD et hébergement européen<span class="arr">→</span></strong>Les données restent en Europe, et vous voyez vous-même qui peut accéder aux données de vos clients.</p>
+      </a>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════ PRIX ══════════════════ -->
-<section class="prijs">
-  <div class="prijs-inner fade-up">
-    <span class="kicker">Et euh, ça coûte combien ?</span>
-    <div class="prijs-bedrag">À partir de <em>12 €</em></div>
-    <div class="prijs-unit">par chambre · par mois</div>
-    <p class="prijs-copy">PMS, channel manager, moteur de réservation, Rudy et le manuel. Pour un seul prix.</p>
-    <ul class="prijs-checklist">
-      <li>Résiliable au mois</li>
-      <li>Pas de frais d'installation</li>
-      <li>Pas de contrat annuel</li>
-      <li>Pas de discours commercial</li>
-    </ul>
-    <a href="tarifs.html" class="btn-ink">Voir les tarifs <span>→</span></a>
+<!-- ══════════════════ HMM OKÉ ══════════════════ -->
+<section class="wie" id="wie">
+  <div class="wrap">
+    <div class="wie-grid">
+      <div class="fade-up">
+        <span class="kicker">Qui nous sommes</span>
+        <h2>Bon, mais qui sont ces gens de <em>rumo</em>&nbsp;?</h2>
+        <p>Nous sommes nous-mêmes hôteliers. Nous exploitons nos propres hôtels en Belgique. Nous savons ce que c'est quand le système ne fonctionne pas comme votre tête. Un PMS où une simple manipulation, répétée jour après jour, coûte beaucoup trop de temps. Nous connaissons la difficulté de diriger une équipe sans être vraiment sûr que chacun sait comment, quand et quoi.</p>
+        <p>Au fond, il ne s'agit pas seulement du confort de vos <strong>clients</strong>, mais aussi du vôtre et de celui de <strong>votre équipe</strong>. Nous avons donc construit ce que nous cherchions depuis des années.</p>
+        <a href="a-propos.html" class="btn-paper">En savoir plus sur nous <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ OVERSTAP ══════════════════ -->
+<section class="overstap">
+  <div class="overstap-inner fade-up">
+    <div>
+      <span class="kicker">Oui, mais mon système actuel&nbsp;?</span>
+      <h2>Vous découvrez rumo et le configurez pendant que votre ancien système <em>continue de tourner.</em></h2>
+      <p class="overstap-copy">Votre ancien PMS continue de fonctionner pendant que vous configurez rumo, et vous ne basculez Booking.com que lorsque tout est correct. Tout votre historique et vos réservations à venir sont importés entre-temps.</p>
+      <a href="../overstappen.html" class="btn-ink">Comment se passe la migration <span>&rarr;</span></a>
+    </div>
+    <div>
+      <ul class="overstap-punten">
+        <li><strong>Votre ancien système continue de tourner</strong> pendant que vous installez rumo. Vous ne coupez rien pour commencer.</li>
+        <li><strong>Votre historique suit.</strong> Pas seulement les réservations à venir, mais aussi qui a dormi chez vous ces dernières années et ce qui a été payé.</li>
+        <li><strong>Votre annonce Booking.com déménage,</strong> elle n'est pas reconstruite. Votre page, vos avis et votre historique restent.</li>
+        <li><strong>Ça ne coûte rien.</strong> Pas de frais d'installation, pas de forfait de migration, même avec beaucoup de chambres.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <!-- ══════════════════ FAQ ══════════════════ -->
 <section class="faq">
   <div class="faq-inner fade-up">
-    <span class="kicker">Une question, un doute ?</span>
-    <h2>Les six questions<br>qu'on nous pose <em>souvent</em>.</h2>
+    <span class="kicker">Une question, un doute&nbsp;?</span>
+    <h2>Et puis <em>trois</em><br>choses que vous vous demandez.</h2>
     <div class="faq-list">
       <details>
-        <summary>Puis-je migrer mes réservations Booking.com ?</summary>
-        <p>Oui. Booking.com, Airbnb, Expedia et la plupart des autres OTAs peuvent être importés directement. Avec les données clients et le statut de paiement.</p>
+        <summary>Dois-je installer quelque chose&nbsp;?</summary>
+        <p>Non. Ouvrez votre navigateur et c'est parti. Aucune installation, aucun service informatique. Fonctionne sur ordinateur, tablette et téléphone. Tant que votre navigateur ne date pas de 2003, tout va bien.</p>
       </details>
       <details>
-        <summary>rumo marche-t-il sur mobile et tablette ?</summary>
-        <p>Complètement. rumo est une webapp qui tourne partout : ordinateur, tablette, téléphone. Pas besoin d'app.</p>
+        <summary>Je n'ai que 6 chambres. rumo n'est-il pas surdimensionné&nbsp;?</summary>
+        <p>Au contraire. rumo est conçu précisément pour les hôtels de 5 à 55 chambres. Ce sont les grands systèmes qui risquent d'être surdimensionnés. rumo vous donne ce dont vous avez besoin, sans tout ce dont vous n'avez <em>pas</em> besoin.</p>
       </details>
       <details>
-        <summary>Combien de temps prend l'implémentation ?</summary>
-        <p>La plupart des hôtels sont en route en moins d'une semaine. Les petits hôtels souvent le jour même.</p>
-      </details>
-      <details>
-        <summary>Et si je suis encore engagé avec mon PMS actuel ?</summary>
-        <p>Aucun souci. On planifie la bascule à ton rythme. Beaucoup d'hôtels commencent à tester pendant que l'ancien contrat se termine.</p>
-      </details>
-      <details>
-        <summary>Peppol est-il inclus ?</summary>
-        <p>Peppol est un upgrade dans rumo. Avec l'upgrade, tes factures partent automatiquement via le réseau Peppol (UBL 2.1). Sans l'upgrade, tu crées simplement tes factures dans rumo et tu les télécharges en PDF ou en UBL.</p>
-      </details>
-      <details>
-        <summary>Puis-je résilier au mois ?</summary>
-        <p>Tu démarres avec une première période de six mois. Ensuite, c'est au mois, résiliable quand tu veux. Pas de petits caractères, pas de préavis.</p>
+        <summary>rumo fonctionne-t-il seulement pour les hôtels, ou aussi pour les chambres d'hôtes&nbsp;?</summary>
+        <p>Les deux. Que vous ayez une maison d'hôtes de 6 chambres ou un hôtel de charme de 35 chambres, rumo suit. L'interface est pensée pour qu'un propriétaire qui fait tout lui-même s'y retrouve sans peine.</p>
       </details>
     </div>
     <a href="faq.html" class="faq-link">Toutes les questions fréquentes →</a>
@@ -1367,11 +1569,11 @@ footer {
 <!-- ══════════════════ FINAL ══════════════════ -->
 <section class="final" id="demo">
   <div class="final-inner fade-up">
-    <span class="kicker">Pas trop bavard ?</span>
-    <h2>Pas de démo téléphonique.<br>Juste <em>14 jours</em> pour jouer.</h2>
-    <p>Pas de carte de crédit, pas d'engagement, pas d'« account manager » qui t'appelle chaque semaine. Un environnement de démo rempli de fausses réservations. Ça ne te plaît pas ? Ça disparaît tout doucement. No hard feelings.</p>
-    <a href="#" class="btn-paper">Essaie 14 jours gratuitement <span>→</span></a>
-    <p class="final-fine">Pas de carte de crédit · Résiliable au mois après 6 mois · Migration des données gratuite</p>
+    <span class="kicker">Pas très bavard&nbsp;?</span>
+    <h2>Pas de démo au téléphone.<br>Juste <em>14 jours</em> pour essayer.</h2>
+    <p>Pas de carte de crédit, pas d'engagement, pas d'«&nbsp;account manager&nbsp;» qui vous appelle chaque semaine. Vous laissez vos coordonnées, nous préparons votre environnement rempli de fausses réservations et nous vous envoyons les clés. Généralement dans la journée. Ça ne vous convient pas&nbsp;? Ça disparaît sans bruit. Sans rancune.</p>
+    <a href="#demo" class="btn-paper">Essayez 14 jours gratuitement <span>→</span></a>
+    <p class="final-fine">Sans carte de crédit · Résiliable au mois après 6 mois · <a href="../overstappen.html">Migration des données offerte</a></p>
   </div>
 </section>
 
@@ -1380,43 +1582,48 @@ footer {
   <div class="footer-grid">
     <div>
       <div class="footer-brand">rumo<em>.</em></div>
-      <p class="footer-tagline">Logiciel hôtelier pour hôteliers indépendants. Sans prise de tête.</p>
+      <p class="footer-tagline">Un logiciel hôtelier pour les indépendants. Sans complications.</p>
     </div>
     <div>
       <div class="footer-label">Produit</div>
       <ul class="footer-links">
-        <li><a href="features.html#dashboard">Dashboard</a></li>
+        <li><a href="features.html#dashboard">Tableau de bord</a></li>
         <li><a href="features.html#reservaties">Réservations</a></li>
         <li><a href="features.html#booking-engine">Moteur de réservation</a></li>
         <li><a href="features.html#channel-manager">Channel manager</a></li>
-        <li><a href="features.html#facturatie">Facturation &amp; Peppol</a></li>
+        <li><a href="features.html#facturatie">Facturation et Peppol</a></li>
         <li><a href="features.html#housekeeping">Housekeeping</a></li>
         <li><a href="features.html#rapporten">Rapports</a></li>
+        <li><a href="../veiligheid.html">Sécurité</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-label">Rumo</div>
       <ul class="footer-links">
-        <li><a href="tarifs.html">Et euh, ça coûte combien ?</a></li>
+        <li><a href="ce-qui-nous-anime.html">Ce qui nous anime</a></li>
+        <li><a href="../uitgelegd/index.html">Expliqué (en néerlandais)</a></li>
+        <li><a href="../overstappen.html">Migration (en néerlandais)</a></li>
+        <li><a href="tarifs.html">Et euh, ça coûte combien&nbsp;?</a></li>
+        <li><a href="../kb.html">Centre d'aide</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="https://wa.me/32485382828">WhatsApp</a></li>
-        <li><a href="mailto:hello@rumo.eu">Envoie-nous un mail</a></li>
-        <li><a href="a-propos.html">Qui est derrière rumo ?</a></li>
+        <li><a href="mailto:hello@rumo.eu">Envoyez-nous un e-mail</a></li>
+        <li><a href="a-propos.html">Qui sont les gens de rumo&nbsp;?</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-label">Intégrations</div>
       <ul class="footer-links">
-        <li><a href="integrations.html">Booking.com</a></li>
-        <li><a href="integrations.html">Airbnb</a></li>
-        <li><a href="integrations.html">Exact Online</a></li>
-        <li><a href="integrations.html">Rumo Pay</a></li>
-        <li><a href="integrations.html">Peppol</a></li>
+        <li><a href="features.html#integraties">Booking.com</a></li>
+        <li><a href="features.html#integraties">Airbnb</a></li>
+        <li><a href="features.html#integraties">Exact Online</a></li>
+        <li><a href="features.html#integraties">Rumo Pay</a></li>
+        <li><a href="features.html#integraties">Peppol</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Rumo · Gand, BE</span>
+    <span>© 2026 Rumo · Gent, BE</span>
     <span><a href="../privacy.html">Confidentialité</a> · <a href="../cookies.html">Cookies</a></span>
   </div>
 </footer>
@@ -1429,18 +1636,18 @@ const hero = document.querySelector('.hero');
 function updateNav() {
   const rect = hero.getBoundingClientRect();
   // Hero nog niet zichtbaar (bv. achter het wachtwoordscherm): niets beslissen,
-  // anders blijft de nav in de verkeerde stand hangen tot je scrollt.
+  // anders blijft de nav in de verkeerde stand hangen tot je défilert.
   if (rect.height === 0) return;
   const heroBottom = rect.bottom;
   if (heroBottom > 60) {
     nav.classList.add('on-video');
-    nav.classList.remove('scrolled');
+    nav.classList.remove('défilered');
   } else {
     nav.classList.remove('on-video');
-    nav.classList.add('scrolled');
+    nav.classList.add('défilered');
   }
 }
-window.addEventListener('scroll', updateNav, { passive: true });
+window.addEventListener('défiler', updateNav, { passive: true });
 window.addEventListener('resize', updateNav, { passive: true });
 window.addEventListener('load', updateNav);
 updateNav();
@@ -1453,22 +1660,11 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+// threshold 0, niet 0.1: een blok hoger dan tien keer het scherm haalde die
+// drempel nooit, en bleef onzichtbaar op een telefoon.
+}, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-// Showcase tabs — switch copy + media together
-document.querySelectorAll('.sc-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    const key = tab.dataset.tab;
-    document.querySelectorAll('.sc-tab').forEach(t => {
-      const on = t === tab;
-      t.classList.toggle('active', on);
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-    });
-    document.querySelectorAll('.sc-pane').forEach(p => { p.hidden = p.dataset.pane !== key; });
-    document.querySelectorAll('.sc-media').forEach(m => m.classList.toggle('active', m.dataset.media === key));
-  });
-});
+document.documentElement.dataset.fadeReady = '1';
 </script>
 
 </body>

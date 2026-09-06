@@ -1,0 +1,178 @@
+{
+ "<li><a href=\"features.html\" class=\"active\">Wat doen we?</a></li>": {
+  "en": "<li><a href=\"features.html\" class=\"active\">What do we do?</a></li>",
+  "fr": "<li><a href=\"features.html\" class=\"active\">Que faisons-nous&nbsp;?</a></li>"
+ },
+ "<li><a href=\"wat-drijft-ons.html\">Wat drijft ons?</a></li>": {
+  "en": "<li><a href=\"what-drives-us.html\">What drives us?</a></li>",
+  "fr": "<li><a href=\"ce-qui-nous-anime.html\">Ce qui nous anime</a></li>"
+ },
+ "<li><a href=\"prijzen.html\">En euh, wat kost dat?</a></li>": {
+  "en": "<li><a href=\"pricing.html\">And erm, what does it cost?</a></li>",
+  "fr": "<li><a href=\"tarifs.html\">Et euh, ça coûte combien&nbsp;?</a></li>"
+ },
+ "<li><a href=\"over-ons.html\">Over ons</a></li>": {
+  "en": "<li><a href=\"about.html\">About us</a></li>",
+  "fr": "<li><a href=\"a-propos.html\">À propos</a></li>"
+ },
+ "<li><a href=\"index.html#demo\" class=\"nav-cta\">Probeer gratis →</a></li>": {
+  "en": "<li><a href=\"index.html#demo\" class=\"nav-cta\">Try it free →</a></li>",
+  "fr": "<li><a href=\"index.html#demo\" class=\"nav-cta\">Essai gratuit →</a></li>"
+ },
+ "Probeer 14 dagen gratis": {
+  "en": "Try it free for 14 days",
+  "fr": "Essayez 14 jours gratuitement"
+ },
+ "Geen credit card · Na 6 maanden maandelijks opzegbaar ·": {
+  "en": "No credit card · Cancellable monthly after 6 months ·",
+  "fr": "Sans carte de crédit · Résiliable au mois après 6 mois ·"
+ },
+ "Gratis datamigratie": {
+  "en": "Free data migration",
+  "fr": "Migration des données offerte"
+ },
+ "<p class=\"footer-tagline\">Hotelsoftware voor onafhankelijke hoteliers. Zonder gedoe.</p>": {
+  "en": "<p class=\"footer-tagline\">Hotel software for independent hoteliers. Without the fuss.</p>",
+  "fr": "<p class=\"footer-tagline\">Un logiciel hôtelier pour les indépendants. Sans complications.</p>"
+ },
+ "<div class=\"footer-label\">Product</div>": {
+  "en": "<div class=\"footer-label\">Product</div>",
+  "fr": "<div class=\"footer-label\">Produit</div>"
+ },
+ "<li><a href=\"features.html\">Features</a></li>": {
+  "en": "<li><a href=\"features.html\">Features</a></li>",
+  "fr": "<li><a href=\"features.html\">Fonctionnalités</a></li>"
+ },
+ "<li><a href=\"features.html#integraties\">Integraties</a></li>": {
+  "en": "<li><a href=\"features.html#integraties\">Integrations</a></li>",
+  "fr": "<li><a href=\"features.html#integraties\">Intégrations</a></li>"
+ },
+ "<li><a href=\"veiligheid.html\">Veiligheid</a></li>": {
+  "en": "<li><a href=\"../veiligheid.html\">Security</a></li>",
+  "fr": "<li><a href=\"../veiligheid.html\">Sécurité</a></li>"
+ },
+ "<li><a href=\"kb.html\">Helpdesk</a></li>": {
+  "en": "<li><a href=\"../kb.html\">Help centre</a></li>",
+  "fr": "<li><a href=\"../kb.html\">Centre d'aide</a></li>"
+ },
+ "<div class=\"footer-label\">Rumo</div>": {
+  "en": "<div class=\"footer-label\">Rumo</div>",
+  "fr": "<div class=\"footer-label\">Rumo</div>"
+ },
+ "<li><a href=\"uitgelegd/index.html\">Uitgelegd</a></li>": {
+  "en": "<li><a href=\"../uitgelegd/index.html\">Explained (in Dutch)</a></li>",
+  "fr": "<li><a href=\"../uitgelegd/index.html\">Expliqué (en néerlandais)</a></li>"
+ },
+ "<li><a href=\"overstappen.html\">Overstappen</a></li>": {
+  "en": "<li><a href=\"../overstappen.html\">Switching over (in Dutch)</a></li>",
+  "fr": "<li><a href=\"../overstappen.html\">Migration (en néerlandais)</a></li>"
+ },
+ "<li><a href=\"mailto:hello@rumo.eu\">Stuur ons een mailtje</a></li>": {
+  "en": "<li><a href=\"mailto:hello@rumo.eu\">Send us an email</a></li>",
+  "fr": "<li><a href=\"mailto:hello@rumo.eu\">Envoyez-nous un e-mail</a></li>"
+ },
+ "<div class=\"footer-label\">Integraties</div>": {
+  "en": "<div class=\"footer-label\">Integrations</div>",
+  "fr": "<div class=\"footer-label\">Intégrations</div>"
+ },
+ "<li><a href=\"features.html#integraties\">Boekingskanalen</a></li>": {
+  "en": "<li><a href=\"features.html#integraties\">Booking channels</a></li>",
+  "fr": "<li><a href=\"features.html#integraties\">Canaux de réservation</a></li>"
+ },
+ "<li><a href=\"features.html#integraties\">Boekhouding</a></li>": {
+  "en": "<li><a href=\"features.html#integraties\">Accounting</a></li>",
+  "fr": "<li><a href=\"features.html#integraties\">Comptabilité</a></li>"
+ },
+ "<li><a href=\"features.html#integraties\">Sleutelbeheer</a></li>": {
+  "en": "<li><a href=\"features.html#integraties\">Key management</a></li>",
+  "fr": "<li><a href=\"features.html#integraties\">Gestion des clés</a></li>"
+ },
+ "<a href=\"privacy.html\">Privacy</a>": {
+  "en": "<a href=\"../privacy.html\">Privacy</a>",
+  "fr": "<a href=\"../privacy.html\">Confidentialité</a>"
+ },
+ "<a href=\"cookies.html\">Cookies</a>": {
+  "en": "<a href=\"../cookies.html\">Cookies</a>",
+  "fr": "<a href=\"../cookies.html\">Cookies</a>"
+ },
+ "<li><a href=\"features.html#integraties\">Revenue management</a></li>": {
+  "en": "<li><a href=\"features.html#integraties\">Revenue management</a></li>",
+  "fr": "<li><a href=\"features.html#integraties\">Revenue management</a></li>"
+ },
+ "<li><a href=\"features.html\">Wat doen we?</a></li>": {
+  "en": "<li><a href=\"features.html\">What do we do?</a></li>",
+  "fr": "<li><a href=\"features.html\">Que faisons-nous&nbsp;?</a></li>"
+ },
+ "Hotelsoftware voor onafhankelijke hoteliers. Zonder gedoe.": {
+  "en": "Hotel software for independent hoteliers. Without the fuss.",
+  "fr": "Un logiciel hôtelier pour les indépendants. Sans complications."
+ },
+ ">Dashboard</a>": {
+  "en": ">Dashboard</a>",
+  "fr": ">Tableau de bord</a>"
+ },
+ ">Reservaties</a>": {
+  "en": ">Reservations</a>",
+  "fr": ">Réservations</a>"
+ },
+ ">Booking engine</a>": {
+  "en": ">Booking engine</a>",
+  "fr": ">Moteur de réservation</a>"
+ },
+ ">Channel manager</a>": {
+  "en": ">Channel manager</a>",
+  "fr": ">Channel manager</a>"
+ },
+ ">Facturatie &amp; Peppol</a>": {
+  "en": ">Invoicing &amp; Peppol</a>",
+  "fr": ">Facturation et Peppol</a>"
+ },
+ ">Housekeeping</a>": {
+  "en": ">Housekeeping</a>",
+  "fr": ">Housekeeping</a>"
+ },
+ ">Rapporten</a>": {
+  "en": ">Reports</a>",
+  "fr": ">Rapports</a>"
+ },
+ ">Veiligheid</a>": {
+  "en": ">Security</a>",
+  "fr": ">Sécurité</a>"
+ },
+ ">Wat drijft ons?</a>": {
+  "en": ">What drives us?</a>",
+  "fr": ">Ce qui nous anime</a>"
+ },
+ ">Uitgelegd</a>": {
+  "en": ">Explained (in Dutch)</a>",
+  "fr": ">Expliqué (en néerlandais)</a>"
+ },
+ ">Overstappen</a>": {
+  "en": ">Switching over (in Dutch)</a>",
+  "fr": ">Migration (en néerlandais)</a>"
+ },
+ ">En euh, wat kost dat?</a>": {
+  "en": ">And erm, what does it cost?</a>",
+  "fr": ">Et euh, ça coûte combien&nbsp;?</a>"
+ },
+ ">Helpdesk</a>": {
+  "en": ">Help centre</a>",
+  "fr": ">Centre d'aide</a>"
+ },
+ ">Stuur ons een mailtje</a>": {
+  "en": ">Send us an email</a>",
+  "fr": ">Envoyez-nous un e-mail</a>"
+ },
+ ">Wie zijn die van rumo?</a>": {
+  "en": ">Who are the rumo people?</a>",
+  "fr": ">Qui sont les gens de rumo&nbsp;?</a>"
+ },
+ ">Privacy</a>": {
+  "en": ">Privacy</a>",
+  "fr": ">Confidentialité</a>"
+ },
+ "<li><a href=\"#demo\" class=\"nav-cta\">Probeer gratis →</a></li>": {
+  "en": "<li><a href=\"#demo\" class=\"nav-cta\">Try it free →</a></li>",
+  "fr": "<li><a href=\"#demo\" class=\"nav-cta\">Essai gratuit →</a></li>"
+ }
+}

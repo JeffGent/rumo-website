@@ -1,0 +1,138 @@
+{
+ "<title>Wat drijft ons? · rumo</title>": {
+  "en": "<title>What drives us? · rumo</title>",
+  "fr": "<title>Ce qui nous anime · rumo</title>"
+ },
+ "<span class=\"kicker\">Wat drijft ons</span>": {
+  "en": "<span class=\"kicker\">What drives us</span>",
+  "fr": "<span class=\"kicker\">Ce qui nous anime</span>"
+ },
+ "<h1>We bouwen dit omdat we het <em>zelf</em> elke week tegenkomen.</h1>": {
+  "en": "<h1>We build this because we run into it <em>ourselves</em>, every week.</h1>",
+  "fr": "<h1>Nous construisons ceci parce que nous y sommes confrontés <em>nous-mêmes</em>, chaque semaine.</h1>"
+ },
+ "<p class=\"lead\">rumo wordt gemaakt door een hotelier en een engineer. Die hotelier baat samen met zijn broer twee hotels uit in Gent. Alles hieronder is daar eerst een ergernis geweest, en pas daarna een stuk software.</p>": {
+  "en": "<p class=\"lead\">rumo is built by a hotelier and an engineer. That hotelier runs two hotels in Ghent together with his brother. Everything below was an irritation there first, and a piece of software only afterwards.</p>",
+  "fr": "<p class=\"lead\">rumo est construit par un hôtelier et un ingénieur. Cet hôtelier exploite deux hôtels à Gand avec son frère. Tout ce qui suit y a d'abord été un agacement, et seulement ensuite un logiciel.</p>"
+ },
+ "Hotel Chamade &amp; Carlton": {
+  "en": "Hotel Chamade &amp; Carlton",
+  "fr": "Hôtels Chamade et Carlton"
+ },
+ "Gent, 73 kamers": {
+  "en": "Ghent, 73 rooms",
+  "fr": "Gand, 73 chambres"
+ },
+ "Geen advies over hoe jij je hotel runt": {
+  "en": "No advice on how to run your hotel",
+  "fr": "Pas de conseils sur la façon de gérer votre hôtel"
+ },
+ "Wel de dingen die blijven terugkomen": {
+  "en": "Just the things that keep coming back",
+  "fr": "Seulement ce qui revient sans cesse"
+ },
+ "<h2>Vier dingen die <em>blijven</em> terugkomen.</h2>": {
+  "en": "<h2>Four things that <em>keep</em> coming back.</h2>",
+  "fr": "<h2>Quatre choses qui <em>reviennent</em> sans cesse.</h2>"
+ },
+ "Niet de grote strategische vragen. Gewoon de dingen die elke week een half uur kosten en waarvan je denkt: dit zou toch niet meer mogen.": {
+  "en": "Not the big strategic questions. Just the things that cost you half an hour every week and make you think: surely this should not still be a thing.",
+  "fr": "Pas les grandes questions stratégiques. Simplement les choses qui coûtent une demi-heure chaque semaine et qui vous font penser&nbsp;: ça ne devrait plus exister."
+ },
+ "\"Wie heeft die kamer nu geblokkeerd, en waarom?\"": {
+  "en": "\"Who blocked that room, and why?\"",
+  "fr": "«&nbsp;Qui a bloqué cette chambre, et pourquoi&nbsp;?&nbsp;»"
+ },
+ "Wat we eraan doen": {
+  "en": "What we do about it",
+  "fr": "Ce que nous y faisons"
+ },
+ "Elke wijziging heeft een naam en een tijdstip. Niet om iemand te betrappen, maar zodat de vraag na één klik beantwoord is in plaats van na drie telefoontjes.": {
+  "en": "Every change carries a name and a time. Not to catch anyone out, but so the question is answered after one click instead of after three phone calls.",
+  "fr": "Chaque modification porte un nom et une heure. Pas pour prendre quelqu'un en faute, mais pour que la question trouve sa réponse en un clic plutôt qu'après trois appels."
+ },
+ "Een gast staat aan de balie en de receptioniste weet het antwoord niet, dus belt ze jou.": {
+  "en": "A guest is at the desk, the receptionist does not know the answer, so she calls you.",
+  "fr": "Un client est à la réception, la réceptionniste ne connaît pas la réponse, alors elle vous appelle."
+ },
+ "Het is de derde van de maand en er moet weer een aangifte de deur uit waarvan niemand precies weet wat erin hoort.": {
+  "en": "It is the third of the month and another declaration has to go out that nobody quite knows the contents of.",
+  "fr": "On est le trois du mois et une déclaration doit encore partir, dont personne ne sait exactement ce qu'elle doit contenir."
+ },
+ "De logiesaangifte, de stadstaks en de politieregistratie worden opgebouwd uit wat je gasten al ingevuld hebben. Indienen blijft jouw handtekening; het tellen niet.": {
+  "en": "The accommodation statistics, the city tax and the police registration are built from what your guests already filled in. Filing stays your signature; the counting does not.",
+  "fr": "La statistique d'hébergement, la taxe de séjour et l'enregistrement police se construisent à partir de ce que vos clients ont déjà rempli. Le dépôt reste votre signature&nbsp;; le comptage, non."
+ },
+ "Je ziet pas dat een keuring vervallen is op het moment dat iemand ernaar vraagt.": {
+  "en": "You only notice an inspection has expired at the moment somebody asks for it.",
+  "fr": "Vous ne remarquez qu'un contrôle est périmé qu'au moment où quelqu'un le demande."
+ },
+ "Je installaties, attesten en keuringsdata staan bij elkaar, met een waarschuwing dertig dagen op voorhand. Genoeg tijd om nog een afspraak te maken.": {
+  "en": "Your installations, certificates and inspection dates sit together, with a warning thirty days ahead. Enough time to still book an appointment.",
+  "fr": "Vos installations, attestations et dates de contrôle sont réunies, avec un avertissement trente jours à l'avance. De quoi encore prendre rendez-vous."
+ },
+ "<h2>En wat we <em>niet</em> komen doen.</h2>": {
+  "en": "<h2>And what we are <em>not</em> here to do.</h2>",
+  "fr": "<h2>Et ce que nous ne venons <em>pas</em> faire.</h2>"
+ },
+ "Want er wordt in deze sector nogal wat beloofd, en het meeste daarvan gaat over jouw vak in plaats van over onze software.": {
+  "en": "Because a fair amount gets promised in this trade, and most of it is about your profession rather than about our software.",
+  "fr": "Parce qu'on promet beaucoup dans ce secteur, et que l'essentiel porte sur votre métier plutôt que sur notre logiciel."
+ },
+ "We komen je niet vertellen hoe je een hotel runt.": {
+  "en": "We are not here to tell you how to run a hotel.",
+  "fr": "Nous ne venons pas vous dire comment gérer un hôtel."
+ },
+ "Waarom niet": {
+  "en": "Why not",
+  "fr": "Pourquoi pas"
+ },
+ "Jij doet dat waarschijnlijk langer dan wij. Wat wij kennen is de administratieve laag eromheen: aangiftes, keuringen, commissies, koppelingen. Daar hebben we ons in vastgebeten omdat we het zelf moesten uitzoeken.": {
+  "en": "You have probably been doing that longer than we have. What we know is the administrative layer around it: declarations, inspections, commissions, connections. We dug into that because we had to work it out ourselves.",
+  "fr": "Vous le faites probablement depuis plus longtemps que nous. Ce que nous connaissons, c'est la couche administrative autour&nbsp;: déclarations, contrôles, commissions, connexions. Nous nous y sommes accrochés parce qu'il a fallu la démêler nous-mêmes."
+ },
+ "We hebben geen antwoord op alles.": {
+  "en": "We do not have an answer to everything.",
+  "fr": "Nous n'avons pas réponse à tout."
+ },
+ "Sommige dingen doen wij anders dan jij, en soms heb jij gelijk. Waar rumo iets niet doet, zeggen we dat liever meteen dan dat je het na twee weken zelf ontdekt.": {
+  "en": "Some things we do differently than you do, and sometimes you are right. Where rumo does not do something, we would rather say so straight away than have you find out two weeks in.",
+  "fr": "Nous faisons certaines choses autrement que vous, et parfois c'est vous qui avez raison. Là où rumo ne fait pas quelque chose, nous préférons le dire tout de suite plutôt que vous le laissiez découvrir après deux semaines."
+ },
+ "We vinden het wiel niet opnieuw uit.": {
+  "en": "We are not reinventing the wheel.",
+  "fr": "Nous ne réinventons pas la roue."
+ },
+ "Een kalender, een factuur en een channel manager bestaan al dertig jaar. Het verschil zit niet in wat het doet, maar in hoeveel klikken en hoeveel uitleg het kost.": {
+  "en": "A calendar, an invoice and a channel manager have been around for thirty years. The difference is not in what it does, but in how many clicks and how much explaining it takes.",
+  "fr": "Un planning, une facture et un channel manager existent depuis trente ans. La différence ne tient pas à ce que ça fait, mais au nombre de clics et au temps d'explication que ça coûte."
+ },
+ "<h2>Wat we onderweg <em>uitgezocht</em> hebben.</h2>": {
+  "en": "<h2>What we worked out <em>along the way</em>.</h2>",
+  "fr": "<h2>Ce que nous avons <em>démêlé</em> en chemin.</h2>"
+ },
+ "<p>Een deel van die administratieve laag hebben we moeten uitpluizen om rumo te kunnen bouwen. Dat staat opgeschreven, ook de stukken waar geen enkele knop van ons aan te pas komt.</p>": {
+  "en": "<p>Part of that administrative layer had to be untangled before we could build rumo. It is written down, including the parts where none of our buttons come into it. In Dutch, for now.</p>",
+  "fr": "<p>Il a fallu démêler une partie de cette couche administrative avant de pouvoir construire rumo. C'est écrit, y compris les passages où aucun de nos boutons n'intervient. En néerlandais, pour l'instant.</p>"
+ },
+ "Lees wat we uitgezocht hebben": {
+  "en": "Read what we worked out",
+  "fr": "Lisez ce que nous avons démêlé"
+ },
+ "<span class=\"kicker\">Herken je er iets in?</span>": {
+  "en": "<span class=\"kicker\">Sound familiar?</span>",
+  "fr": "<span class=\"kicker\">Ça vous parle&nbsp;?</span>"
+ },
+ "<h2>Kijk dan gewoon <em>zelf</em> even rond.</h2>": {
+  "en": "<h2>Then just have a <em>look</em> around yourself.</h2>",
+  "fr": "<h2>Alors venez <em>voir</em> par vous-même.</h2>"
+ },
+ "<p>Je krijgt een omgeving met nepreservaties erin, naast je huidige systeem. Geen creditcard, geen verkoopsgesprek. Bevalt het niet, dan verdwijnt het stilletjes.</p>": {
+  "en": "<p>You get an environment full of made-up reservations, next to your current system. No credit card, no sales call. Not for you? Then it quietly disappears.</p>",
+  "fr": "<p>Vous recevez un environnement rempli de fausses réservations, à côté de votre système actuel. Pas de carte de crédit, pas d'entretien commercial. Ça ne vous convient pas&nbsp;? Ça disparaît sans bruit.</p>"
+ },
+ "Je eigen procedures staan in rumo, en <strong>Rudy</strong> zoekt erin met de vraag zoals ze gesteld wordt. Hij verwijst naar het artikel waar het antwoord vandaan komt, zodat er niets verzonnen wordt.": {
+  "en": "Your own procedures live in rumo, and <strong>Rudy</strong> searches them with the question as it was asked. He points at the article the answer came from, so nothing gets made up.",
+  "fr": "Vos propres procédures se trouvent dans rumo, et <strong>Rudy</strong> y cherche avec la question telle qu'elle est posée. Il renvoie à l'article d'où vient la réponse, pour que rien ne soit inventé."
+ }
+}

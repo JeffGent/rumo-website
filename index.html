@@ -450,136 +450,269 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 .pijlers-intro h2 { margin-bottom:1rem; }
 .pijlers-intro h2 em { color:var(--terra-dark); }
 
-/* Eén scène met drie bijschriften.
-   Stond hier eerst als drie losse kaarten naast elkaar, elk met een eigen
-   mockup en een eigen pijltje. Dat leest als 1+1+1, terwijl de belofte "één
-   systeem" is: de drie delen kennen elkaar. Drie kaders kunnen dat niet
-   tonen, één scherm wel. Vandaar dat de mockups zijn samengevoegd tot één
-   gebeurtenis, met de drie namen als bijschrift ernaast. */
-.scene {
+/* ─────────────────────────────────────────────────────────────────────────
+   OVERGENOMEN UIT shared.css
+   Deze pagina laadt shared.css niet in (alle stijl staat hier inline), dus de
+   componenten voor de productband en het nagebouwde kalendervenster staan
+   hier een tweede keer. Wijzig je er een, wijzig dan allebei.
+   ───────────────────────────────────────────────────────────────────────── */
+/* ─── PRODUCTBAND ──────────────────────────────────────────────────────────
+   Het probleem met een schermafbeelding in een kaartje van 300px is dat je er
+   niets van ziet. Hier krijgt hij de volle breedte en loopt hij rechts het
+   beeld uit: dan lees je hem als "een stuk van een echt scherm" in plaats van
+   als een plaatje. Op ink, want dat is het enige contrast dat de site heeft. */
+.toonband {
   background:var(--ink);
-  border-radius:26px;
-  padding:2.75rem;
-  display:grid;
-  grid-template-columns:1.35fr 1fr;
-  gap:3rem;
+  padding:5.5rem 0 0;
   position:relative;
   overflow:hidden;
 }
-.scene::after {
-  content:''; position:absolute; top:-30%; right:-15%; width:55%; height:90%;
-  background:radial-gradient(circle, rgba(244,217,143,0.13), transparent 70%);
+.toonband::after {
+  content:''; position:absolute; top:-25%; left:-10%; width:55%; height:100%;
+  background:radial-gradient(circle, rgba(244,217,143,0.10), transparent 65%);
   pointer-events:none;
 }
-.scene-stage { position:relative; z-index:1; display:flex; flex-direction:column; gap:1rem; justify-content:center; }
+.toonband-inner {
+  max-width:1200px; margin:0 auto; padding:0 2rem;
+  position:relative; z-index:1;
+}
+.toonband-tekst { max-width:520px; margin-bottom:2.5rem; }
+.toonband-tekst h2 {
+  font-family:'Fraunces', Georgia, serif; font-weight:400;
+  font-size:clamp(1.9rem, 3.6vw, 2.7rem); letter-spacing:-0.03em;
+  line-height:1.06; color:var(--paper); margin-bottom:1rem;
+}
+.toonband-tekst h2 em { font-style:italic; color:var(--butter); font-weight:300; }
+.toonband-tekst p { font-size:1.05rem; line-height:1.65; color:#d9cfc0; margin:0; }
 
-/* De reservatie: wat de PMS weet */
-.res { background:#2a2623; border:1px solid rgba(245,238,226,0.1); border-radius:14px; padding:0.9rem 1.1rem; }
-.res-top {
-  font-family:'JetBrains Mono', monospace; font-size:0.6rem; letter-spacing:0.12em;
-  text-transform:uppercase; color:#a89a89; margin-bottom:0.35rem;
+/* Naast-variant: voor een venster dat smal hoort te zijn, zoals een chat.
+   Uitgerekt tot 1500px staan de bubbels verloren in de leegte. */
+.toonband.naast .toonband-inner {
+  display:grid; grid-template-columns:1fr 1.15fr; gap:4rem; align-items:center;
+  padding-bottom:5.5rem;
 }
-.res-top b { color:var(--butter); font-weight:500; }
-.res-naam { color:var(--paper); font-family:'Fraunces', serif; font-size:1.05rem; letter-spacing:-0.01em; }
-.res-meta { font-size:0.78rem; color:#a89a89; margin-top:0.15rem; }
-
-/* Het gesprek: wat Rudy ermee doet */
-.chat { display:flex; flex-direction:column; gap:0.55rem; }
-.chat .msg { max-width:88%; padding:0.7rem 0.9rem; border-radius:14px; font-size:0.86rem; line-height:1.45; }
-.chat .msg.u { background:#3a3531; color:var(--paper); margin-left:auto; border-bottom-right-radius:4px; }
-.chat .msg.b { background:var(--butter); color:var(--ink); border-bottom-left-radius:4px; }
-.chat .msg.b small {
-  display:block; font-family:'JetBrains Mono', monospace; font-size:0.56rem;
-  letter-spacing:0.08em; text-transform:uppercase; color:var(--terra-dark); margin-bottom:0.2rem;
-}
-/* De bronvermelding is het bewijs dat het antwoord uit het handboek komt */
-.bron {
-  align-self:flex-start; display:inline-flex; align-items:center; gap:0.45em;
-  font-family:'JetBrains Mono', monospace; font-size:0.58rem; letter-spacing:0.08em;
-  text-transform:uppercase; color:#a89a89;
-  border:1px solid rgba(245,238,226,0.16); border-radius:100px; padding:0.35rem 0.75rem;
-}
-.bron::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--butter); }
-
-/* De drie bijschriften naast de scène */
-/* Verdeeld in plaats van gecentreerd, zodat elk bijschrift ongeveer op de
-   hoogte staat van het stuk waar het over gaat: de reservatie, de vraag,
-   het antwoord. */
-.scene-rail { position:relative; z-index:1; display:flex; flex-direction:column; justify-content:space-between; gap:1.75rem; padding:0.5rem 0; }
-.rail-item {
-  display:block; text-decoration:none;
-  padding-left:1.5rem; border-left:1px solid rgba(245,238,226,0.16);
-  transition:border-color 0.25s;
-}
-.rail-item:hover { border-left-color:var(--butter); }
-.rail-nr {
-  font-family:'JetBrains Mono', monospace; font-size:0.62rem; letter-spacing:0.14em;
-  text-transform:uppercase; color:#a89a89; display:block; margin-bottom:0.35rem;
-}
-.rail-nr b { color:var(--butter); font-weight:500; }
-.rail-item p { font-size:0.9rem; line-height:1.5; color:#d9cfc0; margin:0; max-width:none; }
-.rail-go {
-  font-family:'JetBrains Mono', monospace; font-size:0.58rem; letter-spacing:0.1em;
-  text-transform:uppercase; color:var(--butter); white-space:nowrap;
-  opacity:0; transition:opacity 0.25s;
-}
-.rail-item:hover .rail-go { opacity:1; }
-
-/* ── Beweging in de scène ──────────────────────────────────────────────────
-   De belofte van dit blok is dat de drie delen elkaar kennen. Dat kan je
-   tonen: terwijl het antwoord opgebouwd wordt, lichten de drie bijschriften
-   in volgorde op. Eerst de reservatie (Rudy leest wie er ligt), dan het
-   handboek (hij zoekt de procedure), dan hijzelf (hij doet het voorstel).
-   Eén lus van 12 seconden. */
-.tikt {
-  display:flex; gap:5px; align-self:flex-start;
-  background:var(--butter); padding:0.8rem 0.9rem; border-radius:14px 14px 14px 4px;
-  animation:sceneTikt 12s linear infinite;
-}
-.tikt i { width:6px; height:6px; border-radius:50%; background:#7d5a1e; display:block;
-  animation:sceneStuit 1.1s ease-in-out infinite; }
-.tikt i:nth-child(2) { animation-delay:.15s }
-.tikt i:nth-child(3) { animation-delay:.3s }
-@keyframes sceneStuit { 0%,60%,100% { transform:translateY(0); opacity:.45 } 30% { transform:translateY(-4px); opacity:1 } }
-@keyframes sceneTikt { 0%,26% { opacity:1; height:auto } 32%,100% { opacity:0; height:0; padding:0; overflow:hidden } }
-
-.chat .msg.b { opacity:0; animation:sceneKomt 12s ease-out infinite; }
-.bron { animation:sceneKomt 12s ease-out infinite; animation-delay:.6s; }
-@keyframes sceneKomt {
-  0%,30%   { opacity:0; transform:translateY(6px) }
-  38%,100% { opacity:1; transform:translateY(0) }
+.toonband.naast .toonband-inner > * { min-width:0; }
+.toonband.naast .toonband-tekst { margin-bottom:0; max-width:none; }
+.toonband.naast .toonband-beeld { border-radius:16px; }
+.toonband.naast .appvenster { border-radius:16px; }
+@media (max-width:900px) {
+  .toonband.naast .toonband-inner { grid-template-columns:1fr; gap:2.25rem; padding-bottom:3rem; }
 }
 
-/* De reservatiekaart licht op op het moment dat Rudy hem leest. */
-.res { animation:sceneLees 12s ease-in-out infinite; }
-@keyframes sceneLees {
-  0%,10%   { border-color:rgba(245,238,226,0.1) }
-  16%,22%  { border-color:rgba(244,217,143,0.55) }
-  30%,100% { border-color:rgba(245,238,226,0.1) }
+/* Het beeld zelf: breder dan zijn kolom en rechts afgesneden. */
+.toonband-beeld {
+  position:relative;
+  margin-right:calc((100vw - min(100vw, 1200px)) / -2 - 2rem);
+  border-radius:16px 0 0 0;
+  overflow:hidden;
+  box-shadow:0 -30px 80px -20px rgba(0,0,0,0.55);
+}
+.toonband-beeld img {
+  display:block;
+  width:min(1520px, 128%);
+  max-width:none;
+  border-radius:16px 0 0 0;
+}
+/* Handgeschreven kanttekening. Caveat wordt op elke pagina ingeladen en werd
+   tot nu toe nergens gebruikt. Staat bewust in het donkere deel bóven het
+   beeld: geel op een lichte schermafbeelding is onleesbaar, en een notitie
+   over de interface heen dekt net het stuk af dat je wil tonen. */
+.kantnoot {
+  position:absolute; z-index:3;
+  font-family:'Caveat', cursive; font-weight:600;
+  font-size:clamp(1.15rem, 1.7vw, 1.6rem);
+  color:var(--butter);
+  transform:rotate(-3deg);
+  max-width:16rem; line-height:1.2;
+  pointer-events:none;
+}
+/* Pijl die naar het beeld eronder wijst. */
+.kantnoot::after {
+  content:''; position:absolute; left:1.2rem; top:calc(100% + 0.3rem);
+  width:34px; height:46px;
+  border-left:2px solid var(--butter);
+  border-bottom:2px solid var(--butter);
+  border-radius:0 0 0 14px;
+  opacity:0.7;
+}
+.kantnoot::before {
+  content:''; position:absolute; left:calc(1.2rem + 30px); top:calc(100% + 42px);
+  width:9px; height:9px;
+  border-right:2px solid var(--butter);
+  border-bottom:2px solid var(--butter);
+  transform:rotate(-45deg);
+  opacity:0.7;
 }
 
-/* En de drie bijschriften, in volgorde. */
-.rail-item { position:relative; }
-.rail-item::before {
-  content:''; position:absolute; left:-1px; top:0; bottom:0; width:2px;
-  background:var(--butter); opacity:0;
+/* In de naast-variant staat het venster rechts, dus wijst de kanttekening die
+   kant op in plaats van naar beneden. */
+.kantnoot.rechts::after {
+  left:auto; right:-3.2rem; top:50%;
+  width:44px; height:20px;
+  border-left:none; border-bottom:2px solid var(--butter);
+  border-top:none; border-radius:0;
+  transform:translateY(-50%);
 }
-.rail-item.stap1::before { animation:sceneAan 12s linear infinite; }
-.rail-item.stap2::before { animation:sceneAan 12s linear infinite; animation-delay:1.1s; }
-.rail-item.stap3::before { animation:sceneAan 12s linear infinite; animation-delay:2.2s; }
-@keyframes sceneAan { 0%,12% { opacity:0 } 16%,26% { opacity:1 } 32%,100% { opacity:0 } }
+.kantnoot.rechts::before {
+  left:auto; right:-3.2rem; top:calc(50% - 5px);
+  transform:rotate(-45deg);
+}
+@media (max-width:900px) { .kantnoot.rechts { display:none; } }
+
+@media (max-width:900px) {
+  .toonband-beeld { margin-right:-2rem; }
+  .toonband-beeld img { width:150%; }
+  .kantnoot { display:none; }
+}
+
+/* ─── APPVENSTER ───────────────────────────────────────────────────────────
+   Een nagebouwde kalender in plaats van een schermafbeelding. Reden: een PNG
+   veroudert zodra de interface verandert, is onscherp op een retina-scherm en
+   staat stil. Dit is HTML, dus altijd scherp, altijd in de huisstijl, en er
+   kan iets in bewegen. De labels komen uit de Nederlandse taalbestanden van de
+   app zelf (Aankomend, Vertrekkend, Verblijvend, Vuil, Vandaag). */
+.appvenster {
+  /* Twee variabelen: de breedte van de kamerkolom links, en daaruit afgeleid
+     de breedte van één dagkolom. Zo hoeft een balk alleen in kolommen te
+     rekenen, en kan de kamerkolom op een telefoon smaller worden zonder dat
+     er iets verschuift. */
+  --kamerkol:132px;
+  --k:calc((100% - var(--kamerkol)) / 7);
+  background:#F7F2EA;
+  border-radius:16px 0 0 16px;
+  box-shadow:0 -30px 90px -25px rgba(0,0,0,0.6), 0 0 0 1px rgba(27,25,23,0.06);
+  overflow:hidden;
+  font-size:13px;
+  color:var(--ink);
+  user-select:none;
+}
+.av-kop { padding:1.4rem 1.6rem 0.9rem; }
+.av-kop h4 {
+  font-family:'Fraunces', Georgia, serif; font-weight:400;
+  font-size:1.35rem; color:#7d2233; letter-spacing:-0.01em; margin:0 0 0.15rem;
+}
+.av-kop p { font-size:0.82rem; color:var(--muted); margin:0; }
+
+/* Filterbalk */
+.av-balk {
+  display:flex; align-items:center; gap:0.65rem;
+  padding:0 1.6rem 1rem; flex-wrap:nowrap; white-space:nowrap;
+}
+.av-chip {
+  font-size:0.8rem; color:var(--ink-soft);
+  padding:0.3rem 0.75rem; border-radius:100px;
+}
+.av-chip.aan { background:var(--rose-soft); color:#7d2233; }
+.av-balk .av-rek { margin-left:auto; }
+.av-knop {
+  font-size:0.78rem; padding:0.3rem 0.8rem; border-radius:100px;
+  border:1px solid rgba(27,25,23,0.14); background:#fff;
+}
+.av-datum { font-size:0.85rem; font-weight:500; }
+.av-vandaag {
+  font-size:0.78rem; padding:0.3rem 0.85rem; border-radius:100px;
+  background:var(--ink); color:var(--paper);
+}
+
+/* Raster */
+.av-raster { border-top:1px solid rgba(27,25,23,0.08); }
+.av-dagen, .av-rij {
+  display:grid; grid-template-columns:var(--kamerkol) repeat(7, 1fr);
+}
+.av-dagen > span {
+  text-align:center; padding:0.55rem 0 0.6rem;
+  font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);
+  border-left:1px solid rgba(27,25,23,0.05);
+}
+.av-dagen > span b { display:block; font-size:1rem; letter-spacing:0; color:var(--ink); font-weight:500; }
+.av-dagen .nu { background:rgba(214,143,111,0.10); box-shadow:inset 0 2px 0 #7d2233; }
+.av-dagen .nu b { color:#7d2233; }
+
+.av-rij { border-top:1px solid rgba(27,25,23,0.05); position:relative; height:44px; }
+.av-rij > .av-cel { border-left:1px solid rgba(27,25,23,0.05); }
+.av-kamer {
+  display:flex; align-items:baseline; gap:0.4rem;
+  padding-left:1.1rem; font-size:0.78rem;
+  white-space:nowrap; overflow:hidden;
+}
+.av-kamer b { font-weight:600; }
+.av-kamer span { font-size:0.58rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); overflow:hidden; text-overflow:ellipsis; }
+.av-kamer .vuil { color:#c2762f; }
+
+/* Boekingsbalken: absoluut binnen de rij, gepositioneerd in kolombreedtes. */
+.av-boeking {
+  position:absolute; top:6px; height:32px;
+  display:flex; align-items:center; gap:0.5rem;
+  padding:0 0.7rem; border-radius:7px;
+  background:#fff; border:1px solid rgba(27,25,23,0.08);
+  border-left:3px solid var(--forest);
+  font-size:0.8rem; white-space:nowrap; overflow:hidden;
+  box-shadow:0 1px 2px rgba(27,25,23,0.05);
+}
+.av-boeking.blauw { border-left-color:#5b7fb5; }
+.av-boeking.terra { border-left-color:var(--terra-dark); }
+.av-boeking.grijs { background:rgba(27,25,23,0.03); border-style:dashed; color:var(--muted); box-shadow:none; }
+.av-status {
+  margin-left:auto; font-size:0.6rem; letter-spacing:0.05em;
+  padding:0.1rem 0.45rem; border-radius:100px;
+  border:1px solid rgba(194,118,47,0.4); color:#c2762f;
+}
+
+/* ── Beweging ──────────────────────────────────────────────────────────────
+   Eén balk verhuist van kamer 103 naar 105 en terug, met een korte pauze. Dat
+   is de kernhandeling van een PMS-kalender, dus het toont iets in plaats van
+   dat het alleen beweegt. */
+.av-boeking.sleept {
+  animation:avSleep 9s cubic-bezier(.65,0,.35,1) infinite;
+  z-index:3;
+}
+@keyframes avSleep {
+  0%, 18%   { transform:translate(0,0) scale(1); box-shadow:0 1px 2px rgba(27,25,23,0.05); }
+  26%       { transform:translate(0,-3px) scale(1.015); box-shadow:0 10px 22px rgba(27,25,23,0.18); }
+  44%, 62%  { transform:translate(0, 88px) scale(1.015); box-shadow:0 10px 22px rgba(27,25,23,0.18); }
+  70%, 100% { transform:translate(0, 88px) scale(1); box-shadow:0 1px 2px rgba(27,25,23,0.05); }
+}
+/* De plek waar hij vandaan komt, licht op terwijl hij weg is. */
+.av-gat { position:absolute; top:6px; height:32px; border-radius:7px;
+  border:1px dashed rgba(27,25,23,0.18); opacity:0;
+  animation:avGat 9s linear infinite; }
+@keyframes avGat { 0%,26% { opacity:0 } 34%,66% { opacity:1 } 74%,100% { opacity:0 } }
 
 @media (prefers-reduced-motion: reduce) {
-  .tikt { display:none; }
-  .chat .msg.b, .bron { opacity:1; animation:none; }
-  .res, .rail-item::before { animation:none; }
+  .av-boeking.sleept, .av-gat { animation:none; }
+  .av-boeking.sleept { transform:translate(0, 88px); }
+}
+@media (max-width:900px) {
+  .appvenster { font-size:11px; --kamerkol:52px; }
+  .av-kamer { padding-left:0.6rem; }
+  .av-kamer span { display:none; }   /* kamertype en Vuil weglaten: geen plaats */
+  .av-balk { gap:0.4rem; }
+  .av-status { display:none; }
 }
 
-.scene-slot { max-width:640px; margin:2.25rem 0 0; font-size:1rem; line-height:1.6; color:var(--ink-soft); }
+/* Puntenlijst en doorlink in de PMS-band. */
+.pms-punten { list-style:none; padding:0; margin:1.5rem 0 0; }
+.pms-punten li {
+  position:relative; padding-left:1.4rem; margin-bottom:0.6rem;
+  font-size:0.95rem; line-height:1.55; color:#d9cfc0;
+}
+.pms-punten li::before {
+  content:''; position:absolute; left:0; top:0.6em;
+  width:6px; height:6px; border-radius:50%; background:var(--butter);
+}
+.pms-door {
+  display:inline-flex; align-items:center; gap:0.45em; margin-top:1.5rem;
+  font-family:'JetBrains Mono', monospace; font-size:0.68rem;
+  letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--butter); text-decoration:none;
+  border-bottom:1px solid rgba(244,217,143,0.35); padding-bottom:2px;
+}
+.pms-door:hover { border-bottom-color:var(--butter); }
+
+
 
 @media (max-width:900px) {
   .scene { grid-template-columns:1fr; gap:2rem; padding:1.75rem; }
-  .scene-rail { justify-content:flex-start; padding:0; }
   .rail-go { opacity:1; }
 }
 
@@ -1204,60 +1337,85 @@ footer {
   </div>
 </section>
 
-<!-- ══════════════════ PIJLERS ══════════════════ -->
-<section class="pijlers" id="pijlers">
-  <div class="wrap">
-    <div class="pijlers-intro fade-up">
-      <span class="kicker">De kern van rumo</span>
-      <h2>Eén gebeurtenis.<br><em>Drie delen</em> die het van elkaar weten.</h2>
-      <p class="lead" style="margin-top:1.25rem;">Kamer 12 vraagt een glutenvrij ontbijt. Je PMS weet wie daar ligt en hoelang. Je handboek weet wat jouw keuken kan. Rudy legt de twee bij elkaar en stelt iets voor. Dat is het verschil met drie programma's die naast elkaar draaien.</p>
+<!-- ══════════════════ HET PMS ══════════════════ -->
+<section class="toonband" id="pijlers">
+  <div class="toonband-inner fade-up" style="position:relative">
+    <div class="toonband-tekst">
+      <span class="kicker" style="color:#a89a89">Het hart van rumo</span>
+      <h2>Je hele hotel op <em>&eacute;&eacute;n</em> scherm.</h2>
+      <p>Een PMS is waar je dag staat: wie er aankomt, wie vertrekt, welke kamer nog gepoetst moet worden en wie er nog moet betalen. Bij rumo is dat &eacute;&eacute;n kalender waar je in sleept, in plaats van vier tabbladen en een export naar Excel.</p>
+      <ul class="pms-punten">
+        <li>Een boeking maken, verplaatsen of splitsen zonder de kalender te verlaten</li>
+        <li>In- en uitchecken in &eacute;&eacute;n klik, de factuur volgt vanzelf</li>
+        <li>De kamerstatus loopt mee, dus housekeeping ziet het meteen</li>
+        <li>Wat je hier aanpast vertrekt vanzelf naar Booking.com en de rest</li>
+      </ul>
+      <a href="pms.html" class="pms-door">Alles over het PMS <span>&rarr;</span></a>
     </div>
-
-    <div class="scene fade-up">
-      <div class="scene-stage">
-        <div class="res">
-          <div class="res-top">Kamer <b>12</b> &middot; aangekomen vandaag</div>
-          <div class="res-naam">K. Peeters</div>
-          <div class="res-meta">Nog 2 nachten &middot; bed &amp; breakfast &middot; rechtstreeks geboekt</div>
+    <span class="kantnoot" style="top:2.5rem; right:3rem">elke balk is een boeking. versleep hem en de prijs herrekent zich.</span>
+    <div class="toonband-beeld">
+      <div class="appvenster" role="img" aria-label="De reservatiekalender in rumo: kamers onder elkaar, dagen ernaast, en boekingen als balken die je van kamer naar kamer sleept.">
+        <div class="av-kop">
+          <h4>Reservaties</h4>
+          <p>Overzicht van alle kamers en komende boekingen</p>
         </div>
-        <div class="chat">
-          <div class="msg u">Kamer 12 vraagt een glutenvrij ontbijt. Kan dat?</div>
-          <div class="tikt"><i></i><i></i><i></i></div>
-          <div class="msg b"><small>Rudy</small>Ja. Havermout, vers fruit en glutenvrij brood staan in jullie ontbijtprocedure. Peeters blijft nog twee nachten. Zal ik "glutenvrij" als keukennoot op de reservatie zetten? Dan staat het morgen en overmorgen bij kamer 12 op de ontbijtlijst.</div>
-          <span class="bron">Uit je handboek &middot; Ontbijt &amp; allergenen</span>
+        <div class="av-balk">
+          <span class="av-chip aan">Alle</span>
+          <span class="av-chip">Aankomend (9)</span>
+          <span class="av-chip">Vertrekkend (4)</span>
+          <span class="av-chip">Verblijvend (21)</span>
+          <span class="av-rek"></span>
+          <span class="av-knop">Week</span>
+          <span class="av-datum">2 april 2026</span>
+          <span class="av-vandaag">Vandaag</span>
         </div>
-      </div>
+        <div class="av-raster">
+          <div class="av-dagen">
+            <span></span>
+            <span>wo<b>1</b></span><span class="nu">do<b>2</b></span><span>vr<b>3</b></span>
+            <span>za<b>4</b></span><span>zo<b>5</b></span><span>ma<b>6</b></span><span>di<b>7</b></span>
+          </div>
 
-      <div class="scene-rail">
-        <a class="rail-item stap1" href="pms.html">
-          <span class="rail-nr">01 &middot; <b>De PMS</b></span>
-          <p>Weet wie er ligt, in welke kamer en hoelang nog. <span class="rail-go">Lees meer &rarr;</span></p>
-        </a>
-        <a class="rail-item stap2" href="handbook.html">
-          <span class="rail-nr">02 &middot; <b>Het handboek</b></span>
-          <p>Weet wat jouw keuken kan. Jouw procedures, niet die van een ander hotel. <span class="rail-go">Lees meer &rarr;</span></p>
-        </a>
-        <a class="rail-item stap3" href="rudy.html">
-          <span class="rail-nr">03 &middot; <b>Rudy</b></span>
-          <p>Legt de twee bij elkaar en stelt iets voor, ook om kwart voor elf 's avonds. Uitvoeren doet hij pas als jij bevestigt. <span class="rail-go">Lees meer &rarr;</span></p>
-        </a>
-      </div>
-    </div>
+          <div class="av-rij">
+            <div class="av-kamer"><b>101</b> <span>Standard double</span> <span class="vuil">Vuil</span></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking" style="left:calc(var(--kamerkol) + var(--k) * 1 + 3px); width:calc(var(--k) * 3 - 6px)">Lucas Hermans<span class="av-status">Ingecheckt</span></span>
+            <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 4 + 3px); width:calc(var(--k) * 2 - 6px)">Maria Wouters</span>
+          </div>
 
-    <p class="scene-slot fade-up">Drie losse programma's kunnen dit antwoord niet geven. Niet omdat ze slechter zijn, maar omdat ze elkaars gegevens niet zien.</p>
-  </div>
-</section>
+          <div class="av-rij">
+            <div class="av-kamer"><b>102</b> <span>Standard double</span> <span class="vuil">Vuil</span></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 1 + 3px); width:calc(var(--k) * 2 - 6px)">Emily Van Damme<span class="av-status">Aankomend</span></span>
+            <span class="av-boeking terra" style="left:calc(var(--kamerkol) + var(--k) * 3 + 3px); width:calc(var(--k) * 1 - 6px)">Pieter Peeters</span>
+          </div>
 
-<!-- ══════════════════ HMM OKÉ ══════════════════ -->
-<section class="wie" id="wie">
-  <div class="wrap">
-    <div class="wie-grid">
-      <div class="fade-up">
-        <span class="kicker">Wie zijn we</span>
-        <h2>Hmm oké, maar wie zijn die van <em>rumo</em> nu?</h2>
-        <p>We zijn zelf hoteliers. We runnen onze eigen hotels in België. We weten hoe het voelt als je systeem niet werkt zoals het in jouw hoofd werkt. Een PMS waar één simpele handeling, die je dag in dag uit herhaalt, veel te veel tijd kost. We kennen de uitdaging om een team aan te sturen en toch maar half zeker te zijn dat iedereen weet hoe, wanneer en wat.</p>
-        <p>Uiteindelijk draait het niet alleen om het comfort van je <strong>gasten</strong>, maar ook om dat van <strong>jou en je team</strong>. Dus bouwden we wat we zelf al jaren zochten.</p>
-        <a href="over-ons.html" class="btn-paper">Meer over ons <span>→</span></a>
+          <div class="av-rij">
+            <div class="av-kamer"><b>103</b> <span>Twin</span></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking grijs" style="left:calc(var(--kamerkol) + var(--k) * 0 + 3px); width:calc(var(--k) * 2 - 6px)">Jan Dubois</span>
+            <span class="av-gat" style="left:calc(var(--kamerkol) + var(--k) * 3 + 3px); width:calc(var(--k) * 2 - 6px)"></span>
+            <span class="av-boeking terra sleept" style="left:calc(var(--kamerkol) + var(--k) * 3 + 3px); width:calc(var(--k) * 2 - 6px)">Marie Sato</span>
+          </div>
+
+          <div class="av-rij">
+            <div class="av-kamer"><b>104</b> <span>Twin</span></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 5 + 3px); width:calc(var(--k) * 2 - 6px)">Victor De Smedt</span>
+          </div>
+
+          <div class="av-rij">
+            <div class="av-kamer"><b>105</b> <span>Junior suite</span> <span class="vuil">Vuil</span></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking" style="left:calc(var(--kamerkol) + var(--k) * 0 + 3px); width:calc(var(--k) * 2 - 6px)">Liam Claes<span class="av-status">Uitgecheckt</span></span>
+          </div>
+
+          <div class="av-rij">
+            <div class="av-kamer"><b>106</b> <span>Junior suite</span></div>
+            <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
+            <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 2 + 3px); width:calc(var(--k) * 3 - 6px)">Sarah Jacobs</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1296,6 +1454,21 @@ footer {
     </div>
   </div>
 </div>
+
+<!-- ══════════════════ HMM OKÉ ══════════════════ -->
+<section class="wie" id="wie">
+  <div class="wrap">
+    <div class="wie-grid">
+      <div class="fade-up">
+        <span class="kicker">Wie zijn we</span>
+        <h2>Hmm oké, maar wie zijn die van <em>rumo</em> nu?</h2>
+        <p>We zijn zelf hoteliers. We runnen onze eigen hotels in België. We weten hoe het voelt als je systeem niet werkt zoals het in jouw hoofd werkt. Een PMS waar één simpele handeling, die je dag in dag uit herhaalt, veel te veel tijd kost. We kennen de uitdaging om een team aan te sturen en toch maar half zeker te zijn dat iedereen weet hoe, wanneer en wat.</p>
+        <p>Uiteindelijk draait het niet alleen om het comfort van je <strong>gasten</strong>, maar ook om dat van <strong>jou en je team</strong>. Dus bouwden we wat we zelf al jaren zochten.</p>
+        <a href="over-ons.html" class="btn-paper">Meer over ons <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════════════ OVERSTAP ══════════════════ -->
 <section class="overstap">

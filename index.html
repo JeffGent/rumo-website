@@ -493,7 +493,10 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 .toonband.licht::after { display:none; }
 .toonband.licht .toonband-tekst h2 { color:var(--ink); }
 .toonband.licht .toonband-tekst h2 em { color:var(--terra-dark); }
-.toonband.licht .toonband-tekst p { color:var(--ink-soft); }
+/* max-width:none omdat index.html een algemene regel p { max-width:62ch }
+   heeft. Die kapte deze alinea af hoe breed de kolom ook stond. De breedte
+   wordt nu bepaald door .toonband-tekst zelf. */
+.toonband.licht .toonband-tekst p { color:var(--ink-soft); max-width:none; }
 .toonband.licht .kicker { color:var(--muted); }
 .toonband.licht .pms-punten li { color:var(--ink-soft); }
 .toonband.licht .pms-punten li::before { background:var(--terra); }
@@ -502,7 +505,7 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 /* De tekstkolom staat standaard op 520px, wat voor een korte kop werkt maar
    deze introalinea in acht smalle regels hakt. Hier ruimer: ongeveer zeventig
    tekens per regel, nog steeds comfortabel om te lezen. */
-.toonband.licht .toonband-tekst { max-width:740px; }
+.toonband.licht .toonband-tekst { max-width:900px; }
 .toonband.licht .toonband-beeld { box-shadow:0 -24px 60px -24px rgba(27,25,23,0.22); }
 .toonband.licht:not(.naast) .toonband-beeld::after {
   background:linear-gradient(to bottom, rgba(245,238,226,0), var(--paper) 92%);
@@ -662,14 +665,24 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 
 .av-rij { border-top:1px solid rgba(27,25,23,0.05); position:relative; height:44px; }
 .av-rij > .av-cel { border-left:1px solid rgba(27,25,23,0.05); }
+/* Kamernummer boven, kamertype eronder. Op één regel werd "Standard double"
+   afgekapt tot "Standard ...", en een half woord in een schermafbeelding leest
+   als een fout in het product. Twee regels passen ruim binnen de rijhoogte. */
 .av-kamer {
-  display:flex; align-items:baseline; gap:0.4rem;
-  padding-left:1.1rem; font-size:0.78rem;
-  white-space:nowrap; overflow:hidden;
+  display:flex; flex-direction:column; justify-content:center; gap:0.05rem;
+  padding-left:1.1rem; font-size:0.78rem; overflow:hidden;
 }
+.av-kamer .nr { display:flex; align-items:center; gap:0.35rem; }
 .av-kamer b { font-weight:600; }
-.av-kamer span { font-size:0.58rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted); overflow:hidden; text-overflow:ellipsis; }
-.av-kamer .vuil { color:#c2762f; }
+.av-kamer .type {
+  font-size:0.56rem; letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--muted); white-space:nowrap;
+}
+/* Vuil is in de app een statusbolletje, geen woord. */
+.av-kamer .vuil {
+  width:6px; height:6px; border-radius:50%; background:#c2762f;
+  flex-shrink:0; display:inline-block;
+}
 
 /* Boekingsbalken: absoluut binnen de rij, gepositioneerd in kolombreedtes. */
 .av-boeking {
@@ -717,7 +730,7 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 @media (max-width:900px) {
   .appvenster { font-size:11px; --kamerkol:52px; }
   .av-kamer { padding-left:0.6rem; }
-  .av-kamer span { display:none; }   /* kamertype en Vuil weglaten: geen plaats */
+  .av-kamer .type { display:none; }  /* kamertype weglaten: geen plaats. Het bolletje blijft. */
   .av-balk { gap:0.4rem; }
   .av-status { display:none; }
 }
@@ -1408,21 +1421,21 @@ footer {
           </div>
 
           <div class="av-rij">
-            <div class="av-kamer"><b>101</b> <span>Standard double</span> <span class="vuil">Vuil</span></div>
+            <div class="av-kamer"><span class="nr"><b>101</b><i class="vuil" aria-label="Vuil"></i></span><span class="type">Standard double</span></div>
             <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
             <span class="av-boeking" style="left:calc(var(--kamerkol) + var(--k) * 1 + 3px); width:calc(var(--k) * 3 - 6px)">Lucas Hermans<span class="av-status">Ingecheckt</span></span>
             <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 4 + 3px); width:calc(var(--k) * 2 - 6px)">Maria Wouters</span>
           </div>
 
           <div class="av-rij">
-            <div class="av-kamer"><b>102</b> <span>Standard double</span> <span class="vuil">Vuil</span></div>
+            <div class="av-kamer"><span class="nr"><b>102</b><i class="vuil" aria-label="Vuil"></i></span><span class="type">Standard double</span></div>
             <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
             <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 1 + 3px); width:calc(var(--k) * 2 - 6px)">Emily Van Damme<span class="av-status">Aankomend</span></span>
             <span class="av-boeking terra" style="left:calc(var(--kamerkol) + var(--k) * 3 + 3px); width:calc(var(--k) * 1 - 6px)">Pieter Peeters</span>
           </div>
 
           <div class="av-rij">
-            <div class="av-kamer"><b>103</b> <span>Twin</span></div>
+            <div class="av-kamer"><span class="nr"><b>103</b></span><span class="type">Twin</span></div>
             <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
             <span class="av-boeking grijs" style="left:calc(var(--kamerkol) + var(--k) * 0 + 3px); width:calc(var(--k) * 2 - 6px)">Jan Dubois</span>
             <span class="av-gat" style="left:calc(var(--kamerkol) + var(--k) * 3 + 3px); width:calc(var(--k) * 2 - 6px)"></span>
@@ -1430,19 +1443,19 @@ footer {
           </div>
 
           <div class="av-rij">
-            <div class="av-kamer"><b>104</b> <span>Twin</span></div>
+            <div class="av-kamer"><span class="nr"><b>104</b></span><span class="type">Twin</span></div>
             <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
             <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 5 + 3px); width:calc(var(--k) * 2 - 6px)">Victor De Smedt</span>
           </div>
 
           <div class="av-rij">
-            <div class="av-kamer"><b>105</b> <span>Junior suite</span> <span class="vuil">Vuil</span></div>
+            <div class="av-kamer"><span class="nr"><b>105</b><i class="vuil" aria-label="Vuil"></i></span><span class="type">Junior suite</span></div>
             <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
             <span class="av-boeking" style="left:calc(var(--kamerkol) + var(--k) * 0 + 3px); width:calc(var(--k) * 2 - 6px)">Liam Claes<span class="av-status">Uitgecheckt</span></span>
           </div>
 
           <div class="av-rij">
-            <div class="av-kamer"><b>106</b> <span>Junior suite</span></div>
+            <div class="av-kamer"><span class="nr"><b>106</b></span><span class="type">Junior suite</span></div>
             <span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span><span class="av-cel"></span>
             <span class="av-boeking blauw" style="left:calc(var(--kamerkol) + var(--k) * 2 + 3px); width:calc(var(--k) * 3 - 6px)">Sarah Jacobs</span>
           </div>

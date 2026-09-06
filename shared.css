@@ -548,6 +548,26 @@ section.tint-diep { background:var(--klei); }
 .toonband-tekst h2 em { font-style:italic; color:var(--butter); font-weight:300; }
 .toonband-tekst p { font-size:1.05rem; line-height:1.65; color:#d9cfc0; margin:0; }
 
+/* ─── PRODUCTBAND · LICHTE VARIANT ─────────────────────────────────────────
+   Dezelfde band, maar op papier in plaats van op ink. Gebruikt op de homepage,
+   waar de PMS-uitleg de intro van de pagina is en dus niet als donker blok mag
+   binnenvallen. Alleen de kleuren wisselen; de opbouw blijft gelijk. */
+.toonband.licht { background:var(--paper); }
+.toonband.licht::after { display:none; }
+.toonband.licht .toonband-tekst h2 { color:var(--ink); }
+.toonband.licht .toonband-tekst h2 em { color:var(--terra-dark); }
+.toonband.licht .toonband-tekst p { color:var(--ink-soft); }
+.toonband.licht .kicker { color:var(--muted); }
+.toonband.licht .pms-punten li { color:var(--ink-soft); }
+.toonband.licht .pms-punten li::before { background:var(--terra); }
+.toonband.licht .pms-door { color:var(--terra-dark); border-bottom-color:rgba(185,107,74,0.35); }
+.toonband.licht .pms-door:hover { border-bottom-color:var(--terra-dark); }
+.toonband.licht .toonband-beeld { box-shadow:0 -24px 60px -24px rgba(27,25,23,0.22); }
+.toonband.licht:not(.naast) .toonband-beeld::after {
+  background:linear-gradient(to bottom, rgba(245,238,226,0), var(--paper) 92%);
+}
+.toonband.licht .appvenster { box-shadow:0 -18px 50px -22px rgba(27,25,23,0.20), 0 0 0 1px rgba(27,25,23,0.07); }
+
 /* Naast-variant: voor een venster dat smal hoort te zijn, zoals een chat.
    Uitgerekt tot 1500px staan de bubbels verloren in de leegte. */
 .toonband.naast .toonband-inner {

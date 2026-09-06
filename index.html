@@ -507,6 +507,14 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
   overflow:hidden;
   box-shadow:0 -30px 80px -20px rgba(0,0,0,0.55);
 }
+/* De kalender loopt tot de onderrand van de band door, wat een "er is meer"-
+   gevoel geeft. Zonder overgang wordt hij daar hard afgesneden en botst hij
+   tegen de lichte sectie eronder. Deze verloop lost hem op in het donker. */
+.toonband:not(.naast) .toonband-beeld::after {
+  content:''; position:absolute; left:0; right:0; bottom:0; height:150px;
+  background:linear-gradient(to bottom, rgba(27,25,23,0), var(--ink) 92%);
+  pointer-events:none; z-index:2;
+}
 .toonband-beeld img {
   display:block;
   width:min(1520px, 128%);
@@ -994,26 +1002,33 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
 /* ─── PERSONAS ─── */
 /* ─── TRUST ─── */
 .trust {
+  /* Staat nu direct onder de donkere PMS-band. Met 4rem plakte hij tegen de
+     kalender aan en las het als één rommelig geheel; en de bovenrand voegde
+     daar nog een streep aan toe die er niet meer bij hoort. */
   background:var(--paper);
-  padding:4rem 0;
-  border-top:1px solid var(--line);
+  padding:5.5rem 0;
   border-bottom:1px solid var(--line);
 }
 .trust-grid {
-  display:grid; grid-template-columns:repeat(3, 1fr); gap:3rem;
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:2.5rem;
 }
+/* Was: drie zwevende items met elk een eigen gekleurde icoontegel, in roze,
+   groen en geel. Die drie kleuren stonden nergens anders op de pagina en
+   botsten met de warme reeks. Nu een dunne bovenlijn per kolom, zoals de
+   bijkomende features op de featurepagina, en één rustige kleur voor alle
+   drie de icoontjes. */
 .trust-item {
-  display:flex; gap:1rem; align-items:flex-start;
+  display:flex; gap:0.85rem; align-items:flex-start;
+  border-top:1px solid var(--line);
+  padding-top:1.15rem;
 }
 .trust-item .ic {
   flex-shrink:0;
-  width:32px; height:32px; border-radius:8px;
+  width:26px; height:26px;
   display:flex; align-items:center; justify-content:center;
-  background:var(--paper-panel);
   color:var(--terra-dark);
+  opacity:0.75;
 }
-.trust-item:nth-child(2) .ic { color:var(--forest); background:var(--forest-soft); }
-.trust-item:nth-child(3) .ic { color:#8a6b1a; background:#FCEDBD; }
 .trust-item p { margin:0; font-size:0.95rem; line-height:1.5; max-width:32ch; }
 a.trust-item { text-decoration:none; color:inherit; }
 a.trust-item p strong .arr {
@@ -1342,17 +1357,15 @@ footer {
   <div class="toonband-inner fade-up" style="position:relative">
     <div class="toonband-tekst">
       <span class="kicker" style="color:#a89a89">Het hart van rumo</span>
-      <h2>Niet w&aacute;t het kan.<br><em>Hoeveel handelingen</em> het kost.</h2>
-      <p>Elk PMS heeft een kalender waar je in sleept. Het verschil zit in wat er daarna nog van jou verwacht wordt. Wij hebben bij elke handeling gekeken wat het systeem zelf kan doen, en wat we konden schrappen is geschrapt.</p>
+      <h2>&Eacute;&eacute;n handeling.<br>De rest volgt <em>vanzelf.</em></h2>
+      <p>We hebben bij elke stap gekeken wat de PMS zelf kan doen. Wat we konden schrappen, is geschrapt.</p>
       <ul class="pms-punten">
-        <li>Sleep een boeking naar een andere kamer of datum: rumo herrekent de prijs en legt de nieuwe lijn voor. Jij beslist of ze doorgaat.</li>
-        <li>Uitchecken loopt door tot het einde: openstaande posten erbij, betaling ontvangen, factuur volgt vanzelf. Blijft er een saldo open, dan waarschuwt hij voor je afsluit.</li>
-        <li>Zoeken met &eacute;&eacute;n toetsencombinatie, of dat nu een gastnaam, een boekingsreferentie, een OTA-nummer of een factuurnummer is.</li>
-        <li>Wat je hier aanpast vertrekt vanzelf naar je kanalen &eacute;n naar je eigen boekingspagina. Geen extranet, geen tweede systeem.</li>
+        <li>Sleep een boeking, en de nieuwe prijs ligt voor je klaar.</li>
+        <li>Check uit, en de factuur volgt.</li>
+        <li>Pas iets aan, en het staat op je kanalen.</li>
       </ul>
-      <a href="pms.html" class="pms-door">Alles over het PMS <span>&rarr;</span></a>
+      <a href="pms.html" class="pms-door">Alles over de PMS <span>&rarr;</span></a>
     </div>
-    <span class="kantnoot" style="top:2.5rem; right:3rem">rumo stelt de nieuwe prijs voor. jij beslist of ze doorgaat.</span>
     <div class="toonband-beeld">
       <div class="appvenster" role="img" aria-label="De reservatiekalender in rumo: kamers onder elkaar, dagen ernaast, en boekingen als balken die je van kamer naar kamer sleept.">
         <div class="av-kop">

@@ -706,6 +706,13 @@ section.tint-diep { background:var(--klei); }
   font-size:0.78rem; padding:0.3rem 0.8rem; border-radius:100px;
   border:1px solid rgba(27,25,23,0.14); background:#fff;
 }
+/* De schaar uit de echte werkbalk: hiermee knip je een verblijf in tweeën. */
+.av-schaar {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:26px; height:26px; color:var(--muted); flex-shrink:0;
+}
+.av-schaar svg { width:14px; height:14px; fill:none; stroke:currentColor;
+  stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 .av-datum { font-size:0.85rem; font-weight:500; }
 .av-vandaag {
   font-size:0.78rem; padding:0.3rem 0.85rem; border-radius:100px;

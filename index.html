@@ -643,6 +643,13 @@ nav.on-video .nav-cta { background:var(--paper) !important; color:var(--ink) !im
   font-size:0.78rem; padding:0.3rem 0.8rem; border-radius:100px;
   border:1px solid rgba(27,25,23,0.14); background:#fff;
 }
+/* De schaar uit de echte werkbalk: hiermee knip je een verblijf in tweeën. */
+.av-schaar {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:26px; height:26px; color:var(--muted); flex-shrink:0;
+}
+.av-schaar svg { width:14px; height:14px; fill:none; stroke:currentColor;
+  stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 .av-datum { font-size:0.85rem; font-weight:500; }
 .av-vandaag {
   font-size:0.78rem; padding:0.3rem 0.85rem; border-radius:100px;
@@ -1411,6 +1418,7 @@ footer {
           <span class="av-chip">Verblijvend (21)</span>
           <span class="av-rek"></span>
           <span class="av-knop">Week</span>
+          <span class="av-schaar" aria-label="Verblijf in twee knippen"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span>
           <span class="av-datum">2 april 2026</span>
           <span class="av-vandaag">Vandaag</span>
         </div>

@@ -866,6 +866,32 @@ section.tint-diep { background:var(--klei); }
 .toonband.licht .tb-punten li { color:var(--ink-soft); }
 .toonband.licht .tb-punten li::before { background:var(--terra); }
 
+/* ─── KLEINE BEWEGING IN NAGEBOUWDE SCHERMEN ──────────────────────────────
+   Drie klassen die een stilstaand schermpje laten leven. Ze zitten hier en
+   niet in de <style> van elke productpagina, want anders staan er straks vijf
+   varianten van dezelfde puls. Alles staat stil bij prefers-reduced-motion.
+
+   .komt-op   een element dat na een tel verschijnt en blijft staan
+   .pulseert  een knop of label dat zachtjes ademt
+   .tikt-aan  een veld dat kort oplicht alsof het net ingevuld is           */
+.komt-op  { animation:bewKomtOp 8s ease-in-out infinite; }
+.pulseert { animation:bewPuls 3.2s ease-in-out infinite; }
+.tikt-aan { animation:bewTik 8s ease-in-out infinite; }
+@keyframes bewKomtOp {
+  0%, 30%   { opacity:0; transform:translateY(8px) }
+  40%, 92%  { opacity:1; transform:translateY(0) }
+  100%      { opacity:0; transform:translateY(8px) }
+}
+@keyframes bewPuls { 0%,100% { transform:scale(1); opacity:1 } 50% { transform:scale(1.02); opacity:0.88 } }
+@keyframes bewTik {
+  0%, 45%   { background:transparent; box-shadow:none }
+  55%, 72%  { background:var(--rose-soft); box-shadow:0 4px 14px rgba(27,25,23,0.08) }
+  85%, 100% { background:transparent; box-shadow:none }
+}
+@media (prefers-reduced-motion: reduce) {
+  .komt-op, .pulseert, .tikt-aan { animation:none; opacity:1; transform:none; }
+}
+
 /* ─── APPVENSTER · LOSSE KAART ─────────────────────────────────────────────
    Het appvenster staat normaal half uit beeld tegen de donkere band, met een
    schaduw die daarop berekend is. Op een lichte sectie hoort het als gewone

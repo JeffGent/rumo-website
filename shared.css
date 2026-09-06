@@ -852,6 +852,34 @@ section.tint-diep { background:var(--klei); }
 }
 .ag-bron::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--butter); }
 
+/* ─── PRODUCTBAND · PUNTJES ────────────────────────────────────────────────
+   Een korte opsomming onder de tekst in een productband. Vervangt op de
+   productpagina's de lange <ul class="fp-bullets"> naast een stilstaand
+   schermpje: drie regels naast één bewegend beeld leest sneller dan zeven
+   regels naast een lijstje dat niets doet. */
+.tb-punten { list-style:none; margin:1.1rem 0 0; padding:0; display:grid; gap:0.5rem; }
+.tb-punten li { position:relative; padding-left:1.4rem; font-size:1rem; line-height:1.55; color:#d9cfc0; }
+.tb-punten li::before {
+  content:''; position:absolute; left:0; top:0.62em;
+  width:6px; height:6px; border-radius:50%; background:var(--butter);
+}
+.toonband.licht .tb-punten li { color:var(--ink-soft); }
+.toonband.licht .tb-punten li::before { background:var(--terra); }
+
+/* ─── APPVENSTER · LOSSE KAART ─────────────────────────────────────────────
+   Het appvenster staat normaal half uit beeld tegen de donkere band, met een
+   schaduw die daarop berekend is. Op een lichte sectie hoort het als gewone
+   kaart: overal ronde hoeken en dezelfde schaduw als .mockup. */
+.appvenster.paneel {
+  border-radius:16px;
+  box-shadow:0 20px 40px rgba(27,25,23,0.08), 0 0 0 1px rgba(27,25,23,0.06);
+}
+
+/* Een label dat zachtjes ademt, zodat "Live" er ook levend uitziet. */
+.leeft { animation:leeftPuls 2.6s ease-in-out infinite; }
+@keyframes leeftPuls { 0%,100% { opacity:1 } 50% { opacity:0.4 } }
+@media (prefers-reduced-motion: reduce) { .leeft { animation:none; } }
+
 /* ─── APPVENSTER · LIJST ───────────────────────────────────────────────────
    Een lijst met statuslabels waarvan er één omslaat. Vier pagina's tonen in
    wezen hetzelfde: het handboek (gelezen wordt ongelezen), preventie (geldig

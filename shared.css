@@ -728,23 +728,24 @@ section.tint-diep { background:var(--klei); }
 
 .av-rij { border-top:1px solid rgba(27,25,23,0.05); position:relative; height:44px; }
 .av-rij > .av-cel { border-left:1px solid rgba(27,25,23,0.05); }
-/* Kamernummer boven, kamertype eronder. Op één regel werd "Standard double"
-   afgekapt tot "Standard ...", en een half woord in een schermafbeelding leest
-   als een fout in het product. Twee regels passen ruim binnen de rijhoogte. */
+/* Nummer en type op één regel, het statusbolletje rechts in de kolom. De
+   kamertypes zijn kort gehouden ("Dubbel" in plaats van "Standard double"),
+   want een afgekapt woord in een beeld van je eigen product leest als een
+   fout in dat product. */
 .av-kamer {
-  display:flex; flex-direction:column; justify-content:center; gap:0.05rem;
-  padding-left:1.1rem; font-size:0.78rem; overflow:hidden;
+  display:flex; align-items:center; gap:0.45rem;
+  padding:0 0.9rem 0 1.1rem; font-size:0.78rem; overflow:hidden;
 }
-.av-kamer .nr { display:flex; align-items:center; gap:0.35rem; }
-.av-kamer b { font-weight:600; }
+.av-kamer b { font-weight:600; flex-shrink:0; }
 .av-kamer .type {
-  font-size:0.56rem; letter-spacing:0.04em; text-transform:uppercase;
-  color:var(--muted); white-space:nowrap;
+  font-size:0.58rem; letter-spacing:0.04em; text-transform:uppercase;
+  color:var(--muted); white-space:nowrap; overflow:hidden;
 }
-/* Vuil is in de app een statusbolletje, geen woord. */
+/* Vuil is in de app een statusbolletje, geen woord. Rechts uitgelijnd, zodat
+   de bolletjes onder elkaar staan in plaats van te dansen op de naamlengte. */
 .av-kamer .vuil {
   width:6px; height:6px; border-radius:50%; background:#c2762f;
-  flex-shrink:0; display:inline-block;
+  flex-shrink:0; margin-left:auto;
 }
 
 /* Boekingsbalken: absoluut binnen de rij, gepositioneerd in kolombreedtes. */

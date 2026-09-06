@@ -366,7 +366,7 @@
     background:var(--paper);
     padding:6rem 0;
   }
-  .compact-head { max-width:680px; margin-bottom:3rem; }
+  .compact-head { max-width:940px; margin-bottom:3rem; }
   .compact-head h2 em { color:var(--terra-dark); }
   /* De zes kernfeatures hierboven zijn <a>'s met een eigen pagina. Deze
      bijkomende features hebben er géén, dus mogen ze er ook niet uitzien als
@@ -426,6 +426,13 @@
     text-transform:uppercase;
     font-weight:500;
     white-space:nowrap;
+  }
+  /* Inbegrepen mag niet even hard roepen als Add-on: het is het normale
+     geval. Zelfde vorm, geen vulkleur. */
+  .compact-addon.basis {
+    background:transparent;
+    color:var(--muted);
+    box-shadow:inset 0 0 0 1px var(--line);
   }
 
 
@@ -633,8 +640,8 @@
   <div class="page-header-inner fade-up">
     <div>
       <span class="kicker">Wat doen we?</span>
-      <h1>Zes onderdelen. Samen <em>is dat rumo.</em></h1>
-      <p class="lead">Dit is de basis, geen startpakket dat je later moet uitbreiden om je hotel te kunnen draaien. Ze zitten er alle zes in vanaf dag één, en ze weten van elkaar wat er gebeurt. Wat verder op deze pagina staat, komt daar bovenop.</p>
+      <h1>Eén systeem dat <em>van zichzelf weet.</em></h1>
+      <p class="lead">De kalender, het handboek, Rudy, je veiligheid, je kanalen en de portal van je gast. Ze zitten er allemaal in vanaf dag één, en ze weten van elkaar wat er gebeurt.</p>
       <p class="ph-sprong"><a href="#integraties">Werkt het met mijn kanaal of mijn boekhouder? &rarr;</a></p>
     </div>
   </div>
@@ -713,7 +720,6 @@
       <p class="lead" style="margin-top:1.25rem;">Het meeste zit gewoon in je pakket. Wat je apart bijneemt, draagt een label.</p>
     </div>
     <div class="compact-grid">
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
           <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -721,71 +727,6 @@
         <h4>Preventie &amp; welzijn</h4><span class="compact-addon">Add-on</span>
         <p>Brandpreventie, legionella, EHBO, keuringen en incidenten. Eén dossier in plaats van vier mappen.</p>
       </div>
-
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
-          <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-        </div>
-        <h4>F&amp;B</h4>
-        <p>Tellingen, allergieën, walk-ins en printlijsten. Een overzicht van je covers, geen kassa.</p>
-      </div>
-
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
-          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg>
-        </div>
-        <h4>Berichten &amp; Inbox</h4>
-        <p>Interne chat, plus alle gastberichten van Booking.com, andere OTA's en de portal op één plek. Rudy stelt het antwoord voor.</p>
-      </div>
-
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
-          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        </div>
-        <h4>rumo pay</h4>
-        <p>Betaallinks, kaart-charging en pre-autorisaties. Bancontact, Visa, Mastercard, Apple Pay. Landt vanzelf op de factuur.</p>
-      </div>
-
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <h4>Facturatie &amp; Peppol</h4>
-        <p>Facturen, credit notes en proforma's met juiste btw, als PDF of UBL 2.1. Versturen via het Peppol-netwerk is een add-on.</p>
-      </div>
-
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
-          <svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
-        </div>
-        <h4>Rapporten</h4>
-        <p>Bezetting, ADR, RevPAR en omzet per kanaal. Export naar CSV, Excel of PDF.</p>
-      </div>
-
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-        </div>
-        <h4>Belgische compliance</h4>
-        <p>Stadstaks, politieregistratie en overheidsstatistiek, automatisch uit wat je gast invulde. Eén keer instellen.</p>
-      </div>
-
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h4>Allotments</h4>
-        <p>Vaste kamerblokken voor touroperators of corporate, met pickup-tracking en centrale facturatie.</p>
-      </div>
-
-      <div class="compact-card fade-up">
-        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
-          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-        </div>
-        <h4>Onderhoud</h4>
-        <p>Stuk slot op kamer 12? Iedereen meldt het met een foto. Jij ziet wat ligt, wat loopt en wat aankomt.</p>
-      </div>
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
           <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
@@ -793,7 +734,6 @@
         <h4>Smart Pricing</h4><span class="compact-addon">Add-on</span>
         <p>Prijzen bewegen mee met je bezetting en gaan meteen naar je kanalen. Jij zet de grenzen, zelf ingrijpen wint altijd.</p>
       </div>
-
       <div class="compact-card fade-up">
         <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg>
@@ -801,13 +741,68 @@
         <h4>Upsell</h4><span class="compact-addon">Add-on</span>
         <p>Gasten upgraden hun kamer of boeken extra's bij vóór aankomst, via de portal. Zonder werk aan de balie.</p>
       </div>
-
       <div class="compact-card fade-up" id="housekeeping">
         <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <h4>Advanced Housekeeping</h4><span class="compact-addon">Add-on</span>
         <p>Poetschecklists per kamer en een timer die meet hoe lang een schoonmaak echt duurt.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <h4>F&amp;B</h4><span class="compact-addon basis">Basis</span>
+        <p>Tellingen, allergieën, walk-ins en printlijsten. Een overzicht van je covers, geen kassa.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg>
+        </div>
+        <h4>Berichten &amp; Inbox</h4><span class="compact-addon basis">Basis</span>
+        <p>Interne chat, plus alle gastberichten van Booking.com, andere OTA's en de portal op één plek. Rudy stelt het antwoord voor.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h4>rumo pay</h4><span class="compact-addon basis">Basis</span>
+        <p>Betaallinks, kaart-charging en pre-autorisaties. Bancontact, Visa, Mastercard, Apple Pay. Landt vanzelf op de factuur.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h4>Facturatie &amp; Peppol</h4><span class="compact-addon basis">Basis</span>
+        <p>Facturen, credit notes en proforma's met juiste btw, als PDF of UBL 2.1. Automatisch versturen via Peppol is een aparte add-on.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#FCEDBD; color:#8a6b1a;">
+          <svg viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
+        </div>
+        <h4>Rapporten</h4><span class="compact-addon basis">Basis</span>
+        <p>Bezetting, ADR, RevPAR en omzet per kanaal. Export naar CSV, Excel of PDF.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:#DCE4F3; color:#4a7fb5;">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h4>Belgische compliance</h4><span class="compact-addon basis">Basis</span>
+        <p>Stadstaks, politieregistratie en overheidsstatistiek, automatisch uit wat je gast invulde. Eén keer instellen.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--forest-soft); color:var(--forest);">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h4>Allotments</h4><span class="compact-addon basis">Basis</span>
+        <p>Vaste kamerblokken voor touroperators of corporate, met pickup-tracking en centrale facturatie.</p>
+      </div>
+      <div class="compact-card fade-up">
+        <div class="compact-ic" style="background:var(--rose-soft); color:var(--terra-dark);">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h4>Onderhoud</h4><span class="compact-addon basis">Basis</span>
+        <p>Stuk slot op kamer 12? Iedereen meldt het met een foto. Jij ziet wat ligt, wat loopt en wat aankomt.</p>
       </div>
 
     </div>
